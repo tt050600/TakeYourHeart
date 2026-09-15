@@ -8,7 +8,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; transition: background-color 0.2s ease; }
 
-/* 第一幕：點擊解鎖介面（純黑神祕開局） */
+/* 第一幕：點擊解鎖介面 */
 #startScreen {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #0d0d0d; display: flex; flex-direction: column;
@@ -33,7 +33,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     position: absolute; background-image: url('cover.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.45; pointer-events: none;
 }
 
-/* 3. 前景最前方：字幕小動畫影片（精緻完美比例） */
+/* 3. 前景最前方：字幕小動畫影片 */
 #videoContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; justify-content: center; align-items: center; pointer-events: none;
 }
@@ -41,8 +41,20 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     max-width: 88vw; max-height: 80vh; object-fit: contain; filter: drop-shadow(0 0 45px rgba(0,0,0,0.95)); animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* 斬擊轉場層 */
-#flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; animation: flashEffect 0.35s ease-out; }
+/* ⚡ 修正：斬擊轉場層的經典 P5 紅白黑極速閃爍動畫 ⚡ */
+#flashOverlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 99999; /* 數字最大，保證閃爍在最前面亮瞎眼 */
+}
+.flash-animate {
+    display: block !important;
+    animation: flashEffect 0.35s ease-out forwards;
+}
 
 @keyframes p5GlobalFall {
     0% { transform: translateY(0) rotate(var(--rot)) scale(var(--sc)); }
@@ -51,7 +63,13 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-@keyframes flashEffect { 0% { background: #fff; opacity: 1; } 25% { background: #dc0000; opacity: 1; } 50% { background: #fff; opacity: 1; } 75% { background: #000; opacity: 1; } 100% { opacity: 0; } }
+@keyframes flashEffect { 
+    0% { background: #fff; opacity: 1; } 
+    25% { background: #dc0000; opacity: 1; } 
+    50% { background: #fff; opacity: 1; } 
+    75% { background: #000; opacity: 1; } 
+    100% { opacity: 0; display: none; } 
+}
 </style>
 </head>
 <body>
@@ -61,16 +79,16 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     <div id="startScreen" onclick="launchPhantom()">
         <img src="joker-mask.png" class="joker-mask-img" alt="Joker Mask">
         <div class="p5-box">TAKE <span>YOUR</span> HEART</div>
-        <!-- 🔴 這裡已精準改為地道的 P5 術語 CALLING CARD！ -->
         <div class="sub-txt">CLICK TO OPEN THE CALLING CARD</div>
     </div>
     
+    <!-- 斬擊轉場層 -->
     <div id="flashOverlay"></div>
     
     <!-- 後方最底層 -->
     <div id="canvasContainer"></div>
     
-    <!-- 前方最上層：字幕小動畫影片 -->
+    <!-- 前方最上層 -->
     <div id="videoContainer">
         <video id="bgVideo" src="bg-animation.mp4" loop muted playsinline preload="auto"></video>
     </div>
@@ -122,7 +140,9 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         
         audio.play().catch(e => { console.log(e); });
         video.play().catch(e => { console.log(e); });
-        flashOverlay.style.display = 'block';
+        
+        // 🎬 核心修正：手動把那道亮瞎眼的極速紅白黑斬擊特效「啟動」！ 🎬
+        flashOverlay.classList.add('flash-animate');
         
         setTimeout(() => {
             startScreen.style.display = 'none';
@@ -141,9 +161,10 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
             setInterval(supplementLetter, 100);
         }, 120);
         
+        // 特效時間到自動隱藏
         setTimeout(() => {
-            flashOverlay.style.display = 'none';
-        }, 350);
+            flashOverlay.classList.remove('flash-animate');
+        }, 400);
     }
 
     function supplementLetter() {
