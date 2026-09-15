@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take Your Heart</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #0b0b0b;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player {
+    width: min(90%, 500px);
+    text-align: center;
+}
+.title {
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+.subtitle {
+    margin-top: 12px;
+    color: #aaa;
+    letter-spacing: 3px;
+}
+.cover {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 40px auto 30px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(220,0,0,.35);
+}
+.cover img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    padding-left: 4px;
+    transition: .2s;
+}
+.cover:hover .play { transform: translate(-50%, -50%) scale(1.08); }
+audio { width: 100%; }
+.message {
+    margin-top: 25px;
+    color: #888;
+}
+</style>
+</head>
+<body>
+<div class="player">
+    <div class="title">TAKE YOUR HEART</div>
+    <div class="subtitle">LIFE WILL CHANGE</div>
+
+    <div class="cover" id="cover" title="点击播放 / 暂停">
+        <img src="cover.png" alt="Take Your Heart">
+        <div class="play" id="playIcon">▶</div>
+    </div>
+
+    <audio id="audio" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="message">点击图片播放音乐</div>
+</div>
+
+<script>
+const audio = document.getElementById('audio');
+const cover = document.getElementById('cover');
+const playIcon = document.getElementById('playIcon');
+
+cover.addEventListener('click', async () => {
+    if (audio.paused) {
+        try {
+            await audio.play();
+            playIcon.textContent = 'Ⅱ';
+        } catch (e) {
+            alert('无法播放，请确认 music.mp3 与网页文件在同一文件夹。');
+        }
+    } else {
+        audio.pause();
+        playIcon.textContent = '▶';
+    }
+});
+
+audio.addEventListener('ended', () => {
+    playIcon.textContent = '▶';
+});
+</script>
+</body>
+</html>
