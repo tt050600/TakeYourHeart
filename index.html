@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Take Your Heart</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,7 +15,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     justify-content: center; align-items: center; z-index: 100; cursor: pointer;
 }
 
-/* P5 經典怪盜團面具圖標 */
+/* P5 經典紅色怪盜面具 */
 .phantom-logo {
     width: 120px; height: 70px; background: #dc0000; position: relative;
     clip-path: polygon(0% 20%, 25% 0%, 50% 40%, 75% 0%, 100% 20%, 85% 90%, 50% 100%, 15% 90%);
@@ -27,7 +27,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 .phantom-logo::before { left: 15px; transform: rotate(15deg); }
 .phantom-logo::after { right: 15px; transform: rotate(-15deg); }
 
-/* P5 標誌性不規則撕裂字體風格 */
+/* P5 經典不規則字體 */
 .p5-box {
     margin-top: 40px; background: #fff; color: #000; padding: 10px 25px; font-size: 32px; font-weight: 900;
     letter-spacing: 2px; transform: rotate(-4deg) skewX(-10deg); box-shadow: 8px 8px 0 #dc0000; border: 3px solid #000;
@@ -35,40 +35,47 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 .p5-box span { display: inline-block; background: #000; color: #fff; padding: 2px 8px; margin: 0 2px; transform: rotate(6deg); }
 .sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
 
-/* 🔴 第二幕：預告信展示介面（真正的 100% 滿屏貼臉，沒有任何干擾） */
+/* 🔴 第二幕：真正的【極致爆屏貼臉】（消滅任何黑邊，直接撐爆全螢幕） */
 #letterScreen { 
     display: none; width: 100vw; height: 100vh; background: #0b0b0b; 
     justify-content: center; align-items: center; position: fixed; top: 0; left: 0; z-index: 10;
 }
 #letterScreen img { 
-    width: 100%; height: 100%; object-fit: contain; /* 💡 100% 撐滿手機全螢幕且不切字 */
-    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    width: 100vw; height: 100vh; 
+    object-fit: cover; /* 💡 終極黑科技：徹底打破框架，強制把預告信拉滿整個螢幕，絕對不留一丁點黑邊！ */
+    transform: scale(1.05); /* 讓圖片帶有一點微微漫出來的侵略感 */
+    animation: zoomAttack 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* 轉場特效 */
-#flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99; animation: flashEffect 0.4s ease-out; }
+/* 斬擊轉場層 */
+#flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99; animation: flashEffect 0.35s ease-out; }
 
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
 @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-@keyframes popIn { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* 💥 預告信像怪盜技能一樣，猛烈擴張撞擊貼臉的動態 */
+@keyframes zoomAttack {
+    0% { transform: scale(0.7) rotate(-2deg); opacity: 0; }
+    100% { transform: scale(1.02) rotate(0deg); opacity: 1; }
+}
 @keyframes flashEffect { 0% { background: #fff; opacity: 1; } 25% { background: #dc0000; opacity: 1; } 50% { background: #fff; opacity: 1; } 75% { background: #000; opacity: 1; } 100% { opacity: 0; } }
 </style>
 </head>
 <body>
-    <!-- 💡 強制預載音樂，保證一按就零延遲炸出來 -->
+    <!-- 強制極速預載音樂 -->
     <audio id="audio" src="music.mp3" loop preload="auto"></audio>
     
-    <!-- 第一幕：神祕交互開場 -->
+    <!-- 第一幕：神秘開場交互 -->
     <div id="startScreen" onclick="launchPhantom()">
         <div class="phantom-logo"></div>
         <div class="p5-box">TAKE <span>YOUR</span> HEART</div>
         <div class="sub-txt">CLICK TO OPEN THE ALERT LETTER</div>
     </div>
     
-    <!-- 斬擊轉場層 -->
+    <!-- 轉場閃爍層 -->
     <div id="flashOverlay"></div>
     
-    <!-- 第二幕：真正的滿屏預告信 -->
+    <!-- 第二幕：徹底爆屏貼臉的預告信 -->
     <div id="letterScreen"><img src="cover.png" alt="預告信"></div>
 
     <script>
@@ -78,21 +85,17 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         const flashOverlay = document.getElementById('flashOverlay');
         const letterScreen = document.getElementById('letterScreen');
         
-        // 零延遲播放音樂
         audio.play().catch(e => { console.log(e); });
-        
-        // 觸發斬擊閃爍
         flashOverlay.style.display = 'block';
         
-        // 在閃爍中迅速把原本的開場全部隱藏，讓預告信 100% 滿屏跳出來
         setTimeout(() => {
             startScreen.style.display = 'none';
             letterScreen.style.display = 'flex';
-        }, 150);
+        }, 120);
         
         setTimeout(() => {
             flashOverlay.style.display = 'none';
-        }, 400);
+        }, 350);
     }
     </script>
 </body>
