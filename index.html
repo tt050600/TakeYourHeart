@@ -23,41 +23,34 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 .sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
 
 
-/* 🔴 2. 背景最底層：無限循環的預告信瀑布（z-index: 10，這次在後台真正加好加滿！） */
+/* 🔴 2. 背景最底層：地獄級加滿瀑布層（z-index: 10，消滅任何空曠感！） */
 #canvasContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
 }
 .falling-letter {
     position: absolute; background-image: url('cover.png'); background-size: contain; background-repeat: no-repeat;
-    opacity: 0.4; /* 💡 保持舒適的背景透明度 */
-    pointer-events: none;
-    animation: p5Fall linear infinite;
+    opacity: 0.38; pointer-events: none;
 }
 
 
-/* 🔴 3. 前景最前方：妳做好的字幕小動畫影片（z-index: 999，死死貼在最前面，維持完美比例不放大！） */
+/* 🔴 3. 前景最前方：字幕小動畫影片（z-index: 999，完美黃金比例比例，絕不跑版！） */
 #videoContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; 
     justify-content: center; align-items: center; pointer-events: none;
 }
 #bgVideo {
-    max-width: 88vw; 
-    max-height: 80vh; /* 💡 完美維持原本精緻的黃金比例！四週空隙剛好讓背景露出來 */
-    object-fit: contain;
-    filter: drop-shadow(0 0 35px rgba(0,0,0,0.95)); /* 加上強力陰影，與背景流動徹底分離 */
+    max-width: 88vw; max-height: 80vh; object-fit: contain;
+    filter: drop-shadow(0 0 35px rgba(0,0,0,0.95));
     animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-
 
 /* 斬擊轉場層 */
 #flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; animation: flashEffect 0.35s ease-out; }
 
-/* 背景預告信無限流動動畫 */
-@keyframes p5Fall {
-    0% { transform: translateY(-160px) rotate(var(--rot)) scale(var(--sc)); opacity: 0; }
-    10% { opacity: 0.45; }
-    90% { opacity: 0.45; }
-    100% { transform: translateY(110vh) rotate(calc(var(--rot) + 120deg)) scale(var(--sc)); opacity: 0; }
+/* 🔴 全螢幕無限流動動畫：從隨機起點一路掉落並循環 */
+@keyframes p5GlobalFall {
+    0% { transform: translateY(var(--start-y)) rotate(var(--rot)) scale(var(--sc)); opacity: var(--op); }
+    100% { transform: translateY(105vh) rotate(calc(var(--rot) + 120deg)) scale(var(--sc)); opacity: 0; }
 }
 
 @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -78,15 +71,61 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     
     <div id="flashOverlay"></div>
     
-    <!-- 後方最底層：無限循環流動的預告信瀑布（加好加滿） -->
+    <!-- 後方最底層：地獄級加滿流動瀑布 -->
     <div id="canvasContainer"></div>
     
-    <!-- 前方最上層：妳做的字幕小動畫影片（維持完美比例比例） -->
+    <!-- 前方最上層：字幕小動畫影片（完美比例比例） -->
     <div id="videoContainer">
         <video id="bgVideo" src="bg-animation.mp4" loop muted playsinline preload="auto"></video>
     </div>
 
     <script>
+    // 💡 網頁一載入，趁他在開場畫面時，就在後台默默偷偷生成好 100 張預告信，塞滿整個手機螢幕！
+    window.addEventListener('DOMContentLoaded', () => {
+        preBuildWaterfall();
+    });
+
+    function preBuildWaterfall() {
+        const container = document.getElementById('canvasContainer');
+        const count = 90; // 💡 總共放 90 張預告信，徹底填滿所有空曠死角！
+        
+        for (let i = 0; i < count; i++) {
+            const letter = document.createElement('div');
+            letter.className = 'falling-letter';
+            
+            const sizeWidth = Math.floor(Math.random() * 55) + 35; // 35px - 90px 之間
+            const sizeHeight = sizeWidth * 1.3;
+            const left = Math.random() * 100;
+            
+            // 💡 黑科技核心：讓這 90 張預告信隨機均勻分布在全螢幕的各個高度（從 -10vh 到 95vh）
+            const startY = Math.floor(Math.random() * 115) - 15; 
+            const duration = Math.random() * 2.5 + 3.5; // 下落速度 (3.5s - 6s)
+            const rotation = Math.random() * 80 - 40;
+            const scale = (Math.random() * 0.4 + 0.45).toFixed(2);
+            const baseOpacity = (Math.random() * 0.15 + 0.3).toFixed(2);
+            
+            letter.style.width = sizeWidth + 'px';
+            letter.style.height = sizeHeight + 'px';
+            letter.style.left = left + 'vw';
+            letter.style.top = '0px';
+            
+            // 寫入 CSS 全域變數
+            letter.style.setProperty('--start-y', startY + 'vh');
+            letter.style.setProperty('--rot', rotation + 'deg');
+            letter.style.setProperty('--sc', scale);
+            letter.style.setProperty('--op', baseOpacity);
+            
+            // 💡 點擊前先靜止定位好，點擊後啟動動畫並「無限循環（infinite）」
+            letter.style.transform = `translateY(${startY}vh) rotate(${rotation}deg) scale(${scale})`;
+            letter.style.opacity = baseOpacity;
+            
+            // 給予一條獨特的動態效果名字，等點擊後在 JS 裡統一啟動
+            letter.dataset.duration = duration + 's';
+            
+            container.appendChild(letter);
+        }
+    }
+
     function launchPhantom() {
         const audio = document.getElementById('audio');
         const video = document.getElementById('bgVideo');
@@ -104,9 +143,14 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
             canvasContainer.style.display = 'block'; 
             videoContainer.style.display = 'flex';    
             
-            // 🎬 讓後方的預告信瀑布加好加滿
-            createFallingLetters();
-            setInterval(createFallingLetters, 1500); // 💡 縮短間隔到1.5秒，背景狂加暴加！
+            // 🎬 核心啟動：讓全螢幕上百張預告信瞬間「集體奔跑、無限循環」！
+            const letters = document.querySelectorAll('.falling-letter');
+            letters.forEach(letter => {
+                letter.style.animation = `p5GlobalFall ${letter.dataset.duration} linear infinite`;
+            });
+            
+            // 並且持續高頻率生產新預告信，源源不絕填補頂部
+            setInterval(addNewFallingLetter, 120);
         }, 120);
         
         setTimeout(() => {
@@ -114,34 +158,32 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         }, 350);
     }
 
-    function createFallingLetters() {
+    // 頂部持續高頻補充機制
+    function addNewFallingLetter() {
         const container = document.getElementById('canvasContainer');
-        const count = 30; // 💡 每波數量直接加滿到30張！背景瀑布拉滿！
+        if (container.children.length > 130) return; // 上限控制，防止卡頓
         
-        for (let i = 0; i < count; i++) {
-            const letter = document.createElement('div');
-            letter.className = 'falling-letter';
-            
-            const sizeWidth = Math.floor(Math.random() * 55) + 35; 
-            const sizeHeight = sizeWidth * 1.3;
-            const left = Math.random() * 100;
-            const delay = Math.random() * 2; 
-            const duration = Math.random() * 2 + 2.5; 
-            const rotation = Math.random() * 70 - 35;
-            const scale = (Math.random() * 0.4 + 0.4).toFixed(2);
-            
-            letter.style.width = sizeWidth + 'px';
-            letter.style.height = sizeHeight + 'px';
-            letter.style.left = left + 'vw';
-            letter.style.animationDelay = delay + 's';
-            letter.style.animationDuration = duration + 's';
-            letter.style.setProperty('--rot', rotation + 'deg');
-            letter.style.setProperty('--sc', scale);
-            
-            container.appendChild(letter);
-            
-            setTimeout(() => { letter.remove(); }, (delay + duration) * 1000);
-        }
+        const letter = document.createElement('div');
+        letter.className = 'falling-letter';
+        const sizeWidth = Math.floor(Math.random() * 55) + 35;
+        const sizeHeight = sizeWidth * 1.3;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 2.5 + 3.5;
+        const rotation = Math.random() * 80 - 40;
+        const scale = (Math.random() * 0.4 + 0.45).toFixed(2);
+        
+        letter.style.width = sizeWidth + 'px';
+        letter.style.height = sizeHeight + 'px';
+        letter.style.left = left + 'vw';
+        letter.style.setProperty('--start-y', '-20vh');
+        letter.style.setProperty('--rot', rotation + 'deg');
+        letter.style.setProperty('--sc', scale);
+        letter.style.setProperty('--op', '0.4');
+        
+        letter.style.animation = `p5GlobalFall ${duration} linear infinite`;
+        container.appendChild(letter);
+        
+        setTimeout(() => { letter.remove(); }, duration * 1000);
     }
     </script>
 </body>
