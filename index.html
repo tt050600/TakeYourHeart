@@ -6,7 +6,7 @@
 <title>Take Your Heart</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-/* 🔴 修正：一進來 body 必須死死維持純黑色 #0b0b0b，絕對不提前露餡！ */
+/* 一進來 body 必須死死維持純黑色 #0b0b0b，絕對不提前露餡 */
 body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; transition: background-color 0.2s ease; }
 
 /* 第一幕：點擊解鎖介面（純黑神祕開局） */
@@ -27,7 +27,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 #canvasContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
 }
-/* 🎨 點擊後，這個樣式會啟動，背景一秒換上狂暴紅！ */
+/* 點擊後，這個樣式會啟動，背景一秒換上狂暴紅 */
 .bg-red-active {
     background-color: #dc0000 !important;
 }
@@ -72,7 +72,8 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     
     <!-- 第一幕：Joker面具開場 -->
     <div id="startScreen" onclick="launchPhantom()">
-        <div class="joker-mask-img"></div>
+        <!-- 🔺 修正：完美把妳的 Joker 面具圖片吐出來回來了！ 🔺 -->
+        <img src="joker-mask.png" class="joker-mask-img" alt="Joker Mask">
         <div class="p5-box">TAKE <span>YOUR</span> HEART</div>
         <div class="sub-txt">CLICK TO OPEN THE ALERT LETTER</div>
     </div>
@@ -139,7 +140,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         setTimeout(() => {
             startScreen.style.display = 'none';
             
-            // 🎬 核心修正：點擊的這瞬間，才把背景強制塗紅（啟動 bg-red-active）！
+            // 點擊的瞬間，背景才強制塗紅
             document.body.style.backgroundColor = '#dc0000';
             canvasContainer.classList.add('bg-red-active');
             
