@@ -6,7 +6,6 @@
 <title>Take Your Heart</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-/* 一進來 body 必須死死維持純黑色 #0b0b0b，絕對不提前露餡 */
 body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; transition: background-color 0.2s ease; }
 
 /* 第一幕：點擊解鎖介面（純黑神祕開局） */
@@ -23,44 +22,32 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 .p5-box span { display: inline-block; background: #000; color: #fff; padding: 2px 8px; margin: 0 2px; transform: rotate(6deg); }
 .sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
 
-/* 2. 背景最底層：流動瀑布層（點擊前是黑的，點擊後會由 JS 換成 P5 紅） */
+/* 2. 背景最底層：流動瀑布層 */
 #canvasContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
 }
-/* 點擊後，這個樣式會啟動，背景一秒換上狂暴紅 */
 .bg-red-active {
     background-color: #dc0000 !important;
 }
-
 .falling-letter {
-    position: absolute; 
-    background-image: url('cover.png'); 
-    background-size: contain; 
-    background-repeat: no-repeat;
-    opacity: 0.45; 
-    pointer-events: none;
+    position: absolute; background-image: url('cover.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.45; pointer-events: none;
 }
 
 /* 3. 前景最前方：字幕小動畫影片（精緻完美比例） */
 #videoContainer {
-    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; 
-    justify-content: center; align-items: center; pointer-events: none;
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; justify-content: center; align-items: center; pointer-events: none;
 }
 #bgVideo {
-    max-width: 88vw; max-height: 80vh; object-fit: contain;
-    filter: drop-shadow(0 0 45px rgba(0,0,0,0.95)); 
-    animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    max-width: 88vw; max-height: 80vh; object-fit: contain; filter: drop-shadow(0 0 45px rgba(0,0,0,0.95)); animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 /* 斬擊轉場層 */
 #flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; animation: flashEffect 0.35s ease-out; }
 
-/* 狂暴流動動畫 */
 @keyframes p5GlobalFall {
     0% { transform: translateY(0) rotate(var(--rot)) scale(var(--sc)); }
     100% { transform: translateY(115vh) rotate(calc(var(--rot) + 120deg)) scale(var(--sc)); }
 }
-
 @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
@@ -72,10 +59,10 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     
     <!-- 第一幕：Joker面具開場 -->
     <div id="startScreen" onclick="launchPhantom()">
-        <!-- 🔺 修正：完美把妳的 Joker 面具圖片吐出來回來了！ 🔺 -->
         <img src="joker-mask.png" class="joker-mask-img" alt="Joker Mask">
         <div class="p5-box">TAKE <span>YOUR</span> HEART</div>
-        <div class="sub-txt">CLICK TO OPEN THE ALERT LETTER</div>
+        <!-- 🔴 這裡已精準改為地道的 P5 術語 CALLING CARD！ -->
+        <div class="sub-txt">CLICK TO OPEN THE CALLING CARD</div>
     </div>
     
     <div id="flashOverlay"></div>
@@ -140,7 +127,6 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         setTimeout(() => {
             startScreen.style.display = 'none';
             
-            // 點擊的瞬間，背景才強制塗紅
             document.body.style.backgroundColor = '#dc0000';
             canvasContainer.classList.add('bg-red-active');
             
