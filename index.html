@@ -12,7 +12,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 #startScreen {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #0d0d0d; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; z-index: 100; cursor: pointer;
+    justify-content: center; align-items: center; z-index: 10000; cursor: pointer;
 }
 .phantom-logo {
     width: 120px; height: 70px; background: #dc0000; position: relative;
@@ -27,39 +27,36 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 .p5-box span { display: inline-block; background: #000; color: #fff; padding: 2px 8px; margin: 0 2px; transform: rotate(6deg); }
 .sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
 
-
-/* 🔴 第二幕：背景——無限流動飛舞層（z-index小，在後面流動） */
+/* 🔴 2. 背景——無限循環流動層（z-index: 10，死死待在最底層） */
 #canvasContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
 }
 .falling-letter {
     position: absolute; background-image: url('cover.png'); background-size: contain; background-repeat: no-repeat;
-    opacity: 0.4; /* 💡 背景透明度調低，才不會搶了前面主圖的風采 */
+    opacity: 0.35; /* 💡 透明度調低，才不會擋住前面的字 */
     pointer-events: none;
-    animation: p5Fall linear infinite; /* 💡 無限循環（infinite）流動 */
+    animation: p5Fall linear infinite; /* 💡 永不停歇的循環 */
 }
 
-
-/* 🔴 第三幕：前景——一動不動的最前方主圖（z-index大，死死貼在最前面） */
+/* 🔴 3. 前景——一動不動的主圖（z-index: 999，霸道地站在最前方，死不挪窩！） */
 #finalLetter {
-    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 20; /* 💡 數字大，在最前面 */
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; 
     justify-content: center; align-items: center; pointer-events: none;
 }
 #finalLetter img {
-    width: 100vw; height: 100vh; object-fit: contain; padding: 12px;
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    width: 100vw; height: 100vh; object-fit: contain; padding: 15px;
+    animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-
 /* 斬擊轉場層 */
-#flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99; animation: flashEffect 0.35s ease-out; }
+#flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; animation: flashEffect 0.35s ease-out; }
 
-/* 🔴 背景無限流動動畫：從頂部一直掉到底部，無限循環 */
+/* 🔴 背景無限流動動畫：從螢幕外掉到最底部，無限循環 */
 @keyframes p5Fall {
-    0% { transform: translateY(-150px) rotate(var(--rot)) scale(var(--sc)); opacity: 0; }
-    15% { opacity: 0.5; }
-    85% { opacity: 0.5; }
-    100% { transform: translateY(105vh) rotate(calc(var(--rot) + 180deg)) scale(var(--sc)); opacity: 0; }
+    0% { transform: translateY(-160px) rotate(var(--rot)) scale(var(--sc)); opacity: 0; }
+    10% { opacity: 0.4; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(110vh) rotate(calc(var(--rot) + 180deg)) scale(var(--sc)); opacity: 0; }
 }
 
 @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -80,10 +77,10 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     
     <div id="flashOverlay"></div>
     
-    <!-- 後方：無限流動飛舞層 -->
+    <!-- 後方：無限循環流動瀑布層 -->
     <div id="canvasContainer"></div>
     
-    <!-- 最前方：一動不動的預告信主圖 -->
+    <!-- 最前方：死活不動的預告信主圖 -->
     <div id="finalLetter"><img src="cover.png" alt="預告信"></div>
 
     <script>
@@ -99,10 +96,12 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         
         setTimeout(() => {
             startScreen.style.display = 'none';
-            canvasContainer.style.display = 'block'; // 顯示背景流動
-            finalLetter.style.display = 'flex';     // 同步顯示最前方的靜態主圖
+            canvasContainer.style.display = 'block'; // 啟動背景流動
+            finalLetter.style.display = 'flex';     // 釘死前方主圖
             
+            // 🎬 核心黑科技：不間斷地在背景生產流動預告信
             createFallingLetters();
+            setInterval(createFallingLetters, 3000); // 💡 每3秒源源不絕地補充，達成永恆流動！
         }, 120);
         
         setTimeout(() => {
@@ -112,19 +111,19 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 
     function createFallingLetters() {
         const container = document.getElementById('canvasContainer');
-        const count = 35; // 💡 背景流動的預告信數量
+        const count = 20; // 每次生成的批次數量
         
         for (let i = 0; i < count; i++) {
             const letter = document.createElement('div');
             letter.className = 'falling-letter';
             
-            const sizeWidth = Math.floor(Math.random() * 60) + 40; // 大小隨機 (40px - 100px)
+            const sizeWidth = Math.floor(Math.random() * 50) + 40; // 40px - 90px 的小背景圖
             const sizeHeight = sizeWidth * 1.3;
             const left = Math.random() * 100;
-            const delay = Math.random() * 4; // 隨機延遲，錯開流動時間
-            const duration = Math.random() * 3 + 2.5; // 流動速度（2.5s - 5.5s）
-            const rotation = Math.random() * 80 - 40;
-            const scale = (Math.random() * 0.5 + 0.5).toFixed(2);
+            const delay = Math.random() * 3; 
+            const duration = Math.random() * 3 + 3; // 下落速度 (3s - 6s)
+            const rotation = Math.random() * 90 - 45;
+            const scale = (Math.random() * 0.4 + 0.4).toFixed(2);
             
             letter.style.width = sizeWidth + 'px';
             letter.style.height = sizeHeight + 'px';
@@ -135,6 +134,9 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
             letter.style.setProperty('--sc', scale);
             
             container.appendChild(letter);
+            
+            // 💡 流動完自動刪除，防止手機當機
+            setTimeout(() => { letter.remove(); }, (delay + duration) * 1000);
         }
     }
     </script>
