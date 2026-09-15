@@ -6,96 +6,136 @@
 <title>Take Your Heart</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; }
+body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; }
 
-/* 第一幕：點擊解鎖介面（純粹 P5 經典紅黑風） */
+/* 第一幕：點擊解鎖介面 */
 #startScreen {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #0d0d0d; display: flex; flex-direction: column;
     justify-content: center; align-items: center; z-index: 100; cursor: pointer;
 }
-
-/* P5 經典紅色怪盜面具 */
 .phantom-logo {
     width: 120px; height: 70px; background: #dc0000; position: relative;
     clip-path: polygon(0% 20%, 25% 0%, 50% 40%, 75% 0%, 100% 20%, 85% 90%, 50% 100%, 15% 90%);
     box-shadow: 0 0 40px rgba(220, 0, 0, 0.6); animation: pulse 1.5s infinite;
 }
-.phantom-logo::before, .phantom-logo::after {
-    content: ''; position: absolute; background: #0d0d0d; width: 25px; height: 15px; border-radius: 50%; top: 30px;
-}
+.phantom-logo::before, .phantom-logo::after { content: ''; position: absolute; background: #0d0d0d; width: 25px; height: 15px; border-radius: 50%; top: 30px; }
 .phantom-logo::before { left: 15px; transform: rotate(15deg); }
 .phantom-logo::after { right: 15px; transform: rotate(-15deg); }
 
-/* P5 經典不規則字體 */
-.p5-box {
-    margin-top: 40px; background: #fff; color: #000; padding: 10px 25px; font-size: 32px; font-weight: 900;
-    letter-spacing: 2px; transform: rotate(-4deg) skewX(-10deg); box-shadow: 8px 8px 0 #dc0000; border: 3px solid #000;
-}
+.p5-box { margin-top: 40px; background: #fff; color: #000; padding: 10px 25px; font-size: 32px; font-weight: 900; letter-spacing: 2px; transform: rotate(-4deg) skewX(-10deg); box-shadow: 8px 8px 0 #dc0000; border: 3px solid #000; }
 .p5-box span { display: inline-block; background: #000; color: #fff; padding: 2px 8px; margin: 0 2px; transform: rotate(6deg); }
 .sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
 
-/* 🔴 第二幕：真正的【極致爆屏貼臉】（消滅任何黑邊，直接撐爆全螢幕） */
-#letterScreen { 
-    display: none; width: 100vw; height: 100vh; background: #0b0b0b; 
-    justify-content: center; align-items: center; position: fixed; top: 0; left: 0; z-index: 10;
+
+/* 🔴 第二幕：背景——無限流動飛舞層（z-index小，在後面流動） */
+#canvasContainer {
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
 }
-#letterScreen img { 
-    width: 100vw; height: 100vh; 
-    object-fit: cover; /* 💡 終極黑科技：徹底打破框架，強制把預告信拉滿整個螢幕，絕對不留一丁點黑邊！ */
-    transform: scale(1.05); /* 讓圖片帶有一點微微漫出來的侵略感 */
-    animation: zoomAttack 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+.falling-letter {
+    position: absolute; background-image: url('cover.png'); background-size: contain; background-repeat: no-repeat;
+    opacity: 0.4; /* 💡 背景透明度調低，才不會搶了前面主圖的風采 */
+    pointer-events: none;
+    animation: p5Fall linear infinite; /* 💡 無限循環（infinite）流動 */
 }
+
+
+/* 🔴 第三幕：前景——一動不動的最前方主圖（z-index大，死死貼在最前面） */
+#finalLetter {
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 20; /* 💡 數字大，在最前面 */
+    justify-content: center; align-items: center; pointer-events: none;
+}
+#finalLetter img {
+    width: 100vw; height: 100vh; object-fit: contain; padding: 12px;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
 
 /* 斬擊轉場層 */
 #flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99; animation: flashEffect 0.35s ease-out; }
 
+/* 🔴 背景無限流動動畫：從頂部一直掉到底部，無限循環 */
+@keyframes p5Fall {
+    0% { transform: translateY(-150px) rotate(var(--rot)) scale(var(--sc)); opacity: 0; }
+    15% { opacity: 0.5; }
+    85% { opacity: 0.5; }
+    100% { transform: translateY(105vh) rotate(calc(var(--rot) + 180deg)) scale(var(--sc)); opacity: 0; }
+}
+
+@keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
 @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-
-/* 💥 預告信像怪盜技能一樣，猛烈擴張撞擊貼臉的動態 */
-@keyframes zoomAttack {
-    0% { transform: scale(0.7) rotate(-2deg); opacity: 0; }
-    100% { transform: scale(1.02) rotate(0deg); opacity: 1; }
-}
 @keyframes flashEffect { 0% { background: #fff; opacity: 1; } 25% { background: #dc0000; opacity: 1; } 50% { background: #fff; opacity: 1; } 75% { background: #000; opacity: 1; } 100% { opacity: 0; } }
 </style>
 </head>
 <body>
-    <!-- 強制極速預載音樂 -->
     <audio id="audio" src="music.mp3" loop preload="auto"></audio>
     
-    <!-- 第一幕：神秘開場交互 -->
+    <!-- 第一幕：開場點擊介面 -->
     <div id="startScreen" onclick="launchPhantom()">
         <div class="phantom-logo"></div>
         <div class="p5-box">TAKE <span>YOUR</span> HEART</div>
         <div class="sub-txt">CLICK TO OPEN THE ALERT LETTER</div>
     </div>
     
-    <!-- 轉場閃爍層 -->
     <div id="flashOverlay"></div>
     
-    <!-- 第二幕：徹底爆屏貼臉的預告信 -->
-    <div id="letterScreen"><img src="cover.png" alt="預告信"></div>
+    <!-- 後方：無限流動飛舞層 -->
+    <div id="canvasContainer"></div>
+    
+    <!-- 最前方：一動不動的預告信主圖 -->
+    <div id="finalLetter"><img src="cover.png" alt="預告信"></div>
 
     <script>
     function launchPhantom() {
         const audio = document.getElementById('audio');
         const startScreen = document.getElementById('startScreen');
         const flashOverlay = document.getElementById('flashOverlay');
-        const letterScreen = document.getElementById('letterScreen');
+        const canvasContainer = document.getElementById('canvasContainer');
+        const finalLetter = document.getElementById('finalLetter');
         
         audio.play().catch(e => { console.log(e); });
         flashOverlay.style.display = 'block';
         
         setTimeout(() => {
             startScreen.style.display = 'none';
-            letterScreen.style.display = 'flex';
+            canvasContainer.style.display = 'block'; // 顯示背景流動
+            finalLetter.style.display = 'flex';     // 同步顯示最前方的靜態主圖
+            
+            createFallingLetters();
         }, 120);
         
         setTimeout(() => {
             flashOverlay.style.display = 'none';
         }, 350);
+    }
+
+    function createFallingLetters() {
+        const container = document.getElementById('canvasContainer');
+        const count = 35; // 💡 背景流動的預告信數量
+        
+        for (let i = 0; i < count; i++) {
+            const letter = document.createElement('div');
+            letter.className = 'falling-letter';
+            
+            const sizeWidth = Math.floor(Math.random() * 60) + 40; // 大小隨機 (40px - 100px)
+            const sizeHeight = sizeWidth * 1.3;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 4; // 隨機延遲，錯開流動時間
+            const duration = Math.random() * 3 + 2.5; // 流動速度（2.5s - 5.5s）
+            const rotation = Math.random() * 80 - 40;
+            const scale = (Math.random() * 0.5 + 0.5).toFixed(2);
+            
+            letter.style.width = sizeWidth + 'px';
+            letter.style.height = sizeHeight + 'px';
+            letter.style.left = left + 'vw';
+            letter.style.animationDelay = delay + 's';
+            letter.style.animationDuration = duration + 's';
+            letter.style.setProperty('--rot', rotation + 'deg');
+            letter.style.setProperty('--sc', scale);
+            
+            container.appendChild(letter);
+        }
     }
     </script>
 </body>
