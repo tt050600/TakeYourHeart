@@ -6,9 +6,10 @@
 <title>Take Your Heart</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; }
+/* 🔴 核心大改版：把背景色從 #0b0b0b 換成最純正的 P5 狂暴經典紅 #dc0000！ */
+body, html { width: 100%; height: 100%; background-color: #dc0000; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; }
 
-/* 第一幕：點擊解鎖介面 */
+/* 第一幕：點擊解鎖介面（維持神祕黑底，點開才有紅色驚喜） */
 #startScreen {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #0d0d0d; display: flex; flex-direction: column;
@@ -22,34 +23,34 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
 .p5-box span { display: inline-block; background: #000; color: #fff; padding: 2px 8px; margin: 0 2px; transform: rotate(6deg); }
 .sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
 
-/* 🔴 2. 背景最底層：真正的【地獄級滿版密密麻麻層】（z-index: 10） */
+/* 🔴 2. 背景最底層：真正的【經典紅底地獄級滿版密密麻麻層】 */
 #canvasContainer {
-    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #dc0000;
 }
 .falling-letter {
     position: absolute; 
     background-image: url('cover.png'); 
     background-size: contain; 
     background-repeat: no-repeat;
-    opacity: 0.38; 
+    opacity: 0.45; /* 💡 在紅底下，稍微調高透明度，讓預告信與紅底完美交織 */
     pointer-events: none;
 }
 
-/* 🔴 3. 前景最前方：字幕小動畫影片（z-index: 999，精緻完美比例） */
+/* 🔴 3. 前景最前方：字幕小動畫影片（精緻完美比例） */
 #videoContainer {
     display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; 
     justify-content: center; align-items: center; pointer-events: none;
 }
 #bgVideo {
     max-width: 88vw; max-height: 80vh; object-fit: contain;
-    filter: drop-shadow(0 0 35px rgba(0,0,0,0.95));
+    filter: drop-shadow(0 0 45px rgba(0,0,0,0.95)); /* 在紅底下加強黑色陰影，讓前景動畫顯得無比清晰、立體感炸裂 */
     animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 /* 斬擊轉場層 */
 #flashOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; animation: flashEffect 0.35s ease-out; }
 
-/* 🔴 狂暴流動動畫：從他們各自隨機分配好的原位，同時向下奔跑 */
+/* 狂暴流動動畫 */
 @keyframes p5GlobalFall {
     0% { transform: translateY(0) rotate(var(--rot)) scale(var(--sc)); }
     100% { transform: translateY(115vh) rotate(calc(var(--rot) + 120deg)) scale(var(--sc)); }
@@ -73,7 +74,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     
     <div id="flashOverlay"></div>
     
-    <!-- 後方最底層：地獄級密密麻麻流動瀑布 -->
+    <!-- 後方最底層：經典紅底地獄級密密麻麻流動瀑布 -->
     <div id="canvasContainer"></div>
     
     <!-- 前方最上層：字幕小動畫影片 -->
@@ -82,42 +83,37 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
     </div>
 
     <script>
-    // 💡 網頁一載入，立刻強制將上百張預告信「均勻、隨機、散落」在全螢幕所有坐標！
     window.addEventListener('DOMContentLoaded', () => {
         buildRealDenseWaterfall();
     });
 
     function buildRealDenseWaterfall() {
         const container = document.getElementById('canvasContainer');
-        const count = 75; // 💡 75張隨機均勻分布，視覺效果最密集且不卡頓
+        const count = 75; 
         
         for (let i = 0; i < count; i++) {
             const letter = document.createElement('div');
             letter.className = 'falling-letter';
             
-            const sizeWidth = Math.floor(Math.random() * 45) + 35; // 35px - 80px
+            const sizeWidth = Math.floor(Math.random() * 45) + 35; 
             const sizeHeight = sizeWidth * 1.3;
             
-            // 💡 絕殺微調：讓圖片在寬度（left）和高度（top）上完全徹底打散，消滅重疊！
             const left = Math.random() * 92; 
-            const top = Math.floor(Math.random() * 110) - 15; // 從螢幕頂部一直到最底部全部塞滿
+            const top = Math.floor(Math.random() * 110) - 15; 
             
-            const duration = Math.random() * 2 + 3; // 3s - 5s
+            const duration = Math.random() * 2 + 3; 
             const rotation = Math.random() * 80 - 40;
             const scale = (Math.random() * 0.35 + 0.45).toFixed(2);
             
             letter.style.width = sizeWidth + 'px';
             letter.style.height = sizeHeight + 'px';
             letter.style.left = left + 'vw';
-            letter.style.top = top + 'vh'; // 💡 死死釘在全螢幕的各個角落
+            letter.style.top = top + 'vh'; 
             
             letter.style.setProperty('--rot', rotation + 'deg');
             letter.style.setProperty('--sc', scale);
             
-            // 點擊前的初始定位
             letter.style.transform = `rotate(${rotation}deg) scale(${scale})`;
-            
-            // 存入動畫時間
             letter.dataset.duration = duration + 's';
             
             container.appendChild(letter);
@@ -141,13 +137,11 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
             canvasContainer.style.display = 'block'; 
             videoContainer.style.display = 'flex';    
             
-            // 🎬 啟動狂暴流動：散落在全螢幕各個角落的 75 張圖同時起跑，無限循環！
             const letters = document.querySelectorAll('.falling-letter');
             letters.forEach(letter => {
                 letter.style.animation = `p5GlobalFall ${letter.dataset.duration} linear infinite`;
             });
             
-            // 頂部源源不絕持續高頻率補充
             setInterval(supplementLetter, 100);
         }, 120);
         
@@ -172,7 +166,7 @@ body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 
         letter.style.width = sizeWidth + 'px';
         letter.style.height = sizeHeight + 'px';
         letter.style.left = left + 'vw';
-        letter.style.top = '-15vh'; // 從頂部外面進場補位
+        letter.style.top = '-15vh'; 
         
         letter.style.setProperty('--rot', rotation + 'deg');
         letter.style.setProperty('--sc', scale);
