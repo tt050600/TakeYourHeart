@@ -5,194 +5,861 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Take Your Heart</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { width: 100%; height: 100%; background-color: #0b0b0b; font-family: 'Impact', 'Arial Black', sans-serif; overflow: hidden; position: relative; transition: background-color 0.2s ease; }
-
-/* 第一幕：點擊解鎖介面 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: #0b0b0b;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+/* =========================================================
+   第一幕：JOKER 開場
+========================================================= */
 #startScreen {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #0d0d0d; display: flex; flex-direction: column;
-    justify-content: center; align-items: center; z-index: 10000; cursor: pointer;
+    position: fixed;
+    inset: 0;
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    cursor: pointer;
 }
 .joker-mask-img {
-    width: 140px; height: auto; object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); animation: pulse 1.5s infinite;
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,.4));
+    animation: pulse 1.5s infinite;
 }
-.p5-box { margin-top: 45px; background: #fff; color: #000; padding: 10px 25px; font-size: 32px; font-weight: 900; letter-spacing: 2px; transform: rotate(-4deg) skewX(-10deg); box-shadow: 8px 8px 0 #dc0000; border: 3px solid #000; }
-.p5-box span { display: inline-block; background: #000; color: #fff; padding: 2px 8px; margin: 0 2px; transform: rotate(6deg); }
-.sub-txt { margin-top: 35px; color: #dc0000; font-size: 13px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; animation: blink 1.2s infinite; }
-
-/* 2. 背景最底層：流動瀑布層 */
+.p5-box {
+    margin-top: 45px;
+    background: #fff;
+    color: #000;
+    padding: 10px 25px;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    transform: rotate(-4deg) skewX(-10deg);
+    box-shadow: 8px 8px 0 #dc0000;
+    border: 3px solid #000;
+}
+.p5-box span {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 2px 8px;
+    margin: 0 2px;
+    transform: rotate(6deg);
+}
+.sub-txt {
+    margin-top: 35px;
+    color: #dc0000;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    animation: blink 1.2s infinite;
+}
+/* =========================================================
+   主背景
+========================================================= */
 #canvasContainer {
-    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10; overflow: hidden; background: #0b0b0b;
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    overflow: hidden;
+    background: #0b0b0b;
 }
 .bg-red-active {
     background-color: #dc0000 !important;
 }
+/* =========================================================
+   原本的掉落卡片
+========================================================= */
 .falling-letter {
-    position: absolute; background-image: url('cover.png'); background-size: contain; background-repeat: no-repeat; opacity: 0.45; pointer-events: none;
+    position: absolute;
+    background-image: url('cover.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: .45;
+    pointer-events: none;
+    will-change: transform;
 }
-
-/* 3. 前景最前方：字幕小動畫影片 */
+/* =========================================================
+   P5 花色
+========================================================= */
+.p5-suit {
+    position: absolute;
+    color: #000;
+    font-family: Georgia, serif;
+    font-weight: 900;
+    pointer-events: none;
+    user-select: none;
+    z-index: 12;
+    text-shadow:
+        3px 3px 0 rgba(255,255,255,.45);
+    will-change: transform;
+}
+.p5-suit.red {
+    color: #fff;
+    text-shadow:
+        3px 3px 0 #000;
+}
+/* =========================================================
+   P5 巨型文字
+========================================================= */
+.p5-word {
+    position: absolute;
+    font-family: Impact, 'Arial Black', sans-serif;
+    font-weight: 900;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    color: rgba(0,0,0,.20);
+    transform-origin: center;
+    letter-spacing: 4px;
+    z-index: 11;
+}
+.p5-word.white {
+    color: rgba(255,255,255,.22);
+}
+.p5-word.red {
+    color: rgba(220,0,0,.55);
+}
+/* =========================================================
+   斜切色块
+========================================================= */
+.p5-slash {
+    position: absolute;
+    pointer-events: none;
+    transform: skewX(-25deg) rotate(-8deg);
+    z-index: 13;
+    opacity: .75;
+}
+.p5-slash.black {
+    background: #050505;
+}
+.p5-slash.white {
+    background: #fff;
+}
+.p5-slash.red {
+    background: #dc0000;
+}
+/* =========================================================
+   速度線
+========================================================= */
+.speed-line {
+    position: absolute;
+    height: 4px;
+    background: #000;
+    transform: rotate(-18deg);
+    pointer-events: none;
+    opacity: .6;
+    z-index: 14;
+    animation: speedMove linear infinite;
+}
+.speed-line.white {
+    background: #fff;
+    opacity: .55;
+}
+/* =========================================================
+   碎片
+========================================================= */
+.p5-fragment {
+    position: absolute;
+    width: 18px;
+    height: 8px;
+    background: #000;
+    transform: rotate(20deg);
+    pointer-events: none;
+    z-index: 13;
+    animation: fragmentFloat linear infinite;
+}
+.p5-fragment.white {
+    background: #fff;
+}
+/* =========================================================
+   前景影片
+========================================================= */
 #videoContainer {
-    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999; justify-content: center; align-items: center; pointer-events: none;
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 #bgVideo {
-    max-width: 88vw; max-height: 80vh; object-fit: contain; filter: drop-shadow(0 0 45px rgba(0,0,0,0.95)); animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    max-width: 88vw;
+    max-height: 80vh;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 0 45px rgba(0,0,0,.95));
+    animation:
+        popIn .35s cubic-bezier(.175,.885,.32,1.275) forwards;
 }
-
-/* ⚡ 修正：斬擊轉場層的經典 P5 紅白黑極速閃爍動畫 ⚡ */
-#flashOverlay { 
-    display: none; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    z-index: 99999; /* 數字最大，保證閃爍在最前面亮瞎眼 */
+/* =========================================================
+   閃擊轉場
+========================================================= */
+#flashOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
 }
 .flash-animate {
     display: block !important;
-    animation: flashEffect 0.35s ease-out forwards;
+    animation:
+        flashEffect .35s ease-out forwards;
 }
-
+/* =========================================================
+   動畫
+========================================================= */
 @keyframes p5GlobalFall {
-    0% { transform: translateY(0) rotate(var(--rot)) scale(var(--sc)); }
-    100% { transform: translateY(115vh) rotate(calc(var(--rot) + 120deg)) scale(var(--sc)); }
+    0% {
+        transform:
+            translateY(0)
+            rotate(var(--rot))
+            scale(var(--sc));
+    }
+    100% {
+        transform:
+            translateY(115vh)
+            rotate(calc(var(--rot) + 120deg))
+            scale(var(--sc));
+    }
 }
-@keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-@keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-@keyframes flashEffect { 
-    0% { background: #fff; opacity: 1; } 
-    25% { background: #dc0000; opacity: 1; } 
-    50% { background: #fff; opacity: 1; } 
-    75% { background: #000; opacity: 1; } 
-    100% { opacity: 0; display: none; } 
+@keyframes p5SuitFall {
+    0% {
+        transform:
+            translateY(-15vh)
+            rotate(0deg);
+    }
+    100% {
+        transform:
+            translateY(120vh)
+            rotate(360deg);
+    }
+}
+@keyframes wordFloat {
+    0% {
+        transform:
+            translateY(0)
+            rotate(var(--r));
+    }
+    50% {
+        transform:
+            translateY(-20px)
+            rotate(var(--r));
+    }
+    100% {
+        transform:
+            translateY(0)
+            rotate(var(--r));
+    }
+}
+@keyframes speedMove {
+    0% {
+        transform:
+            translateX(-30vw)
+            rotate(-18deg);
+    }
+    100% {
+        transform:
+            translateX(130vw)
+            rotate(-18deg);
+    }
+}
+@keyframes fragmentFloat {
+    0% {
+        transform:
+            translateY(-20vh)
+            rotate(0deg);
+    }
+    100% {
+        transform:
+            translateY(120vh)
+            rotate(500deg);
+    }
+}
+@keyframes popIn {
+    0% {
+        transform: scale(.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes blink {
+    0%,100% {
+        opacity: .2;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+@keyframes flashEffect {
+    0% {
+        background: #fff;
+        opacity: 1;
+    }
+    25% {
+        background: #dc0000;
+        opacity: 1;
+    }
+    50% {
+        background: #fff;
+        opacity: 1;
+    }
+    75% {
+        background: #000;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+/* =========================================================
+   手機
+========================================================= */
+@media (max-width: 600px) {
+    .joker-mask-img {
+        width: 115px;
+    }
+    .p5-box {
+        font-size: 24px;
+        padding: 8px 18px;
+    }
+    .sub-txt {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+    #bgVideo {
+        max-width: 94vw;
+        max-height: 72vh;
+    }
 }
 </style>
 </head>
 <body>
-    <audio id="audio" src="music.mp3" loop preload="auto"></audio>
-    
-    <!-- 第一幕：Joker面具開場 -->
-    <div id="startScreen" onclick="launchPhantom()">
-        <img src="joker-mask.png" class="joker-mask-img" alt="Joker Mask">
-        <div class="p5-box">TAKE <span>YOUR</span> HEART</div>
-        <div class="sub-txt">CLICK TO OPEN THE CALLING CARD</div>
+<audio
+    id="audio"
+    src="music.mp3"
+    loop
+    preload="auto">
+</audio>
+<!-- =====================================================
+     第一幕
+===================================================== -->
+<div
+    id="startScreen"
+    onclick="launchPhantom()">
+    <img
+        src="joker-mask.png"
+        class="joker-mask-img"
+        alt="Joker Mask">
+    <div class="p5-box">
+        TAKE <span>YOUR</span> HEART
     </div>
-    
-    <!-- 斬擊轉場層 -->
-    <div id="flashOverlay"></div>
-    
-    <!-- 後方最底層 -->
-    <div id="canvasContainer"></div>
-    
-    <!-- 前方最上層 -->
-    <div id="videoContainer">
-        <video id="bgVideo" src="bg-animation.mp4" loop muted playsinline preload="auto"></video>
+    <div class="sub-txt">
+        CLICK TO OPEN THE CALLING CARD
     </div>
-
-    <script>
-    window.addEventListener('DOMContentLoaded', () => {
+</div>
+<!-- =====================================================
+     閃擊
+===================================================== -->
+<div id="flashOverlay"></div>
+<!-- =====================================================
+     背景
+===================================================== -->
+<div id="canvasContainer"></div>
+<!-- =====================================================
+     前景影片
+===================================================== -->
+<div id="videoContainer">
+    <video
+        id="bgVideo"
+        src="bg-animation.mp4"
+        loop
+        muted
+        playsinline
+        preload="auto">
+    </video>
+</div>
+<script>
+/* =========================================================
+   DOM READY
+========================================================= */
+window.addEventListener(
+    'DOMContentLoaded',
+    () => {
         buildRealDenseWaterfall();
-    });
-
-    function buildRealDenseWaterfall() {
-        const container = document.getElementById('canvasContainer');
-        const count = 75; 
-        
-        for (let i = 0; i < count; i++) {
-            const letter = document.createElement('div');
-            letter.className = 'falling-letter';
-            
-            const sizeWidth = Math.floor(Math.random() * 45) + 35; 
-            const sizeHeight = sizeWidth * 1.3;
-            const left = Math.random() * 92; 
-            const top = Math.floor(Math.random() * 110) - 15; 
-            
-            const duration = Math.random() * 2 + 3; 
-            const rotation = Math.random() * 80 - 40;
-            const scale = (Math.random() * 0.35 + 0.45).toFixed(2);
-            
-            letter.style.width = sizeWidth + 'px';
-            letter.style.height = sizeHeight + 'px';
-            letter.style.left = left + 'vw';
-            letter.style.top = top + 'vh'; 
-            
-            letter.style.setProperty('--rot', rotation + 'deg');
-            letter.style.setProperty('--sc', scale);
-            
-            letter.style.transform = `rotate(${rotation}deg) scale(${scale})`;
-            letter.dataset.duration = duration + 's';
-            
-            container.appendChild(letter);
+        buildP5Background();
+    }
+);
+/* =========================================================
+   原本的掉落卡片
+========================================================= */
+function buildRealDenseWaterfall() {
+    const container =
+        document.getElementById('canvasContainer');
+    /*
+        原本 75
+        現在提高到 180
+    */
+    const count = 180;
+    for (let i = 0; i < count; i++) {
+        createFallingCard(true);
+    }
+}
+/* =========================================================
+   建立一張原本的 cover 卡片
+========================================================= */
+function createFallingCard(initial = false) {
+    const container =
+        document.getElementById('canvasContainer');
+    const letter =
+        document.createElement('div');
+    letter.className =
+        'falling-letter';
+    const sizeWidth =
+        Math.floor(Math.random() * 65) + 30;
+    const sizeHeight =
+        sizeWidth * 1.3;
+    const left =
+        Math.random() * 95;
+    const top =
+        initial
+            ? Math.floor(Math.random() * 115) - 15
+            : -15;
+    const duration =
+        Math.random() * 3 + 3;
+    const rotation =
+        Math.random() * 100 - 50;
+    const scale =
+        (Math.random() * .5 + .45)
+        .toFixed(2);
+    const opacity =
+        Math.random() * .3 + .25;
+    letter.style.width =
+        sizeWidth + 'px';
+    letter.style.height =
+        sizeHeight + 'px';
+    letter.style.left =
+        left + 'vw';
+    letter.style.top =
+        top + 'vh';
+    letter.style.opacity =
+        opacity;
+    letter.style.setProperty(
+        '--rot',
+        rotation + 'deg'
+    );
+    letter.style.setProperty(
+        '--sc',
+        scale
+    );
+    letter.style.transform =
+        `rotate(${rotation}deg) scale(${scale})`;
+    letter.dataset.duration =
+        duration + 's';
+    container.appendChild(letter);
+    if (!initial) {
+        letter.style.animation =
+            `p5GlobalFall ${duration}s linear`;
+        setTimeout(() => {
+            letter.remove();
+        }, duration * 1000 + 100);
+    }
+}
+/* =========================================================
+   P5 背景系統
+========================================================= */
+function buildP5Background() {
+    const container =
+        document.getElementById('canvasContainer');
+    /* 花色 */
+    const suits = [
+        '♠',
+        '♥',
+        '♦',
+        '♣'
+    ];
+    for (let i = 0; i < 45; i++) {
+        const suit =
+            document.createElement('div');
+        suit.className =
+            'p5-suit';
+        const symbol =
+            suits[
+                Math.floor(
+                    Math.random() * suits.length
+                )
+            ];
+        suit.textContent =
+            symbol;
+        const size =
+            Math.floor(
+                Math.random() * 55
+            ) + 25;
+        suit.style.fontSize =
+            size + 'px';
+        suit.style.left =
+            Math.random() * 100 + 'vw';
+        suit.style.top =
+            Math.random() * 120 - 15 + 'vh';
+        const duration =
+            Math.random() * 5 + 5;
+        const delay =
+            Math.random() * -8;
+        if (
+            symbol === '♥' ||
+            symbol === '♦'
+        ) {
+            suit.classList.add('red');
         }
+        suit.style.animation =
+            `p5SuitFall ${duration}s linear ${delay}s infinite`;
+        container.appendChild(suit);
     }
-
-    function launchPhantom() {
-        const audio = document.getElementById('audio');
-        const video = document.getElementById('bgVideo');
-        const startScreen = document.getElementById('startScreen');
-        const flashOverlay = document.getElementById('flashOverlay');
-        const canvasContainer = document.getElementById('canvasContainer');
-        const videoContainer = document.getElementById('videoContainer');
-        
-        audio.play().catch(e => { console.log(e); });
-        video.play().catch(e => { console.log(e); });
-        
-        // 🎬 核心修正：手動把那道亮瞎眼的極速紅白黑斬擊特效「啟動」！ 🎬
-        flashOverlay.classList.add('flash-animate');
-        
-        setTimeout(() => {
-            startScreen.style.display = 'none';
-            
-            document.body.style.backgroundColor = '#dc0000';
-            canvasContainer.classList.add('bg-red-active');
-            
-            canvasContainer.style.display = 'block'; 
-            videoContainer.style.display = 'flex';    
-            
-            const letters = document.querySelectorAll('.falling-letter');
-            letters.forEach(letter => {
-                letter.style.animation = `p5GlobalFall ${letter.dataset.duration} linear infinite`;
-            });
-            
-            setInterval(supplementLetter, 100);
-        }, 120);
-        
-        // 特效時間到自動隱藏
-        setTimeout(() => {
-            flashOverlay.classList.remove('flash-animate');
-        }, 400);
+    /* 巨型背景文字 */
+    const words = [
+        'PHANTOM',
+        'TAKE YOUR HEART',
+        'PERSONA',
+        'THE SHOWTIME',
+        'NOTICE',
+        'CALLING CARD'
+    ];
+    for (let i = 0; i < 12; i++) {
+        const word =
+            document.createElement('div');
+        word.className =
+            'p5-word';
+        word.textContent =
+            words[
+                Math.floor(
+                    Math.random() * words.length
+                )
+            ];
+        const size =
+            Math.floor(
+                Math.random() * 65
+            ) + 25;
+        word.style.fontSize =
+            size + 'px';
+        word.style.left =
+            Math.random() * 95 + 'vw';
+        word.style.top =
+            Math.random() * 100 + 'vh';
+        word.style.setProperty(
+            '--r',
+            (Math.random() * 16 - 8) + 'deg'
+        );
+        const type =
+            Math.random();
+        if (type < .25) {
+            word.classList.add('white');
+        }
+        else if (type < .4) {
+            word.classList.add('red');
+        }
+        word.style.animation =
+            `wordFloat ${Math.random() * 4 + 4}s ease-in-out infinite`;
+        container.appendChild(word);
     }
-
-    function supplementLetter() {
-        const container = document.getElementById('canvasContainer');
-        if (container.children.length > 120) return;
-        
-        const letter = document.createElement('div');
-        letter.className = 'falling-letter';
-        const sizeWidth = Math.floor(Math.random() * 45) + 35;
-        const sizeHeight = sizeWidth * 1.3;
-        const left = Math.random() * 92;
-        const duration = Math.random() * 2 + 3;
-        const rotation = Math.random() * 80 - 40;
-        const scale = (Math.random() * 0.35 + 0.45).toFixed(2);
-        
-        letter.style.width = sizeWidth + 'px';
-        letter.style.height = sizeHeight + 'px';
-        letter.style.left = left + 'vw';
-        letter.style.top = '-15vh'; 
-        
-        letter.style.setProperty('--rot', rotation + 'deg');
-        letter.style.setProperty('--sc', scale);
-        
-        letter.style.animation = `p5GlobalFall ${duration} linear infinite`;
-        container.appendChild(letter);
-        
-        setTimeout(() => { letter.remove(); }, duration * 1000);
+    /* 斜切紅黑白色塊 */
+    for (let i = 0; i < 28; i++) {
+        const slash =
+            document.createElement('div');
+        slash.className =
+            'p5-slash';
+        const width =
+            Math.floor(
+                Math.random() * 170
+            ) + 50;
+        const height =
+            Math.floor(
+                Math.random() * 18
+            ) + 5;
+        slash.style.width =
+            width + 'px';
+        slash.style.height =
+            height + 'px';
+        slash.style.left =
+            Math.random() * 110 - 5 + 'vw';
+        slash.style.top =
+            Math.random() * 110 - 5 + 'vh';
+        const type =
+            Math.random();
+        if (type < .5) {
+            slash.classList.add('black');
+        }
+        else if (type < .75) {
+            slash.classList.add('white');
+        }
+        else {
+            slash.classList.add('red');
+        }
+        container.appendChild(slash);
     }
-    </script>
+    /* 速度線 */
+    for (let i = 0; i < 35; i++) {
+        const line =
+            document.createElement('div');
+        line.className =
+            'speed-line';
+        if (Math.random() > .7) {
+            line.classList.add('white');
+        }
+        line.style.width =
+            Math.floor(
+                Math.random() * 150
+            ) + 40 + 'px';
+        line.style.left =
+            Math.random() * 100 + 'vw';
+        line.style.top =
+            Math.random() * 100 + 'vh';
+        line.style.animationDuration =
+            Math.random() * 1.8 + .7 + 's';
+        line.style.animationDelay =
+            Math.random() * -3 + 's';
+        container.appendChild(line);
+    }
+    /* 碎片 */
+    for (let i = 0; i < 40; i++) {
+        const fragment =
+            document.createElement('div');
+        fragment.className =
+            'p5-fragment';
+        if (Math.random() > .5) {
+            fragment.classList.add('white');
+        }
+        fragment.style.left =
+            Math.random() * 100 + 'vw';
+        fragment.style.top =
+            Math.random() * 100 + 'vh';
+        fragment.style.width =
+            Math.floor(
+                Math.random() * 35
+            ) + 8 + 'px';
+        fragment.style.animationDuration =
+            Math.random() * 5 + 4 + 's';
+        fragment.style.animationDelay =
+            Math.random() * -8 + 's';
+        container.appendChild(fragment);
+    }
+}
+/* =========================================================
+   啟動
+========================================================= */
+function launchPhantom() {
+    const audio =
+        document.getElementById('audio');
+    const video =
+        document.getElementById('bgVideo');
+    const startScreen =
+        document.getElementById('startScreen');
+    const flashOverlay =
+        document.getElementById('flashOverlay');
+    const canvasContainer =
+        document.getElementById('canvasContainer');
+    const videoContainer =
+        document.getElementById('videoContainer');
+    /* 音樂 */
+    audio
+        .play()
+        .catch(e => console.log(e));
+    /* 影片 */
+    video
+        .play()
+        .catch(e => console.log(e));
+    /* 閃擊 */
+    flashOverlay.classList.add(
+        'flash-animate'
+    );
+    /* 顯示主畫面 */
+    setTimeout(() => {
+        startScreen.style.display =
+            'none';
+        document.body.style.backgroundColor =
+            '#dc0000';
+        canvasContainer.classList.add(
+            'bg-red-active'
+        );
+        canvasContainer.style.display =
+            'block';
+        videoContainer.style.display =
+            'flex';
+        /* 啟動原本的卡片 */
+        const letters =
+            document.querySelectorAll(
+                '.falling-letter'
+            );
+        letters.forEach(letter => {
+            const duration =
+                letter.dataset.duration;
+            letter.style.animation =
+                `p5GlobalFall ${duration} linear infinite`;
+        });
+    }, 120);
+    /* 持續補充卡片 */
+    setInterval(() => {
+        supplementLetter();
+    }, 80);
+    /* 偶爾增加新的 P5 花色 */
+    setInterval(() => {
+        supplementSuit();
+    }, 350);
+    /* 偶爾增加新的斜切線 */
+    setInterval(() => {
+        supplementSlash();
+    }, 450);
+    /* 關閉閃擊 */
+    setTimeout(() => {
+        flashOverlay.classList.remove(
+            'flash-animate'
+        );
+    }, 400);
+}
+/* =========================================================
+   持續補充卡片
+========================================================= */
+function supplementLetter() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const cards =
+        container.querySelectorAll(
+            '.falling-letter'
+        );
+    if (cards.length > 210) {
+        return;
+    }
+    createFallingCard(false);
+}
+/* =========================================================
+   持續補充花色
+========================================================= */
+function supplementSuit() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const suits = [
+        '♠',
+        '♥',
+        '♦',
+        '♣'
+    ];
+    const suit =
+        document.createElement('div');
+    suit.className =
+        'p5-suit';
+    const symbol =
+        suits[
+            Math.floor(
+                Math.random() * suits.length
+            )
+        ];
+    suit.textContent =
+        symbol;
+    if (
+        symbol === '♥' ||
+        symbol === '♦'
+    ) {
+        suit.classList.add('red');
+    }
+    suit.style.fontSize =
+        Math.floor(
+            Math.random() * 45
+        ) + 25 + 'px';
+    suit.style.left =
+        Math.random() * 100 + 'vw';
+    suit.style.top =
+        '-10vh';
+    const duration =
+        Math.random() * 5 + 4;
+    suit.style.animation =
+        `p5SuitFall ${duration}s linear`;
+    container.appendChild(suit);
+    setTimeout(() => {
+        suit.remove();
+    }, duration * 1000 + 200);
+}
+/* =========================================================
+   持續補充斜切線
+========================================================= */
+function supplementSlash() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const slash =
+        document.createElement('div');
+    slash.className =
+        'p5-slash';
+    const types = [
+        'black',
+        'white',
+        'red'
+    ];
+    slash.classList.add(
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ]
+    );
+    slash.style.width =
+        Math.floor(
+            Math.random() * 140
+        ) + 40 + 'px';
+    slash.style.height =
+        Math.floor(
+            Math.random() * 15
+        ) + 5 + 'px';
+    slash.style.left =
+        Math.random() * 110 - 5 + 'vw';
+    slash.style.top =
+        Math.random() * 100 + 'vh';
+    container.appendChild(slash);
+    setTimeout(() => {
+        slash.remove();
+    }, 5000);
+}
+</script>
 </body>
 </html>
