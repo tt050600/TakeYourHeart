@@ -135,7 +135,10 @@ body {
         drop-shadow(13px 13px 0 #dc0000);
 }
 
-/* 紅色印刷錯位 */
+/* =========================================================
+   紅色印刷錯位
+   加強版
+========================================================= */
 
 .royal-logo::before {
     content: "";
@@ -150,12 +153,12 @@ body {
 
     pointer-events: none;
 
-    opacity: .16;
+    opacity: .25;
 
     transform:
         translate(
-            3px,
-            2px
+            5px,
+            3px
         );
 
     mix-blend-mode: screen;
@@ -164,12 +167,15 @@ body {
 
     animation:
         printShiftRed
-        2.8s
-        ease-in-out
+        2.2s
+        steps(2)
         infinite;
 }
 
-/* 黑色印刷錯位 */
+/* =========================================================
+   黑色印刷錯位
+   加強版
+========================================================= */
 
 .royal-logo::after {
     content: "";
@@ -184,12 +190,12 @@ body {
 
     pointer-events: none;
 
-    opacity: .10;
+    opacity: .17;
 
     transform:
         translate(
-            -2px,
-            -1px
+            -4px,
+            -2px
         );
 
     mix-blend-mode: multiply;
@@ -198,8 +204,8 @@ body {
 
     animation:
         printShiftBlack
-        2.8s
-        ease-in-out
+        2.2s
+        steps(2)
         infinite;
 }
 
@@ -259,7 +265,7 @@ body {
 }
 
 /* =========================================================
-   PNG 印刷錯位
+   PNG 印刷錯位動畫
 ========================================================= */
 
 @keyframes printShiftRed {
@@ -267,22 +273,42 @@ body {
     0%,
     100% {
         transform:
-            translate(2px, 1px);
+            translate(
+                4px,
+                2px
+            );
     }
 
-    25% {
+    20% {
         transform:
-            translate(3px, 2px);
+            translate(
+                6px,
+                3px
+            );
     }
 
-    50% {
+    40% {
         transform:
-            translate(1px, 0);
+            translate(
+                3px,
+                1px
+            );
     }
 
-    75% {
+    60% {
         transform:
-            translate(3px, 1px);
+            translate(
+                5px,
+                3px
+            );
+    }
+
+    80% {
+        transform:
+            translate(
+                2px,
+                2px
+            );
     }
 }
 
@@ -291,28 +317,48 @@ body {
     0%,
     100% {
         transform:
-            translate(-1px, -1px);
+            translate(
+                -3px,
+                -2px
+            );
     }
 
-    25% {
+    20% {
         transform:
-            translate(-2px, 0);
+            translate(
+                -5px,
+                -3px
+            );
     }
 
-    50% {
+    40% {
         transform:
-            translate(0, -1px);
+            translate(
+                -2px,
+                -1px
+            );
     }
 
-    75% {
+    60% {
         transform:
-            translate(-2px, -1px);
+            translate(
+                -4px,
+                -3px
+            );
+    }
+
+    80% {
+        transform:
+            translate(
+                -2px,
+                -2px
+            );
     }
 }
 
 /* =========================================================
    CLICK TO OPEN
-   CSS 三角形
+   純 CSS 三角形
 ========================================================= */
 
 .sub-txt {
@@ -347,7 +393,11 @@ body {
         infinite;
 }
 
-/* 左邊：純 CSS 紅色三角形，尖角朝右 */
+/* =========================================================
+   左邊三角形
+   尖角朝右
+   不使用 Emoji / Unicode
+========================================================= */
 
 .sub-txt::before {
     content: "";
@@ -357,13 +407,18 @@ body {
     width: 0;
     height: 0;
 
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-left: 9px solid #dc0000;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 13px solid #dc0000;
 
-    margin-right: 12px;
+    margin-right: 14px;
 
-    vertical-align: middle;
+    vertical-align: -2px;
+
+    filter:
+        drop-shadow(
+            2px 2px 0 #000
+        );
 
     animation:
         arrowLeft
@@ -372,7 +427,11 @@ body {
         infinite;
 }
 
-/* 右邊：純 CSS 紅色三角形，尖角朝左 */
+/* =========================================================
+   右邊三角形
+   尖角朝左
+   不使用 Emoji / Unicode
+========================================================= */
 
 .sub-txt::after {
     content: "";
@@ -382,13 +441,18 @@ body {
     width: 0;
     height: 0;
 
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-right: 9px solid #dc0000;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 13px solid #dc0000;
 
-    margin-left: 12px;
+    margin-left: 14px;
 
-    vertical-align: middle;
+    vertical-align: -2px;
+
+    filter:
+        drop-shadow(
+            2px 2px 0 #000
+        );
 
     animation:
         arrowRight
@@ -409,7 +473,9 @@ body {
     }
 }
 
-/* 左三角微微往右 */
+/* =========================================================
+   左三角微微往內
+========================================================= */
 
 @keyframes arrowLeft {
 
@@ -425,13 +491,15 @@ body {
     50% {
         transform:
             translate(
-                4px,
+                5px,
                 0
             );
     }
 }
 
-/* 右三角微微往左 */
+/* =========================================================
+   右三角微微往內
+========================================================= */
 
 @keyframes arrowRight {
 
@@ -447,7 +515,7 @@ body {
     50% {
         transform:
             translate(
-                -4px,
+                -5px,
                 0
             );
     }
@@ -684,14 +752,15 @@ body {
 
 /* =========================================================
    紅色墨跡飛濺
+   加強版
 ========================================================= */
 
 .ink-splatter {
 
     position: absolute;
 
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
 
     background: #dc0000;
 
@@ -701,7 +770,7 @@ body {
 
     z-index: 17;
 
-    opacity: .72;
+    opacity: .88;
 
     transform:
         translate(
@@ -732,8 +801,8 @@ body {
 
 .ink-splatter::before {
 
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
 
     left: var(--dot-x);
     top: var(--dot-y);
@@ -741,8 +810,8 @@ body {
 
 .ink-splatter::after {
 
-    width: 3px;
-    height: 3px;
+    width: 4px;
+    height: 4px;
 
     left: var(--dot-x2);
     top: var(--dot-y2);
@@ -765,12 +834,12 @@ body {
 
     12% {
 
-        opacity: .8;
+        opacity: .9;
     }
 
     70% {
 
-        opacity: .72;
+        opacity: .82;
     }
 
     100% {
@@ -1115,24 +1184,28 @@ body {
         letter-spacing: 3px;
     }
 
-    /* 手機版仍然是 CSS 三角形，不是 Emoji */
+    /* =====================================================
+       手機三角形
+       仍然是 CSS 幾何圖形
+       不使用 Emoji
+    ===================================================== */
 
     .sub-txt::before {
 
-        border-top-width: 5px;
-        border-bottom-width: 5px;
-        border-left-width: 8px;
+        border-top-width: 7px;
+        border-bottom-width: 7px;
+        border-left-width: 11px;
 
-        margin-right: 8px;
+        margin-right: 10px;
     }
 
     .sub-txt::after {
 
-        border-top-width: 5px;
-        border-bottom-width: 5px;
-        border-right-width: 8px;
+        border-top-width: 7px;
+        border-bottom-width: 7px;
+        border-right-width: 11px;
 
-        margin-left: 8px;
+        margin-left: 10px;
     }
 
     #bgVideo {
@@ -1225,10 +1298,6 @@ body {
 ===================================================== -->
 
 <script>
-
-/* =========================================================
-   DOM READY
-========================================================= */
 
 window.addEventListener(
     "DOMContentLoaded",
@@ -1574,11 +1643,14 @@ function buildP5Elements() {
 
     }
 
-    /* 少量紅色墨跡 */
+    /* =====================================================
+       紅色墨跡
+       由原本 18 增加到 26
+    ===================================================== */
 
     for (
         let i = 0;
-        i < 18;
+        i < 26;
         i++
     ) {
 
@@ -1892,7 +1964,7 @@ function createInkSplatter(
         "ink-splatter";
 
     const size =
-        Math.random() * 1.4 + .45;
+        Math.random() * 1.8 + .6;
 
     const rotation =
         Math.random() * 360;
@@ -1921,42 +1993,42 @@ function createInkSplatter(
     splatter.style.setProperty(
         "--move-x",
         (
-            Math.random() * 100 - 50
+            Math.random() * 140 - 70
         ) + "px"
     );
 
     splatter.style.setProperty(
         "--move-y",
         (
-            Math.random() * 160 + 40
+            Math.random() * 180 + 40
         ) + "px"
     );
 
     splatter.style.setProperty(
         "--dot-x",
         (
-            Math.random() * 35 - 15
+            Math.random() * 45 - 20
         ) + "px"
     );
 
     splatter.style.setProperty(
         "--dot-y",
         (
-            Math.random() * 35 - 15
+            Math.random() * 45 - 20
         ) + "px"
     );
 
     splatter.style.setProperty(
         "--dot-x2",
         (
-            Math.random() * 50 - 25
+            Math.random() * 60 - 30
         ) + "px"
     );
 
     splatter.style.setProperty(
         "--dot-y2",
         (
-            Math.random() * 50 - 25
+            Math.random() * 60 - 30
         ) + "px"
     );
 
@@ -2342,7 +2414,7 @@ function supplementInkSplatter() {
         );
 
     if (
-        splatters.length > 35
+        splatters.length > 40
     ) {
 
         return;
