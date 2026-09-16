@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width,
@@ -10,853 +11,874 @@
     user-scalable=no,
     viewport-fit=cover"
 >
+
 <title>Take Your Heart</title>
 
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,
-body {
-    width: 100%;
-    height: 100%;
-    background: #0b0b0b;
-    overflow: hidden;
-    position: relative;
-    font-family:
-        Impact,
-        "Arial Black",
-        Arial,
-        sans-serif;
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#050505;
+    position:relative;
+    font-family:Impact,"Arial Black",Arial,sans-serif;
 }
 
 /* =========================================================
    START SCREEN
 ========================================================= */
 
-#startScreen {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-
+#startScreen{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
     background:
         radial-gradient(
-            circle at center,
-            #171717 0%,
-            #0d0d0d 45%,
-            #050505 100%
+            ellipse at center,
+            rgba(70,0,0,.38) 0%,
+            rgba(20,0,0,.18) 32%,
+            rgba(5,5,5,.96) 75%,
+            #000 100%
         );
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 10000;
-    cursor: pointer;
-    overflow: hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+    cursor:pointer;
+    overflow:hidden;
+    isolation:isolate;
 }
 
-.start-slash {
-    position: absolute;
-    pointer-events: none;
+/* 紅色中心光 */
 
-    transform:
-        rotate(-12deg)
-        skewX(-25deg);
+#startScreen::before{
+    content:"";
+    position:absolute;
+    width:70vw;
+    height:70vw;
+    max-width:900px;
+    max-height:900px;
+    left:50%;
+    top:48%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(
+        circle,
+        rgba(220,0,0,.20) 0%,
+        rgba(220,0,0,.08) 30%,
+        transparent 68%
+    );
+    filter:blur(10px);
+    pointer-events:none;
+    z-index:-3;
+    animation:centerPulse 2.8s ease-in-out infinite;
 }
 
-.start-slash.one {
-    width: 120vw;
-    height: 25px;
-    top: 18%;
-    left: -20%;
-    background: #dc0000;
-    opacity: .85;
+@keyframes centerPulse{
+    0%,100%{
+        opacity:.55;
+        transform:translate(-50%,-50%) scale(.92);
+    }
+
+    50%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1.12);
+    }
 }
 
-.start-slash.two {
-    width: 80vw;
-    height: 12px;
-    top: 27%;
-    right: -20%;
-    background: #fff;
-    opacity: .75;
-}
+/* 細密掃描線 */
 
-.start-slash.three {
-    width: 100vw;
-    height: 8px;
-    bottom: 19%;
-    left: -10%;
-    background: #dc0000;
-    opacity: .7;
-}
-
-.start-slash.four {
-    width: 55vw;
-    height: 35px;
-    bottom: 27%;
-    right: -10%;
-    background: #000;
-    opacity: .9;
+#startScreen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.025) 0px,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+    mix-blend-mode:screen;
+    pointer-events:none;
+    z-index:20;
+    opacity:.55;
 }
 
 /* =========================================================
-   TAKE YOUR HEART PNG
+   BACKGROUND CUTS
 ========================================================= */
 
-.royal-logo {
-    position: relative;
-    z-index: 6;
+.start-slash{
+    position:absolute;
+    pointer-events:none;
+    transform:rotate(-12deg) skewX(-25deg);
+    transform-origin:center;
+}
 
-    margin-top: 42px;
+.start-slash.one{
+    width:140vw;
+    height:34px;
+    top:17%;
+    left:-25%;
+    background:#dc0000;
+    opacity:.85;
+    box-shadow:
+        0 0 18px rgba(220,0,0,.5);
+    animation:slashOne 3.2s ease-in-out infinite;
+}
 
-    width: 430px;
-    max-width: 85vw;
+.start-slash.two{
+    width:100vw;
+    height:9px;
+    top:29%;
+    right:-30%;
+    background:#fff;
+    opacity:.65;
+    animation:slashTwo 2.6s ease-in-out infinite;
+}
 
-    user-select: none;
+.start-slash.three{
+    width:125vw;
+    height:12px;
+    bottom:20%;
+    left:-15%;
+    background:#dc0000;
+    opacity:.72;
+    box-shadow:0 0 16px rgba(220,0,0,.4);
+    animation:slashThree 3s ease-in-out infinite;
+}
 
-    transform:
-        rotate(-7deg)
-        skewX(-8deg);
+.start-slash.four{
+    width:70vw;
+    height:48px;
+    bottom:28%;
+    right:-15%;
+    background:#000;
+    opacity:.95;
+    box-shadow:0 0 0 2px rgba(255,255,255,.08);
+    animation:slashFour 3.8s ease-in-out infinite;
+}
 
+@keyframes slashOne{
+    0%,100%{
+        transform:translateX(-3vw) rotate(-12deg) skewX(-25deg);
+    }
+    50%{
+        transform:translateX(5vw) rotate(-12deg) skewX(-25deg);
+    }
+}
+
+@keyframes slashTwo{
+    0%,100%{
+        transform:translateX(0) rotate(-12deg) skewX(-25deg);
+        opacity:.35;
+    }
+    50%{
+        transform:translateX(-7vw) rotate(-12deg) skewX(-25deg);
+        opacity:.9;
+    }
+}
+
+@keyframes slashThree{
+    0%,100%{
+        transform:translateX(0) rotate(-12deg) skewX(-25deg);
+    }
+    50%{
+        transform:translateX(-5vw) rotate(-12deg) skewX(-25deg);
+    }
+}
+
+@keyframes slashFour{
+    0%,100%{
+        transform:translateX(0) rotate(-12deg) skewX(-25deg);
+    }
+    50%{
+        transform:translateX(-4vw) rotate(-12deg) skewX(-25deg);
+    }
+}
+
+/* =========================================================
+   EXTRA CUTTING BARS
+========================================================= */
+
+.start-cut{
+    position:absolute;
+    pointer-events:none;
+    z-index:2;
+    transform:rotate(-10deg) skewX(-28deg);
+}
+
+.start-cut.a{
+    width:38vw;
+    height:7px;
+    left:-5vw;
+    top:39%;
+    background:#fff;
+    opacity:.5;
+    animation:cutMoveA 2.2s ease-in-out infinite;
+}
+
+.start-cut.b{
+    width:50vw;
+    height:4px;
+    right:-12vw;
+    top:43%;
+    background:#dc0000;
+    opacity:.8;
+    animation:cutMoveB 1.8s ease-in-out infinite;
+}
+
+.start-cut.c{
+    width:32vw;
+    height:10px;
+    left:2vw;
+    bottom:39%;
+    background:#000;
+    opacity:.95;
+}
+
+.start-cut.d{
+    width:45vw;
+    height:5px;
+    right:-8vw;
+    bottom:42%;
+    background:#fff;
+    opacity:.38;
+}
+
+@keyframes cutMoveA{
+    0%,100%{
+        transform:translateX(0) rotate(-10deg) skewX(-28deg);
+    }
+    50%{
+        transform:translateX(7vw) rotate(-10deg) skewX(-28deg);
+    }
+}
+
+@keyframes cutMoveB{
+    0%,100%{
+        transform:translateX(5vw) rotate(-10deg) skewX(-28deg);
+    }
+    50%{
+        transform:translateX(-5vw) rotate(-10deg) skewX(-28deg);
+    }
+}
+
+/* =========================================================
+   LOGO AREA
+========================================================= */
+
+.royal-logo{
+    position:relative;
+    z-index:6;
+    margin-top:42px;
+    width:430px;
+    max-width:85vw;
+    user-select:none;
+    transform:rotate(-7deg) skewX(-8deg);
     filter:
         drop-shadow(9px 10px 0 #000)
         drop-shadow(13px 13px 0 #dc0000);
-}
-
-/* =========================================================
-   紅色印刷錯位
-   加強版
-========================================================= */
-
-.royal-logo::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        url("take-your-heart.png")
-        center / contain
-        no-repeat;
-
-    pointer-events: none;
-
-    opacity: .25;
-
-    transform:
-        translate(
-            5px,
-            3px
-        );
-
-    mix-blend-mode: screen;
-
-    z-index: -1;
-
     animation:
-        printShiftRed
-        2.2s
-        steps(2)
-        infinite;
+        logoEntrance .9s cubic-bezier(.16,1,.3,1) both,
+        logoFloat 2.8s ease-in-out .9s infinite;
 }
 
-/* =========================================================
-   黑色印刷錯位
-   加強版
-========================================================= */
+/* 紅色套印 */
 
-.royal-logo::after {
-    content: "";
+.royal-logo::before{
+    content:"";
+    position:absolute;
+    inset:-3px;
+    background:url("take-your-heart.png") center / contain no-repeat;
+    pointer-events:none;
+    opacity:.28;
+    transform:translate(5px,3px);
+    mix-blend-mode:screen;
+    z-index:-1;
+    animation:printShiftRed 1.7s steps(2,end) infinite;
+}
 
-    position: absolute;
-    inset: 0;
+/* 黑色套印 */
 
-    background:
-        url("take-your-heart.png")
-        center / contain
-        no-repeat;
+.royal-logo::after{
+    content:"";
+    position:absolute;
+    inset:-3px;
+    background:url("take-your-heart.png") center / contain no-repeat;
+    pointer-events:none;
+    opacity:.20;
+    transform:translate(-4px,-3px);
+    mix-blend-mode:multiply;
+    z-index:-1;
+    animation:printShiftBlack 2s steps(2,end) infinite;
+}
 
-    pointer-events: none;
-
-    opacity: .17;
-
-    transform:
-        translate(
-            -4px,
-            -2px
-        );
-
-    mix-blend-mode: multiply;
-
-    z-index: -1;
-
+.take-your-heart-img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    transform-origin:center center;
     animation:
-        printShiftBlack
-        2.2s
-        steps(2)
-        infinite;
+        heartFloat 2.8s ease-in-out infinite,
+        logoGlitch 4.5s steps(1,end) infinite;
 }
 
-.take-your-heart-img {
-    display: block;
+@keyframes logoEntrance{
+    0%{
+        opacity:0;
+        transform:
+            translateY(45px)
+            scale(.72)
+            rotate(-13deg)
+            skewX(-12deg);
+        filter:
+            drop-shadow(0 0 0 transparent);
+    }
 
-    width: 100%;
-    height: auto;
+    70%{
+        opacity:1;
+        transform:
+            translateY(-5px)
+            scale(1.06)
+            rotate(-6deg)
+            skewX(-8deg);
+    }
 
-    object-fit: contain;
-
-    transform-origin: center center;
-
-    animation:
-        heartFloat
-        2.8s
-        ease-in-out
-        infinite;
+    100%{
+        opacity:1;
+        transform:
+            rotate(-7deg)
+            skewX(-8deg);
+    }
 }
 
-@keyframes heartFloat {
+@keyframes logoFloat{
+    0%,100%{
+        transform:rotate(-7deg) skewX(-8deg) translateY(0);
+    }
 
-    0% {
+    50%{
+        transform:rotate(-7deg) skewX(-8deg) translateY(-5px);
+    }
+}
+
+@keyframes heartFloat{
+    0%,100%{
         transform:
             translateY(0)
             scale(1)
             rotate(0deg);
     }
 
-    25% {
+    25%{
         transform:
             translateY(-7px)
             scale(1.025)
             rotate(-1deg);
     }
 
-    50% {
+    50%{
         transform:
             translateY(0)
             scale(1.04)
             rotate(0deg);
     }
 
-    75% {
+    75%{
         transform:
             translateY(7px)
             scale(1.025)
             rotate(1deg);
     }
+}
 
-    100% {
-        transform:
-            translateY(0)
-            scale(1)
-            rotate(0deg);
+@keyframes logoGlitch{
+    0%,82%,100%{
+        clip-path:inset(0 0 0 0);
+    }
+
+    84%{
+        clip-path:inset(8% 0 72% 0);
+        transform:translate(3px,-1px) scale(1.01);
+    }
+
+    86%{
+        clip-path:inset(60% 0 22% 0);
+        transform:translate(-3px,2px) scale(1.01);
+    }
+
+    88%{
+        clip-path:inset(0 0 0 0);
+    }
+}
+
+@keyframes printShiftRed{
+    0%,100%{
+        transform:translate(3px,2px);
+        opacity:.22;
+    }
+
+    20%{
+        transform:translate(6px,3px);
+        opacity:.30;
+    }
+
+    40%{
+        transform:translate(2px,1px);
+        opacity:.18;
+    }
+
+    60%{
+        transform:translate(5px,4px);
+        opacity:.28;
+    }
+
+    80%{
+        transform:translate(3px,2px);
+        opacity:.24;
+    }
+}
+
+@keyframes printShiftBlack{
+    0%,100%{
+        transform:translate(-3px,-2px);
+        opacity:.16;
+    }
+
+    25%{
+        transform:translate(-5px,-3px);
+        opacity:.22;
+    }
+
+    50%{
+        transform:translate(-2px,-1px);
+        opacity:.14;
+    }
+
+    75%{
+        transform:translate(-4px,-3px);
+        opacity:.20;
     }
 }
 
 /* =========================================================
-   PNG 印刷錯位動畫
+   LOGO ENERGY RINGS
 ========================================================= */
 
-@keyframes printShiftRed {
-
-    0%,
-    100% {
-        transform:
-            translate(
-                4px,
-                2px
-            );
-    }
-
-    20% {
-        transform:
-            translate(
-                6px,
-                3px
-            );
-    }
-
-    40% {
-        transform:
-            translate(
-                3px,
-                1px
-            );
-    }
-
-    60% {
-        transform:
-            translate(
-                5px,
-                3px
-            );
-    }
-
-    80% {
-        transform:
-            translate(
-                2px,
-                2px
-            );
-    }
+.logo-ring{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border:1px solid rgba(220,0,0,.22);
+    transform:translate(-50%,-50%) rotate(-7deg);
+    pointer-events:none;
+    z-index:1;
 }
 
-@keyframes printShiftBlack {
+.logo-ring.one{
+    width:480px;
+    height:210px;
+    border-color:rgba(220,0,0,.25);
+    animation:ringPulse 2.8s ease-out infinite;
+}
 
-    0%,
-    100% {
-        transform:
-            translate(
-                -3px,
-                -2px
-            );
+.logo-ring.two{
+    width:540px;
+    height:250px;
+    border-color:rgba(255,255,255,.10);
+    animation:ringPulse 2.8s ease-out .8s infinite;
+}
+
+@keyframes ringPulse{
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) rotate(-7deg) scale(.86);
     }
 
-    20% {
-        transform:
-            translate(
-                -5px,
-                -3px
-            );
+    30%{
+        opacity:.75;
     }
 
-    40% {
-        transform:
-            translate(
-                -2px,
-                -1px
-            );
-    }
-
-    60% {
-        transform:
-            translate(
-                -4px,
-                -3px
-            );
-    }
-
-    80% {
-        transform:
-            translate(
-                -2px,
-                -2px
-            );
+    100%{
+        opacity:0;
+        transform:translate(-50%,-50%) rotate(-7deg) scale(1.14);
     }
 }
 
 /* =========================================================
-   CLICK TO OPEN
-   純 CSS 三角形
+   CLICK TEXT
 ========================================================= */
 
-.sub-txt {
-    position: relative;
-    z-index: 7;
-
-    margin-top: 28px;
-
-    color: #dc0000;
-
-    font-family:
-        Impact,
-        "Arial Black",
-        Arial,
-        sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    letter-spacing: 4px;
-
-    text-align: center;
-
+.sub-txt{
+    position:relative;
+    z-index:7;
+    margin-top:30px;
+    color:#dc0000;
+    font-family:Impact,"Arial Black",Arial,sans-serif;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:4px;
+    text-align:center;
     text-shadow:
-        2px 2px 0 #000;
-
+        2px 2px 0 #000,
+        0 0 12px rgba(220,0,0,.4);
     animation:
-        clickBlink
-        1.4s
-        ease-in-out
-        infinite;
+        clickBlink 1.4s ease-in-out infinite,
+        textEntrance .9s cubic-bezier(.16,1,.3,1) .2s both;
+}
+
+.sub-txt::before{
+    content:"";
+    display:inline-block;
+    width:0;
+    height:0;
+    border-top:7px solid transparent;
+    border-bottom:7px solid transparent;
+    border-left:11px solid #dc0000;
+    margin-right:14px;
+    vertical-align:middle;
+    animation:arrowLeft .9s ease-in-out infinite;
+    filter:drop-shadow(2px 2px 0 #000);
+}
+
+.sub-txt::after{
+    content:"";
+    display:inline-block;
+    width:0;
+    height:0;
+    border-top:7px solid transparent;
+    border-bottom:7px solid transparent;
+    border-right:11px solid #dc0000;
+    margin-left:14px;
+    vertical-align:middle;
+    animation:arrowRight .9s ease-in-out infinite;
+    filter:drop-shadow(-2px 2px 0 #000);
+}
+
+@keyframes textEntrance{
+    0%{
+        opacity:0;
+        transform:translateY(25px);
+        letter-spacing:10px;
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
+        letter-spacing:4px;
+    }
+}
+
+@keyframes clickBlink{
+    0%,100%{
+        opacity:.45;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+@keyframes arrowLeft{
+    0%,100%{
+        transform:translateX(0) scale(1);
+    }
+
+    50%{
+        transform:translateX(8px) scale(1.15);
+    }
+}
+
+@keyframes arrowRight{
+    0%,100%{
+        transform:translateX(0) scale(1);
+    }
+
+    50%{
+        transform:translateX(-8px) scale(1.15);
+    }
 }
 
 /* =========================================================
-   左邊三角形
-   尖角朝右
-   不使用 Emoji / Unicode
+   SMALL LABELS
 ========================================================= */
 
-.sub-txt::before {
-    content: "";
+.start-label{
+    position:absolute;
+    color:rgba(255,255,255,.18);
+    font-family:Arial,sans-serif;
+    font-size:8px;
+    letter-spacing:4px;
+    z-index:5;
+    pointer-events:none;
+    text-transform:uppercase;
+}
 
-    display: inline-block;
+.start-label.top{
+    top:8%;
+    left:7%;
+}
 
-    width: 0;
-    height: 0;
+.start-label.bottom{
+    bottom:8%;
+    right:7%;
+}
 
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 13px solid #dc0000;
+.start-label::before{
+    content:"//";
+    color:#dc0000;
+    margin-right:8px;
+}
 
-    margin-right: 14px;
+/* =========================================================
+   ANIMATION PAGE
+========================================================= */
 
-    vertical-align: -2px;
-
-    filter:
-        drop-shadow(
-            2px 2px 0 #000
+#canvasContainer{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    display:block;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(120,0,0,.18),
+            rgba(0,0,0,.92) 68%
         );
-
-    animation:
-        arrowLeft
-        1.2s
-        ease-in-out
-        infinite;
+    z-index:5;
 }
 
-/* =========================================================
-   右邊三角形
-   尖角朝左
-   不使用 Emoji / Unicode
-========================================================= */
-
-.sub-txt::after {
-    content: "";
-
-    display: inline-block;
-
-    width: 0;
-    height: 0;
-
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 13px solid #dc0000;
-
-    margin-left: 14px;
-
-    vertical-align: -2px;
-
-    filter:
-        drop-shadow(
-            2px 2px 0 #000
+#canvasContainer::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.018) 0px,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px,
+            transparent 4px
         );
-
-    animation:
-        arrowRight
-        1.2s
-        ease-in-out
-        infinite;
-}
-
-@keyframes clickBlink {
-
-    0%,
-    100% {
-        opacity: .55;
-    }
-
-    50% {
-        opacity: 1;
-    }
+    pointer-events:none;
+    z-index:40;
 }
 
 /* =========================================================
-   左三角微微往內
+   FALLING CALLING CARDS
 ========================================================= */
 
-@keyframes arrowLeft {
-
-    0%,
-    100% {
-        transform:
-            translate(
-                0,
-                0
-            );
-    }
-
-    50% {
-        transform:
-            translate(
-                5px,
-                0
-            );
-    }
+.falling-letter{
+    position:absolute;
+    background-image:url("cover.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    pointer-events:none;
+    will-change:transform;
+    opacity:.46;
+    z-index:10;
 }
 
-/* =========================================================
-   右三角微微往內
-========================================================= */
-
-@keyframes arrowRight {
-
-    0%,
-    100% {
-        transform:
-            translate(
-                0,
-                0
-            );
-    }
-
-    50% {
-        transform:
-            translate(
-                -5px,
-                0
-            );
-    }
+.falling-letter.far{
+    opacity:.15;
+    filter:blur(.6px);
 }
 
-/* =========================================================
-   預告信
-========================================================= */
-
-.falling-letter {
-
-    position: absolute;
-
-    background-image:
-        url("cover.png");
-
-    background-size: contain;
-
-    background-repeat: no-repeat;
-
-    pointer-events: none;
-
-    will-change: transform;
-
-    opacity: .42;
-
-    z-index: 10;
-}
-
-.falling-letter.far {
-
-    opacity: .17;
-
+.falling-letter.front{
+    opacity:.78;
+    z-index:16;
     filter:
-        blur(.4px);
-}
-
-.falling-letter.front {
-
-    opacity: .67;
-
-    z-index: 16;
-
-    filter:
-        drop-shadow(
-            0 5px 5px
-            rgba(0,0,0,.4)
-        );
+        drop-shadow(0 5px 5px rgba(0,0,0,.5))
+        drop-shadow(0 0 8px rgba(220,0,0,.15));
 }
 
 /* =========================================================
-   巨型預告文字
+   P5 WORDS
 ========================================================= */
 
-.p5-word {
-
-    position: absolute;
-
-    font-family:
-        Impact,
-        "Arial Black",
-        sans-serif;
-
-    font-weight: 900;
-
-    white-space: nowrap;
-
-    pointer-events: none;
-    user-select: none;
-
-    letter-spacing: 3px;
-
-    color:
-        rgba(0,0,0,.19);
-
-    z-index: 11;
-
-    transform:
-        rotate(var(--rotation));
-
-    animation:
-        wordFloat
-        var(--duration)
-        ease-in-out
-        infinite;
+.p5-word{
+    position:absolute;
+    font-family:Impact,"Arial Black",sans-serif;
+    font-weight:900;
+    white-space:nowrap;
+    pointer-events:none;
+    user-select:none;
+    letter-spacing:3px;
+    color:rgba(0,0,0,.23);
+    z-index:11;
+    transform:rotate(var(--rotation));
+    animation:wordFloat var(--duration) ease-in-out infinite;
 }
 
-.p5-word.white {
-
-    color:
-        rgba(255,255,255,.18);
+.p5-word.white{
+    color:rgba(255,255,255,.17);
 }
 
-.p5-word.red {
-
-    color:
-        rgba(255,255,255,.30);
-
+.p5-word.red{
+    color:rgba(220,0,0,.30);
     text-shadow:
-        5px 5px 0
-        rgba(0,0,0,.3);
+        5px 5px 0 rgba(0,0,0,.4);
 }
 
 /* =========================================================
-   P5 斜切塊
+   SLASHES
 ========================================================= */
 
-.p5-slash {
-
-    position: absolute;
-
-    pointer-events: none;
-
-    transform:
-        skewX(-25deg)
-        rotate(-8deg);
-
-    z-index: 13;
-
-    opacity: .7;
-
-    animation:
-        slashFloat
-        var(--duration)
-        ease-in-out
-        infinite;
+.p5-slash{
+    position:absolute;
+    pointer-events:none;
+    transform:skewX(-25deg) rotate(-8deg);
+    z-index:13;
+    opacity:.75;
+    animation:slashFloat var(--duration) ease-in-out infinite;
 }
 
-.p5-slash.black {
-    background: #050505;
+.p5-slash.black{
+    background:#050505;
 }
 
-.p5-slash.white {
-    background: #fff;
+.p5-slash.white{
+    background:#fff;
 }
 
-.p5-slash.red {
-    background: #dc0000;
+.p5-slash.red{
+    background:#dc0000;
+    box-shadow:0 0 12px rgba(220,0,0,.3);
 }
 
 /* =========================================================
-   SPEED LINE
+   SPEED LINES
 ========================================================= */
 
-.speed-line {
-
-    position: absolute;
-
-    height: 4px;
-
-    background: #050505;
-
-    pointer-events: none;
-
-    z-index: 15;
-
-    transform:
-        rotate(var(--angle));
-
-    animation:
-        speedMove
-        var(--duration)
-        linear
-        infinite;
+.speed-line{
+    position:absolute;
+    height:4px;
+    background:#050505;
+    pointer-events:none;
+    z-index:15;
+    transform:rotate(var(--angle));
+    animation:speedMove var(--duration) linear infinite;
 }
 
-.speed-line.white {
-    background: #fff;
+.speed-line.white{
+    background:#fff;
 }
 
 /* =========================================================
-   紙張碎片
+   PAPER
 ========================================================= */
 
-.paper-fragment {
-
-    position: absolute;
-
-    pointer-events: none;
-
-    z-index: 14;
-
-    background: #fff;
-
-    transform:
-        rotate(var(--rotation));
-
-    animation:
-        paperFall
-        var(--duration)
-        linear
-        infinite;
+.paper-fragment{
+    position:absolute;
+    pointer-events:none;
+    z-index:14;
+    background:#fff;
+    transform:rotate(var(--rotation));
+    animation:paperFall var(--duration) linear infinite;
 }
 
-.paper-fragment.black {
-    background: #080808;
+.paper-fragment.black{
+    background:#080808;
 }
 
-.paper-fragment.red {
-    background: #dc0000;
+.paper-fragment.red{
+    background:#dc0000;
+}
+
+.paper-strip{
+    position:absolute;
+    pointer-events:none;
+    z-index:12;
+    background:rgba(255,255,255,.75);
+    transform:rotate(var(--rotation)) skewX(-25deg);
+    animation:stripMove var(--duration) ease-in-out infinite;
+}
+
+.paper-strip.black{
+    background:rgba(0,0,0,.55);
 }
 
 /* =========================================================
-   紙條
+   RED INK
 ========================================================= */
 
-.paper-strip {
-
-    position: absolute;
-
-    pointer-events: none;
-
-    z-index: 12;
-
-    background:
-        rgba(255,255,255,.75);
-
+.ink-splatter{
+    position:absolute;
+    width:9px;
+    height:9px;
+    background:#dc0000;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:17;
+    opacity:.82;
+    box-shadow:
+        0 0 7px rgba(220,0,0,.35);
     transform:
-        rotate(var(--rotation))
-        skewX(-25deg);
-
-    animation:
-        stripMove
-        var(--duration)
-        ease-in-out
-        infinite;
-}
-
-.paper-strip.black {
-
-    background:
-        rgba(0,0,0,.55);
-}
-
-/* =========================================================
-   紅色墨跡飛濺
-   加強版
-========================================================= */
-
-.ink-splatter {
-
-    position: absolute;
-
-    width: 9px;
-    height: 9px;
-
-    background: #dc0000;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    z-index: 17;
-
-    opacity: .88;
-
-    transform:
-        translate(
-            0,
-            0
-        )
+        translate(0,0)
         scale(var(--scale))
         rotate(var(--rotation));
-
-    animation:
-        inkSplatter
-        var(--duration)
-        ease-out
-        forwards;
+    animation:inkSplatter var(--duration) ease-out forwards;
 }
 
 .ink-splatter::before,
-.ink-splatter::after {
-
-    content: "";
-
-    position: absolute;
-
-    background: #dc0000;
-
-    border-radius: 50%;
+.ink-splatter::after{
+    content:"";
+    position:absolute;
+    background:#dc0000;
+    border-radius:50%;
 }
 
-.ink-splatter::before {
-
-    width: 5px;
-    height: 5px;
-
-    left: var(--dot-x);
-    top: var(--dot-y);
+.ink-splatter::before{
+    width:5px;
+    height:5px;
+    left:var(--dot-x);
+    top:var(--dot-y);
 }
 
-.ink-splatter::after {
-
-    width: 4px;
-    height: 4px;
-
-    left: var(--dot-x2);
-    top: var(--dot-y2);
+.ink-splatter::after{
+    width:3px;
+    height:3px;
+    left:var(--dot-x2);
+    top:var(--dot-y2);
 }
 
-@keyframes inkSplatter {
-
-    0% {
-
-        opacity: 0;
-
+@keyframes inkSplatter{
+    0%{
+        opacity:0;
         transform:
-            translate(
-                0,
-                0
-            )
+            translate(0,0)
             scale(.2)
             rotate(var(--rotation));
     }
 
-    12% {
-
-        opacity: .9;
+    12%{
+        opacity:.9;
     }
 
-    70% {
-
-        opacity: .82;
+    65%{
+        opacity:.8;
     }
 
-    100% {
-
-        opacity: 0;
-
+    100%{
+        opacity:0;
         transform:
-            translate(
-                var(--move-x),
-                var(--move-y)
-            )
+            translate(var(--move-x),var(--move-y))
             scale(var(--scale))
-            rotate(
-                calc(
-                    var(--rotation) + 80deg
-                )
-            );
+            rotate(calc(var(--rotation) + 100deg));
     }
 }
 
@@ -864,213 +886,195 @@ body {
    VIDEO
 ========================================================= */
 
-#videoContainer {
-
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    z-index: 999;
-
-    justify-content: center;
-    align-items: center;
-
-    pointer-events: none;
+#videoContainer{
+    display:none;
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:999;
+    justify-content:center;
+    align-items:center;
+    pointer-events:none;
 }
 
-#bgVideo {
-
-    max-width: 88vw;
-    max-height: 80vh;
-
-    object-fit: contain;
-
+#bgVideo{
+    max-width:88vw;
+    max-height:80vh;
+    object-fit:contain;
     filter:
-        drop-shadow(
-            0 0 45px
-            rgba(0,0,0,.95)
-        );
-
+        drop-shadow(0 0 45px rgba(0,0,0,.95))
+        contrast(1.08);
     animation:
-        popIn
-        .35s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        )
-        forwards;
+        popIn .35s cubic-bezier(.175,.885,.32,1.275) forwards;
 }
 
 /* =========================================================
    FLASH
 ========================================================= */
 
-#flashOverlay {
-
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 99999;
+#flashOverlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:99999;
+    pointer-events:none;
 }
 
-.flash-animate {
+.flash-animate{
+    display:block !important;
+    animation:flashEffect .55s ease-out forwards;
+}
 
-    display: block !important;
+@keyframes flashEffect{
+    0%{
+        background:#fff;
+        opacity:1;
+    }
 
-    animation:
-        flashEffect
-        .35s
-        ease-out
-        forwards;
+    12%{
+        background:#dc0000;
+        opacity:1;
+    }
+
+    22%{
+        background:#000;
+        opacity:1;
+    }
+
+    34%{
+        background:#fff;
+        opacity:1;
+    }
+
+    48%{
+        background:#dc0000;
+        opacity:1;
+    }
+
+    65%{
+        background:#000;
+        opacity:1;
+    }
+
+    100%{
+        background:#000;
+        opacity:0;
+    }
 }
 
 /* =========================================================
    ANIMATIONS
 ========================================================= */
 
-@keyframes p5GlobalFall {
-
-    0% {
+@keyframes p5GlobalFall{
+    0%{
         transform:
             translateY(0)
             rotate(var(--rot))
             scale(var(--sc));
     }
 
-    100% {
+    100%{
         transform:
             translateY(120vh)
-            rotate(
-                calc(
-                    var(--rot) + 120deg
-                )
-            )
+            rotate(calc(var(--rot) + 120deg))
             scale(var(--sc));
     }
 }
 
-@keyframes wordFloat {
-
-    0% {
-        transform:
-            translateY(0)
-            rotate(var(--rotation));
+@keyframes wordFloat{
+    0%{
+        transform:translateY(0) rotate(var(--rotation));
     }
 
-    50% {
-        transform:
-            translateY(-15px)
-            rotate(var(--rotation));
+    50%{
+        transform:translateY(-15px) rotate(var(--rotation));
     }
 
-    100% {
-        transform:
-            translateY(0)
-            rotate(var(--rotation));
+    100%{
+        transform:translateY(0) rotate(var(--rotation));
     }
 }
 
-@keyframes slashFloat {
-
-    0% {
+@keyframes slashFloat{
+    0%{
         transform:
-            translateX(-20px)
+            translateX(-25px)
             skewX(-25deg)
             rotate(-8deg);
     }
 
-    50% {
+    50%{
         transform:
-            translateX(20px)
+            translateX(25px)
             skewX(-25deg)
             rotate(-8deg);
     }
 
-    100% {
+    100%{
         transform:
-            translateX(-20px)
+            translateX(-25px)
             skewX(-25deg)
             rotate(-8deg);
     }
 }
 
-@keyframes speedMove {
-
-    0% {
+@keyframes speedMove{
+    0%{
         transform:
             translateX(-35vw)
             rotate(var(--angle));
     }
 
-    100% {
+    100%{
         transform:
             translateX(140vw)
             rotate(var(--angle));
     }
 }
 
-@keyframes paperFall {
-
-    0% {
+@keyframes paperFall{
+    0%{
         transform:
             translateY(-20vh)
             translateX(0)
             rotate(var(--rotation));
     }
 
-    50% {
+    50%{
         transform:
             translateY(50vh)
             translateX(30px)
-            rotate(
-                calc(
-                    var(--rotation) + 120deg
-                )
-            );
+            rotate(calc(var(--rotation) + 120deg));
     }
 
-    100% {
+    100%{
         transform:
             translateY(120vh)
             translateX(-30px)
-            rotate(
-                calc(
-                    var(--rotation) + 300deg
-                )
-            );
+            rotate(calc(var(--rotation) + 300deg));
     }
 }
 
-@keyframes stripMove {
-
-    0% {
+@keyframes stripMove{
+    0%{
         transform:
             translateX(-20px)
             rotate(var(--rotation))
             skewX(-25deg);
     }
 
-    50% {
+    50%{
         transform:
             translateX(30px)
             rotate(var(--rotation))
             skewX(-25deg);
     }
 
-    100% {
+    100%{
         transform:
             translateX(-20px)
             rotate(var(--rotation))
@@ -1078,60 +1082,15 @@ body {
     }
 }
 
-@keyframes popIn {
-
-    0% {
-        transform:
-            scale(.9);
-
-        opacity: 0;
+@keyframes popIn{
+    0%{
+        transform:scale(.9);
+        opacity:0;
     }
 
-    100% {
-        transform:
-            scale(1);
-
-        opacity: 1;
-    }
-}
-
-@keyframes blink {
-
-    0%,
-    100% {
-        opacity: .25;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-@keyframes flashEffect {
-
-    0% {
-        background: #fff;
-        opacity: 1;
-    }
-
-    25% {
-        background: #dc0000;
-        opacity: 1;
-    }
-
-    50% {
-        background: #fff;
-        opacity: 1;
-    }
-
-    75% {
-        background: #000;
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        display: none;
+    100%{
+        transform:scale(1);
+        opacity:1;
     }
 }
 
@@ -1139,113 +1098,110 @@ body {
    MOBILE
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width:600px){
 
-    .royal-logo {
-        width: 330px;
-        height: auto;
-        margin-top: 35px;
-
-        transform:
-            scale(.82)
-            rotate(-7deg)
-            skewX(-8deg);
+    .royal-logo{
+        width:330px;
+        max-width:82vw;
+        height:auto;
+        margin-top:35px;
+        transform:scale(.82) rotate(-7deg) skewX(-8deg);
     }
 
-    .take-your-heart-img {
-        width: 330px;
-        max-width: 82vw;
+    .take-your-heart-img{
+        width:330px;
+        max-width:82vw;
     }
 
-    .royal-take {
-        font-size: 62px;
+    .logo-ring.one{
+        width:340px;
+        height:170px;
     }
 
-    .royal-your {
-
-        top: 43px;
-        left: 89px;
-
-        font-size: 56px;
+    .logo-ring.two{
+        width:390px;
+        height:205px;
     }
 
-    .royal-heart {
-
-        top: 89px;
-        left: 29px;
-
-        font-size: 62px;
+    .sub-txt{
+        font-size:9px;
+        letter-spacing:3px;
+        margin-top:24px;
     }
 
-    .sub-txt {
-
-        font-size: 9px;
-
-        letter-spacing: 3px;
+    .sub-txt::before{
+        border-top-width:6px;
+        border-bottom-width:6px;
+        border-left-width:10px;
+        margin-right:8px;
     }
 
-    /* =====================================================
-       手機三角形
-       仍然是 CSS 幾何圖形
-       不使用 Emoji
-    ===================================================== */
-
-    .sub-txt::before {
-
-        border-top-width: 7px;
-        border-bottom-width: 7px;
-        border-left-width: 11px;
-
-        margin-right: 10px;
+    .sub-txt::after{
+        border-top-width:6px;
+        border-bottom-width:6px;
+        border-right-width:10px;
+        margin-left:8px;
     }
 
-    .sub-txt::after {
-
-        border-top-width: 7px;
-        border-bottom-width: 7px;
-        border-right-width: 11px;
-
-        margin-left: 10px;
+    .start-slash.one{
+        height:25px;
     }
 
-    #bgVideo {
+    .start-slash.four{
+        height:35px;
+    }
 
-        max-width: 94vw;
-        max-height: 72vh;
+    .start-label{
+        font-size:6px;
+        letter-spacing:3px;
+    }
+
+    #bgVideo{
+        max-width:94vw;
+        max-height:72vh;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- =======================================================
      START SCREEN
-     沒有 Joker Mask
-===================================================== -->
+======================================================= -->
 
-<div
-    id="startScreen"
-    onclick="launchPhantom()">
+<div id="startScreen" onclick="launchPhantom()">
 
     <div class="start-slash one"></div>
     <div class="start-slash two"></div>
     <div class="start-slash three"></div>
     <div class="start-slash four"></div>
 
-    <!-- TAKE YOUR HEART PNG -->
+    <div class="start-cut a"></div>
+    <div class="start-cut b"></div>
+    <div class="start-cut c"></div>
+    <div class="start-cut d"></div>
+
+    <div class="start-label top">
+        PHANTOM THIEVES // CONFIDENTIAL
+    </div>
+
+    <div class="start-label bottom">
+        TAKE YOUR HEART // 20XX
+    </div>
 
     <div class="royal-logo">
+
+        <div class="logo-ring one"></div>
+        <div class="logo-ring two"></div>
 
         <img
             src="take-your-heart.png"
             class="take-your-heart-img"
-            alt="TAKE YOUR HEART">
+            alt="TAKE YOUR HEART"
+        >
 
     </div>
-
-    <!-- 點擊提示 -->
 
     <div class="sub-txt">
         CLICK TO OPEN THE CALLING CARD
@@ -1253,21 +1209,17 @@ body {
 
 </div>
 
-<!-- =====================================================
+<!-- =======================================================
      FLASH
-===================================================== -->
+======================================================= -->
 
 <div id="flashOverlay"></div>
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
+<!-- =======================================================
+     ANIMATION
+======================================================= -->
 
 <div id="canvasContainer"></div>
-
-<!-- =====================================================
-     AUDIO
-===================================================== -->
 
 <audio
     id="audio"
@@ -1275,10 +1227,6 @@ body {
     loop
     preload="auto">
 </audio>
-
-<!-- =====================================================
-     VIDEO
-===================================================== -->
 
 <div id="videoContainer">
 
@@ -1293,59 +1241,43 @@ body {
 
 </div>
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 window.addEventListener(
     "DOMContentLoaded",
-    () => {
-
+    ()=>{
         buildRealDenseWaterfall();
-
         buildP5Elements();
-
     }
 );
 
 /* =========================================================
-   大量預告信
+   CALLING CARD WATERFALL
 ========================================================= */
 
-function buildRealDenseWaterfall() {
+function buildRealDenseWaterfall(){
 
     const count = 220;
 
-    for (
-        let i = 0;
-        i < count;
-        i++
-    ) {
+    for(let i = 0; i < count; i++){
 
         createCallingCard(true);
 
     }
+
 }
 
-/* =========================================================
-   預告信
-========================================================= */
-
-function createCallingCard(
-    initial = false
-) {
+function createCallingCard(initial = false){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const letter =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     letter.className =
         "falling-letter";
@@ -1353,53 +1285,32 @@ function createCallingCard(
     const depth =
         Math.random();
 
-    if (
-        depth < .25
-    ) {
+    if(depth < .25){
 
-        letter.classList.add(
-            "far"
-        );
+        letter.classList.add("far");
 
-    }
-    else if (
-        depth > .78
-    ) {
+    }else if(depth > .78){
 
-        letter.classList.add(
-            "front"
-        );
+        letter.classList.add("front");
 
     }
 
     let sizeWidth;
 
-    if (
-        depth < .25
-    ) {
+    if(depth < .25){
 
         sizeWidth =
-            Math.floor(
-                Math.random() * 30
-            ) + 22;
+            Math.floor(Math.random() * 30) + 22;
 
-    }
-    else if (
-        depth > .78
-    ) {
+    }else if(depth > .78){
 
         sizeWidth =
-            Math.floor(
-                Math.random() * 80
-            ) + 55;
+            Math.floor(Math.random() * 80) + 55;
 
-    }
-    else {
+    }else{
 
         sizeWidth =
-            Math.floor(
-                Math.random() * 55
-            ) + 30;
+            Math.floor(Math.random() * 55) + 30;
 
     }
 
@@ -1416,23 +1327,17 @@ function createCallingCard(
 
     let duration;
 
-    if (
-        depth < .25
-    ) {
+    if(depth < .25){
 
         duration =
             Math.random() * 4 + 6;
 
-    }
-    else if (
-        depth > .78
-    ) {
+    }else if(depth > .78){
 
         duration =
             Math.random() * 2 + 2.5;
 
-    }
-    else {
+    }else{
 
         duration =
             Math.random() * 3 + 3;
@@ -1443,9 +1348,7 @@ function createCallingCard(
         Math.random() * 100 - 50;
 
     const scale =
-        (
-            Math.random() * .45 + .55
-        ).toFixed(2);
+        (Math.random() * .45 + .55).toFixed(2);
 
     letter.style.width =
         sizeWidth + "px";
@@ -1470,45 +1373,37 @@ function createCallingCard(
     );
 
     letter.style.transform =
-        `rotate(${rotation}deg)
-         scale(${scale})`;
+        `rotate(${rotation}deg) scale(${scale})`;
 
     letter.dataset.duration =
         duration;
 
-    container.appendChild(
-        letter
-    );
+    container.appendChild(letter);
 
-    if (!initial) {
+    if(!initial){
 
         letter.style.animation =
-            `p5GlobalFall
-             ${duration}s
-             linear`;
+            `p5GlobalFall ${duration}s linear`;
 
         setTimeout(
-            () => {
-
+            ()=>{
                 letter.remove();
-
             },
             duration * 1000 + 200
         );
 
     }
+
 }
 
 /* =========================================================
-   P5 背景
+   P5 ELEMENTS
 ========================================================= */
 
-function buildP5Elements() {
+function buildP5Elements(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const words = [
 
@@ -1522,20 +1417,17 @@ function buildP5Elements() {
         "THE PHANTOM THIEVES",
         "TAKE YOUR HEART",
         "NOTICE",
-        "PHANTOM"
+        "PHANTOM",
+        "TAKE YOUR HEART"
 
     ];
 
-    for (
-        let i = 0;
-        i < 15;
-        i++
-    ) {
+    /* WORDS */
+
+    for(let i = 0; i < 18; i++){
 
         const word =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         word.className =
             "p5-word";
@@ -1543,15 +1435,12 @@ function buildP5Elements() {
         word.textContent =
             words[
                 Math.floor(
-                    Math.random()
-                    * words.length
+                    Math.random() * words.length
                 )
             ];
 
         const size =
-            Math.floor(
-                Math.random() * 75
-            ) + 30;
+            Math.floor(Math.random() * 75) + 30;
 
         word.style.fontSize =
             size + "px";
@@ -1564,116 +1453,84 @@ function buildP5Elements() {
 
         word.style.setProperty(
             "--rotation",
-            (
-                Math.random() * 18 - 9
-            ) + "deg"
+            (Math.random() * 18 - 9) + "deg"
         );
 
         word.style.setProperty(
             "--duration",
-            (
-                Math.random() * 4 + 4
-            ) + "s"
+            (Math.random() * 4 + 4) + "s"
         );
 
         const type =
             Math.random();
 
-        if (
-            type < .25
-        ) {
+        if(type < .25){
 
-            word.classList.add(
-                "white"
-            );
+            word.classList.add("white");
 
-        }
-        else if (
-            type < .45
-        ) {
+        }else if(type < .50){
 
-            word.classList.add(
-                "red"
-            );
+            word.classList.add("red");
 
         }
 
-        container.appendChild(
-            word
-        );
+        container.appendChild(word);
+
     }
 
-    for (
-        let i = 0;
-        i < 35;
-        i++
-    ) {
+    /* SLASHES */
+
+    for(let i = 0; i < 42; i++){
 
         createSlash();
 
     }
 
-    for (
-        let i = 0;
-        i < 45;
-        i++
-    ) {
+    /* SPEED LINES */
+
+    for(let i = 0; i < 55; i++){
 
         createSpeedLine();
 
     }
 
-    for (
-        let i = 0;
-        i < 55;
-        i++
-    ) {
+    /* PAPER */
+
+    for(let i = 0; i < 65; i++){
 
         createPaperFragment();
 
     }
 
-    for (
-        let i = 0;
-        i < 25;
-        i++
-    ) {
+    /* STRIPS */
+
+    for(let i = 0; i < 30; i++){
 
         createPaperStrip();
 
     }
 
-    /* =====================================================
-       紅色墨跡
-       由原本 18 增加到 26
-    ===================================================== */
+    /* INK */
 
-    for (
-        let i = 0;
-        i < 26;
-        i++
-    ) {
+    for(let i = 0; i < 25; i++){
 
         createInkSplatter(true);
 
     }
+
 }
 
 /* =========================================================
-   斜切塊
+   SLASH
 ========================================================= */
 
-function createSlash() {
+function createSlash(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const slash =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     slash.className =
         "p5-slash";
@@ -1681,41 +1538,25 @@ function createSlash() {
     const type =
         Math.random();
 
-    if (
-        type < .55
-    ) {
+    if(type < .52){
 
-        slash.classList.add(
-            "black"
-        );
+        slash.classList.add("black");
 
-    }
-    else if (
-        type < .78
-    ) {
+    }else if(type < .77){
 
-        slash.classList.add(
-            "white"
-        );
+        slash.classList.add("white");
 
-    }
-    else {
+    }else{
 
-        slash.classList.add(
-            "red"
-        );
+        slash.classList.add("red");
 
     }
 
     slash.style.width =
-        Math.floor(
-            Math.random() * 200
-        ) + 50 + "px";
+        Math.floor(Math.random() * 200) + 50 + "px";
 
     slash.style.height =
-        Math.floor(
-            Math.random() * 25
-        ) + 5 + "px";
+        Math.floor(Math.random() * 25) + 5 + "px";
 
     slash.style.left =
         Math.random() * 110 - 5 + "vw";
@@ -1725,49 +1566,36 @@ function createSlash() {
 
     slash.style.setProperty(
         "--duration",
-        (
-            Math.random() * 3 + 3
-        ) + "s"
+        Math.random() * 3 + 3 + "s"
     );
 
-    container.appendChild(
-        slash
-    );
+    container.appendChild(slash);
+
 }
 
 /* =========================================================
-   速度線
+   SPEED LINE
 ========================================================= */
 
-function createSpeedLine() {
+function createSpeedLine(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const line =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     line.className =
         "speed-line";
 
-    if (
-        Math.random() > .72
-    ) {
+    if(Math.random() > .72){
 
-        line.classList.add(
-            "white"
-        );
+        line.classList.add("white");
 
     }
 
     line.style.width =
-        Math.floor(
-            Math.random() * 180
-        ) + 40 + "px";
+        Math.floor(Math.random() * 180) + 40 + "px";
 
     line.style.left =
         Math.random() * 100 + "vw";
@@ -1777,43 +1605,32 @@ function createSpeedLine() {
 
     line.style.setProperty(
         "--angle",
-        (
-            Math.random() * 35 - 25
-        ) + "deg"
+        Math.random() * 35 - 25 + "deg"
     );
 
     line.style.setProperty(
         "--duration",
-        (
-            Math.random() * 1.8 + .8
-        ) + "s"
+        Math.random() * 1.8 + .8 + "s"
     );
 
     line.style.animationDelay =
-        (
-            Math.random() * -4
-        ) + "s";
+        Math.random() * -4 + "s";
 
-    container.appendChild(
-        line
-    );
+    container.appendChild(line);
+
 }
 
 /* =========================================================
-   紙片
+   PAPER
 ========================================================= */
 
-function createPaperFragment() {
+function createPaperFragment(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const fragment =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     fragment.className =
         "paper-fragment";
@@ -1821,34 +1638,21 @@ function createPaperFragment() {
     const type =
         Math.random();
 
-    if (
-        type < .55
-    ) {
+    if(type < .55){
 
-        fragment.classList.add(
-            "black"
-        );
+        fragment.classList.add("black");
 
-    }
-    else if (
-        type < .72
-    ) {
+    }else if(type < .74){
 
-        fragment.classList.add(
-            "red"
-        );
+        fragment.classList.add("red");
 
     }
 
     fragment.style.width =
-        Math.floor(
-            Math.random() * 35
-        ) + 8 + "px";
+        Math.floor(Math.random() * 35) + 8 + "px";
 
     fragment.style.height =
-        Math.floor(
-            Math.random() * 15
-        ) + 4 + "px";
+        Math.floor(Math.random() * 15) + 4 + "px";
 
     fragment.style.left =
         Math.random() * 100 + "vw";
@@ -1863,59 +1667,42 @@ function createPaperFragment() {
 
     fragment.style.setProperty(
         "--duration",
-        (
-            Math.random() * 4 + 4
-        ) + "s"
+        Math.random() * 4 + 4 + "s"
     );
 
     fragment.style.animationDelay =
-        (
-            Math.random() * -8
-        ) + "s";
+        Math.random() * -8 + "s";
 
-    container.appendChild(
-        fragment
-    );
+    container.appendChild(fragment);
+
 }
 
 /* =========================================================
-   紙條
+   PAPER STRIP
 ========================================================= */
 
-function createPaperStrip() {
+function createPaperStrip(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const strip =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     strip.className =
         "paper-strip";
 
-    if (
-        Math.random() > .55
-    ) {
+    if(Math.random() > .55){
 
-        strip.classList.add(
-            "black"
-        );
+        strip.classList.add("black");
 
     }
 
     strip.style.width =
-        Math.floor(
-            Math.random() * 140
-        ) + 30 + "px";
+        Math.floor(Math.random() * 140) + 30 + "px";
 
     strip.style.height =
-        Math.floor(
-            Math.random() * 12
-        ) + 4 + "px";
+        Math.floor(Math.random() * 12) + 4 + "px";
 
     strip.style.left =
         Math.random() * 110 - 5 + "vw";
@@ -1925,46 +1712,35 @@ function createPaperStrip() {
 
     strip.style.setProperty(
         "--rotation",
-        (
-            Math.random() * 40 - 20
-        ) + "deg"
+        Math.random() * 40 - 20 + "deg"
     );
 
     strip.style.setProperty(
         "--duration",
-        (
-            Math.random() * 4 + 3
-        ) + "s"
+        Math.random() * 4 + 3 + "s"
     );
 
-    container.appendChild(
-        strip
-    );
+    container.appendChild(strip);
+
 }
 
 /* =========================================================
-   紅色墨跡
+   INK SPLATTER
 ========================================================= */
 
-function createInkSplatter(
-    initial = false
-) {
+function createInkSplatter(initial = false){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const splatter =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     splatter.className =
         "ink-splatter";
 
     const size =
-        Math.random() * 1.8 + .6;
+        Math.random() * 1.8 + .55;
 
     const rotation =
         Math.random() * 360;
@@ -1992,44 +1768,32 @@ function createInkSplatter(
 
     splatter.style.setProperty(
         "--move-x",
-        (
-            Math.random() * 140 - 70
-        ) + "px"
+        Math.random() * 100 - 50 + "px"
     );
 
     splatter.style.setProperty(
         "--move-y",
-        (
-            Math.random() * 180 + 40
-        ) + "px"
+        Math.random() * 160 + 40 + "px"
     );
 
     splatter.style.setProperty(
         "--dot-x",
-        (
-            Math.random() * 45 - 20
-        ) + "px"
+        Math.random() * 45 - 20 + "px"
     );
 
     splatter.style.setProperty(
         "--dot-y",
-        (
-            Math.random() * 45 - 20
-        ) + "px"
+        Math.random() * 45 - 20 + "px"
     );
 
     splatter.style.setProperty(
         "--dot-x2",
-        (
-            Math.random() * 60 - 30
-        ) + "px"
+        Math.random() * 60 - 30 + "px"
     );
 
     splatter.style.setProperty(
         "--dot-y2",
-        (
-            Math.random() * 60 - 30
-        ) + "px"
+        Math.random() * 60 - 30 + "px"
     );
 
     splatter.style.setProperty(
@@ -2037,97 +1801,104 @@ function createInkSplatter(
         duration + "s"
     );
 
-    if (initial) {
+    if(initial){
 
         splatter.style.animationDelay =
-            (
-                Math.random() * -5
-            ) + "s";
+            Math.random() * -5 + "s";
 
     }
 
-    container.appendChild(
-        splatter
-    );
+    container.appendChild(splatter);
 
-    if (!initial) {
+    if(!initial){
 
         setTimeout(
-            () => {
-
+            ()=>{
                 splatter.remove();
-
             },
             duration * 1000 + 500
         );
 
     }
+
 }
 
 /* =========================================================
-   啟動
+   LAUNCH
 ========================================================= */
 
-function launchPhantom() {
+let launched = false;
+
+function launchPhantom(){
+
+    if(launched){
+
+        return;
+
+    }
+
+    launched = true;
 
     const audio =
-        document.getElementById(
-            "audio"
-        );
+        document.getElementById("audio");
 
     const video =
-        document.getElementById(
-            "bgVideo"
-        );
+        document.getElementById("bgVideo");
 
     const startScreen =
-        document.getElementById(
-            "startScreen"
-        );
+        document.getElementById("startScreen");
 
     const flashOverlay =
-        document.getElementById(
-            "flashOverlay"
-        );
+        document.getElementById("flashOverlay");
 
     const canvasContainer =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const videoContainer =
-        document.getElementById(
-            "videoContainer"
-        );
+        document.getElementById("videoContainer");
 
-    audio
-        .play()
-        .catch(
-            e => console.log(e)
-        );
+    /* AUDIO */
 
-    video
-        .play()
-        .catch(
-            e => console.log(e)
-        );
+    audio.volume = 1;
+
+    audio.play().catch(
+        e => console.log(e)
+    );
+
+    /* VIDEO */
+
+    video.play().catch(
+        e => console.log(e)
+    );
+
+    /* FLASH */
 
     flashOverlay.classList.add(
         "flash-animate"
     );
 
+    /* LOGO IMPACT */
+
+    startScreen.style.pointerEvents =
+        "none";
+
+    startScreen.style.transition =
+        "transform .35s cubic-bezier(.16,1,.3,1), opacity .35s ease";
+
+    startScreen.style.transform =
+        "scale(1.08)";
+
+    startScreen.style.opacity =
+        "0";
+
     setTimeout(
-        () => {
+        ()=>{
 
             startScreen.style.display =
                 "none";
 
             document.body.style.backgroundColor =
                 "#dc0000";
-
-            canvasContainer.classList.add(
-                "bg-red-active"
-            );
 
             canvasContainer.style.display =
                 "block";
@@ -2147,108 +1918,98 @@ function launchPhantom() {
                         letter.dataset.duration;
 
                     letter.style.animation =
-                        `p5GlobalFall
-                         ${duration}s
-                         linear
-                         infinite`;
+                        `p5GlobalFall ${duration}s linear infinite`;
 
                 }
             );
 
         },
-        120
+        180
     );
 
+    /* CONTINUOUS EFFECTS */
+
     setInterval(
-        () => {
-
+        ()=>{
             supplementLetter();
-
         },
         80
     );
 
     setInterval(
-        () => {
-
+        ()=>{
             supplementPaper();
-
         },
-        180
+        160
     );
 
     setInterval(
-        () => {
-
+        ()=>{
             supplementSpeedLine();
-
         },
-        280
+        220
     );
 
     setInterval(
-        () => {
-
+        ()=>{
             supplementInkSplatter();
+        },
+        500
+    );
 
+    setInterval(
+        ()=>{
+            supplementSlash();
+        },
+        900
+    );
+
+    setTimeout(
+        ()=>{
+            flashOverlay.classList.remove(
+                "flash-animate"
+            );
         },
         650
     );
 
-    setTimeout(
-        () => {
-
-            flashOverlay.classList.remove(
-                "flash-animate"
-            );
-
-        },
-        400
-    );
 }
 
 /* =========================================================
-   補充預告信
+   SUPPLEMENT CARD
 ========================================================= */
 
-function supplementLetter() {
+function supplementLetter(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const cards =
         container.querySelectorAll(
             ".falling-letter"
         );
 
-    if (
-        cards.length > 300
-    ) {
+    if(cards.length > 330){
 
         return;
 
     }
 
     createCallingCard(false);
+
 }
 
 /* =========================================================
-   補充紙片
+   SUPPLEMENT PAPER
 ========================================================= */
 
-function supplementPaper() {
+function supplementPaper(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const fragment =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     fragment.className =
         "paper-fragment";
@@ -2256,34 +2017,21 @@ function supplementPaper() {
     const type =
         Math.random();
 
-    if (
-        type < .5
-    ) {
+    if(type < .5){
 
-        fragment.classList.add(
-            "black"
-        );
+        fragment.classList.add("black");
 
-    }
-    else if (
-        type < .7
-    ) {
+    }else if(type < .72){
 
-        fragment.classList.add(
-            "red"
-        );
+        fragment.classList.add("red");
 
     }
 
     fragment.style.width =
-        Math.floor(
-            Math.random() * 35
-        ) + 8 + "px";
+        Math.floor(Math.random() * 35) + 8 + "px";
 
     fragment.style.height =
-        Math.floor(
-            Math.random() * 14
-        ) + 4 + "px";
+        Math.floor(Math.random() * 14) + 4 + "px";
 
     fragment.style.left =
         Math.random() * 100 + "vw";
@@ -2305,57 +2053,42 @@ function supplementPaper() {
     );
 
     fragment.style.animation =
-        `paperFall
-         ${duration}s
-         linear`;
+        `paperFall ${duration}s linear`;
 
-    container.appendChild(
-        fragment
-    );
+    container.appendChild(fragment);
 
     setTimeout(
-        () => {
-
+        ()=>{
             fragment.remove();
-
         },
         duration * 1000 + 300
     );
+
 }
 
 /* =========================================================
-   補充速度線
+   SUPPLEMENT SPEED
 ========================================================= */
 
-function supplementSpeedLine() {
+function supplementSpeedLine(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const line =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     line.className =
         "speed-line";
 
-    if (
-        Math.random() > .7
-    ) {
+    if(Math.random() > .68){
 
-        line.classList.add(
-            "white"
-        );
+        line.classList.add("white");
 
     }
 
     line.style.width =
-        Math.floor(
-            Math.random() * 180
-        ) + 40 + "px";
+        Math.floor(Math.random() * 180) + 40 + "px";
 
     line.style.left =
         "-20vw";
@@ -2365,9 +2098,7 @@ function supplementSpeedLine() {
 
     line.style.setProperty(
         "--angle",
-        (
-            Math.random() * 35 - 25
-        ) + "deg"
+        Math.random() * 35 - 25 + "deg"
     );
 
     const duration =
@@ -2379,49 +2110,101 @@ function supplementSpeedLine() {
     );
 
     line.style.animation =
-        `speedMove
-         ${duration}s
-         linear`;
+        `speedMove ${duration}s linear`;
 
-    container.appendChild(
-        line
-    );
+    container.appendChild(line);
 
     setTimeout(
-        () => {
-
+        ()=>{
             line.remove();
-
         },
         duration * 1000 + 300
     );
+
 }
 
 /* =========================================================
-   補充紅色墨跡
+   SUPPLEMENT INK
 ========================================================= */
 
-function supplementInkSplatter() {
+function supplementInkSplatter(){
 
     const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+        document.getElementById("canvasContainer");
 
     const splatters =
         container.querySelectorAll(
             ".ink-splatter"
         );
 
-    if (
-        splatters.length > 40
-    ) {
+    if(splatters.length > 45){
 
         return;
 
     }
 
     createInkSplatter(false);
+
+}
+
+/* =========================================================
+   SUPPLEMENT SLASH
+========================================================= */
+
+function supplementSlash(){
+
+    const container =
+        document.getElementById("canvasContainer");
+
+    const slash =
+        document.createElement("div");
+
+    slash.className =
+        "p5-slash";
+
+    const type =
+        Math.random();
+
+    if(type < .45){
+
+        slash.classList.add("black");
+
+    }else if(type < .72){
+
+        slash.classList.add("red");
+
+    }else{
+
+        slash.classList.add("white");
+
+    }
+
+    slash.style.width =
+        Math.floor(Math.random() * 180) + 45 + "px";
+
+    slash.style.height =
+        Math.floor(Math.random() * 18) + 5 + "px";
+
+    slash.style.left =
+        "-20vw";
+
+    slash.style.top =
+        Math.random() * 100 + "vh";
+
+    slash.style.setProperty(
+        "--duration",
+        Math.random() * 2 + 2 + "s"
+    );
+
+    container.appendChild(slash);
+
+    setTimeout(
+        ()=>{
+            slash.remove();
+        },
+        4500
+    );
+
 }
 
 </script>
