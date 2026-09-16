@@ -11,7 +11,9 @@
     viewport-fit=cover"
 >
 <title>Take Your Heart</title>
+
 <style>
+
 /* =========================================================
    GLOBAL
 ========================================================= */
@@ -20,6 +22,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html,
 body {
     width: 100%;
@@ -33,6 +36,7 @@ body {
         Arial,
         sans-serif;
 }
+
 /* =========================================================
    START SCREEN
 ========================================================= */
@@ -41,6 +45,7 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
+
     background:
         radial-gradient(
             circle at center,
@@ -48,24 +53,29 @@ body {
             #0d0d0d 45%,
             #050505 100%
         );
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     z-index: 10000;
     cursor: pointer;
     overflow: hidden;
 }
+
 /* =========================================================
    開場背景斜切裝飾
 ========================================================= */
 .start-slash {
     position: absolute;
     pointer-events: none;
+
     transform:
         rotate(-12deg)
         skewX(-25deg);
 }
+
 .start-slash.one {
     width: 120vw;
     height: 25px;
@@ -74,6 +84,7 @@ body {
     background: #dc0000;
     opacity: .85;
 }
+
 .start-slash.two {
     width: 80vw;
     height: 12px;
@@ -82,6 +93,7 @@ body {
     background: #fff;
     opacity: .75;
 }
+
 .start-slash.three {
     width: 100vw;
     height: 8px;
@@ -90,6 +102,7 @@ body {
     background: #dc0000;
     opacity: .7;
 }
+
 .start-slash.four {
     width: 55vw;
     height: 35px;
@@ -98,15 +111,19 @@ body {
     background: #000;
     opacity: .9;
 }
+
 /* =========================================================
    JOKER MASK
 ========================================================= */
 .joker-mask-img {
     position: relative;
     z-index: 5;
+
     width: 140px;
     height: auto;
+
     object-fit: contain;
+
     filter:
         drop-shadow(
             0 0 10px
@@ -116,377 +133,637 @@ body {
             8px 8px 0
             rgba(220,0,0,.45)
         );
+
     animation:
         maskPulse
         1.5s
         ease-in-out
         infinite;
 }
+
 /* =========================================================
-   P5R STYLE LOGO
+   P5R ROYAL STYLE
+   GOLD TAKE YOUR HEART
 ========================================================= */
 .royal-logo {
     position: relative;
     z-index: 6;
-    width: 390px;
-    height: 170px;
+
+    width: 430px;
+    height: 190px;
+
     margin-top: 42px;
+
     transform:
         rotate(-7deg)
         skewX(-8deg);
+
     user-select: none;
+
     filter:
         drop-shadow(
-            8px 8px 0 #dc0000
+            9px 10px 0 #000
+        )
+        drop-shadow(
+            13px 13px 0 #dc0000
         );
 }
+
+/* =========================================================
+   GOLD LETTER BASE
+========================================================= */
+.royal-take,
+.royal-your,
+.royal-heart {
+
+    position: absolute;
+
+    font-family:
+        Impact,
+        "Arial Black",
+        "Arial Narrow",
+        sans-serif;
+
+    font-weight: 900;
+
+    color: #f5c84b;
+
+    letter-spacing: -8px;
+
+    line-height: .78;
+
+    /*
+       黑色粗轮廓
+    */
+    -webkit-text-stroke: 5px #090909;
+
+    /*
+       金色立体阴影
+    */
+    text-shadow:
+        2px 2px 0 #fff0a3,
+        4px 4px 0 #b88619,
+        7px 7px 0 #080808;
+
+    paint-order:
+        stroke fill;
+}
+
 /* =========================================================
    TAKE
 ========================================================= */
 .royal-take {
-    position: absolute;
+
     top: 0;
-    left: 5px;
-    font-size: 68px;
-    line-height: .8;
-    letter-spacing: -7px;
-    color: #fff;
-    -webkit-text-stroke:
-        5px #000;
-    text-shadow:
-        7px 7px 0 #000;
+    left: 0;
+
+    font-size: 76px;
+
     transform:
-        rotate(-3deg);
+        rotate(-4deg)
+        skewX(-8deg);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff1a8 0%,
+            #f6d35b 22%,
+            #dca92c 55%,
+            #a87312 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    -webkit-text-stroke:
+        5px #080808;
+
+    filter:
+        drop-shadow(
+            4px 5px 0 #000
+        );
 }
+
 /* =========================================================
    YOUR
 ========================================================= */
 .royal-your {
-    position: absolute;
-    top: 46px;
-    left: 105px;
+
+    top: 52px;
+    left: 116px;
+
     z-index: 3;
+
     padding:
-        5px 13px
-        3px 10px;
-    font-size: 62px;
-    line-height: .78;
-    letter-spacing: -7px;
-    color: #000;
-    background: #fff;
-    border:
-        4px solid #000;
-    box-shadow:
-        8px 8px 0 #dc0000;
+        6px 15px
+        4px 12px;
+
+    font-size: 68px;
+
     transform:
         rotate(3deg)
         skewX(-15deg);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff0a3 0%,
+            #f1c94d 35%,
+            #c89220 70%,
+            #8c5e0c 100%
+        );
+
+    color: #f5c84b;
+
+    border:
+        5px solid #080808;
+
+    box-shadow:
+        9px 9px 0 #dc0000,
+        13px 13px 0 #080808;
+
+    text-shadow:
+        2px 2px 0 #ffeaa0,
+        5px 5px 0 #a87312;
+
+    -webkit-text-stroke:
+        4px #080808;
+
+    paint-order:
+        stroke fill;
 }
+
 /* =========================================================
    HEART
 ========================================================= */
 .royal-heart {
-    position: absolute;
-    top: 96px;
-    left: 38px;
-    font-size: 67px;
-    line-height: .8;
-    letter-spacing: -7px;
-    color: #fff;
-    -webkit-text-stroke:
-        5px #000;
-    text-shadow:
-        7px 7px 0 #000;
+
+    top: 108px;
+    left: 35px;
+
+    font-size: 76px;
+
     transform:
-        rotate(-4deg);
+        rotate(-5deg)
+        skewX(-7deg);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff0a0 0%,
+            #f4cf55 25%,
+            #d5a128 58%,
+            #9a670d 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    -webkit-text-stroke:
+        5px #080808;
+
+    filter:
+        drop-shadow(
+            5px 6px 0 #000
+        );
 }
+
 /* =========================================================
    LOGO 紅色爆裂條
 ========================================================= */
 .royal-logo::before {
+
     content: "";
+
     position: absolute;
+
     z-index: -1;
-    width: 230px;
-    height: 14px;
-    top: 30px;
-    right: -35px;
+
+    width: 260px;
+    height: 16px;
+
+    top: 34px;
+    right: -55px;
+
     background: #dc0000;
+
     transform:
         rotate(-16deg)
         skewX(-35deg);
+
+    box-shadow:
+        5px 5px 0 #080808;
 }
+
 /* =========================================================
    LOGO 黑色切線
 ========================================================= */
 .royal-logo::after {
+
     content: "";
+
     position: absolute;
+
     z-index: -2;
-    width: 285px;
-    height: 10px;
-    bottom: 3px;
-    left: -10px;
-    background: #000;
+
+    width: 310px;
+    height: 12px;
+
+    bottom: 2px;
+    left: -18px;
+
+    background: #080808;
+
     transform:
         rotate(-5deg)
         skewX(-30deg);
 }
+
 /* =========================================================
    LOGO 小型爆裂線
 ========================================================= */
 .logo-burst {
+
     position: absolute;
-    z-index: 2;
+
+    z-index: 4;
+
     background: #dc0000;
+
+    box-shadow:
+        3px 3px 0 #080808;
+
     transform:
         rotate(-20deg);
 }
+
 .logo-burst.a {
-    width: 70px;
-    height: 7px;
-    top: 5px;
-    right: 5px;
+
+    width: 78px;
+    height: 8px;
+
+    top: 3px;
+    right: 0;
 }
+
 .logo-burst.b {
-    width: 45px;
-    height: 5px;
-    top: 20px;
-    right: -18px;
+
+    width: 50px;
+    height: 6px;
+
+    top: 19px;
+    right: -25px;
+
     transform:
         rotate(18deg);
 }
+
 .logo-burst.c {
-    width: 60px;
-    height: 6px;
+
+    width: 68px;
+    height: 7px;
+
     bottom: 25px;
-    left: -20px;
+    left: -27px;
+
     transform:
         rotate(12deg);
 }
+
 /* =========================================================
    CLICK TEXT
 ========================================================= */
 .sub-txt {
+
     position: relative;
     z-index: 7;
+
     margin-top: 18px;
+
     color: #fff;
+
     font-size: 12px;
     font-weight: 900;
+
     letter-spacing: 5px;
+
     text-transform: uppercase;
+
     transform:
         rotate(-3deg);
+
     animation:
         blink
         1.2s
         infinite;
 }
+
 .sub-txt::before {
+
     content: "///";
+
     color: #dc0000;
+
     margin-right: 10px;
 }
+
 .sub-txt::after {
+
     content: "///";
+
     color: #dc0000;
+
     margin-left: 10px;
 }
+
 /* =========================================================
    背景主容器
 ========================================================= */
 #canvasContainer {
+
     display: none;
+
     position: fixed;
     inset: 0;
+
     width: 100vw;
     height: 100vh;
+
     z-index: 10;
+
     overflow: hidden;
+
     background: #0b0b0b;
 }
+
 .bg-red-active {
     background-color:
         #dc0000 !important;
 }
+
 /* =========================================================
    預告信 / CALLING CARD
 ========================================================= */
 .falling-letter {
+
     position: absolute;
+
     background-image:
         url("cover.png");
+
     background-size: contain;
+
     background-repeat: no-repeat;
+
     pointer-events: none;
+
     will-change: transform;
+
     opacity: .42;
+
     z-index: 10;
 }
+
 .falling-letter.far {
+
     opacity: .17;
+
     filter:
         blur(.4px);
 }
+
 .falling-letter.front {
+
     opacity: .67;
+
     z-index: 16;
+
     filter:
         drop-shadow(
             0 5px 5px
             rgba(0,0,0,.4)
         );
 }
+
 /* =========================================================
    巨型預告文字
 ========================================================= */
 .p5-word {
+
     position: absolute;
+
     font-family:
         Impact,
         "Arial Black",
         sans-serif;
+
     font-weight: 900;
+
     white-space: nowrap;
+
     pointer-events: none;
     user-select: none;
+
     letter-spacing: 3px;
+
     color:
         rgba(0,0,0,.19);
+
     z-index: 11;
+
     transform:
         rotate(var(--rotation));
+
     animation:
         wordFloat
         var(--duration)
         ease-in-out
         infinite;
 }
+
 .p5-word.white {
+
     color:
         rgba(255,255,255,.18);
 }
+
 .p5-word.red {
+
     color:
         rgba(255,255,255,.30);
+
     text-shadow:
         5px 5px 0
         rgba(0,0,0,.3);
 }
+
 /* =========================================================
    P5 斜切塊
 ========================================================= */
 .p5-slash {
+
     position: absolute;
+
     pointer-events: none;
+
     transform:
         skewX(-25deg)
         rotate(-8deg);
+
     z-index: 13;
+
     opacity: .7;
+
     animation:
         slashFloat
         var(--duration)
         ease-in-out
         infinite;
 }
+
 .p5-slash.black {
     background: #050505;
 }
+
 .p5-slash.white {
     background: #fff;
 }
+
 .p5-slash.red {
     background: #dc0000;
 }
+
 /* =========================================================
    SPEED LINE
 ========================================================= */
 .speed-line {
+
     position: absolute;
+
     height: 4px;
+
     background: #050505;
+
     pointer-events: none;
+
     z-index: 15;
+
     transform:
         rotate(var(--angle));
+
     animation:
         speedMove
         var(--duration)
         linear
         infinite;
 }
+
 .speed-line.white {
     background: #fff;
 }
+
 /* =========================================================
    紙張碎片
 ========================================================= */
 .paper-fragment {
+
     position: absolute;
+
     pointer-events: none;
+
     z-index: 14;
+
     background: #fff;
+
     transform:
         rotate(var(--rotation));
+
     animation:
         paperFall
         var(--duration)
         linear
         infinite;
 }
+
 .paper-fragment.black {
     background: #080808;
 }
+
 .paper-fragment.red {
     background: #dc0000;
 }
+
 /* =========================================================
    紙條
 ========================================================= */
 .paper-strip {
+
     position: absolute;
+
     pointer-events: none;
+
     z-index: 12;
+
     background:
         rgba(255,255,255,.75);
+
     transform:
         rotate(var(--rotation))
         skewX(-25deg);
+
     animation:
         stripMove
         var(--duration)
         ease-in-out
         infinite;
 }
+
 .paper-strip.black {
+
     background:
         rgba(0,0,0,.55);
 }
+
 /* =========================================================
    VIDEO
+   原尺寸保持不動
 ========================================================= */
 #videoContainer {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
+
     width: 100vw;
     height: 100vh;
+
     z-index: 999;
+
     justify-content: center;
     align-items: center;
+
     pointer-events: none;
 }
+
 #bgVideo {
+
     max-width: 88vw;
     max-height: 80vh;
+
     object-fit: contain;
+
     filter:
         drop-shadow(
             0 0 45px
             rgba(0,0,0,.95)
         );
+
     animation:
         popIn
         .35s
@@ -498,52 +775,68 @@ body {
         )
         forwards;
 }
+
 /* =========================================================
    FLASH
 ========================================================= */
 #flashOverlay {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     z-index: 99999;
 }
+
 .flash-animate {
+
     display: block !important;
+
     animation:
         flashEffect
         .35s
         ease-out
         forwards;
 }
+
 /* =========================================================
    ANIMATIONS
 ========================================================= */
 @keyframes maskPulse {
+
     0% {
         transform:
             scale(1)
             rotate(0deg);
     }
+
     50% {
         transform:
             scale(1.045)
             rotate(-1deg);
     }
+
     100% {
         transform:
             scale(1)
             rotate(0deg);
     }
 }
+
 @keyframes p5GlobalFall {
+
     0% {
         transform:
             translateY(0)
             rotate(var(--rot))
             scale(var(--sc));
     }
+
     100% {
         transform:
             translateY(120vh)
@@ -555,36 +848,44 @@ body {
             scale(var(--sc));
     }
 }
+
 @keyframes wordFloat {
+
     0% {
         transform:
             translateY(0)
             rotate(var(--rotation));
     }
+
     50% {
         transform:
             translateY(-15px)
             rotate(var(--rotation));
     }
+
     100% {
         transform:
             translateY(0)
             rotate(var(--rotation));
     }
 }
+
 @keyframes slashFloat {
+
     0% {
         transform:
             translateX(-20px)
             skewX(-25deg)
             rotate(-8deg);
     }
+
     50% {
         transform:
             translateX(20px)
             skewX(-25deg)
             rotate(-8deg);
     }
+
     100% {
         transform:
             translateX(-20px)
@@ -592,25 +893,31 @@ body {
             rotate(-8deg);
     }
 }
+
 @keyframes speedMove {
+
     0% {
         transform:
             translateX(-35vw)
             rotate(var(--angle));
     }
+
     100% {
         transform:
             translateX(140vw)
             rotate(var(--angle));
     }
 }
+
 @keyframes paperFall {
+
     0% {
         transform:
             translateY(-20vh)
             translateX(0)
             rotate(var(--rotation));
     }
+
     50% {
         transform:
             translateY(50vh)
@@ -621,6 +928,7 @@ body {
                 )
             );
     }
+
     100% {
         transform:
             translateY(120vh)
@@ -632,19 +940,23 @@ body {
             );
     }
 }
+
 @keyframes stripMove {
+
     0% {
         transform:
             translateX(-20px)
             rotate(var(--rotation))
             skewX(-25deg);
     }
+
     50% {
         transform:
             translateX(30px)
             rotate(var(--rotation))
             skewX(-25deg);
     }
+
     100% {
         transform:
             translateX(-20px)
@@ -652,87 +964,122 @@ body {
             skewX(-25deg);
     }
 }
+
 @keyframes popIn {
+
     0% {
         transform:
             scale(.9);
+
         opacity: 0;
     }
+
     100% {
         transform:
             scale(1);
+
         opacity: 1;
     }
 }
+
 @keyframes blink {
+
     0%,
     100% {
         opacity: .25;
     }
+
     50% {
         opacity: 1;
     }
 }
+
 @keyframes flashEffect {
+
     0% {
         background: #fff;
         opacity: 1;
     }
+
     25% {
         background: #dc0000;
         opacity: 1;
     }
+
     50% {
         background: #fff;
         opacity: 1;
     }
+
     75% {
         background: #000;
         opacity: 1;
     }
+
     100% {
         opacity: 0;
         display: none;
     }
 }
+
 /* =========================================================
    MOBILE
 ========================================================= */
 @media (max-width: 600px) {
+
     .joker-mask-img {
         width: 115px;
     }
+
+    /* Royal 金色标题 */
     .royal-logo {
-        width: 310px;
-        height: 140px;
+
+        width: 330px;
+        height: 150px;
+
         margin-top: 35px;
+
         transform:
-            scale(.85)
+            scale(.82)
             rotate(-7deg)
             skewX(-8deg);
     }
+
     .royal-take {
-        font-size: 57px;
+        font-size: 62px;
     }
+
     .royal-your {
-        top: 39px;
-        left: 82px;
-        font-size: 52px;
+
+        top: 43px;
+        left: 89px;
+
+        font-size: 56px;
     }
+
     .royal-heart {
-        top: 82px;
-        left: 30px;
-        font-size: 57px;
+
+        top: 89px;
+        left: 29px;
+
+        font-size: 62px;
     }
+
     .sub-txt {
+
         font-size: 9px;
+
         letter-spacing: 3px;
     }
+
+    /* 视频尺寸保持原本 */
     #bgVideo {
+
         max-width: 94vw;
         max-height: 72vh;
     }
 }
+
 </style>
 </head>
 
@@ -759,6 +1106,7 @@ body {
 
     <!-- P5R STYLE LOGO -->
     <div class="royal-logo">
+
         <div class="royal-take">
             TAKE
         </div>
@@ -774,12 +1122,14 @@ body {
         <div class="logo-burst a"></div>
         <div class="logo-burst b"></div>
         <div class="logo-burst c"></div>
+
     </div>
 
     <!-- 點擊提示 -->
     <div class="sub-txt">
         CLICK TO OPEN THE CALLING CARD
     </div>
+
 </div>
 
 <!-- =====================================================
@@ -806,6 +1156,7 @@ body {
      VIDEO
 ===================================================== -->
 <div id="videoContainer">
+
     <video
         id="bgVideo"
         src="bg-animation.mp4"
@@ -814,6 +1165,7 @@ body {
         playsinline
         preload="auto">
     </video>
+
 </div>
 
 <!-- =====================================================
@@ -827,8 +1179,11 @@ body {
 window.addEventListener(
     "DOMContentLoaded",
     () => {
+
         buildRealDenseWaterfall();
+
         buildP5Elements();
+
     }
 );
 
@@ -844,12 +1199,14 @@ function buildRealDenseWaterfall() {
         i < count;
         i++
     ) {
+
         createCallingCard(true);
+
     }
 }
 
 /* =========================================================
-   預告信 / CALLING CARD
+   預告信
 ========================================================= */
 function createCallingCard(
     initial = false
@@ -874,16 +1231,20 @@ function createCallingCard(
     if (
         depth < .25
     ) {
+
         letter.classList.add(
             "far"
         );
+
     }
     else if (
         depth > .78
     ) {
+
         letter.classList.add(
             "front"
         );
+
     }
 
     let sizeWidth;
@@ -914,6 +1275,7 @@ function createCallingCard(
             Math.floor(
                 Math.random() * 55
             ) + 30;
+
     }
 
     const sizeHeight =
@@ -949,6 +1311,7 @@ function createCallingCard(
 
         duration =
             Math.random() * 3 + 3;
+
     }
 
     const rotation =
@@ -1001,10 +1364,13 @@ function createCallingCard(
 
         setTimeout(
             () => {
+
                 letter.remove();
+
             },
             duration * 1000 + 200
         );
+
     }
 }
 
@@ -1020,17 +1386,29 @@ function buildP5Elements() {
 
     /* 巨型文字 */
     const words = [
+
         "TAKE YOUR HEART",
+
         "PHANTOM",
+
         "CALLING CARD",
+
         "NOTICE",
+
         "THE TRUTH",
+
         "YOUR HEART",
+
         "WE HAVE COME",
+
         "THE PHANTOM THIEVES",
+
         "TAKE YOUR HEART",
+
         "NOTICE",
+
         "PHANTOM"
+
     ];
 
     for (
@@ -1102,6 +1480,7 @@ function buildP5Elements() {
             word.classList.add(
                 "red"
             );
+
         }
 
         container.appendChild(
@@ -1115,7 +1494,9 @@ function buildP5Elements() {
         i < 35;
         i++
     ) {
+
         createSlash();
+
     }
 
     /* 速度線 */
@@ -1124,7 +1505,9 @@ function buildP5Elements() {
         i < 45;
         i++
     ) {
+
         createSpeedLine();
+
     }
 
     /* 紙片 */
@@ -1133,7 +1516,9 @@ function buildP5Elements() {
         i < 55;
         i++
     ) {
+
         createPaperFragment();
+
     }
 
     /* 紙條 */
@@ -1142,7 +1527,9 @@ function buildP5Elements() {
         i < 25;
         i++
     ) {
+
         createPaperStrip();
+
     }
 }
 
@@ -1190,6 +1577,7 @@ function createSlash() {
         slash.classList.add(
             "red"
         );
+
     }
 
     slash.style.width =
@@ -1245,6 +1633,7 @@ function createSpeedLine() {
         line.classList.add(
             "white"
         );
+
     }
 
     line.style.width =
@@ -1319,6 +1708,7 @@ function createPaperFragment() {
         fragment.classList.add(
             "red"
         );
+
     }
 
     fragment.style.width =
@@ -1384,6 +1774,7 @@ function createPaperStrip() {
         strip.classList.add(
             "black"
         );
+
     }
 
     strip.style.width =
@@ -1507,6 +1898,7 @@ function launchPhantom() {
                          ${duration}s
                          linear
                          infinite`;
+
                 }
             );
 
@@ -1517,7 +1909,9 @@ function launchPhantom() {
     /* 持續增加預告信 */
     setInterval(
         () => {
+
             supplementLetter();
+
         },
         80
     );
@@ -1525,7 +1919,9 @@ function launchPhantom() {
     /* 持續增加紙片 */
     setInterval(
         () => {
+
             supplementPaper();
+
         },
         180
     );
@@ -1533,7 +1929,9 @@ function launchPhantom() {
     /* 持續增加速度線 */
     setInterval(
         () => {
+
             supplementSpeedLine();
+
         },
         280
     );
@@ -1568,7 +1966,9 @@ function supplementLetter() {
     if (
         cards.length > 300
     ) {
+
         return;
+
     }
 
     createCallingCard(false);
@@ -1611,6 +2011,7 @@ function supplementPaper() {
         fragment.classList.add(
             "red"
         );
+
     }
 
     fragment.style.width =
@@ -1653,7 +2054,9 @@ function supplementPaper() {
 
     setTimeout(
         () => {
+
             fragment.remove();
+
         },
         duration * 1000 + 300
     );
@@ -1684,6 +2087,7 @@ function supplementSpeedLine() {
         line.classList.add(
             "white"
         );
+
     }
 
     line.style.width =
@@ -1723,12 +2127,15 @@ function supplementSpeedLine() {
 
     setTimeout(
         () => {
+
             line.remove();
+
         },
         duration * 1000 + 300
     );
 }
 
 </script>
+
 </body>
 </html>
