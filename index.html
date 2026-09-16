@@ -192,6 +192,7 @@ body {
 
 /* =========================================================
    CLICK TO OPEN
+   左右三角形：角對角
 ========================================================= */
 
 .sub-txt {
@@ -224,6 +225,40 @@ body {
         1.4s
         ease-in-out
         infinite;
+}
+
+/* 左邊：尖角朝右 */
+
+.sub-txt::before {
+    content: "▶";
+
+    color: #dc0000;
+
+    display: inline-block;
+
+    margin-right: 12px;
+
+    font-size: 13px;
+
+    transform:
+        translateY(-1px);
+}
+
+/* 右邊：尖角朝左 */
+
+.sub-txt::after {
+    content: "◀";
+
+    color: #dc0000;
+
+    display: inline-block;
+
+    margin-left: 12px;
+
+    font-size: 13px;
+
+    transform:
+        translateY(-1px);
 }
 
 @keyframes clickBlink {
@@ -904,6 +939,25 @@ body {
         letter-spacing: 3px;
     }
 
+    .sub-txt::before,
+    .sub-txt::after {
+
+        font-size: 10px;
+
+    }
+
+    .sub-txt::before {
+
+        margin-right: 8px;
+
+    }
+
+    .sub-txt::after {
+
+        margin-left: 8px;
+
+    }
+
     .falling-joker {
 
         width: 52px;
@@ -924,7 +978,7 @@ body {
 
 <!-- =====================================================
      START SCREEN
-     注意：這裡已經沒有 Joker Mask
+     注意：這裡沒有 Joker Mask
 ===================================================== -->
 
 <div
