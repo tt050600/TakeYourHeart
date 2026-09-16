@@ -14,6 +14,10 @@
 
 <style>
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -105,36 +109,6 @@ body {
     right: -10%;
     background: #000;
     opacity: .9;
-}
-
-/* =========================================================
-   JOKER MASK
-========================================================= */
-
-.joker-mask-img {
-    position: relative;
-    z-index: 5;
-
-    width: 140px;
-    height: auto;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,255,255,.45)
-        )
-        drop-shadow(
-            8px 8px 0
-            rgba(220,0,0,.45)
-        );
-
-    animation:
-        maskPulse
-        1.5s
-        ease-in-out
-        infinite;
 }
 
 /* =========================================================
@@ -265,10 +239,11 @@ body {
 }
 
 /* =========================================================
-   CALLING CARD
+   預告信
 ========================================================= */
 
 .falling-letter {
+
     position: absolute;
 
     background-image:
@@ -288,6 +263,7 @@ body {
 }
 
 .falling-letter.far {
+
     opacity: .17;
 
     filter:
@@ -295,6 +271,7 @@ body {
 }
 
 .falling-letter.front {
+
     opacity: .67;
 
     z-index: 16;
@@ -307,10 +284,103 @@ body {
 }
 
 /* =========================================================
+   JOKER MASK — 動畫頁掉落
+========================================================= */
+
+.falling-joker {
+
+    position: absolute;
+
+    width: 70px;
+    height: auto;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    z-index: 17;
+
+    will-change: transform;
+
+    filter:
+        drop-shadow(
+            0 4px 5px
+            rgba(0,0,0,.65)
+        )
+        drop-shadow(
+            5px 5px 0
+            rgba(220,0,0,.35)
+        );
+
+    animation:
+        jokerFall
+        var(--duration)
+        linear
+        infinite;
+}
+
+.falling-joker.far {
+
+    opacity: .22;
+
+    filter:
+        blur(.6px)
+        drop-shadow(
+            0 2px 3px
+            rgba(0,0,0,.35)
+        );
+}
+
+.falling-joker.front {
+
+    opacity: .88;
+
+    z-index: 18;
+
+    filter:
+        drop-shadow(
+            0 6px 7px
+            rgba(0,0,0,.7)
+        )
+        drop-shadow(
+            6px 6px 0
+            rgba(220,0,0,.45)
+        );
+}
+
+@keyframes jokerFall {
+
+    0% {
+
+        transform:
+            translateY(-20vh)
+            rotate(var(--rotation))
+            scale(var(--scale));
+
+    }
+
+    100% {
+
+        transform:
+            translateY(125vh)
+            rotate(
+                calc(
+                    var(--rotation) + var(--spin)
+                )
+            )
+            scale(var(--scale));
+
+    }
+}
+
+/* =========================================================
    巨型預告文字
 ========================================================= */
 
 .p5-word {
+
     position: absolute;
 
     font-family:
@@ -343,11 +413,13 @@ body {
 }
 
 .p5-word.white {
+
     color:
         rgba(255,255,255,.18);
 }
 
 .p5-word.red {
+
     color:
         rgba(255,255,255,.30);
 
@@ -361,6 +433,7 @@ body {
 ========================================================= */
 
 .p5-slash {
+
     position: absolute;
 
     pointer-events: none;
@@ -397,6 +470,7 @@ body {
 ========================================================= */
 
 .speed-line {
+
     position: absolute;
 
     height: 4px;
@@ -426,6 +500,7 @@ body {
 ========================================================= */
 
 .paper-fragment {
+
     position: absolute;
 
     pointer-events: none;
@@ -457,6 +532,7 @@ body {
 ========================================================= */
 
 .paper-strip {
+
     position: absolute;
 
     pointer-events: none;
@@ -478,6 +554,7 @@ body {
 }
 
 .paper-strip.black {
+
     background:
         rgba(0,0,0,.55);
 }
@@ -487,6 +564,7 @@ body {
 ========================================================= */
 
 #videoContainer {
+
     display: none;
 
     position: fixed;
@@ -505,6 +583,7 @@ body {
 }
 
 #bgVideo {
+
     max-width: 88vw;
     max-height: 80vh;
 
@@ -533,6 +612,7 @@ body {
 ========================================================= */
 
 #flashOverlay {
+
     display: none;
 
     position: fixed;
@@ -546,6 +626,7 @@ body {
 }
 
 .flash-animate {
+
     display: block !important;
 
     animation:
@@ -780,10 +861,6 @@ body {
 
 @media (max-width: 600px) {
 
-    .joker-mask-img {
-        width: 115px;
-    }
-
     .royal-logo {
         width: 330px;
         height: auto;
@@ -805,23 +882,36 @@ body {
     }
 
     .royal-your {
+
         top: 43px;
         left: 89px;
+
         font-size: 56px;
     }
 
     .royal-heart {
+
         top: 89px;
         left: 29px;
+
         font-size: 62px;
     }
 
     .sub-txt {
+
         font-size: 9px;
+
         letter-spacing: 3px;
     }
 
+    .falling-joker {
+
+        width: 52px;
+
+    }
+
     #bgVideo {
+
         max-width: 94vw;
         max-height: 72vh;
     }
@@ -832,6 +922,11 @@ body {
 
 <body>
 
+<!-- =====================================================
+     START SCREEN
+     注意：這裡已經沒有 Joker Mask
+===================================================== -->
+
 <div
     id="startScreen"
     onclick="launchPhantom()">
@@ -841,27 +936,42 @@ body {
     <div class="start-slash three"></div>
     <div class="start-slash four"></div>
 
-    <img
-        src="joker-mask.png"
-        class="joker-mask-img"
-        alt="Joker Mask">
+    <!-- TAKE YOUR HEART PNG -->
 
     <div class="royal-logo">
+
         <img
             src="take-your-heart.png"
             class="take-your-heart-img"
             alt="TAKE YOUR HEART">
+
     </div>
 
+    <!-- 點擊提示 -->
+
     <div class="sub-txt">
+
         CLICK TO OPEN THE CALLING CARD
+
     </div>
 
 </div>
 
+<!-- =====================================================
+     FLASH
+===================================================== -->
+
 <div id="flashOverlay"></div>
 
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
 <div id="canvasContainer"></div>
+
+<!-- =====================================================
+     AUDIO
+===================================================== -->
 
 <audio
     id="audio"
@@ -869,6 +979,10 @@ body {
     loop
     preload="auto">
 </audio>
+
+<!-- =====================================================
+     VIDEO
+===================================================== -->
 
 <div id="videoContainer">
 
@@ -883,7 +997,15 @@ body {
 
 </div>
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
+
+/* =========================================================
+   DOM READY
+========================================================= */
 
 window.addEventListener(
     "DOMContentLoaded",
@@ -893,8 +1015,14 @@ window.addEventListener(
 
         buildP5Elements();
 
+        buildJokerWaterfall();
+
     }
 );
+
+/* =========================================================
+   大量預告信
+========================================================= */
 
 function buildRealDenseWaterfall() {
 
@@ -910,6 +1038,10 @@ function buildRealDenseWaterfall() {
 
     }
 }
+
+/* =========================================================
+   預告信
+========================================================= */
 
 function createCallingCard(
     initial = false
@@ -1077,6 +1209,202 @@ function createCallingCard(
     }
 }
 
+/* =========================================================
+   JOKER MASK 掉落
+========================================================= */
+
+function buildJokerWaterfall() {
+
+    const count = 18;
+
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
+
+        createJokerMask(true);
+
+    }
+}
+
+function createJokerMask(
+    initial = false
+) {
+
+    const container =
+        document.getElementById(
+            "canvasContainer"
+        );
+
+    const joker =
+        document.createElement(
+            "img"
+        );
+
+    joker.className =
+        "falling-joker";
+
+    joker.src =
+        "joker-mask.png";
+
+    joker.alt =
+        "";
+
+    joker.draggable =
+        false;
+
+    const depth =
+        Math.random();
+
+    if (
+        depth < .25
+    ) {
+
+        joker.classList.add(
+            "far"
+        );
+
+    }
+    else if (
+        depth > .72
+    ) {
+
+        joker.classList.add(
+            "front"
+        );
+
+    }
+
+    let size;
+
+    if (
+        depth < .25
+    ) {
+
+        size =
+            Math.floor(
+                Math.random() * 25
+            ) + 35;
+
+    }
+    else if (
+        depth > .72
+    ) {
+
+        size =
+            Math.floor(
+                Math.random() * 45
+            ) + 65;
+
+    }
+    else {
+
+        size =
+            Math.floor(
+                Math.random() * 35
+            ) + 45;
+
+    }
+
+    const left =
+        Math.random() * 96;
+
+    const top =
+        initial
+            ? Math.random() * 115 - 15
+            : -20;
+
+    let duration;
+
+    if (
+        depth < .25
+    ) {
+
+        duration =
+            Math.random() * 4 + 7;
+
+    }
+    else if (
+        depth > .72
+    ) {
+
+        duration =
+            Math.random() * 2.5 + 3.5;
+
+    }
+    else {
+
+        duration =
+            Math.random() * 3 + 4.5;
+
+    }
+
+    const rotation =
+        Math.random() * 70 - 35;
+
+    const spin =
+        Math.random() * 220 - 110;
+
+    const scale =
+        (
+            Math.random() * .35 + .75
+        ).toFixed(2);
+
+    joker.style.width =
+        size + "px";
+
+    joker.style.left =
+        left + "vw";
+
+    joker.style.top =
+        top + "vh";
+
+    joker.style.setProperty(
+        "--rotation",
+        rotation + "deg"
+    );
+
+    joker.style.setProperty(
+        "--spin",
+        spin + "deg"
+    );
+
+    joker.style.setProperty(
+        "--scale",
+        scale
+    );
+
+    joker.dataset.duration =
+        duration;
+
+    container.appendChild(
+        joker
+    );
+
+    if (!initial) {
+
+        joker.style.animation =
+            `jokerFall
+             ${duration}s
+             linear`;
+
+        setTimeout(
+            () => {
+
+                joker.remove();
+
+            },
+            duration * 1000 + 300
+        );
+
+    }
+}
+
+/* =========================================================
+   P5 背景
+========================================================= */
+
 function buildP5Elements() {
 
     const container =
@@ -1218,6 +1546,10 @@ function buildP5Elements() {
     }
 }
 
+/* =========================================================
+   斜切塊
+========================================================= */
+
 function createSlash() {
 
     const container =
@@ -1290,6 +1622,10 @@ function createSlash() {
     );
 }
 
+/* =========================================================
+   速度線
+========================================================= */
+
 function createSpeedLine() {
 
     const container =
@@ -1349,6 +1685,10 @@ function createSpeedLine() {
         line
     );
 }
+
+/* =========================================================
+   紙片
+========================================================= */
 
 function createPaperFragment() {
 
@@ -1425,6 +1765,10 @@ function createPaperFragment() {
     );
 }
 
+/* =========================================================
+   紙條
+========================================================= */
+
 function createPaperStrip() {
 
     const container =
@@ -1484,6 +1828,10 @@ function createPaperStrip() {
         strip
     );
 }
+
+/* =========================================================
+   啟動
+========================================================= */
 
 function launchPhantom() {
 
@@ -1572,6 +1920,26 @@ function launchPhantom() {
                 }
             );
 
+            const jokers =
+                document.querySelectorAll(
+                    ".falling-joker"
+                );
+
+            jokers.forEach(
+                joker => {
+
+                    const duration =
+                        joker.dataset.duration;
+
+                    joker.style.animation =
+                        `jokerFall
+                         ${duration}s
+                         linear
+                         infinite`;
+
+                }
+            );
+
         },
         120
     );
@@ -1583,6 +1951,15 @@ function launchPhantom() {
 
         },
         80
+    );
+
+    setInterval(
+        () => {
+
+            supplementJoker();
+
+        },
+        900
     );
 
     setInterval(
@@ -1615,6 +1992,10 @@ function launchPhantom() {
     );
 }
 
+/* =========================================================
+   補充預告信
+========================================================= */
+
 function supplementLetter() {
 
     const container =
@@ -1637,6 +2018,37 @@ function supplementLetter() {
 
     createCallingCard(false);
 }
+
+/* =========================================================
+   補充 JOKER MASK
+========================================================= */
+
+function supplementJoker() {
+
+    const container =
+        document.getElementById(
+            "canvasContainer"
+        );
+
+    const jokers =
+        container.querySelectorAll(
+            ".falling-joker"
+        );
+
+    if (
+        jokers.length > 24
+    ) {
+
+        return;
+
+    }
+
+    createJokerMask(false);
+}
+
+/* =========================================================
+   補充紙片
+========================================================= */
 
 function supplementPaper() {
 
@@ -1722,6 +2134,10 @@ function supplementPaper() {
         duration * 1000 + 300
     );
 }
+
+/* =========================================================
+   補充速度線
+========================================================= */
 
 function supplementSpeedLine() {
 
