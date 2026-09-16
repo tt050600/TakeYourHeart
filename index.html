@@ -142,37 +142,36 @@ body {
 }
 
 /* =========================================================
-   P5R ROYAL STYLE
-   GOLD TAKE YOUR HEART
+   TAKE YOUR HEART PNG
+   只作用於點擊開場頁
 ========================================================= */
 .royal-logo {
     position: relative;
     z-index: 6;
 
-    width: 430px;
-    height: 190px;
-
     margin-top: 42px;
+
+    width: 430px;
+    max-width: 85vw;
+
+    user-select: none;
 
     transform:
         rotate(-7deg)
         skewX(-8deg);
 
-    user-select: none;
-
     filter:
-        drop-shadow(
-            9px 10px 0 #000
-        )
-        drop-shadow(
-            13px 13px 0 #dc0000
-        );
+        drop-shadow(9px 10px 0 #000)
+        drop-shadow(13px 13px 0 #dc0000);
 }
+
 .take-your-heart-img {
-    width: 430px;
-    max-width: 85vw;
-    height: auto;
     display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
 }
 /* =========================================================
    開場頁面：使用 PNG Logo
@@ -184,8 +183,6 @@ body {
 /* =========================================================
    GOLD LETTER BASE
 ========================================================= */
-.royal-take,
-.royal-your,
 
 
 
