@@ -135,16 +135,12 @@ body {
         drop-shadow(13px 13px 0 #dc0000);
 }
 
-/*
-   很淡的紅色印刷錯位層
-   不會改變原本 PNG，只是在後面疊一層很淡的紅色版本
-*/
+/* 紅色印刷錯位 */
 
 .royal-logo::before {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background:
@@ -173,15 +169,12 @@ body {
         infinite;
 }
 
-/*
-   很淡的黑色印刷錯位層
-*/
+/* 黑色印刷錯位 */
 
 .royal-logo::after {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background:
@@ -319,7 +312,7 @@ body {
 
 /* =========================================================
    CLICK TO OPEN
-   左右三角形：角對角
+   CSS 三角形
 ========================================================= */
 
 .sub-txt {
@@ -354,21 +347,23 @@ body {
         infinite;
 }
 
-/* 左邊：尖角朝右 */
+/* 左邊：純 CSS 紅色三角形，尖角朝右 */
 
 .sub-txt::before {
-    content: "▶";
-
-    color: #dc0000;
+    content: "";
 
     display: inline-block;
 
+    width: 0;
+    height: 0;
+
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 9px solid #dc0000;
+
     margin-right: 12px;
 
-    font-size: 13px;
-
-    transform:
-        translateY(-1px);
+    vertical-align: middle;
 
     animation:
         arrowLeft
@@ -377,21 +372,23 @@ body {
         infinite;
 }
 
-/* 右邊：尖角朝左 */
+/* 右邊：純 CSS 紅色三角形，尖角朝左 */
 
 .sub-txt::after {
-    content: "◀";
-
-    color: #dc0000;
+    content: "";
 
     display: inline-block;
 
+    width: 0;
+    height: 0;
+
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 9px solid #dc0000;
+
     margin-left: 12px;
 
-    font-size: 13px;
-
-    transform:
-        translateY(-1px);
+    vertical-align: middle;
 
     animation:
         arrowRight
@@ -421,7 +418,7 @@ body {
         transform:
             translate(
                 0,
-                -1px
+                0
             );
     }
 
@@ -429,7 +426,7 @@ body {
         transform:
             translate(
                 4px,
-                -1px
+                0
             );
     }
 }
@@ -443,7 +440,7 @@ body {
         transform:
             translate(
                 0,
-                -1px
+                0
             );
     }
 
@@ -451,7 +448,7 @@ body {
         transform:
             translate(
                 -4px,
-                -1px
+                0
             );
     }
 }
@@ -1118,23 +1115,24 @@ body {
         letter-spacing: 3px;
     }
 
-    .sub-txt::before,
-    .sub-txt::after {
-
-        font-size: 10px;
-
-    }
+    /* 手機版仍然是 CSS 三角形，不是 Emoji */
 
     .sub-txt::before {
 
-        margin-right: 8px;
+        border-top-width: 5px;
+        border-bottom-width: 5px;
+        border-left-width: 8px;
 
+        margin-right: 8px;
     }
 
     .sub-txt::after {
 
-        margin-left: 8px;
+        border-top-width: 5px;
+        border-bottom-width: 5px;
+        border-right-width: 8px;
 
+        margin-left: 8px;
     }
 
     #bgVideo {
@@ -1177,9 +1175,7 @@ body {
     <!-- 點擊提示 -->
 
     <div class="sub-txt">
-
         CLICK TO OPEN THE CALLING CARD
-
     </div>
 
 </div>
@@ -1578,9 +1574,7 @@ function buildP5Elements() {
 
     }
 
-    /*
-       少量紅色墨跡
-    */
+    /* 少量紅色墨跡 */
 
     for (
         let i = 0;
