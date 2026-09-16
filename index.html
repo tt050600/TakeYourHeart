@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
+      content="width=device-width, initial-scale=1.0,
                maximum-scale=1.0,
                user-scalable=no">
 
@@ -27,19 +23,19 @@
 
 html,
 body {
-
     width: 100%;
     height: 100%;
-
     overflow: hidden;
+    background: #000;
+}
 
-    background: #080808;
-
+body {
     font-family:
-        Impact,
-        "Arial Black",
         Arial,
+        Helvetica,
         sans-serif;
+
+    user-select: none;
 }
 
 
@@ -53,10 +49,77 @@ body {
 
     inset: 0;
 
-    width: 100vw;
-    height: 100vh;
+    z-index: 9999;
 
-    z-index: 10000;
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #171717 0%,
+            #080808 45%,
+            #000 100%
+        );
+
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+
+/* subtle background slash */
+
+#startScreen::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150%;
+
+    height: 120px;
+
+    background: #d00000;
+
+    transform:
+        rotate(-18deg)
+        translateY(-180px);
+
+    opacity: 0.12;
+}
+
+
+/* second slash */
+
+#startScreen::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150%;
+
+    height: 40px;
+
+    background: #fff;
+
+    transform:
+        rotate(-18deg)
+        translateY(210px);
+
+    opacity: 0.05;
+}
+
+
+.start-content {
+
+    position: relative;
+
+    z-index: 10;
 
     display: flex;
 
@@ -66,97 +129,12 @@ body {
 
     justify-content: center;
 
-    overflow: hidden;
+    text-align: center;
 
-    cursor: pointer;
-
-    background:
-        radial-gradient(
-            circle at center,
-            #1c1c1c 0%,
-            #0c0c0c 48%,
-            #030303 100%
-        );
-
-}
-
-
-/* =========================================================
-   START SCREEN GRAPHICS
-========================================================= */
-
-.start-slash {
-
-    position: absolute;
-
-    pointer-events: none;
-
-    transform:
-        rotate(-12deg)
-        skewX(-25deg);
-
-}
-
-
-.start-slash.one {
-
-    width: 125vw;
-    height: 28px;
-
-    top: 18%;
-
-    left: -15%;
-
-    background: #d90000;
-
-    opacity: .9;
-
-}
-
-
-.start-slash.two {
-
-    width: 80vw;
-    height: 10px;
-
-    top: 28%;
-
-    right: -10%;
-
-    background: #fff;
-
-    opacity: .8;
-
-}
-
-
-.start-slash.three {
-
-    width: 110vw;
-    height: 12px;
-
-    bottom: 18%;
-
-    left: -15%;
-
-    background: #d90000;
-
-    opacity: .8;
-
-}
-
-
-.start-slash.four {
-
-    width: 65vw;
-    height: 35px;
-
-    bottom: 27%;
-
-    right: -15%;
-
-    background: #000;
-
+    animation:
+        startAppear
+        0.8s
+        ease-out;
 }
 
 
@@ -164,291 +142,140 @@ body {
    JOKER MASK
 ========================================================= */
 
-.joker-mask-img {
+.joker-mask {
 
-    position: relative;
+    width: 180px;
 
-    z-index: 5;
+    max-width: 45vw;
 
-    width: 145px;
+    margin-bottom: 28px;
 
-    height: auto;
+    object-fit: contain;
 
     filter:
         drop-shadow(
-            0 0 12px
-            rgba(255,255,255,.35)
-        )
-        drop-shadow(
-            9px 9px 0
-            rgba(215,0,0,.5)
+            0 0 18px
+            rgba(255,255,255,0.12)
         );
 
     animation:
         maskFloat
-        1.8s
+        3s
         ease-in-out
         infinite;
-
 }
 
 
 /* =========================================================
-   P5R INSPIRED LOGO
+   TAKE YOUR HEART LOGO
 ========================================================= */
 
-.royal-logo {
+.p5-box {
 
     position: relative;
 
-    z-index: 6;
+    display: inline-block;
 
-    width: 410px;
-
-    height: 175px;
-
-    margin-top: 38px;
-
-    transform:
-        rotate(-7deg)
-        skewX(-8deg);
-
-    filter:
-        drop-shadow(
-            9px 9px 0 #d90000
-        );
-
-    user-select: none;
-
-}
-
-
-/* TAKE */
-
-.royal-take {
-
-    position: absolute;
-
-    left: 5px;
-
-    top: 0;
-
-    color: #fff;
-
-    font-size: 72px;
-
-    line-height: .8;
-
-    letter-spacing: -8px;
-
-    -webkit-text-stroke:
-        5px #000;
-
-    text-shadow:
-        7px 7px 0 #000;
-
-}
-
-
-/* YOUR */
-
-.royal-your {
-
-    position: absolute;
-
-    left: 105px;
-
-    top: 48px;
-
-    z-index: 3;
-
-    padding:
-        5px 14px
-        4px 11px;
-
-    color: #000;
+    padding: 8px 20px;
 
     background: #fff;
 
-    border: 4px solid #000;
+    color: #000;
 
-    font-size: 64px;
+    font-family:
+        Impact,
+        Haettenschweiler,
+        "Arial Black",
+        sans-serif;
 
-    line-height: .75;
+    font-size:
+        clamp(34px, 7vw, 72px);
 
-    letter-spacing: -8px;
+    font-weight: 900;
+
+    font-style: italic;
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    transform:
+        skew(-8deg);
 
     box-shadow:
-        8px 8px 0 #d90000;
-
-    transform:
-        rotate(3deg)
-        skewX(-15deg);
-
-}
-
-
-/* HEART */
-
-.royal-heart {
-
-    position: absolute;
-
-    left: 38px;
-
-    top: 102px;
-
-    color: #fff;
-
-    font-size: 70px;
-
-    line-height: .8;
-
-    letter-spacing: -8px;
-
-    -webkit-text-stroke:
-        5px #000;
+        9px 9px 0 #d00000;
 
     text-shadow:
-        7px 7px 0 #000;
+        2px 2px 0 #fff;
+
+    animation:
+        logoEnter
+        0.8s
+        ease-out;
+}
+
+
+.p5-box span {
+
+    color: #d00000;
 
 }
 
 
-/* LOGO DECORATIONS */
+/* little black offset */
 
-.royal-logo::before {
+.p5-box::before {
 
     content: "";
 
     position: absolute;
 
-    width: 245px;
-    height: 14px;
+    left: -8px;
 
-    right: -35px;
-    top: 29px;
+    top: 7px;
 
-    z-index: -1;
+    width: 100%;
 
-    background: #d90000;
-
-    transform:
-        rotate(-15deg)
-        skewX(-30deg);
-
-}
-
-
-.royal-logo::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 9px;
-
-    left: -10px;
-    bottom: 0;
-
-    z-index: -2;
+    height: 100%;
 
     background: #000;
 
-    transform:
-        rotate(-6deg)
-        skewX(-30deg);
+    z-index: -1;
 
 }
 
 
 /* =========================================================
-   LOGO BURST
-========================================================= */
-
-.logo-burst {
-
-    position: absolute;
-
-    z-index: 8;
-
-    background: #d90000;
-
-}
-
-
-.logo-burst.a {
-
-    width: 75px;
-    height: 7px;
-
-    top: 5px;
-    right: 5px;
-
-    transform:
-        rotate(-20deg);
-
-}
-
-
-.logo-burst.b {
-
-    width: 50px;
-    height: 5px;
-
-    top: 22px;
-    right: -20px;
-
-    transform:
-        rotate(20deg);
-
-}
-
-
-.logo-burst.c {
-
-    width: 60px;
-    height: 6px;
-
-    bottom: 24px;
-    left: -20px;
-
-    transform:
-        rotate(12deg);
-
-}
-
-
-/* =========================================================
-   CLICK TEXT
+   CLICK TO OPEN
 ========================================================= */
 
 .sub-txt {
 
     position: relative;
 
-    z-index: 8;
-
-    margin-top: 20px;
+    margin-top: 27px;
 
     color: #fff;
 
     font-family:
         Arial,
+        Helvetica,
         sans-serif;
 
     font-size: 11px;
 
     font-weight: 900;
 
-    letter-spacing: 5px;
+    letter-spacing: 4px;
+
+    text-align: center;
+
+    white-space: nowrap;
 
     animation:
         blink
         1.2s
         infinite;
-
 }
 
 
@@ -456,7 +283,7 @@ body {
 
     content: "///";
 
-    color: #d90000;
+    color: #d00000;
 
     margin-right: 9px;
 
@@ -467,122 +294,52 @@ body {
 
     content: "///";
 
-    color: #d90000;
+    color: #d00000;
 
     margin-left: 9px;
 
 }
 
 
+/* =========================================================
+   ARROW
+========================================================= */
+
 .click-arrow {
 
-    position: relative;
+    margin-top: 15px;
 
-    z-index: 8;
+    color: #fff;
 
-    margin-top: 7px;
+    font-size: 18px;
 
-    color: #d90000;
-
-    font-size: 15px;
+    font-weight: 900;
 
     animation:
         arrowMove
-        .8s
-        ease-in-out
+        1s
         infinite;
-
 }
 
 
 /* =========================================================
-   MAIN BACKGROUND
+   MAIN CANVAS
 ========================================================= */
 
 #canvasContainer {
-
-    display: none;
 
     position: fixed;
 
     inset: 0;
 
-    width: 100vw;
-    height: 100vh;
+    z-index: 1;
 
-    z-index: 10;
+    display: none;
 
     overflow: hidden;
 
-    background: #d90000;
-
-}
-
-
-/* =========================================================
-   CALLING CARDS
-========================================================= */
-
-.falling-letter {
-
-    position: absolute;
-
-    width: 50px;
-    height: 65px;
-
-    background-image:
-        url("cover.png");
-
-    background-size: contain;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
-
-    pointer-events: none;
-
-    will-change:
-        transform;
-
-    animation:
-        fallingCard
-        linear
-        infinite;
-
-    z-index: 20;
-
-}
-
-
-.falling-letter.far {
-
-    opacity: .18;
-
-    filter:
-        blur(.7px);
-
-}
-
-
-.falling-letter.mid {
-
-    opacity: .42;
-
-}
-
-
-.falling-letter.front {
-
-    opacity: .78;
-
-    z-index: 50;
-
-    filter:
-        drop-shadow(
-            0 5px 6px
-            rgba(0,0,0,.45)
-        );
-
+    background:
+        #b00000;
 }
 
 
@@ -594,55 +351,83 @@ body {
 
     position: absolute;
 
-    white-space: nowrap;
+    z-index: 2;
 
-    pointer-events: none;
-
-    user-select: none;
-
-    color:
-        rgba(0,0,0,.20);
+    color: #000;
 
     font-family:
         Impact,
+        Haettenschweiler,
         "Arial Black",
         sans-serif;
 
+    font-size:
+        clamp(80px, 18vw, 260px);
+
     font-weight: 900;
 
-    letter-spacing: 3px;
+    font-style: italic;
 
-    z-index: 15;
+    line-height: 0.8;
+
+    white-space: nowrap;
+
+    opacity: 0.10;
+
+    pointer-events: none;
+
+    transform: rotate(-8deg);
+
+}
+
+
+.word-1 {
+
+    top: 3%;
+
+    left: -4%;
+}
+
+
+.word-2 {
+
+    top: 38%;
+
+    right: -8%;
 
     transform:
-        rotate(var(--rotation));
+        rotate(-8deg)
+        scale(1.1);
+}
 
-    animation:
-        wordFloat
-        var(--duration)
-        ease-in-out
-        infinite;
+
+.word-3 {
+
+    bottom: 3%;
+
+    left: 4%;
+
+    font-size:
+        clamp(60px, 14vw, 200px);
 
 }
 
 
-.p5-word.white {
+.word-4 {
 
-    color:
-        rgba(255,255,255,.22);
+    top: 20%;
 
-}
+    left: 15%;
 
+    color: #fff;
 
-.p5-word.red {
+    opacity: 0.07;
 
-    color:
-        rgba(255,255,255,.35);
+    font-size:
+        clamp(40px, 9vw, 130px);
 
-    text-shadow:
-        6px 6px 0
-        rgba(0,0,0,.3);
-
+    transform:
+        rotate(-8deg);
 }
 
 
@@ -654,41 +439,60 @@ body {
 
     position: absolute;
 
+    z-index: 3;
+
     pointer-events: none;
 
-    z-index: 18;
-
-    transform:
-        rotate(-8deg)
-        skewX(-25deg);
-
-    animation:
-        slashFloat
-        var(--duration)
-        ease-in-out
-        infinite;
+    transform: rotate(-14deg);
 
 }
 
 
-.p5-slash.black {
+.slash-black {
 
-    background: #050505;
+    width: 120%;
 
+    height: 45px;
+
+    left: -10%;
+
+    top: 17%;
+
+    background: #000;
+
+    opacity: 0.95;
 }
 
 
-.p5-slash.white {
+.slash-white {
+
+    width: 120%;
+
+    height: 18px;
+
+    left: -10%;
+
+    top: 21%;
 
     background: #fff;
 
+    opacity: 0.95;
 }
 
 
-.p5-slash.red {
+.slash-red {
 
-    background: #d90000;
+    width: 120%;
 
+    height: 75px;
+
+    left: -10%;
+
+    bottom: 18%;
+
+    background: #d00000;
+
+    opacity: 0.95;
 }
 
 
@@ -700,159 +504,284 @@ body {
 
     position: absolute;
 
-    height: 4px;
+    z-index: 4;
 
-    pointer-events: none;
-
-    z-index: 25;
-
-    background: #050505;
-
-    transform:
-        rotate(var(--angle));
-
-    animation:
-        speedMove
-        var(--duration)
-        linear
-        infinite;
-
-}
-
-
-.speed-line.white {
+    height: 5px;
 
     background: #fff;
 
+    opacity: 0.65;
+
+    transform:
+        rotate(-14deg);
+
+    pointer-events: none;
+
+    animation:
+        speedMove
+        linear
+        infinite;
+}
+
+
+.speed-line:nth-child(1) {
+
+    width: 260px;
+
+    top: 12%;
+
+    left: -300px;
+
+    animation-duration: 1.3s;
+}
+
+
+.speed-line:nth-child(2) {
+
+    width: 430px;
+
+    top: 28%;
+
+    left: -500px;
+
+    animation-duration: 1.7s;
+}
+
+
+.speed-line:nth-child(3) {
+
+    width: 180px;
+
+    top: 65%;
+
+    left: -220px;
+
+    animation-duration: 1.1s;
+}
+
+
+.speed-line:nth-child(4) {
+
+    width: 500px;
+
+    top: 83%;
+
+    left: -600px;
+
+    animation-duration: 1.8s;
 }
 
 
 /* =========================================================
-   PAPER
+   CALLING CARD CONTAINER
+========================================================= */
+
+#cardContainer {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CALLING CARDS
+========================================================= */
+
+.calling-card {
+
+    position: absolute;
+
+    width: 70px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    will-change:
+        transform,
+        top;
+
+    animation:
+        p5GlobalFall
+        linear
+        infinite;
+}
+
+
+/* FAR */
+
+.calling-card.far {
+
+    opacity: 0.35;
+
+    filter:
+        blur(1px);
+
+    z-index: 1;
+}
+
+
+/* NORMAL */
+
+.calling-card.mid {
+
+    opacity: 0.75;
+
+    z-index: 10;
+}
+
+
+/* FRONT */
+
+.calling-card.front {
+
+    opacity: 0.95;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(0,0,0,0.35)
+        );
+
+    z-index: 30;
+}
+
+
+/* =========================================================
+   CENTRAL VIDEO
+========================================================= */
+
+#videoContainer {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+#bgVideo {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 999;
+
+    pointer-events: none;
+}
+
+
+/* dark overlay */
+
+#videoContainer::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.15),
+            transparent 50%,
+            rgba(0,0,0,0.15)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PAPER FRAGMENTS
 ========================================================= */
 
 .paper-fragment {
 
     position: absolute;
 
-    pointer-events: none;
-
-    z-index: 30;
+    z-index: 50;
 
     background: #fff;
 
+    pointer-events: none;
+
     transform:
-        rotate(var(--rotation));
+        rotate(-15deg);
+
+    opacity: 0.85;
 
     animation:
-        paperFall
-        var(--duration)
+        fragmentMove
         linear
         infinite;
+}
+
+
+.paper-fragment.red {
+
+    background: #d00000;
 
 }
 
 
 .paper-fragment.black {
 
-    background: #080808;
-
-}
-
-
-.paper-fragment.red {
-
-    background: #d90000;
-
-}
-
-
-.paper-strip {
-
-    position: absolute;
-
-    pointer-events: none;
-
-    z-index: 17;
-
-    background:
-        rgba(255,255,255,.75);
-
-    transform:
-        rotate(var(--rotation))
-        skewX(-25deg);
-
-    animation:
-        stripMove
-        var(--duration)
-        ease-in-out
-        infinite;
-
-}
-
-
-.paper-strip.black {
-
-    background:
-        rgba(0,0,0,.7);
+    background: #000;
 
 }
 
 
 /* =========================================================
-   VIDEO
+   PAPER STRIPS
 ========================================================= */
 
-#videoContainer {
+.paper-strip {
 
-    display: none;
+    position: absolute;
 
-    position: fixed;
+    z-index: 51;
 
-    inset: 0;
+    width: 200px;
 
-    width: 100vw;
-    height: 100vh;
+    height: 22px;
 
-    z-index: 999;
+    background: #fff;
 
-    align-items: center;
+    opacity: 0.8;
 
-    justify-content: center;
+    transform:
+        rotate(-12deg);
 
     pointer-events: none;
-
-}
-
-
-#bgVideo {
-
-    width: auto;
-
-    height: auto;
-
-    max-width: 88vw;
-
-    max-height: 80vh;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(
-            0 0 40px
-            rgba(0,0,0,.95)
-        );
-
-    animation:
-        videoAppear
-        .4s
-        cubic-bezier(
-            .175,
-            .885,
-            .32,
-            1.275
-        )
-        forwards;
 
 }
 
@@ -863,32 +792,17 @@ body {
 
 #flashOverlay {
 
-    display: none;
-
     position: fixed;
 
     inset: 0;
 
-    width: 100vw;
-    height: 100vh;
-
     z-index: 99999;
 
+    background: #fff;
+
+    opacity: 0;
+
     pointer-events: none;
-
-}
-
-
-.flash-animate {
-
-    display: block !important;
-
-    animation:
-        flashEffect
-        .42s
-        ease-out
-        forwards;
-
 }
 
 
@@ -896,30 +810,63 @@ body {
    ANIMATIONS
 ========================================================= */
 
-@keyframes maskFloat {
+@keyframes startAppear {
 
-    0% {
+    from {
+
+        opacity: 0;
 
         transform:
-            translateY(0)
-            rotate(0deg);
+            scale(0.92);
+    }
 
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+}
+
+
+@keyframes logoEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            skew(-8deg)
+            translateX(-50px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            skew(-8deg)
+            translateX(0);
+    }
+
+}
+
+
+@keyframes maskFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
     }
 
     50% {
 
         transform:
-            translateY(-7px)
-            rotate(-2deg);
-
-    }
-
-    100% {
-
-        transform:
-            translateY(0)
-            rotate(0deg);
-
+            translateY(-8px);
     }
 
 }
@@ -930,14 +877,12 @@ body {
     0%,
     100% {
 
-        opacity: .3;
-
+        opacity: 1;
     }
 
     50% {
 
-        opacity: 1;
-
+        opacity: 0.35;
     }
 
 }
@@ -951,106 +896,15 @@ body {
         transform:
             translateY(0);
 
-        opacity: .35;
-
-    }
-
-    50% {
-
-        transform:
-            translateY(6px);
-
         opacity: 1;
-
-    }
-
-}
-
-
-@keyframes fallingCard {
-
-    0% {
-
-        transform:
-            translateY(-20vh)
-            rotate(var(--rotation))
-            scale(var(--scale));
-
-    }
-
-    100% {
-
-        transform:
-            translateY(125vh)
-            rotate(
-                calc(
-                    var(--rotation)
-                    + 360deg
-                )
-            )
-            scale(var(--scale));
-
-    }
-
-}
-
-
-@keyframes wordFloat {
-
-    0% {
-
-        transform:
-            translateY(0)
-            rotate(var(--rotation));
-
     }
 
     50% {
 
         transform:
-            translateY(-15px)
-            rotate(var(--rotation));
+            translateY(7px);
 
-    }
-
-    100% {
-
-        transform:
-            translateY(0)
-            rotate(var(--rotation));
-
-    }
-
-}
-
-
-@keyframes slashFloat {
-
-    0% {
-
-        transform:
-            translateX(-20px)
-            rotate(-8deg)
-            skewX(-25deg);
-
-    }
-
-    50% {
-
-        transform:
-            translateX(25px)
-            rotate(-8deg)
-            skewX(-25deg);
-
-    }
-
-    100% {
-
-        transform:
-            translateX(-20px)
-            rotate(-8deg)
-            skewX(-25deg);
-
+        opacity: 0.45;
     }
 
 }
@@ -1058,162 +912,56 @@ body {
 
 @keyframes speedMove {
 
-    0% {
+    from {
 
         transform:
-            translateX(-30vw)
-            rotate(var(--angle));
-
+            translateX(0)
+            rotate(-14deg);
     }
 
-    100% {
+    to {
 
         transform:
-            translateX(140vw)
-            rotate(var(--angle));
-
+            translateX(150vw)
+            rotate(-14deg);
     }
 
 }
 
 
-@keyframes paperFall {
+@keyframes fragmentMove {
 
-    0% {
+    from {
 
         transform:
             translateY(-20vh)
-            translateX(0)
-            rotate(var(--rotation));
-
+            rotate(-20deg);
     }
 
-    50% {
+    to {
 
         transform:
-            translateY(50vh)
-            translateX(35px)
-            rotate(
-                calc(
-                    var(--rotation)
-                    + 120deg
-                )
-            );
-
-    }
-
-    100% {
-
-        transform:
-            translateY(125vh)
-            translateX(-35px)
-            rotate(
-                calc(
-                    var(--rotation)
-                    + 300deg
-                )
-            );
-
+            translateY(120vh)
+            rotate(160deg);
     }
 
 }
 
 
-@keyframes stripMove {
+@keyframes p5GlobalFall {
 
-    0% {
-
-        transform:
-            translateX(-25px)
-            rotate(var(--rotation))
-            skewX(-25deg);
-
-    }
-
-    50% {
+    from {
 
         transform:
-            translateX(30px)
-            rotate(var(--rotation))
-            skewX(-25deg);
-
-    }
-
-    100% {
-
-        transform:
-            translateX(-25px)
-            rotate(var(--rotation))
-            skewX(-25deg);
-
-    }
-
-}
-
-
-@keyframes videoAppear {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(.82)
-            rotate(-2deg);
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
+            translateY(-160px)
             rotate(0deg);
-
     }
 
-}
+    to {
 
-
-@keyframes flashEffect {
-
-    0% {
-
-        background: #fff;
-
-        opacity: 1;
-
-    }
-
-    20% {
-
-        background: #d90000;
-
-        opacity: 1;
-
-    }
-
-    40% {
-
-        background: #fff;
-
-        opacity: 1;
-
-    }
-
-    65% {
-
-        background: #050505;
-
-        opacity: 1;
-
-    }
-
-    100% {
-
-        opacity: 0;
-
+        transform:
+            translateY(115vh)
+            rotate(360deg);
     }
 
 }
@@ -1225,88 +973,112 @@ body {
 
 @media (max-width: 600px) {
 
-    .joker-mask-img {
+    .joker-mask {
 
-        width: 115px;
+        width: 140px;
 
+        margin-bottom: 22px;
     }
 
 
-    .royal-logo {
+    .p5-box {
 
-        width: 320px;
+        font-size: 30px;
 
-        height: 145px;
+        padding: 7px 14px;
 
-        transform:
-            scale(.82)
-            rotate(-7deg)
-            skewX(-8deg);
+        letter-spacing: -2px;
 
-        margin-top: 30px;
-
-    }
-
-
-    .royal-take {
-
-        font-size: 58px;
-
-    }
-
-
-    .royal-your {
-
-        left: 84px;
-
-        top: 40px;
-
-        font-size: 53px;
-
-    }
-
-
-    .royal-heart {
-
-        left: 30px;
-
-        top: 85px;
-
-        font-size: 58px;
-
+        box-shadow:
+            6px 6px 0 #d00000;
     }
 
 
     .sub-txt {
 
-        font-size: 9px;
+        font-size: 8px;
 
-        letter-spacing: 3px;
+        letter-spacing: 2.5px;
 
+        margin-top: 22px;
     }
 
 
-    #bgVideo {
+    .sub-txt::before {
 
-        max-width: 94vw;
+        margin-right: 5px;
+    }
 
-        max-height: 72vh;
 
+    .sub-txt::after {
+
+        margin-left: 5px;
+    }
+
+
+    .calling-card {
+
+        width: 50px;
+    }
+
+}
+
+
+/* =========================================================
+   RED FLASH CLASS
+========================================================= */
+
+.flash-red {
+
+    animation:
+        redFlash
+        0.55s
+        ease-out;
+}
+
+
+@keyframes redFlash {
+
+    0% {
+
+        opacity: 1;
+
+        background: #fff;
+    }
+
+    30% {
+
+        opacity: 1;
+
+        background: #d00000;
+    }
+
+    60% {
+
+        opacity: 0.8;
+
+        background: #000;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        background: transparent;
     }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
+<!-- =======================================================
      MUSIC
-===================================================== -->
+======================================================= -->
 
 <audio
     id="audio"
@@ -1316,96 +1088,166 @@ body {
 </audio>
 
 
-<!-- =====================================================
-     START SCREEN
-===================================================== -->
+<!-- =======================================================
+     OPENING SCREEN
+======================================================= -->
 
-<div
-    id="startScreen"
-    onclick="launchPhantom()">
+<div id="startScreen">
 
+    <div class="start-content">
 
-    <div class="start-slash one"></div>
+        <img
+            src="joker-mask.png"
+            class="joker-mask"
+            alt="Joker">
 
-    <div class="start-slash two"></div>
-
-    <div class="start-slash three"></div>
-
-    <div class="start-slash four"></div>
-
-
-    <img
-        src="joker-mask.png"
-        class="joker-mask-img"
-        alt="Joker Mask">
-
-
-    <!-- =================================================
-         P5R STYLE LOGO
-    ================================================== -->
-
-    <div class="royal-logo">
-
-        <div class="royal-take">
-            TAKE
+        <div class="p5-box">
+            TAKE <span>YOUR</span> HEART
         </div>
 
-        <div class="royal-your">
-            YOUR
+        <!-- 这句就是你要保留的原始提示 -->
+        <div class="sub-txt">
+            /// CLICK TO OPEN THE CALLING CARD ///
         </div>
 
-        <div class="royal-heart">
-            HEART
+        <div class="click-arrow">
+            ▼
         </div>
-
-
-        <div class="logo-burst a"></div>
-
-        <div class="logo-burst b"></div>
-
-        <div class="logo-burst c"></div>
 
     </div>
 
+</div>
 
-    <div class="sub-txt">
-        CLICK TO OPEN
+
+<!-- =======================================================
+     FLASH
+======================================================= -->
+
+<div id="flashOverlay"></div>
+
+
+<!-- =======================================================
+     MAIN BACKGROUND
+======================================================= -->
+
+<div id="canvasContainer">
+
+
+    <!-- GIANT WORDS -->
+
+    <div class="p5-word word-1">
+        PHANTOM
+    </div>
+
+    <div class="p5-word word-2">
+        NOTICE
+    </div>
+
+    <div class="p5-word word-3">
+        TRUTH
+    </div>
+
+    <div class="p5-word word-4">
+        TAKE YOUR HEART
     </div>
 
 
-    <div class="click-arrow">
-        ▼
+    <!-- SLASHES -->
+
+    <div class="p5-slash slash-black"></div>
+
+    <div class="p5-slash slash-white"></div>
+
+    <div class="p5-slash slash-red"></div>
+
+
+    <!-- SPEED LINES -->
+
+    <div class="speed-line"></div>
+
+    <div class="speed-line"></div>
+
+    <div class="speed-line"></div>
+
+    <div class="speed-line"></div>
+
+
+    <!-- CALLING CARDS -->
+
+    <div id="cardContainer"></div>
+
+
+    <!-- PAPER FRAGMENTS -->
+
+    <div
+        class="paper-fragment"
+        style="
+            width:70px;
+            height:18px;
+            left:12%;
+            top:-10%;
+            animation-duration:4s;
+        ">
+    </div>
+
+    <div
+        class="paper-fragment red"
+        style="
+            width:45px;
+            height:12px;
+            left:45%;
+            top:-20%;
+            animation-duration:3.5s;
+        ">
+    </div>
+
+    <div
+        class="paper-fragment black"
+        style="
+            width:90px;
+            height:16px;
+            left:75%;
+            top:-15%;
+            animation-duration:5s;
+        ">
+    </div>
+
+
+    <!-- PAPER STRIPS -->
+
+    <div
+        class="paper-strip"
+        style="
+            left:-30px;
+            top:32%;
+            transform:rotate(-17deg);
+        ">
+    </div>
+
+    <div
+        class="paper-strip"
+        style="
+            right:-80px;
+            top:71%;
+            transform:rotate(-17deg);
+        ">
     </div>
 
 
 </div>
 
 
-<!-- =====================================================
-     FLASH
-===================================================== -->
-
-<div id="flashOverlay"></div>
-
-
-<!-- =====================================================
-     CALLING CARD BACKGROUND
-===================================================== -->
-
-<div id="canvasContainer"></div>
-
-
-<!-- =====================================================
-     CENTER VIDEO
-===================================================== -->
+<!-- =======================================================
+     VIDEO
+======================================================= -->
 
 <div id="videoContainer">
 
     <video
         id="bgVideo"
         src="bg-animation.mp4"
-        loop
         muted
+        loop
         playsinline
         preload="auto">
     </video>
@@ -1416,685 +1258,244 @@ body {
 <script>
 
 /* =========================================================
-   DOM
+   ELEMENTS
 ========================================================= */
 
-const canvas =
-    document.getElementById(
-        "canvasContainer"
-    );
+const startScreen =
+    document.getElementById("startScreen");
+
+const canvasContainer =
+    document.getElementById("canvasContainer");
+
+const videoContainer =
+    document.getElementById("videoContainer");
+
+const video =
+    document.getElementById("bgVideo");
+
+const audio =
+    document.getElementById("audio");
+
+const flashOverlay =
+    document.getElementById("flashOverlay");
+
+const cardContainer =
+    document.getElementById("cardContainer");
 
 
 /* =========================================================
-   INITIAL CALLING CARDS
+   CARD CREATION
 ========================================================= */
 
-function createInitialCards() {
-
-    for (
-        let i = 0;
-        i < 220;
-        i++
-    ) {
-
-        createCallingCard(true);
-
-    }
-
-}
-
-
-/* =========================================================
-   CREATE CALLING CARD
-========================================================= */
-
-function createCallingCard(initial) {
+function createCard() {
 
     const card =
-        document.createElement(
-            "div"
-        );
+        document.createElement("img");
 
+    card.src = "cover.png";
 
     card.className =
-        "falling-letter";
+        "calling-card";
 
+
+    /* depth */
 
     const depth =
         Math.random();
 
+    if (depth < 0.28) {
 
-    if (
-        depth < .25
+        card.classList.add("far");
+
+    } else if (depth < 0.78) {
+
+        card.classList.add("mid");
+
+    } else {
+
+        card.classList.add("front");
+
+    }
+
+
+    /* size */
+
+    let size;
+
+    if (card.classList.contains("far")) {
+
+        size =
+            30 +
+            Math.random() * 30;
+
+    } else if (
+        card.classList.contains("front")
     ) {
 
-        card.classList.add(
-            "far"
-        );
+        size =
+            60 +
+            Math.random() * 45;
 
+    } else {
+
+        size =
+            40 +
+            Math.random() * 40;
     }
-
-    else if (
-        depth < .78
-    ) {
-
-        card.classList.add(
-            "mid"
-        );
-
-    }
-
-    else {
-
-        card.classList.add(
-            "front"
-        );
-
-    }
-
-
-    let width;
-
-
-    if (
-        depth < .25
-    ) {
-
-        width =
-            Math.random() * 30 + 22;
-
-    }
-
-    else if (
-        depth > .78
-    ) {
-
-        width =
-            Math.random() * 70 + 55;
-
-    }
-
-    else {
-
-        width =
-            Math.random() * 50 + 30;
-
-    }
-
-
-    const height =
-        width * 1.3;
-
-
-    const rotation =
-        Math.random() * 100 - 50;
-
-
-    const scale =
-        Math.random() * .45 + .55;
-
-
-    const duration =
-        Math.random() * 3 + 3;
 
 
     card.style.width =
-        width + "px";
+        size + "px";
 
 
-    card.style.height =
-        height + "px";
-
+    /* position */
 
     card.style.left =
-        Math.random() * 100 + "vw";
+        Math.random() * 100 + "%";
 
+
+    /* initial position */
 
     card.style.top =
-        initial
-            ? Math.random() * 115 - 15 + "vh"
-            : "-20vh";
+        (-10 -
+         Math.random() * 100) + "vh";
 
 
-    card.style.setProperty(
-        "--rotation",
-        rotation + "deg"
-    );
+    /* rotation */
+
+    const rotate =
+        -35 +
+        Math.random() * 70;
 
 
-    card.style.setProperty(
-        "--scale",
-        scale
-    );
+    /* duration */
+
+    const duration =
+        3 +
+        Math.random() * 5;
 
 
     card.style.animationDuration =
         duration + "s";
 
 
-    if (!initial) {
-
-        card.style.animationDelay =
-            "0s";
-
-    }
-
-    else {
-
-        card.style.animationDelay =
-            (
-                Math.random() * -6
-            ) + "s";
-
-    }
+    card.style.animationDelay =
+        (-Math.random() * duration) + "s";
 
 
-    canvas.appendChild(
-        card
-    );
+    card.style.transform =
+        "rotate(" + rotate + "deg)";
 
 
-    if (!initial) {
+    card.style.opacity =
+        0.3 +
+        Math.random() * 0.7;
 
-        setTimeout(
-            () => {
+
+    cardContainer.appendChild(card);
+
+
+    /* remove */
+
+    setTimeout(
+        () => {
+
+            if (card.parentNode) {
 
                 card.remove();
 
+            }
+
+        },
+
+        (duration + 2) * 1000
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL CARD WALL
+========================================================= */
+
+function createInitialCards() {
+
+    const amount =
+        window.innerWidth < 600
+            ? 100
+            : 220;
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        createCard();
+
+    }
+
+}
+
+
+/* =========================================================
+   CARD SUPPLEMENT
+========================================================= */
+
+let cardInterval = null;
+
+
+function startCardRain() {
+
+    if (cardInterval) {
+
+        clearInterval(cardInterval);
+
+    }
+
+
+    cardInterval =
+        setInterval(
+            () => {
+
+                if (
+                    cardContainer.children.length
+                    < 300
+                ) {
+
+                    createCard();
+
+                }
+
             },
-            duration * 1000 + 500
+            100
         );
-
-    }
 
 }
 
 
 /* =========================================================
-   GIANT WORDS
+   FLASH EFFECT
 ========================================================= */
 
-function createWords() {
+function playFlash() {
 
-    const words = [
-
-        "TAKE YOUR HEART",
-        "PHANTOM",
-        "CALLING CARD",
-        "NOTICE",
-        "THE TRUTH",
-        "YOUR HEART",
-        "WE HAVE COME",
-        "THE PHANTOM THIEVES",
-        "TAKE YOUR HEART",
-        "NOTICE",
-        "PHANTOM"
-
-    ];
+    flashOverlay.classList.remove(
+        "flash-red"
+    );
 
 
-    for (
-        let i = 0;
-        i < 16;
-        i++
-    ) {
+    /* force reflow */
 
-        const word =
-            document.createElement(
-                "div"
-            );
+    void flashOverlay.offsetWidth;
 
 
-        word.className =
-            "p5-word";
-
-
-        word.textContent =
-            words[
-                Math.floor(
-                    Math.random()
-                    * words.length
-                )
-            ];
-
-
-        word.style.fontSize =
-            (
-                Math.random() * 70 + 30
-            ) + "px";
-
-
-        word.style.left =
-            (
-                Math.random() * 100
-            ) + "vw";
-
-
-        word.style.top =
-            (
-                Math.random() * 105
-            ) + "vh";
-
-
-        word.style.setProperty(
-            "--rotation",
-            (
-                Math.random() * 18 - 9
-            ) + "deg"
-        );
-
-
-        word.style.setProperty(
-            "--duration",
-            (
-                Math.random() * 4 + 4
-            ) + "s"
-        );
-
-
-        const type =
-            Math.random();
-
-
-        if (
-            type < .25
-        ) {
-
-            word.classList.add(
-                "white"
-            );
-
-        }
-
-        else if (
-            type < .45
-        ) {
-
-            word.classList.add(
-                "red"
-            );
-
-        }
-
-
-        canvas.appendChild(
-            word
-        );
-
-    }
+    flashOverlay.classList.add(
+        "flash-red"
+    );
 
 }
-
-
-/* =========================================================
-   SLASHES
-========================================================= */
-
-function createSlashes() {
-
-    for (
-        let i = 0;
-        i < 38;
-        i++
-    ) {
-
-        const slash =
-            document.createElement(
-                "div"
-            );
-
-
-        slash.className =
-            "p5-slash";
-
-
-        const type =
-            Math.random();
-
-
-        if (
-            type < .5
-        ) {
-
-            slash.classList.add(
-                "black"
-            );
-
-        }
-
-        else if (
-            type < .75
-        ) {
-
-            slash.classList.add(
-                "white"
-            );
-
-        }
-
-        else {
-
-            slash.classList.add(
-                "red"
-            );
-
-        }
-
-
-        slash.style.width =
-            (
-                Math.random() * 220 + 50
-            ) + "px";
-
-
-        slash.style.height =
-            (
-                Math.random() * 24 + 5
-            ) + "px";
-
-
-        slash.style.left =
-            (
-                Math.random() * 110 - 5
-            ) + "vw";
-
-
-        slash.style.top =
-            (
-                Math.random() * 110 - 5
-            ) + "vh";
-
-
-        slash.style.setProperty(
-            "--duration",
-            (
-                Math.random() * 3 + 3
-            ) + "s"
-        );
-
-
-        canvas.appendChild(
-            slash
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SPEED LINES
-========================================================= */
-
-function createSpeedLines() {
-
-    for (
-        let i = 0;
-        i < 50;
-        i++
-    ) {
-
-        const line =
-            document.createElement(
-                "div"
-            );
-
-
-        line.className =
-            "speed-line";
-
-
-        if (
-            Math.random() > .72
-        ) {
-
-            line.classList.add(
-                "white"
-            );
-
-        }
-
-
-        line.style.width =
-            (
-                Math.random() * 180 + 40
-            ) + "px";
-
-
-        line.style.left =
-            (
-                Math.random() * 100
-            ) + "vw";
-
-
-        line.style.top =
-            (
-                Math.random() * 100
-            ) + "vh";
-
-
-        line.style.setProperty(
-            "--angle",
-            (
-                Math.random() * 35 - 25
-            ) + "deg"
-        );
-
-
-        line.style.setProperty(
-            "--duration",
-            (
-                Math.random() * 1.8 + .8
-            ) + "s"
-        );
-
-
-        line.style.animationDelay =
-            (
-                Math.random() * -4
-            ) + "s";
-
-
-        canvas.appendChild(
-            line
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PAPER
-========================================================= */
-
-function createPaper() {
-
-    for (
-        let i = 0;
-        i < 70;
-        i++
-    ) {
-
-        const paper =
-            document.createElement(
-                "div"
-            );
-
-
-        paper.className =
-            "paper-fragment";
-
-
-        const type =
-            Math.random();
-
-
-        if (
-            type < .5
-        ) {
-
-            paper.classList.add(
-                "black"
-            );
-
-        }
-
-        else if (
-            type < .7
-        ) {
-
-            paper.classList.add(
-                "red"
-            );
-
-        }
-
-
-        paper.style.width =
-            (
-                Math.random() * 35 + 8
-            ) + "px";
-
-
-        paper.style.height =
-            (
-                Math.random() * 15 + 4
-            ) + "px";
-
-
-        paper.style.left =
-            Math.random() * 100 + "vw";
-
-
-        paper.style.top =
-            Math.random() * 100 + "vh";
-
-
-        paper.style.setProperty(
-            "--rotation",
-            Math.random() * 180 + "deg"
-        );
-
-
-        paper.style.setProperty(
-            "--duration",
-            (
-                Math.random() * 4 + 4
-            ) + "s"
-        );
-
-
-        paper.style.animationDelay =
-            (
-                Math.random() * -8
-            ) + "s";
-
-
-        canvas.appendChild(
-            paper
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PAPER STRIPS
-========================================================= */
-
-function createStrips() {
-
-    for (
-        let i = 0;
-        i < 28;
-        i++
-    ) {
-
-        const strip =
-            document.createElement(
-                "div"
-            );
-
-
-        strip.className =
-            "paper-strip";
-
-
-        if (
-            Math.random() > .5
-        ) {
-
-            strip.classList.add(
-                "black"
-            );
-
-        }
-
-
-        strip.style.width =
-            (
-                Math.random() * 150 + 30
-            ) + "px";
-
-
-        strip.style.height =
-            (
-                Math.random() * 12 + 4
-            ) + "px";
-
-
-        strip.style.left =
-            (
-                Math.random() * 110 - 5
-            ) + "vw";
-
-
-        strip.style.top =
-            Math.random() * 100 + "vh";
-
-
-        strip.style.setProperty(
-            "--rotation",
-            (
-                Math.random() * 40 - 20
-            ) + "deg"
-        );
-
-
-        strip.style.setProperty(
-            "--duration",
-            (
-                Math.random() * 4 + 3
-            ) + "s"
-        );
-
-
-        canvas.appendChild(
-            strip
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   START EVERYTHING
-========================================================= */
-
-createInitialCards();
-
-createWords();
-
-createSlashes();
-
-createSpeedLines();
-
-createPaper();
-
-createStrips();
 
 
 /* =========================================================
@@ -2112,72 +1513,66 @@ function launchPhantom() {
 
     }
 
-
     launched = true;
 
 
-    const startScreen =
-        document.getElementById(
-            "startScreen"
-        );
+    /* music */
 
-
-    const flash =
-        document.getElementById(
-            "flashOverlay"
-        );
-
-
-    const video =
-        document.getElementById(
-            "bgVideo"
-        );
-
-
-    const videoContainer =
-        document.getElementById(
-            "videoContainer"
-        );
-
-
-    const audio =
-        document.getElementById(
-            "audio"
-        );
-
-
-    /* 音樂 */
-
-    audio.currentTime = 0;
+    audio.volume = 0.85;
 
     audio.play().catch(
         () => {}
     );
 
 
-    /* 影片 */
+    /* video */
 
-    video.currentTime = 0;
+    videoContainer.style.display =
+        "flex";
 
     video.play().catch(
         () => {}
     );
 
 
-    /* 閃屏 */
+    /* background */
 
-    flash.classList.remove(
-        "flash-animate"
+    canvasContainer.style.display =
+        "block";
+
+
+    /* cards */
+
+    createInitialCards();
+
+    startCardRain();
+
+
+    /* flash */
+
+    playFlash();
+
+
+    /* hide opening */
+
+    setTimeout(
+        () => {
+
+            startScreen.style.opacity =
+                "0";
+
+            startScreen.style.pointerEvents =
+                "none";
+
+            startScreen.style.transition =
+                "opacity 0.35s ease";
+
+        },
+        180
     );
 
-    void flash.offsetWidth;
 
-    flash.classList.add(
-        "flash-animate"
-    );
-
-
-    /* 點擊後稍微延遲進場 */
+    /* completely hide */
 
     setTimeout(
         () => {
@@ -2185,236 +1580,80 @@ function launchPhantom() {
             startScreen.style.display =
                 "none";
 
-            canvas.style.display =
-                "block";
-
-            videoContainer.style.display =
-                "flex";
-
         },
-        180
-    );
-
-
-    /* 持續增加預告信 */
-
-    setInterval(
-        () => {
-
-            if (
-                canvas.querySelectorAll(
-                    ".falling-letter"
-                ).length < 330
-            ) {
-
-                createCallingCard(
-                    false
-                );
-
-            }
-
-        },
-        80
-    );
-
-
-    /* 持續增加紙片 */
-
-    setInterval(
-        () => {
-
-            createOnePaper();
-
-        },
-        180
-    );
-
-
-    /* 持續增加速度線 */
-
-    setInterval(
-        () => {
-
-            createOneSpeedLine();
-
-        },
-        260
+        600
     );
 
 }
 
 
 /* =========================================================
-   DYNAMIC PAPER
+   CLICK
 ========================================================= */
 
-function createOnePaper() {
+/*
+   整個開場頁面都可以點。
+   所以不管你點 Logo、
+   點文字、
+   點黑色背景，
+   都會打開 Calling Card。
+*/
 
-    const paper =
-        document.createElement(
-            "div"
-        );
-
-
-    paper.className =
-        "paper-fragment";
-
-
-    const type =
-        Math.random();
-
-
-    if (
-        type < .5
-    ) {
-
-        paper.classList.add(
-            "black"
-        );
-
-    }
-
-    else if (
-        type < .7
-    ) {
-
-        paper.classList.add(
-            "red"
-        );
-
-    }
-
-
-    paper.style.width =
-        (
-            Math.random() * 35 + 8
-        ) + "px";
-
-
-    paper.style.height =
-        (
-            Math.random() * 15 + 4
-        ) + "px";
-
-
-    paper.style.left =
-        Math.random() * 100 + "vw";
-
-
-    paper.style.top =
-        "-10vh";
-
-
-    paper.style.setProperty(
-        "--rotation",
-        Math.random() * 180 + "deg"
-    );
-
-
-    const duration =
-        Math.random() * 4 + 4;
-
-
-    paper.style.setProperty(
-        "--duration",
-        duration + "s"
-    );
-
-
-    canvas.appendChild(
-        paper
-    );
-
-
-    setTimeout(
-        () => {
-
-            paper.remove();
-
-        },
-        duration * 1000 + 500
-    );
-
-}
+startScreen.addEventListener(
+    "click",
+    launchPhantom
+);
 
 
 /* =========================================================
-   DYNAMIC SPEED LINE
+   TOUCH
 ========================================================= */
 
-function createOneSpeedLine() {
+startScreen.addEventListener(
+    "touchend",
+    function () {
 
-    const line =
-        document.createElement(
-            "div"
-        );
+        launchPhantom();
+
+    },
+    {
+        passive: true
+    }
+);
 
 
-    line.className =
-        "speed-line";
+/* =========================================================
+   PREVENT CONTEXT MENU
+========================================================= */
 
+document.addEventListener(
+    "contextmenu",
+    function (event) {
 
-    if (
-        Math.random() > .7
-    ) {
-
-        line.classList.add(
-            "white"
-        );
+        event.preventDefault();
 
     }
+);
 
 
-    line.style.width =
-        (
-            Math.random() * 180 + 40
-        ) + "px";
+/* =========================================================
+   PRELOAD CALLING CARD
+========================================================= */
+
+const preloadCard =
+    new Image();
+
+preloadCard.src =
+    "cover.png";
 
 
-    line.style.left =
-        "-20vw";
+/* =========================================================
+   PRELOAD VIDEO
+========================================================= */
 
-
-    line.style.top =
-        Math.random() * 100 + "vh";
-
-
-    line.style.setProperty(
-        "--angle",
-        (
-            Math.random() * 35 - 25
-        ) + "deg"
-    );
-
-
-    const duration =
-        Math.random() * 1.5 + .8;
-
-
-    line.style.setProperty(
-        "--duration",
-        duration + "s"
-    );
-
-
-    canvas.appendChild(
-        line
-    );
-
-
-    setTimeout(
-        () => {
-
-            line.remove();
-
-        },
-        duration * 1000 + 500
-    );
-
-}
+video.load();
 
 </script>
 
 </body>
-
 </html>
