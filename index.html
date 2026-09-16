@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width,
@@ -10,6 +11,7 @@
     user-scalable=no,
     viewport-fit=cover"
 >
+
 <title>Take Your Heart</title>
 
 <style>
@@ -75,8 +77,8 @@ body{
     display:flex;
     flex-direction:column;
 
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
     overflow:hidden;
 
@@ -84,14 +86,14 @@ body{
 
     isolation:isolate;
 
+    --logoX:0px;
+    --logoY:0px;
+
     padding:
         max(14px,env(safe-area-inset-top))
         max(12px,env(safe-area-inset-right))
         max(14px,env(safe-area-inset-bottom))
         max(12px,env(safe-area-inset-left));
-
-    --logoX:0px;
-    --logoY:0px;
 
     background:
         radial-gradient(
@@ -113,6 +115,7 @@ body{
     top:48%;
 
     width:min(900px,125vw);
+
     aspect-ratio:1;
 
     transform:
@@ -126,7 +129,8 @@ body{
             transparent 68%
         );
 
-    filter:blur(12px);
+    filter:
+        blur(12px);
 
     z-index:-5;
 
@@ -167,6 +171,7 @@ body{
 }
 
 @keyframes centerPulse{
+
     0%,
     100%{
         opacity:.55;
@@ -183,11 +188,12 @@ body{
             translate(-50%,-50%)
             scale(1.12);
     }
+
 }
 
 
 /* =========================================================
-   START SLASHES
+   START SLASH
 ========================================================= */
 
 .start-slash,
@@ -211,7 +217,8 @@ body{
     top:16%;
     left:-25%;
 
-    background:var(--red);
+    background:
+        var(--red);
 
     opacity:.82;
 
@@ -251,7 +258,8 @@ body{
     bottom:19%;
     left:-18%;
 
-    background:var(--red);
+    background:
+        var(--red);
 
     opacity:.66;
 
@@ -285,6 +293,7 @@ body{
 }
 
 @keyframes slashOne{
+
     0%,
     100%{
         transform:
@@ -299,9 +308,11 @@ body{
             rotate(-12deg)
             skewX(-25deg);
     }
+
 }
 
 @keyframes slashTwo{
+
     0%,
     100%{
         opacity:.3;
@@ -320,9 +331,11 @@ body{
             rotate(-12deg)
             skewX(-25deg);
     }
+
 }
 
 @keyframes slashThree{
+
     0%,
     100%{
         transform:
@@ -337,9 +350,11 @@ body{
             rotate(-12deg)
             skewX(-25deg);
     }
+
 }
 
 @keyframes slashFour{
+
     0%,
     100%{
         transform:
@@ -354,6 +369,7 @@ body{
             rotate(-12deg)
             skewX(-25deg);
     }
+
 }
 
 
@@ -394,7 +410,8 @@ body{
     right:-12vw;
     top:43%;
 
-    background:var(--red);
+    background:
+        var(--red);
 
     opacity:.8;
 
@@ -430,21 +447,25 @@ body{
 }
 
 @keyframes cutMoveA{
+
     50%{
         transform:
             translateX(7vw)
             rotate(-10deg)
             skewX(-28deg);
     }
+
 }
 
 @keyframes cutMoveB{
+
     50%{
         transform:
             translateX(-6vw)
             rotate(-10deg)
             skewX(-28deg);
     }
+
 }
 
 
@@ -465,7 +486,7 @@ body{
 
 
 /* =========================================================
-   START WORD
+   WORDS
 ========================================================= */
 
 .start-word{
@@ -481,14 +502,16 @@ body{
 
     letter-spacing:-1px;
 
-    opacity:var(--o);
+    opacity:
+        var(--o);
 
     transform:
         rotate(var(--r))
         skewX(-7deg)
         scaleX(.88);
 
-    transform-origin:left center;
+    transform-origin:
+        left center;
 
     text-shadow:
         5px 5px 0
@@ -524,6 +547,7 @@ body{
 }
 
 @keyframes startWordFloat{
+
     0%,
     100%{
         transform:
@@ -540,6 +564,7 @@ body{
             skewX(-7deg)
             scaleX(.88);
     }
+
 }
 
 
@@ -593,11 +618,13 @@ body{
 }
 
 @keyframes halftoneDrift{
+
     50%{
         transform:
             translate(12px,-8px)
             rotate(var(--r));
     }
+
 }
 
 
@@ -638,8 +665,7 @@ body{
     width:100%;
     height:12%;
 
-    background:
-        var(--c);
+    background:var(--c);
 
     box-shadow:
         2px 2px 0
@@ -704,10 +730,12 @@ body{
 }
 
 @keyframes burstSpin{
+
     to{
         transform:
             rotate(360deg);
     }
+
 }
 
 
@@ -730,7 +758,8 @@ body{
         2px solid
         var(--c);
 
-    opacity:var(--o);
+    opacity:
+        var(--o);
 
     animation:
         targetPulse
@@ -772,6 +801,7 @@ body{
 }
 
 @keyframes targetPulse{
+
     0%,
     100%{
         transform:
@@ -782,11 +812,12 @@ body{
         transform:
             scale(1.08);
     }
+
 }
 
 
 /* =========================================================
-   DOT
+   DOTS
 ========================================================= */
 
 .start-dot-group{
@@ -823,10 +854,12 @@ body{
 }
 
 @keyframes dotFloat{
+
     50%{
         transform:
             translateY(-10px);
     }
+
 }
 
 
@@ -843,8 +876,7 @@ body{
     width:var(--w);
     height:var(--h);
 
-    background:
-        var(--c);
+    background:var(--c);
 
     opacity:var(--o);
 
@@ -864,12 +896,14 @@ body{
 }
 
 @keyframes blockFloat{
+
     50%{
         transform:
             translateX(15px)
             rotate(var(--r))
             skewX(-24deg);
     }
+
 }
 
 
@@ -895,7 +929,8 @@ body{
     background:
         var(--c);
 
-    opacity:var(--o);
+    opacity:
+        var(--o);
 
     border-radius:
         55% 45% 61% 39%
@@ -925,6 +960,7 @@ body{
 
 .start-ink::before{
     width:30%;
+
     aspect-ratio:1;
 
     left:-13%;
@@ -933,6 +969,7 @@ body{
 
 .start-ink::after{
     width:20%;
+
     aspect-ratio:1;
 
     right:-8%;
@@ -940,16 +977,18 @@ body{
 }
 
 @keyframes startInk{
+
     50%{
         transform:
             rotate(var(--r))
             scale(1.1);
     }
+
 }
 
 
 /* =========================================================
-   FRAGMENT
+   START FRAGMENT
 ========================================================= */
 
 .start-fragment{
@@ -964,7 +1003,8 @@ body{
     background:
         var(--c);
 
-    opacity:var(--o);
+    opacity:
+        var(--o);
 
     clip-path:
         polygon(
@@ -982,6 +1022,7 @@ body{
 }
 
 @keyframes fragmentFloat{
+
     50%{
         transform:
             translate(
@@ -990,6 +1031,7 @@ body{
             )
             rotate(12deg);
     }
+
 }
 
 
@@ -1023,6 +1065,7 @@ body{
 }
 
 @keyframes startSpeed{
+
     0%{
         opacity:0;
 
@@ -1032,13 +1075,11 @@ body{
     }
 
     13%{
-        opacity:
-            var(--o);
+        opacity:var(--o);
     }
 
     72%{
-        opacity:
-            var(--o);
+        opacity:var(--o);
     }
 
     100%{
@@ -1048,6 +1089,7 @@ body{
             translateX(190px)
             rotate(var(--r));
     }
+
 }
 
 
@@ -1088,6 +1130,7 @@ body{
 }
 
 @keyframes symbolFloat{
+
     50%{
         transform:
             translateY(-11px)
@@ -1095,19 +1138,22 @@ body{
             skewX(-8deg)
             scale(1.12);
     }
+
 }
 
 @keyframes decorFloat{
+
     50%{
         transform:
             translateY(-10px)
             rotate(var(--r));
     }
+
 }
 
 
 /* =========================================================
-   TAKE YOUR HEART LOGO
+   LOGO
 ========================================================= */
 
 .royal-logo{
@@ -1134,7 +1180,8 @@ body{
             9px 10px 0 #000
         )
         drop-shadow(
-            13px 13px 0 var(--red)
+            13px 13px 0
+            var(--red)
         );
 
     animation:
@@ -1155,6 +1202,7 @@ body{
     content:"";
 
     position:absolute;
+
     inset:-3px;
 
     background:
@@ -1173,10 +1221,7 @@ body{
     opacity:.28;
 
     transform:
-        translate(
-            5px,
-            3px
-        );
+        translate(5px,3px);
 
     mix-blend-mode:screen;
 
@@ -1191,10 +1236,7 @@ body{
     opacity:.18;
 
     transform:
-        translate(
-            -4px,
-            -3px
-        );
+        translate(-4px,-3px);
 
     mix-blend-mode:multiply;
 
@@ -1233,7 +1275,7 @@ body{
 
 
 /* =========================================================
-   LOGO RINGS
+   LOGO RING
 ========================================================= */
 
 .logo-ring{
@@ -1289,6 +1331,7 @@ body{
 }
 
 @keyframes ringPulse{
+
     0%{
         opacity:0;
 
@@ -1310,11 +1353,12 @@ body{
             rotate(-7deg)
             scale(1.18);
     }
+
 }
 
 
 /* =========================================================
-   LOGO GLINT
+   GLINT
 ========================================================= */
 
 .logo-glint{
@@ -1366,6 +1410,7 @@ body{
 }
 
 @keyframes logoGlint{
+
     0%,
     65%{
         opacity:0;
@@ -1392,9 +1437,11 @@ body{
         background-position:
             -50% 0;
     }
+
 }
 
 @keyframes logoEntrance{
+
     0%{
         opacity:0;
 
@@ -1422,9 +1469,11 @@ body{
             rotate(-7deg)
             skewX(-8deg);
     }
+
 }
 
 @keyframes logoFloat{
+
     0%,
     100%{
         transform:
@@ -1439,9 +1488,11 @@ body{
             skewX(-8deg)
             translateY(-6px);
     }
+
 }
 
 @keyframes heartFloat{
+
     0%,
     100%{
         transform:
@@ -1468,9 +1519,11 @@ body{
             scale(1.025)
             rotate(1deg);
     }
+
 }
 
 @keyframes logoGlitch{
+
     0%,
     82%,
     100%{
@@ -1500,9 +1553,11 @@ body{
         clip-path:
             inset(0);
     }
+
 }
 
 @keyframes printRed{
+
     0%,
     100%{
         transform:
@@ -1523,9 +1578,11 @@ body{
         transform:
             translate(5px,4px);
     }
+
 }
 
 @keyframes printBlack{
+
     0%,
     100%{
         transform:
@@ -1541,12 +1598,12 @@ body{
         transform:
             translate(-2px,-1px);
     }
+
 }
 
 
 /* =========================================================
    CLICK TEXT
-   ONLY 2 RED TRIANGLES
 ========================================================= */
 
 .sub-txt{
@@ -1703,6 +1760,7 @@ body{
 }
 
 @keyframes triangleLeft{
+
     0%,
     100%{
         transform:
@@ -1714,9 +1772,11 @@ body{
             translateX(4px)
             scale(1.12);
     }
+
 }
 
 @keyframes triangleRight{
+
     0%,
     100%{
         transform:
@@ -1728,9 +1788,11 @@ body{
             translateX(-4px)
             scale(1.12);
     }
+
 }
 
 @keyframes clickBlink{
+
     0%,
     100%{
         opacity:.48;
@@ -1739,15 +1801,18 @@ body{
     50%{
         opacity:1;
     }
+
 }
 
 @keyframes clickCharge{
+
     50%{
         opacity:1;
 
         transform:
             scaleX(1);
     }
+
 }
 
 
@@ -1893,6 +1958,7 @@ body{
 }
 
 @keyframes impactRing{
+
     0%{
         opacity:1;
 
@@ -1908,9 +1974,11 @@ body{
             translate(-50%,-50%)
             scale(17);
     }
+
 }
 
 @keyframes impactRays{
+
     0%{
         opacity:0;
 
@@ -1932,11 +2000,12 @@ body{
             scale(1)
             rotate(10deg);
     }
+
 }
 
 
 /* =========================================================
-   SKILL CUTIN
+   CUTIN
 ========================================================= */
 
 #skillCutin{
@@ -1963,6 +2032,11 @@ body{
     visibility:visible;
 }
 
+
+/* =========================================================
+   BACK
+========================================================= */
+
 .cutin-back{
     position:absolute;
     inset:0;
@@ -1972,7 +2046,8 @@ body{
     opacity:0;
 }
 
-#skillCutin.enter .cutin-back{
+#skillCutin.enter
+.cutin-back{
     animation:
         cutinBackIn
         .30s
@@ -1981,9 +2056,11 @@ body{
 }
 
 @keyframes cutinBackIn{
+
     to{
         opacity:1;
     }
+
 }
 
 
@@ -2003,14 +2080,16 @@ body{
     transform:
         translateY(-115%);
 
-    will-change:transform;
+    will-change:
+        transform;
 
     filter:
         drop-shadow(
             0 8px 0 #fff
         )
         drop-shadow(
-            0 13px 0 var(--red)
+            0 13px 0
+            var(--red)
         );
 }
 
@@ -2068,14 +2147,16 @@ body{
     transform:
         translateY(115%);
 
-    will-change:transform;
+    will-change:
+        transform;
 
     filter:
         drop-shadow(
             0 -8px 0 #fff
         )
         drop-shadow(
-            0 -13px 0 var(--red)
+            0 -13px 0
+            var(--red)
         );
 }
 
@@ -2177,10 +2258,12 @@ body{
             0 7px 0 #fff
         )
         drop-shadow(
-            0 12px 0 var(--red)
+            0 12px 0
+            var(--red)
         );
 
-    will-change:transform;
+    will-change:
+        transform;
 }
 
 .cutin-strip{
@@ -2275,173 +2358,9 @@ body{
 
 
 /* =========================================================
-   RIP LINE
-   撕裂本體保留
-========================================================= */
-
-.cutin-rip-line{
-    position:absolute;
-
-    left:-5%;
-    top:50%;
-
-    width:110%;
-    height:24px;
-
-    z-index:14;
-
-    pointer-events:none;
-
-    opacity:0;
-
-    transform:
-        translateY(-50%)
-        rotate(-4deg)
-        scaleX(0);
-
-    transform-origin:
-        left center;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent 0%,
-            transparent 12%,
-            #fff 13%,
-            #fff 34%,
-            var(--red) 35%,
-            var(--red) 52%,
-            #fff 53%,
-            #fff 74%,
-            transparent 75%
-        );
-
-    clip-path:
-        polygon(
-            0 38%,
-            4% 17%,
-            8% 48%,
-            13% 24%,
-            18% 53%,
-            23% 20%,
-            28% 51%,
-            34% 28%,
-            40% 58%,
-            46% 18%,
-            52% 50%,
-            58% 25%,
-            64% 57%,
-            70% 20%,
-            76% 52%,
-            82% 24%,
-            88% 55%,
-            94% 18%,
-            100% 43%,
-
-            100% 69%,
-            94% 50%,
-            88% 78%,
-            82% 47%,
-            76% 72%,
-            70% 48%,
-            64% 79%,
-            58% 47%,
-            52% 75%,
-            46% 49%,
-            40% 81%,
-            34% 48%,
-            28% 76%,
-            23% 49%,
-            18% 79%,
-            13% 48%,
-            8% 74%,
-            4% 48%,
-            0 68%
-        );
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(255,255,255,.8)
-        )
-        drop-shadow(
-            0 0 15px
-            rgba(220,0,0,.62)
-        );
-}
-
-#skillCutin.throw-mask
-.cutin-rip-line{
-    animation:
-        ripLineDraw
-        var(--mask-flight)
-        var(--mask-ease)
-        forwards;
-}
-
-@keyframes ripLineDraw{
-    0%{
-        opacity:0;
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(0);
-    }
-
-    4%{
-        opacity:1;
-    }
-
-    18%{
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(.17);
-    }
-
-    35%{
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(.34);
-    }
-
-    50%{
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(.50);
-    }
-
-    68%{
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(.69);
-    }
-
-    84%{
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(.86);
-    }
-
-    100%{
-        opacity:1;
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(1);
-    }
-}
-
-
-/* =========================================================
    JOKER MASK
-   沒有任何紅白拖尾線
+   沒有拖尾
+   沒有 RIP LINE
 ========================================================= */
 
 #maskDart{
@@ -2480,11 +2399,6 @@ body{
         )
         scale(.44);
 }
-
-
-/* =========================================================
-   MASK SPINNER
-========================================================= */
 
 .mask-spinner{
     position:relative;
@@ -2528,11 +2442,6 @@ body{
     -webkit-user-drag:none;
 }
 
-
-/* =========================================================
-   MASK FLIGHT
-========================================================= */
-
 #skillCutin.throw-mask
 #maskDart{
     animation:
@@ -2553,10 +2462,11 @@ body{
 
 
 /* =========================================================
-   DESKTOP MASK PATH
+   MASK DESKTOP
 ========================================================= */
 
 @keyframes maskFlightDesktop{
+
     0%{
         opacity:0;
 
@@ -2671,10 +2581,11 @@ body{
         filter:
             blur(5px);
     }
+
 }
 
-
 @keyframes maskSpinDesktop{
+
     0%{
         transform:
             rotate(-65deg);
@@ -2704,6 +2615,7 @@ body{
         transform:
             rotate(585deg);
     }
+
 }
 
 
@@ -2749,28 +2661,35 @@ body{
 }
 
 @keyframes cutinTopEnter{
+
     to{
         transform:
             translateY(0);
     }
+
 }
 
 @keyframes cutinBottomEnter{
+
     to{
         transform:
             translateY(0);
     }
+
 }
 
 @keyframes redSlashEnter{
+
     to{
         transform:
             rotate(-9deg)
             translateX(0);
     }
+
 }
 
 @keyframes centerStripEnter{
+
     0%{
         transform:
             translateX(-120%)
@@ -2788,70 +2707,12 @@ body{
             translateX(0)
             rotate(-4deg);
     }
+
 }
 
 
 /* =========================================================
-   RIP HOLD
-========================================================= */
-
-#skillCutin.rip-hold
-.cutin-rip-line{
-    opacity:1;
-
-    transform:
-        translateY(-50%)
-        rotate(-4deg)
-        scaleX(1);
-
-    animation:
-        ripCharge
-        .16s
-        ease-out
-        forwards;
-}
-
-@keyframes ripCharge{
-    0%{
-        filter:
-            drop-shadow(
-                0 0 6px
-                rgba(255,255,255,.8)
-            )
-            drop-shadow(
-                0 0 15px
-                rgba(220,0,0,.62)
-            );
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(1)
-            scaleY(1);
-    }
-
-    100%{
-        filter:
-            drop-shadow(
-                0 0 12px
-                rgba(255,255,255,1)
-            )
-            drop-shadow(
-                0 0 22px
-                rgba(220,0,0,.95)
-            );
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(1.015)
-            scaleY(1.32);
-    }
-}
-
-
-/* =========================================================
-   TEAR OPEN
+   TEAR
 ========================================================= */
 
 #skillCutin.tear
@@ -2916,55 +2777,8 @@ body{
         forwards;
 }
 
-#skillCutin.tear
-.cutin-rip-line{
-    opacity:1;
-
-    transform:
-        translateY(-50%)
-        rotate(-4deg)
-        scaleX(1);
-
-    animation:
-        ripLineExplode
-        .75s
-        ease-out
-        forwards;
-}
-
-@keyframes ripLineExplode{
-    0%{
-        opacity:1;
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(1)
-            scaleY(1.25);
-    }
-
-    34%{
-        opacity:1;
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(1.025)
-            scaleY(2.4);
-    }
-
-    100%{
-        opacity:0;
-
-        transform:
-            translateY(-50%)
-            rotate(-4deg)
-            scaleX(1.08)
-            scaleY(6.5);
-    }
-}
-
 @keyframes topTearOpen{
+
     0%{
         transform:
             translateY(0)
@@ -2988,9 +2802,11 @@ body{
             translateY(-120%)
             rotate(-4deg);
     }
+
 }
 
 @keyframes bottomTearOpen{
+
     0%{
         transform:
             translateY(0)
@@ -3014,9 +2830,11 @@ body{
             translateY(120%)
             rotate(4deg);
     }
+
 }
 
 @keyframes stripTearAway{
+
     0%{
         transform:
             translateX(0)
@@ -3038,20 +2856,25 @@ body{
             rotate(10deg)
             scale(.9);
     }
+
 }
 
 @keyframes redSlashAway{
+
     to{
         transform:
             translateX(-120%)
             rotate(-14deg);
     }
+
 }
 
 @keyframes cutinBackOut{
+
     to{
         opacity:0;
     }
+
 }
 
 
@@ -3099,6 +2922,7 @@ body{
 }
 
 @keyframes cutinShardFly{
+
     0%{
         opacity:0;
 
@@ -3129,6 +2953,7 @@ body{
             )
             scale(1.2);
     }
+
 }
 
 
@@ -3159,6 +2984,7 @@ body{
 }
 
 @keyframes cutinFlash{
+
     0%{
         opacity:0;
     }
@@ -3177,6 +3003,7 @@ body{
     100%{
         opacity:0;
     }
+
 }
 
 
@@ -3192,6 +3019,7 @@ body.screen-shake{
 }
 
 @keyframes screenShake{
+
     0%{
         transform:
             translate(0,0);
@@ -3226,11 +3054,12 @@ body.screen-shake{
         transform:
             translate(0,0);
     }
+
 }
 
 
 /* =========================================================
-   MAIN ANIMATION
+   MAIN
 ========================================================= */
 
 #canvasContainer{
@@ -3278,7 +3107,7 @@ body.screen-shake{
 
 
 /* =========================================================
-   CALLING CARD
+   CARDS
 ========================================================= */
 
 .falling-letter{
@@ -3326,7 +3155,7 @@ body.screen-shake{
 
 
 /* =========================================================
-   P5 WORD
+   MAIN WORD
 ========================================================= */
 
 .p5-word{
@@ -3373,7 +3202,7 @@ body.screen-shake{
 
 
 /* =========================================================
-   P5 SLASH
+   MAIN SLASH
 ========================================================= */
 
 .p5-slash{
@@ -3626,6 +3455,7 @@ body.screen-shake{
 ========================================================= */
 
 @keyframes p5GlobalFall{
+
     0%{
         transform:
             translateY(0)
@@ -3645,9 +3475,11 @@ body.screen-shake{
             )
             scale(var(--sc));
     }
+
 }
 
 @keyframes wordFloat{
+
     0%,
     100%{
         transform:
@@ -3664,9 +3496,11 @@ body.screen-shake{
             skewX(-7deg)
             scaleX(.9);
     }
+
 }
 
 @keyframes slashFloat{
+
     0%,
     100%{
         transform:
@@ -3681,9 +3515,11 @@ body.screen-shake{
             skewX(-25deg)
             rotate(-8deg);
     }
+
 }
 
 @keyframes speedMove{
+
     0%{
         transform:
             translateX(-35vw)
@@ -3695,9 +3531,11 @@ body.screen-shake{
             translateX(140vw)
             rotate(var(--angle));
     }
+
 }
 
 @keyframes paperFall{
+
     0%{
         transform:
             translateY(-20vh)
@@ -3730,9 +3568,11 @@ body.screen-shake{
                 )
             );
     }
+
 }
 
 @keyframes stripMove{
+
     0%,
     100%{
         transform:
@@ -3747,9 +3587,11 @@ body.screen-shake{
             rotate(var(--rotation))
             skewX(-25deg);
     }
+
 }
 
 @keyframes inkSplatter{
+
     0%{
         opacity:0;
 
@@ -3784,9 +3626,11 @@ body.screen-shake{
                 )
             );
     }
+
 }
 
 @keyframes popIn{
+
     0%{
         opacity:0;
 
@@ -3800,6 +3644,7 @@ body.screen-shake{
         transform:
             scale(1);
     }
+
 }
 
 
@@ -3825,25 +3670,25 @@ body.screen-shake{
             );
     }
 
+
     .logo-ring.one{
         width:345px;
-
         max-width:92vw;
 
         height:165px;
     }
 
+
     .logo-ring.two{
         width:395px;
-
         max-width:102vw;
 
         height:205px;
     }
 
+
     .logo-ring.three{
         width:445px;
-
         max-width:112vw;
 
         height:245px;
@@ -3877,6 +3722,7 @@ body.screen-shake{
         border-left-width:9px;
     }
 
+
     .click-triangle.right{
         border-top-width:5px;
         border-bottom-width:5px;
@@ -3886,8 +3732,10 @@ body.screen-shake{
 
     .start-label{
         font-size:6px;
+
         letter-spacing:1.7px;
     }
+
 
     .start-label.top{
         top:
@@ -3898,6 +3746,7 @@ body.screen-shake{
 
         left:5%;
     }
+
 
     .start-label.bottom{
         right:5%;
@@ -3914,6 +3763,7 @@ body.screen-shake{
         height:24px;
     }
 
+
     .start-slash.four{
         height:34px;
     }
@@ -3923,15 +3773,18 @@ body.screen-shake{
         height:64%;
     }
 
+
     .cutin-bottom-wrap{
         height:64%;
     }
+
 
     .cutin-strip-wrap{
         top:34%;
 
         height:34%;
     }
+
 
     .cutin-strip::before{
         left:-8%;
@@ -3945,14 +3798,6 @@ body.screen-shake{
             );
     }
 
-    .cutin-rip-line{
-        height:18px;
-    }
-
-
-    /* =====================================================
-       MOBILE MASK
-    ===================================================== */
 
     #maskDart{
         width:
@@ -4042,7 +3887,7 @@ body.screen-shake{
                     calc(-50% + .8vw),
                     0
                 )
-                scale(1.00);
+                scale(1);
 
             filter:
                 blur(0);
@@ -4140,6 +3985,7 @@ body.screen-shake{
             filter:
                 blur(5px);
         }
+
     }
 
 
@@ -4180,6 +4026,7 @@ body.screen-shake{
                 rotate(500deg)
                 scaleX(1);
         }
+
     }
 
 
@@ -4189,11 +4036,13 @@ body.screen-shake{
             1.46s;
     }
 
+
     #skillCutin.tear
     .cutin-bottom-wrap{
         animation-duration:
             1.46s;
     }
+
 
     #skillCutin.tear
     .cutin-strip-wrap{
@@ -4227,7 +4076,7 @@ body.screen-shake{
 
 
 /* =========================================================
-   VERY SMALL PHONE
+   SMALL MOBILE
 ========================================================= */
 
 @media (max-width:380px){
@@ -4257,7 +4106,7 @@ body.screen-shake{
 
 
 <!-- =========================================================
-     CLICK PAGE
+     START PAGE
 ========================================================= -->
 
 <div
@@ -4369,13 +4218,10 @@ body.screen-shake{
     </div>
 
 
-    <div class="cutin-rip-line"></div>
-
-
     <!--
-        MASK
-        已經沒有紅白拖尾線
+        這裡已經完全沒有 cutin-rip-line
     -->
+
 
     <div id="maskDart">
 
@@ -4474,6 +4320,7 @@ function random(
     min,
     max
 ){
+
     return (
         Math.random()
         *
@@ -4485,12 +4332,14 @@ function random(
         +
         min
     );
+
 }
 
 
 function pick(
     array
 ){
+
     return array[
         Math.floor(
             Math.random()
@@ -4498,6 +4347,7 @@ function pick(
             array.length
         )
     ];
+
 }
 
 
@@ -4546,7 +4396,6 @@ function getPosition(
 
 
         const center =
-
             x > 22
             &&
             x < 78
@@ -4557,15 +4406,10 @@ function getPosition(
 
 
         safe =
-
             avoidCenter
-
             ?
-
             !center
-
             :
-
             true;
 
 
@@ -4574,7 +4418,7 @@ function getPosition(
     }
 
 
-    return {
+    return{
         x,
         y
     };
@@ -4583,7 +4427,7 @@ function getPosition(
 
 
 /* =========================================================
-   START P5 DECOR
+   START DECOR
 ========================================================= */
 
 function buildStartP5Decor(){
@@ -4616,45 +4460,27 @@ function buildStartP5Decor(){
         ?
 
         [
-
             ["PHANTOM","white",67,-7,9,-9,.13],
-
             ["NOTICE","black",88,52,15,8,.30],
-
             ["TAKE YOUR HEART","red",38,2,27,-8,.21],
-
             ["TARGET","outline",60,57,35,7,.18],
-
             ["PHANTOM THIEVES","white",27,-7,71,-7,.17],
-
             ["STEAL IT","black",61,-5,49,10,.27],
-
             ["YOUR HEART","red",39,54,77,7,.23],
-
             ["TAKE IT","outline",50,61,59,-7,.15]
-
         ]
 
         :
 
         [
-
             ["PHANTOM","white",122,-2,8,-8,.12],
-
             ["NOTICE","black",150,60,11,8,.28],
-
             ["TAKE YOUR HEART","red",65,5,27,-7,.20],
-
             ["TARGET","outline",105,68,35,6,.16],
-
             ["THE PHANTOM THIEVES","white",43,5,73,-6,.16],
-
             ["STEAL IT","black",110,-1,48,9,.25],
-
             ["YOUR HEART","red",67,65,74,7,.22],
-
             ["TAKE IT","outline",90,71,57,-7,.14]
-
         ];
 
 
@@ -4728,16 +4554,14 @@ function buildStartP5Decor(){
     );
 
 
-    /* HALFTONE */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                5
-                :
-                9
+            ?
+            5
+            :
+            9
         );
         i++
     ){
@@ -4760,17 +4584,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -4778,16 +4598,16 @@ function buildStartP5Decor(){
             "--size",
             random(
                 mobile
-                    ?
-                    70
-                    :
-                    100,
+                ?
+                70
+                :
+                100,
 
                 mobile
-                    ?
-                    145
-                    :
-                    230
+                ?
+                145
+                :
+                230
             )
             +
             "px"
@@ -4805,16 +4625,10 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--c",
-            Math.random()
-            >
-            .48
-
+            Math.random() > .48
             ?
-
             "#dc0000"
-
             :
-
             "#fff"
         );
 
@@ -4848,16 +4662,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* X */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                8
-                :
-                16
+            ?
+            8
+            :
+            16
         );
         i++
     ){
@@ -4880,17 +4692,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -4953,16 +4761,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* BURST */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                5
-                :
-                12
+            ?
+            5
+            :
+            12
         );
         i++
     ){
@@ -4985,17 +4791,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5003,12 +4805,11 @@ function buildStartP5Decor(){
             "--size",
             random(
                 45,
-
                 mobile
-                    ?
-                    100
-                    :
-                    150
+                ?
+                100
+                :
+                150
             )
             +
             "px"
@@ -5026,16 +4827,10 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--c",
-            Math.random()
-            >
-            .45
-
+            Math.random() > .45
             ?
-
             "#dc0000"
-
             :
-
             "#fff"
         );
 
@@ -5058,16 +4853,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* TARGET */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                4
-                :
-                8
+            ?
+            4
+            :
+            8
         );
         i++
     ){
@@ -5090,17 +4883,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5108,12 +4897,11 @@ function buildStartP5Decor(){
             "--size",
             random(
                 28,
-
                 mobile
-                    ?
-                    65
-                    :
-                    95
+                ?
+                65
+                :
+                95
             )
             +
             "px"
@@ -5131,16 +4919,10 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--c",
-            Math.random()
-            >
-            .5
-
+            Math.random() > .5
             ?
-
             "#dc0000"
-
             :
-
             "#fff"
         );
 
@@ -5163,16 +4945,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* DOT GROUPS */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                5
-                :
-                9
+            ?
+            5
+            :
+            9
         );
         i++
     ){
@@ -5195,17 +4975,13 @@ function buildStartP5Decor(){
 
         group.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         group.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5213,12 +4989,11 @@ function buildStartP5Decor(){
             "--size",
             random(
                 50,
-
                 mobile
-                    ?
-                    100
-                    :
-                    145
+                ?
+                100
+                :
+                145
             )
             +
             "px"
@@ -5246,26 +5021,19 @@ function buildStartP5Decor(){
 
 
         const color =
-
-            Math.random()
-            >
-            .5
-
+            Math.random() > .5
             ?
-
             "#dc0000"
-
             :
-
             "#fff";
 
 
         const dotCount =
             mobile
-                ?
-                8
-                :
-                14;
+            ?
+            8
+            :
+            14;
 
 
         for(
@@ -5337,16 +5105,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* BLOCK */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                8
-                :
-                16
+            ?
+            8
+            :
+            16
         );
         i++
     ){
@@ -5369,17 +5135,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5387,12 +5149,11 @@ function buildStartP5Decor(){
             "--w",
             random(
                 35,
-
                 mobile
-                    ?
-                    130
-                    :
-                    210
+                ?
+                130
+                :
+                210
             )
             +
             "px"
@@ -5458,16 +5219,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* INK */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                5
-                :
-                11
+            ?
+            5
+            :
+            11
         );
         i++
     ){
@@ -5490,17 +5249,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5508,12 +5263,11 @@ function buildStartP5Decor(){
             "--size",
             random(
                 20,
-
                 mobile
-                    ?
-                    58
-                    :
-                    82
+                ?
+                58
+                :
+                82
             )
             +
             "px"
@@ -5522,16 +5276,10 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--c",
-            Math.random()
-            >
-            .42
-
+            Math.random() > .42
             ?
-
             "#dc0000"
-
             :
-
             "#000"
         );
 
@@ -5574,16 +5322,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* FRAGMENT */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                15
-                :
-                34
+            ?
+            15
+            :
+            34
         );
         i++
     ){
@@ -5606,17 +5352,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5701,16 +5443,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* SPEED */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                10
-                :
-                25
+            ?
+            10
+            :
+            25
         );
         i++
     ){
@@ -5733,17 +5473,13 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
@@ -5751,12 +5487,11 @@ function buildStartP5Decor(){
             "--w",
             random(
                 30,
-
                 mobile
-                    ?
-                    145
-                    :
-                    230
+                ?
+                145
+                :
+                230
             )
             +
             "px"
@@ -5776,16 +5511,10 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--c",
-            Math.random()
-            >
-            .52
-
+            Math.random() > .52
             ?
-
             "#fff"
-
             :
-
             "#dc0000"
         );
 
@@ -5839,16 +5568,14 @@ function buildStartP5Decor(){
     }
 
 
-    /* SYMBOL */
-
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                4
-                :
-                8
+            ?
+            4
+            :
+            8
         );
         i++
     ){
@@ -5881,32 +5608,22 @@ function buildStartP5Decor(){
 
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
 
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
 
         el.style.setProperty(
             "--c",
-            Math.random()
-            >
-            .45
-
+            Math.random() > .45
             ?
-
             "#dc0000"
-
             :
-
             "#fff"
         );
 
@@ -5924,12 +5641,11 @@ function buildStartP5Decor(){
             "--size",
             random(
                 18,
-
                 mobile
-                    ?
-                    38
-                    :
-                    55
+                ?
+                38
+                :
+                55
             )
             +
             "px"
@@ -5985,10 +5701,10 @@ function buildCutinShards(){
 
     const count =
         isMobile()
-            ?
-            24
-            :
-            44;
+        ?
+        24
+        :
+        44;
 
 
     for(
@@ -6195,7 +5911,7 @@ function initStartParallax(){
 
 
 /* =========================================================
-   INITIAL CALLING CARDS
+   WATERFALL
 ========================================================= */
 
 function buildRealDenseWaterfall(){
@@ -6318,14 +6034,14 @@ function createCallingCard(
 
     const top =
         initial
-            ?
-            Math.random()
-            *
-            115
-            -
-            15
-            :
-            -18;
+        ?
+        Math.random()
+        *
+        115
+        -
+        15
+        :
+        -18;
 
 
     let duration;
@@ -6453,6 +6169,7 @@ function createCallingCard(
                 letter.remove();
 
             },
+
             duration
             *
             1000
@@ -6466,7 +6183,7 @@ function createCallingCard(
 
 
 /* =========================================================
-   MAIN P5 ELEMENTS
+   MAIN ELEMENTS
 ========================================================= */
 
 function buildP5Elements(){
@@ -6500,50 +6217,50 @@ function buildP5Elements(){
 
     const wordCount =
         mobile
-            ?
-            12
-            :
-            18;
+        ?
+        12
+        :
+        18;
 
 
     const slashCount =
         mobile
-            ?
-            28
-            :
-            42;
+        ?
+        28
+        :
+        42;
 
 
     const speedCount =
         mobile
-            ?
-            36
-            :
-            55;
+        ?
+        36
+        :
+        55;
 
 
     const paperCount =
         mobile
-            ?
-            42
-            :
-            65;
+        ?
+        42
+        :
+        65;
 
 
     const stripCount =
         mobile
-            ?
-            20
-            :
-            30;
+        ?
+        20
+        :
+        30;
 
 
     const inkCount =
         mobile
-            ?
-            16
-            :
-            25;
+        ?
+        16
+        :
+        25;
 
 
     for(
@@ -6821,7 +6538,7 @@ function createSlash(){
 
 
 /* =========================================================
-   SPEED LINE
+   SPEED
 ========================================================= */
 
 function createSpeedLine(){
@@ -6923,7 +6640,7 @@ function createSpeedLine(){
 
 
 /* =========================================================
-   PAPER FRAGMENT
+   PAPER
 ========================================================= */
 
 function createPaperFragment(){
@@ -7044,10 +6761,6 @@ function createPaperFragment(){
 
 }
 
-
-/* =========================================================
-   PAPER STRIP
-========================================================= */
 
 function createPaperStrip(){
 
@@ -7209,14 +6922,14 @@ function createInkSplatter(
 
     splatter.style.top =
         initial
-            ?
-            Math.random()
-            *
-            100
-            +
-            "vh"
-            :
-            "-5vh";
+        ?
+        Math.random()
+        *
+        100
+        +
+        "vh"
+        :
+        "-5vh";
 
 
     splatter.style.setProperty(
@@ -7342,6 +7055,7 @@ function createInkSplatter(
                 splatter.remove();
 
             },
+
             duration
             *
             1000
@@ -7369,38 +7083,28 @@ function triggerImpact(
 
 
     const x =
-
         event
         &&
         Number.isFinite(
             event.clientX
         )
-
         ?
-
         event.clientX
-
         :
-
         window.innerWidth
         /
         2;
 
 
     const y =
-
         event
         &&
         Number.isFinite(
             event.clientY
         )
-
         ?
-
         event.clientY
-
         :
-
         window.innerHeight
         /
         2;
@@ -7525,14 +7229,10 @@ function launchPhantom(
         );
 
 
-    /* CLICK IMPACT */
-
     triggerImpact(
         event
     );
 
-
-    /* AUDIO */
 
     audio.volume =
         1;
@@ -7544,8 +7244,6 @@ function launchPhantom(
             () => {}
         );
 
-
-    /* VIDEO */
 
     video
         .play()
@@ -7586,7 +7284,7 @@ function launchPhantom(
 
     /* =====================================================
        STEP 2
-       MAIN ANIMATION STARTS BEHIND
+       MAIN STARTS BEHIND
     ===================================================== */
 
     setTimeout(
@@ -7634,15 +7332,16 @@ function launchPhantom(
 
     /* =====================================================
        STEP 3
-       MASK + RIP START
+       MASK ONLY
+       沒有任何橫線
     ===================================================== */
 
     const maskStart =
         isMobile()
-            ?
-            720
-            :
-            690;
+        ?
+        720
+        :
+        690;
 
 
     setTimeout(
@@ -7657,14 +7356,13 @@ function launchPhantom(
     );
 
 
-    /* MID IMPACT */
-
     setTimeout(
         () => {
 
             shake();
 
         },
+
         maskStart
         +
         850
@@ -7673,46 +7371,36 @@ function launchPhantom(
 
     /* =====================================================
        STEP 4
-       MASK LEAVES
+       MASK 完全飛出去
+       稍微停一下
     ===================================================== */
 
     const maskDuration =
         isMobile()
-            ?
-            1840
-            :
-            1820;
+        ?
+        1840
+        :
+        1820;
 
 
-    const holdStart =
+    const tearStart =
         maskStart
         +
-        maskDuration;
-
-
-    setTimeout(
-        () => {
-
-            cutin.classList.add(
-                "rip-hold"
-            );
-
-        },
-        holdStart
-    );
+        maskDuration
+        +
+        120;
 
 
     /* =====================================================
        STEP 5
-       TEAR
+       直接撕開
     ===================================================== */
 
     setTimeout(
         () => {
 
             cutin.classList.remove(
-                "enter",
-                "rip-hold"
+                "enter"
             );
 
 
@@ -7724,9 +7412,7 @@ function launchPhantom(
             shake();
 
         },
-        holdStart
-        +
-        150
+        tearStart
     );
 
 
@@ -7741,8 +7427,7 @@ function launchPhantom(
             cutin.classList.remove(
                 "active",
                 "tear",
-                "throw-mask",
-                "rip-hold"
+                "throw-mask"
             );
 
 
@@ -7753,10 +7438,10 @@ function launchPhantom(
         },
 
         isMobile()
-            ?
-            4300
-            :
-            4000
+        ?
+        4200
+        :
+        3950
     );
 
 
@@ -7773,10 +7458,10 @@ function launchPhantom(
             supplementLetter,
 
             mobile
-                ?
-                105
-                :
-                80
+            ?
+            105
+            :
+            80
         );
 
 
@@ -7785,10 +7470,10 @@ function launchPhantom(
             supplementPaper,
 
             mobile
-                ?
-                210
-                :
-                160
+            ?
+            210
+            :
+            160
         );
 
 
@@ -7797,10 +7482,10 @@ function launchPhantom(
             supplementSpeedLine,
 
             mobile
-                ?
-                280
-                :
-                220
+            ?
+            280
+            :
+            220
         );
 
 
@@ -7809,10 +7494,10 @@ function launchPhantom(
             supplementInkSplatter,
 
             mobile
-                ?
-                700
-                :
-                500
+            ?
+            700
+            :
+            500
         );
 
 
@@ -7821,10 +7506,10 @@ function launchPhantom(
             supplementSlash,
 
             mobile
-                ?
-                1200
-                :
-                900
+            ?
+            1200
+            :
+            900
         );
 
 }
@@ -7850,10 +7535,10 @@ function supplementLetter(){
 
     const limit =
         isMobile()
-            ?
-            285
-            :
-            330;
+        ?
+        285
+        :
+        330;
 
 
     if(
@@ -7995,6 +7680,7 @@ function supplementPaper(){
             fragment.remove();
 
         },
+
         duration
         *
         1000
@@ -8107,6 +7793,7 @@ function supplementSpeedLine(){
             line.remove();
 
         },
+
         duration
         *
         1000
@@ -8137,10 +7824,10 @@ function supplementInkSplatter(){
 
     const limit =
         isMobile()
-            ?
-            30
-            :
-            45;
+        ?
+        30
+        :
+        45;
 
 
     if(
