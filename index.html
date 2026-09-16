@@ -135,6 +135,81 @@ body {
         drop-shadow(13px 13px 0 #dc0000);
 }
 
+/*
+   很淡的紅色印刷錯位層
+   不會改變原本 PNG，只是在後面疊一層很淡的紅色版本
+*/
+
+.royal-logo::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        url("take-your-heart.png")
+        center / contain
+        no-repeat;
+
+    pointer-events: none;
+
+    opacity: .16;
+
+    transform:
+        translate(
+            3px,
+            2px
+        );
+
+    mix-blend-mode: screen;
+
+    z-index: -1;
+
+    animation:
+        printShiftRed
+        2.8s
+        ease-in-out
+        infinite;
+}
+
+/*
+   很淡的黑色印刷錯位層
+*/
+
+.royal-logo::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        url("take-your-heart.png")
+        center / contain
+        no-repeat;
+
+    pointer-events: none;
+
+    opacity: .10;
+
+    transform:
+        translate(
+            -2px,
+            -1px
+        );
+
+    mix-blend-mode: multiply;
+
+    z-index: -1;
+
+    animation:
+        printShiftBlack
+        2.8s
+        ease-in-out
+        infinite;
+}
+
 .take-your-heart-img {
     display: block;
 
@@ -191,6 +266,58 @@ body {
 }
 
 /* =========================================================
+   PNG 印刷錯位
+========================================================= */
+
+@keyframes printShiftRed {
+
+    0%,
+    100% {
+        transform:
+            translate(2px, 1px);
+    }
+
+    25% {
+        transform:
+            translate(3px, 2px);
+    }
+
+    50% {
+        transform:
+            translate(1px, 0);
+    }
+
+    75% {
+        transform:
+            translate(3px, 1px);
+    }
+}
+
+@keyframes printShiftBlack {
+
+    0%,
+    100% {
+        transform:
+            translate(-1px, -1px);
+    }
+
+    25% {
+        transform:
+            translate(-2px, 0);
+    }
+
+    50% {
+        transform:
+            translate(0, -1px);
+    }
+
+    75% {
+        transform:
+            translate(-2px, -1px);
+    }
+}
+
+/* =========================================================
    CLICK TO OPEN
    左右三角形：角對角
 ========================================================= */
@@ -242,6 +369,12 @@ body {
 
     transform:
         translateY(-1px);
+
+    animation:
+        arrowLeft
+        1.2s
+        ease-in-out
+        infinite;
 }
 
 /* 右邊：尖角朝左 */
@@ -259,6 +392,12 @@ body {
 
     transform:
         translateY(-1px);
+
+    animation:
+        arrowRight
+        1.2s
+        ease-in-out
+        infinite;
 }
 
 @keyframes clickBlink {
@@ -270,6 +409,50 @@ body {
 
     50% {
         opacity: 1;
+    }
+}
+
+/* 左三角微微往右 */
+
+@keyframes arrowLeft {
+
+    0%,
+    100% {
+        transform:
+            translate(
+                0,
+                -1px
+            );
+    }
+
+    50% {
+        transform:
+            translate(
+                4px,
+                -1px
+            );
+    }
+}
+
+/* 右三角微微往左 */
+
+@keyframes arrowRight {
+
+    0%,
+    100% {
+        transform:
+            translate(
+                0,
+                -1px
+            );
+    }
+
+    50% {
+        transform:
+            translate(
+                -4px,
+                -1px
+            );
     }
 }
 
@@ -316,98 +499,6 @@ body {
             0 5px 5px
             rgba(0,0,0,.4)
         );
-}
-
-/* =========================================================
-   JOKER MASK — 動畫頁掉落
-========================================================= */
-
-.falling-joker {
-
-    position: absolute;
-
-    width: 70px;
-    height: auto;
-
-    object-fit: contain;
-
-    pointer-events: none;
-
-    user-select: none;
-
-    z-index: 17;
-
-    will-change: transform;
-
-    filter:
-        drop-shadow(
-            0 4px 5px
-            rgba(0,0,0,.65)
-        )
-        drop-shadow(
-            5px 5px 0
-            rgba(220,0,0,.35)
-        );
-
-    animation:
-        jokerFall
-        var(--duration)
-        linear
-        infinite;
-}
-
-.falling-joker.far {
-
-    opacity: .22;
-
-    filter:
-        blur(.6px)
-        drop-shadow(
-            0 2px 3px
-            rgba(0,0,0,.35)
-        );
-}
-
-.falling-joker.front {
-
-    opacity: .88;
-
-    z-index: 18;
-
-    filter:
-        drop-shadow(
-            0 6px 7px
-            rgba(0,0,0,.7)
-        )
-        drop-shadow(
-            6px 6px 0
-            rgba(220,0,0,.45)
-        );
-}
-
-@keyframes jokerFall {
-
-    0% {
-
-        transform:
-            translateY(-20vh)
-            rotate(var(--rotation))
-            scale(var(--scale));
-
-    }
-
-    100% {
-
-        transform:
-            translateY(125vh)
-            rotate(
-                calc(
-                    var(--rotation) + var(--spin)
-                )
-            )
-            scale(var(--scale));
-
-    }
 }
 
 /* =========================================================
@@ -595,6 +686,115 @@ body {
 }
 
 /* =========================================================
+   紅色墨跡飛濺
+========================================================= */
+
+.ink-splatter {
+
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: #dc0000;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 17;
+
+    opacity: .72;
+
+    transform:
+        translate(
+            0,
+            0
+        )
+        scale(var(--scale))
+        rotate(var(--rotation));
+
+    animation:
+        inkSplatter
+        var(--duration)
+        ease-out
+        forwards;
+}
+
+.ink-splatter::before,
+.ink-splatter::after {
+
+    content: "";
+
+    position: absolute;
+
+    background: #dc0000;
+
+    border-radius: 50%;
+}
+
+.ink-splatter::before {
+
+    width: 4px;
+    height: 4px;
+
+    left: var(--dot-x);
+    top: var(--dot-y);
+}
+
+.ink-splatter::after {
+
+    width: 3px;
+    height: 3px;
+
+    left: var(--dot-x2);
+    top: var(--dot-y2);
+}
+
+@keyframes inkSplatter {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                0,
+                0
+            )
+            scale(.2)
+            rotate(var(--rotation));
+    }
+
+    12% {
+
+        opacity: .8;
+    }
+
+    70% {
+
+        opacity: .72;
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--move-x),
+                var(--move-y)
+            )
+            scale(var(--scale))
+            rotate(
+                calc(
+                    var(--rotation) + 80deg
+                )
+            );
+    }
+}
+
+/* =========================================================
    VIDEO
 ========================================================= */
 
@@ -674,27 +874,6 @@ body {
 /* =========================================================
    ANIMATIONS
 ========================================================= */
-
-@keyframes maskPulse {
-
-    0% {
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            scale(1.045)
-            rotate(-1deg);
-    }
-
-    100% {
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
-}
 
 @keyframes p5GlobalFall {
 
@@ -958,12 +1137,6 @@ body {
 
     }
 
-    .falling-joker {
-
-        width: 52px;
-
-    }
-
     #bgVideo {
 
         max-width: 94vw;
@@ -978,7 +1151,7 @@ body {
 
 <!-- =====================================================
      START SCREEN
-     注意：這裡沒有 Joker Mask
+     沒有 Joker Mask
 ===================================================== -->
 
 <div
@@ -1068,8 +1241,6 @@ window.addEventListener(
         buildRealDenseWaterfall();
 
         buildP5Elements();
-
-        buildJokerWaterfall();
 
     }
 );
@@ -1264,198 +1435,6 @@ function createCallingCard(
 }
 
 /* =========================================================
-   JOKER MASK 掉落
-========================================================= */
-
-function buildJokerWaterfall() {
-
-    const count = 18;
-
-    for (
-        let i = 0;
-        i < count;
-        i++
-    ) {
-
-        createJokerMask(true);
-
-    }
-}
-
-function createJokerMask(
-    initial = false
-) {
-
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-
-    const joker =
-        document.createElement(
-            "img"
-        );
-
-    joker.className =
-        "falling-joker";
-
-    joker.src =
-        "joker-mask.png";
-
-    joker.alt =
-        "";
-
-    joker.draggable =
-        false;
-
-    const depth =
-        Math.random();
-
-    if (
-        depth < .25
-    ) {
-
-        joker.classList.add(
-            "far"
-        );
-
-    }
-    else if (
-        depth > .72
-    ) {
-
-        joker.classList.add(
-            "front"
-        );
-
-    }
-
-    let size;
-
-    if (
-        depth < .25
-    ) {
-
-        size =
-            Math.floor(
-                Math.random() * 25
-            ) + 35;
-
-    }
-    else if (
-        depth > .72
-    ) {
-
-        size =
-            Math.floor(
-                Math.random() * 45
-            ) + 65;
-
-    }
-    else {
-
-        size =
-            Math.floor(
-                Math.random() * 35
-            ) + 45;
-
-    }
-
-    const left =
-        Math.random() * 96;
-
-    const top =
-        initial
-            ? Math.random() * 115 - 15
-            : -20;
-
-    let duration;
-
-    if (
-        depth < .25
-    ) {
-
-        duration =
-            Math.random() * 4 + 7;
-
-    }
-    else if (
-        depth > .72
-    ) {
-
-        duration =
-            Math.random() * 2.5 + 3.5;
-
-    }
-    else {
-
-        duration =
-            Math.random() * 3 + 4.5;
-
-    }
-
-    const rotation =
-        Math.random() * 70 - 35;
-
-    const spin =
-        Math.random() * 220 - 110;
-
-    const scale =
-        (
-            Math.random() * .35 + .75
-        ).toFixed(2);
-
-    joker.style.width =
-        size + "px";
-
-    joker.style.left =
-        left + "vw";
-
-    joker.style.top =
-        top + "vh";
-
-    joker.style.setProperty(
-        "--rotation",
-        rotation + "deg"
-    );
-
-    joker.style.setProperty(
-        "--spin",
-        spin + "deg"
-    );
-
-    joker.style.setProperty(
-        "--scale",
-        scale
-    );
-
-    joker.dataset.duration =
-        duration;
-
-    container.appendChild(
-        joker
-    );
-
-    if (!initial) {
-
-        joker.style.animation =
-            `jokerFall
-             ${duration}s
-             linear`;
-
-        setTimeout(
-            () => {
-
-                joker.remove();
-
-            },
-            duration * 1000 + 300
-        );
-
-    }
-}
-
-/* =========================================================
    P5 背景
 ========================================================= */
 
@@ -1596,6 +1575,20 @@ function buildP5Elements() {
     ) {
 
         createPaperStrip();
+
+    }
+
+    /*
+       少量紅色墨跡
+    */
+
+    for (
+        let i = 0;
+        i < 18;
+        i++
+    ) {
+
+        createInkSplatter(true);
 
     }
 }
@@ -1884,6 +1877,128 @@ function createPaperStrip() {
 }
 
 /* =========================================================
+   紅色墨跡
+========================================================= */
+
+function createInkSplatter(
+    initial = false
+) {
+
+    const container =
+        document.getElementById(
+            "canvasContainer"
+        );
+
+    const splatter =
+        document.createElement(
+            "div"
+        );
+
+    splatter.className =
+        "ink-splatter";
+
+    const size =
+        Math.random() * 1.4 + .45;
+
+    const rotation =
+        Math.random() * 360;
+
+    const duration =
+        Math.random() * 3 + 2.5;
+
+    splatter.style.left =
+        Math.random() * 100 + "vw";
+
+    splatter.style.top =
+        initial
+            ? Math.random() * 100 + "vh"
+            : "-5vh";
+
+    splatter.style.setProperty(
+        "--scale",
+        size
+    );
+
+    splatter.style.setProperty(
+        "--rotation",
+        rotation + "deg"
+    );
+
+    splatter.style.setProperty(
+        "--move-x",
+        (
+            Math.random() * 100 - 50
+        ) + "px"
+    );
+
+    splatter.style.setProperty(
+        "--move-y",
+        (
+            Math.random() * 160 + 40
+        ) + "px"
+    );
+
+    splatter.style.setProperty(
+        "--dot-x",
+        (
+            Math.random() * 35 - 15
+        ) + "px"
+    );
+
+    splatter.style.setProperty(
+        "--dot-y",
+        (
+            Math.random() * 35 - 15
+        ) + "px"
+    );
+
+    splatter.style.setProperty(
+        "--dot-x2",
+        (
+            Math.random() * 50 - 25
+        ) + "px"
+    );
+
+    splatter.style.setProperty(
+        "--dot-y2",
+        (
+            Math.random() * 50 - 25
+        ) + "px"
+    );
+
+    splatter.style.setProperty(
+        "--duration",
+        duration + "s"
+    );
+
+    if (initial) {
+
+        splatter.style.animationDelay =
+            (
+                Math.random() * -5
+            ) + "s";
+
+    }
+
+    container.appendChild(
+        splatter
+    );
+
+    if (!initial) {
+
+        setTimeout(
+            () => {
+
+                splatter.remove();
+
+            },
+            duration * 1000 + 500
+        );
+
+    }
+}
+
+/* =========================================================
    啟動
 ========================================================= */
 
@@ -1974,26 +2089,6 @@ function launchPhantom() {
                 }
             );
 
-            const jokers =
-                document.querySelectorAll(
-                    ".falling-joker"
-                );
-
-            jokers.forEach(
-                joker => {
-
-                    const duration =
-                        joker.dataset.duration;
-
-                    joker.style.animation =
-                        `jokerFall
-                         ${duration}s
-                         linear
-                         infinite`;
-
-                }
-            );
-
         },
         120
     );
@@ -2005,15 +2100,6 @@ function launchPhantom() {
 
         },
         80
-    );
-
-    setInterval(
-        () => {
-
-            supplementJoker();
-
-        },
-        900
     );
 
     setInterval(
@@ -2032,6 +2118,15 @@ function launchPhantom() {
 
         },
         280
+    );
+
+    setInterval(
+        () => {
+
+            supplementInkSplatter();
+
+        },
+        650
     );
 
     setTimeout(
@@ -2071,33 +2166,6 @@ function supplementLetter() {
     }
 
     createCallingCard(false);
-}
-
-/* =========================================================
-   補充 JOKER MASK
-========================================================= */
-
-function supplementJoker() {
-
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-
-    const jokers =
-        container.querySelectorAll(
-            ".falling-joker"
-        );
-
-    if (
-        jokers.length > 24
-    ) {
-
-        return;
-
-    }
-
-    createJokerMask(false);
 }
 
 /* =========================================================
@@ -2261,6 +2329,33 @@ function supplementSpeedLine() {
         },
         duration * 1000 + 300
     );
+}
+
+/* =========================================================
+   補充紅色墨跡
+========================================================= */
+
+function supplementInkSplatter() {
+
+    const container =
+        document.getElementById(
+            "canvasContainer"
+        );
+
+    const splatters =
+        container.querySelectorAll(
+            ".ink-splatter"
+        );
+
+    if (
+        splatters.length > 35
+    ) {
+
+        return;
+
+    }
+
+    createInkSplatter(false);
 }
 
 </script>
