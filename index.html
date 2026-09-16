@@ -1,495 +1,851 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
-<meta
-    name="viewport"
-    content="width=device-width,
-    initial-scale=1.0,
-    maximum-scale=1.0,
-    user-scalable=no,
-    viewport-fit=cover"
->
-<title>Take Your Heart</title>
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<title>TAKE YOUR HEART</title>
+
 <style>
+
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html,
 body {
+
     width: 100%;
     height: 100%;
-    background: #0b0b0b;
+
     overflow: hidden;
-    position: relative;
+
+    background: #080808;
+
     font-family:
         Impact,
         "Arial Black",
         Arial,
         sans-serif;
 }
+
+
 /* =========================================================
    START SCREEN
 ========================================================= */
+
 #startScreen {
+
     position: fixed;
+
     inset: 0;
-    width: 100%;
-    height: 100%;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 10000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
     background:
         radial-gradient(
             circle at center,
-            #171717 0%,
-            #0d0d0d 45%,
-            #050505 100%
+            #1c1c1c 0%,
+            #0c0c0c 48%,
+            #030303 100%
         );
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    cursor: pointer;
-    overflow: hidden;
+
 }
+
+
 /* =========================================================
-   開場背景斜切裝飾
+   START SCREEN GRAPHICS
 ========================================================= */
+
 .start-slash {
+
     position: absolute;
+
     pointer-events: none;
+
     transform:
         rotate(-12deg)
         skewX(-25deg);
+
 }
+
+
 .start-slash.one {
-    width: 120vw;
-    height: 25px;
+
+    width: 125vw;
+    height: 28px;
+
     top: 18%;
-    left: -20%;
-    background: #dc0000;
-    opacity: .85;
-}
-.start-slash.two {
-    width: 80vw;
-    height: 12px;
-    top: 27%;
-    right: -20%;
-    background: #fff;
-    opacity: .75;
-}
-.start-slash.three {
-    width: 100vw;
-    height: 8px;
-    bottom: 19%;
-    left: -10%;
-    background: #dc0000;
-    opacity: .7;
-}
-.start-slash.four {
-    width: 55vw;
-    height: 35px;
-    bottom: 27%;
-    right: -10%;
-    background: #000;
+
+    left: -15%;
+
+    background: #d90000;
+
     opacity: .9;
+
 }
+
+
+.start-slash.two {
+
+    width: 80vw;
+    height: 10px;
+
+    top: 28%;
+
+    right: -10%;
+
+    background: #fff;
+
+    opacity: .8;
+
+}
+
+
+.start-slash.three {
+
+    width: 110vw;
+    height: 12px;
+
+    bottom: 18%;
+
+    left: -15%;
+
+    background: #d90000;
+
+    opacity: .8;
+
+}
+
+
+.start-slash.four {
+
+    width: 65vw;
+    height: 35px;
+
+    bottom: 27%;
+
+    right: -15%;
+
+    background: #000;
+
+}
+
+
 /* =========================================================
    JOKER MASK
 ========================================================= */
+
 .joker-mask-img {
+
     position: relative;
+
     z-index: 5;
-    width: 140px;
+
+    width: 145px;
+
     height: auto;
-    object-fit: contain;
+
     filter:
         drop-shadow(
-            0 0 10px
-            rgba(255,255,255,.45)
+            0 0 12px
+            rgba(255,255,255,.35)
         )
         drop-shadow(
-            8px 8px 0
-            rgba(220,0,0,.45)
+            9px 9px 0
+            rgba(215,0,0,.5)
         );
+
     animation:
-        maskPulse
-        1.5s
+        maskFloat
+        1.8s
         ease-in-out
         infinite;
+
 }
+
+
 /* =========================================================
-   P5R STYLE LOGO
+   P5R INSPIRED LOGO
 ========================================================= */
+
 .royal-logo {
+
     position: relative;
+
     z-index: 6;
-    width: 390px;
-    height: 170px;
-    margin-top: 42px;
+
+    width: 410px;
+
+    height: 175px;
+
+    margin-top: 38px;
+
     transform:
         rotate(-7deg)
         skewX(-8deg);
-    user-select: none;
+
     filter:
         drop-shadow(
-            8px 8px 0 #dc0000
+            9px 9px 0 #d90000
         );
+
+    user-select: none;
+
 }
-/* =========================================================
-   TAKE
-========================================================= */
+
+
+/* TAKE */
+
 .royal-take {
+
     position: absolute;
-    top: 0;
+
     left: 5px;
-    font-size: 68px;
-    line-height: .8;
-    letter-spacing: -7px;
+
+    top: 0;
+
     color: #fff;
+
+    font-size: 72px;
+
+    line-height: .8;
+
+    letter-spacing: -8px;
+
     -webkit-text-stroke:
         5px #000;
+
     text-shadow:
         7px 7px 0 #000;
-    transform:
-        rotate(-3deg);
+
 }
-/* =========================================================
-   YOUR
-========================================================= */
+
+
+/* YOUR */
+
 .royal-your {
+
     position: absolute;
-    top: 46px;
+
     left: 105px;
+
+    top: 48px;
+
     z-index: 3;
+
     padding:
-        5px 13px
-        3px 10px;
-    font-size: 62px;
-    line-height: .78;
-    letter-spacing: -7px;
+        5px 14px
+        4px 11px;
+
     color: #000;
+
     background: #fff;
-    border:
-        4px solid #000;
+
+    border: 4px solid #000;
+
+    font-size: 64px;
+
+    line-height: .75;
+
+    letter-spacing: -8px;
+
     box-shadow:
-        8px 8px 0 #dc0000;
+        8px 8px 0 #d90000;
+
     transform:
         rotate(3deg)
         skewX(-15deg);
+
 }
-/* =========================================================
-   HEART
-========================================================= */
+
+
+/* HEART */
+
 .royal-heart {
+
     position: absolute;
-    top: 96px;
+
     left: 38px;
-    font-size: 67px;
-    line-height: .8;
-    letter-spacing: -7px;
+
+    top: 102px;
+
     color: #fff;
+
+    font-size: 70px;
+
+    line-height: .8;
+
+    letter-spacing: -8px;
+
     -webkit-text-stroke:
         5px #000;
+
     text-shadow:
         7px 7px 0 #000;
-    transform:
-        rotate(-4deg);
+
 }
-/* =========================================================
-   LOGO 紅色爆裂條
-========================================================= */
+
+
+/* LOGO DECORATIONS */
+
 .royal-logo::before {
+
     content: "";
+
     position: absolute;
-    z-index: -1;
-    width: 230px;
+
+    width: 245px;
     height: 14px;
-    top: 30px;
+
     right: -35px;
-    background: #dc0000;
+    top: 29px;
+
+    z-index: -1;
+
+    background: #d90000;
+
     transform:
-        rotate(-16deg)
-        skewX(-35deg);
-}
-/* =========================================================
-   LOGO 黑色切線
-========================================================= */
-.royal-logo::after {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    width: 285px;
-    height: 10px;
-    bottom: 3px;
-    left: -10px;
-    background: #000;
-    transform:
-        rotate(-5deg)
+        rotate(-15deg)
         skewX(-30deg);
+
 }
-/* =========================================================
-   LOGO 小型爆裂線
-========================================================= */
-.logo-burst {
+
+
+.royal-logo::after {
+
+    content: "";
+
     position: absolute;
-    z-index: 2;
-    background: #dc0000;
+
+    width: 300px;
+    height: 9px;
+
+    left: -10px;
+    bottom: 0;
+
+    z-index: -2;
+
+    background: #000;
+
     transform:
-        rotate(-20deg);
+        rotate(-6deg)
+        skewX(-30deg);
+
 }
+
+
+/* =========================================================
+   LOGO BURST
+========================================================= */
+
+.logo-burst {
+
+    position: absolute;
+
+    z-index: 8;
+
+    background: #d90000;
+
+}
+
+
 .logo-burst.a {
-    width: 70px;
+
+    width: 75px;
     height: 7px;
+
     top: 5px;
     right: 5px;
-}
-.logo-burst.b {
-    width: 45px;
-    height: 5px;
-    top: 20px;
-    right: -18px;
+
     transform:
-        rotate(18deg);
+        rotate(-20deg);
+
 }
+
+
+.logo-burst.b {
+
+    width: 50px;
+    height: 5px;
+
+    top: 22px;
+    right: -20px;
+
+    transform:
+        rotate(20deg);
+
+}
+
+
 .logo-burst.c {
+
     width: 60px;
     height: 6px;
-    bottom: 25px;
+
+    bottom: 24px;
     left: -20px;
+
     transform:
         rotate(12deg);
+
 }
+
+
 /* =========================================================
    CLICK TEXT
 ========================================================= */
+
 .sub-txt {
+
     position: relative;
-    z-index: 7;
-    margin-top: 18px;
+
+    z-index: 8;
+
+    margin-top: 20px;
+
     color: #fff;
-    font-size: 12px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
     font-weight: 900;
+
     letter-spacing: 5px;
-    text-transform: uppercase;
-    transform:
-        rotate(-3deg);
+
     animation:
         blink
         1.2s
         infinite;
+
 }
+
+
 .sub-txt::before {
+
     content: "///";
-    color: #dc0000;
-    margin-right: 10px;
+
+    color: #d90000;
+
+    margin-right: 9px;
+
 }
+
+
 .sub-txt::after {
+
     content: "///";
-    color: #dc0000;
-    margin-left: 10px;
+
+    color: #d90000;
+
+    margin-left: 9px;
+
 }
+
+
+.click-arrow {
+
+    position: relative;
+
+    z-index: 8;
+
+    margin-top: 7px;
+
+    color: #d90000;
+
+    font-size: 15px;
+
+    animation:
+        arrowMove
+        .8s
+        ease-in-out
+        infinite;
+
+}
+
+
 /* =========================================================
-   背景主容器
+   MAIN BACKGROUND
 ========================================================= */
+
 #canvasContainer {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
+
     width: 100vw;
     height: 100vh;
+
     z-index: 10;
+
     overflow: hidden;
-    background: #0b0b0b;
+
+    background: #d90000;
+
 }
-.bg-red-active {
-    background-color:
-        #dc0000 !important;
-}
+
+
 /* =========================================================
-   預告信
+   CALLING CARDS
 ========================================================= */
+
 .falling-letter {
+
     position: absolute;
+
+    width: 50px;
+    height: 65px;
+
     background-image:
         url("cover.png");
+
     background-size: contain;
+
+    background-position: center;
+
     background-repeat: no-repeat;
+
     pointer-events: none;
-    will-change: transform;
-    opacity: .42;
-    z-index: 10;
+
+    will-change:
+        transform;
+
+    animation:
+        fallingCard
+        linear
+        infinite;
+
+    z-index: 20;
+
 }
+
+
 .falling-letter.far {
-    opacity: .17;
+
+    opacity: .18;
+
     filter:
-        blur(.4px);
+        blur(.7px);
+
 }
+
+
+.falling-letter.mid {
+
+    opacity: .42;
+
+}
+
+
 .falling-letter.front {
-    opacity: .67;
-    z-index: 16;
+
+    opacity: .78;
+
+    z-index: 50;
+
     filter:
         drop-shadow(
-            0 5px 5px
-            rgba(0,0,0,.4)
+            0 5px 6px
+            rgba(0,0,0,.45)
         );
+
 }
+
+
 /* =========================================================
-   巨型預告文字
+   GIANT P5 WORDS
 ========================================================= */
+
 .p5-word {
+
     position: absolute;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    color:
+        rgba(0,0,0,.20);
+
     font-family:
         Impact,
         "Arial Black",
         sans-serif;
+
     font-weight: 900;
-    white-space: nowrap;
-    pointer-events: none;
-    user-select: none;
+
     letter-spacing: 3px;
-    color:
-        rgba(0,0,0,.19);
-    z-index: 11;
+
+    z-index: 15;
+
     transform:
         rotate(var(--rotation));
+
     animation:
         wordFloat
         var(--duration)
         ease-in-out
         infinite;
+
 }
+
+
 .p5-word.white {
+
     color:
-        rgba(255,255,255,.18);
+        rgba(255,255,255,.22);
+
 }
+
+
 .p5-word.red {
+
     color:
-        rgba(255,255,255,.30);
+        rgba(255,255,255,.35);
+
     text-shadow:
-        5px 5px 0
+        6px 6px 0
         rgba(0,0,0,.3);
+
 }
+
+
 /* =========================================================
-   P5 斜切塊
+   SLASH BLOCKS
 ========================================================= */
+
 .p5-slash {
+
     position: absolute;
+
     pointer-events: none;
+
+    z-index: 18;
+
     transform:
-        skewX(-25deg)
-        rotate(-8deg);
-    z-index: 13;
-    opacity: .7;
+        rotate(-8deg)
+        skewX(-25deg);
+
     animation:
         slashFloat
         var(--duration)
         ease-in-out
         infinite;
+
 }
+
+
 .p5-slash.black {
+
     background: #050505;
+
 }
+
+
 .p5-slash.white {
+
     background: #fff;
+
 }
+
+
 .p5-slash.red {
-    background: #dc0000;
+
+    background: #d90000;
+
 }
+
+
 /* =========================================================
-   SPEED LINE
+   SPEED LINES
 ========================================================= */
+
 .speed-line {
+
     position: absolute;
+
     height: 4px;
-    background: #050505;
+
     pointer-events: none;
-    z-index: 15;
+
+    z-index: 25;
+
+    background: #050505;
+
     transform:
         rotate(var(--angle));
+
     animation:
         speedMove
         var(--duration)
         linear
         infinite;
+
 }
+
+
 .speed-line.white {
+
     background: #fff;
+
 }
+
+
 /* =========================================================
-   紙張碎片
+   PAPER
 ========================================================= */
+
 .paper-fragment {
+
     position: absolute;
+
     pointer-events: none;
-    z-index: 14;
+
+    z-index: 30;
+
     background: #fff;
+
     transform:
         rotate(var(--rotation));
+
     animation:
         paperFall
         var(--duration)
         linear
         infinite;
+
 }
+
+
 .paper-fragment.black {
+
     background: #080808;
+
 }
+
+
 .paper-fragment.red {
-    background: #dc0000;
+
+    background: #d90000;
+
 }
-/* =========================================================
-   紙條
-========================================================= */
+
+
 .paper-strip {
+
     position: absolute;
+
     pointer-events: none;
-    z-index: 12;
+
+    z-index: 17;
+
     background:
         rgba(255,255,255,.75);
+
     transform:
         rotate(var(--rotation))
         skewX(-25deg);
+
     animation:
         stripMove
         var(--duration)
         ease-in-out
         infinite;
+
 }
+
+
 .paper-strip.black {
+
     background:
-        rgba(0,0,0,.55);
+        rgba(0,0,0,.7);
+
 }
+
+
 /* =========================================================
    VIDEO
 ========================================================= */
+
 #videoContainer {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
+
     width: 100vw;
     height: 100vh;
+
     z-index: 999;
-    justify-content: center;
+
     align-items: center;
+
+    justify-content: center;
+
     pointer-events: none;
+
 }
+
+
 #bgVideo {
+
+    width: auto;
+
+    height: auto;
+
     max-width: 88vw;
+
     max-height: 80vh;
+
     object-fit: contain;
+
     filter:
         drop-shadow(
-            0 0 45px
+            0 0 40px
             rgba(0,0,0,.95)
         );
+
     animation:
-        popIn
-        .35s
+        videoAppear
+        .4s
         cubic-bezier(
             .175,
             .885,
@@ -497,293 +853,554 @@ body {
             1.275
         )
         forwards;
+
 }
+
+
 /* =========================================================
    FLASH
 ========================================================= */
+
 #flashOverlay {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
-    width: 100%;
-    height: 100%;
+
+    width: 100vw;
+    height: 100vh;
+
     z-index: 99999;
+
+    pointer-events: none;
+
 }
+
+
 .flash-animate {
+
     display: block !important;
+
     animation:
         flashEffect
-        .35s
+        .42s
         ease-out
         forwards;
+
 }
+
+
 /* =========================================================
    ANIMATIONS
 ========================================================= */
-@keyframes maskPulse {
+
+@keyframes maskFloat {
+
     0% {
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
-    50% {
-        transform:
-            scale(1.045)
-            rotate(-1deg);
-    }
-    100% {
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
-}
-@keyframes p5GlobalFall {
-    0% {
+
         transform:
             translateY(0)
-            rotate(var(--rot))
-            scale(var(--sc));
+            rotate(0deg);
+
     }
-    100% {
+
+    50% {
+
         transform:
-            translateY(120vh)
+            translateY(-7px)
+            rotate(-2deg);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+}
+
+
+@keyframes blink {
+
+    0%,
+    100% {
+
+        opacity: .3;
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes arrowMove {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+        opacity: .35;
+
+    }
+
+    50% {
+
+        transform:
+            translateY(6px);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes fallingCard {
+
+    0% {
+
+        transform:
+            translateY(-20vh)
+            rotate(var(--rotation))
+            scale(var(--scale));
+
+    }
+
+    100% {
+
+        transform:
+            translateY(125vh)
             rotate(
                 calc(
-                    var(--rot) + 120deg
+                    var(--rotation)
+                    + 360deg
                 )
             )
-            scale(var(--sc));
+            scale(var(--scale));
+
     }
+
 }
+
+
 @keyframes wordFloat {
+
     0% {
+
         transform:
             translateY(0)
             rotate(var(--rotation));
+
     }
+
     50% {
+
         transform:
             translateY(-15px)
             rotate(var(--rotation));
+
     }
+
     100% {
+
         transform:
             translateY(0)
             rotate(var(--rotation));
+
     }
+
 }
+
+
 @keyframes slashFloat {
+
     0% {
+
         transform:
             translateX(-20px)
-            skewX(-25deg)
-            rotate(-8deg);
+            rotate(-8deg)
+            skewX(-25deg);
+
     }
+
     50% {
+
         transform:
-            translateX(20px)
-            skewX(-25deg)
-            rotate(-8deg);
+            translateX(25px)
+            rotate(-8deg)
+            skewX(-25deg);
+
     }
+
     100% {
+
         transform:
             translateX(-20px)
-            skewX(-25deg)
-            rotate(-8deg);
+            rotate(-8deg)
+            skewX(-25deg);
+
     }
+
 }
+
+
 @keyframes speedMove {
+
     0% {
+
         transform:
-            translateX(-35vw)
+            translateX(-30vw)
             rotate(var(--angle));
+
     }
+
     100% {
+
         transform:
             translateX(140vw)
             rotate(var(--angle));
+
     }
+
 }
+
+
 @keyframes paperFall {
+
     0% {
+
         transform:
             translateY(-20vh)
             translateX(0)
             rotate(var(--rotation));
+
     }
+
     50% {
+
         transform:
             translateY(50vh)
-            translateX(30px)
+            translateX(35px)
             rotate(
                 calc(
-                    var(--rotation) + 120deg
+                    var(--rotation)
+                    + 120deg
                 )
             );
+
     }
+
     100% {
+
         transform:
-            translateY(120vh)
-            translateX(-30px)
+            translateY(125vh)
+            translateX(-35px)
             rotate(
                 calc(
-                    var(--rotation) + 300deg
+                    var(--rotation)
+                    + 300deg
                 )
             );
+
     }
+
 }
+
+
 @keyframes stripMove {
+
     0% {
+
         transform:
-            translateX(-20px)
+            translateX(-25px)
             rotate(var(--rotation))
             skewX(-25deg);
+
     }
+
     50% {
+
         transform:
             translateX(30px)
             rotate(var(--rotation))
             skewX(-25deg);
+
     }
+
     100% {
+
         transform:
-            translateX(-20px)
+            translateX(-25px)
             rotate(var(--rotation))
             skewX(-25deg);
+
     }
+
 }
-@keyframes popIn {
+
+
+@keyframes videoAppear {
+
     0% {
-        transform:
-            scale(.9);
+
         opacity: 0;
-    }
-    100% {
+
         transform:
-            scale(1);
-        opacity: 1;
+            scale(.82)
+            rotate(-2deg);
+
     }
-}
-@keyframes blink {
-    0%,
+
     100% {
-        opacity: .25;
-    }
-    50% {
+
         opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
     }
+
 }
+
+
 @keyframes flashEffect {
+
     0% {
+
         background: #fff;
+
         opacity: 1;
+
     }
-    25% {
-        background: #dc0000;
+
+    20% {
+
+        background: #d90000;
+
         opacity: 1;
+
     }
-    50% {
+
+    40% {
+
         background: #fff;
+
         opacity: 1;
+
     }
-    75% {
-        background: #000;
+
+    65% {
+
+        background: #050505;
+
         opacity: 1;
+
     }
+
     100% {
+
         opacity: 0;
-        display: none;
+
     }
+
 }
+
+
 /* =========================================================
    MOBILE
 ========================================================= */
+
 @media (max-width: 600px) {
+
     .joker-mask-img {
+
         width: 115px;
+
     }
+
+
     .royal-logo {
-        width: 310px;
-        height: 140px;
-        margin-top: 35px;
+
+        width: 320px;
+
+        height: 145px;
+
         transform:
-            scale(.85)
+            scale(.82)
             rotate(-7deg)
             skewX(-8deg);
+
+        margin-top: 30px;
+
     }
+
+
     .royal-take {
-        font-size: 57px;
+
+        font-size: 58px;
+
     }
+
+
     .royal-your {
-        top: 39px;
-        left: 82px;
-        font-size: 52px;
+
+        left: 84px;
+
+        top: 40px;
+
+        font-size: 53px;
+
     }
+
+
     .royal-heart {
-        top: 82px;
+
         left: 30px;
-        font-size: 57px;
+
+        top: 85px;
+
+        font-size: 58px;
+
     }
+
+
     .sub-txt {
+
         font-size: 9px;
+
         letter-spacing: 3px;
+
     }
+
+
     #bgVideo {
+
         max-width: 94vw;
+
         max-height: 72vh;
+
     }
+
 }
+
 </style>
+
 </head>
+
+
 <body>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<audio
+    id="audio"
+    src="music.mp3"
+    loop
+    preload="auto">
+</audio>
+
+
 <!-- =====================================================
      START SCREEN
 ===================================================== -->
+
 <div
     id="startScreen"
     onclick="launchPhantom()">
-    <!-- 背景切割 -->
+
+
     <div class="start-slash one"></div>
+
     <div class="start-slash two"></div>
+
     <div class="start-slash three"></div>
+
     <div class="start-slash four"></div>
-    <!-- Joker -->
+
+
     <img
         src="joker-mask.png"
         class="joker-mask-img"
         alt="Joker Mask">
-    <!-- P5R STYLE LOGO -->
+
+
+    <!-- =================================================
+         P5R STYLE LOGO
+    ================================================== -->
+
     <div class="royal-logo">
+
         <div class="royal-take">
             TAKE
         </div>
+
         <div class="royal-your">
             YOUR
         </div>
+
         <div class="royal-heart">
             HEART
         </div>
+
+
         <div class="logo-burst a"></div>
+
         <div class="logo-burst b"></div>
+
         <div class="logo-burst c"></div>
+
     </div>
-    <!-- 點擊提示 -->
+
+
     <div class="sub-txt">
-        CLICK TO OPEN THE CALLING CARD
+        CLICK TO OPEN
     </div>
+
+
+    <div class="click-arrow">
+        ▼
+    </div>
+
+
 </div>
+
+
 <!-- =====================================================
      FLASH
 ===================================================== -->
+
 <div id="flashOverlay"></div>
+
+
 <!-- =====================================================
-     BACKGROUND
+     CALLING CARD BACKGROUND
 ===================================================== -->
+
 <div id="canvasContainer"></div>
+
+
 <!-- =====================================================
-     VIDEO
+     CENTER VIDEO
 ===================================================== -->
+
 <div id="videoContainer">
+
     <video
         id="bgVideo"
         src="bg-animation.mp4"
@@ -792,167 +1409,215 @@ body {
         playsinline
         preload="auto">
     </video>
+
 </div>
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+
+
 <script>
+
 /* =========================================================
-   DOM READY
+   DOM
 ========================================================= */
-window.addEventListener(
-    "DOMContentLoaded",
-    () => {
-        buildRealDenseWaterfall();
-        buildP5Elements();
-    }
-);
+
+const canvas =
+    document.getElementById(
+        "canvasContainer"
+    );
+
+
 /* =========================================================
-   大量預告信
+   INITIAL CALLING CARDS
 ========================================================= */
-function buildRealDenseWaterfall() {
-    const count = 220;
+
+function createInitialCards() {
+
     for (
         let i = 0;
-        i < count;
+        i < 220;
         i++
     ) {
+
         createCallingCard(true);
+
     }
+
 }
+
+
 /* =========================================================
-   預告信
+   CREATE CALLING CARD
 ========================================================= */
-function createCallingCard(
-    initial = false
-) {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const letter =
+
+function createCallingCard(initial) {
+
+    const card =
         document.createElement(
             "div"
         );
-    letter.className =
+
+
+    card.className =
         "falling-letter";
+
+
     const depth =
         Math.random();
+
+
     if (
         depth < .25
     ) {
-        letter.classList.add(
+
+        card.classList.add(
             "far"
         );
+
     }
+
     else if (
-        depth > .78
+        depth < .78
     ) {
-        letter.classList.add(
+
+        card.classList.add(
+            "mid"
+        );
+
+    }
+
+    else {
+
+        card.classList.add(
             "front"
         );
+
     }
-    let sizeWidth;
+
+
+    let width;
+
+
     if (
         depth < .25
     ) {
-        sizeWidth =
-            Math.floor(
-                Math.random() * 30
-            ) + 22;
+
+        width =
+            Math.random() * 30 + 22;
+
     }
+
     else if (
         depth > .78
     ) {
-        sizeWidth =
-            Math.floor(
-                Math.random() * 80
-            ) + 55;
+
+        width =
+            Math.random() * 70 + 55;
+
     }
+
     else {
-        sizeWidth =
-            Math.floor(
-                Math.random() * 55
-            ) + 30;
+
+        width =
+            Math.random() * 50 + 30;
+
     }
-    const sizeHeight =
-        sizeWidth * 1.3;
-    const left =
-        Math.random() * 96;
-    const top =
-        initial
-            ? Math.random() * 115 - 15
-            : -18;
-    let duration;
-    if (
-        depth < .25
-    ) {
-        duration =
-            Math.random() * 4 + 6;
-    }
-    else if (
-        depth > .78
-    ) {
-        duration =
-            Math.random() * 2 + 2.5;
-    }
-    else {
-        duration =
-            Math.random() * 3 + 3;
-    }
+
+
+    const height =
+        width * 1.3;
+
+
     const rotation =
         Math.random() * 100 - 50;
+
+
     const scale =
-        (
-            Math.random() * .45 + .55
-        ).toFixed(2);
-    letter.style.width =
-        sizeWidth + "px";
-    letter.style.height =
-        sizeHeight + "px";
-    letter.style.left =
-        left + "vw";
-    letter.style.top =
-        top + "vh";
-    letter.style.setProperty(
-        "--rot",
+        Math.random() * .45 + .55;
+
+
+    const duration =
+        Math.random() * 3 + 3;
+
+
+    card.style.width =
+        width + "px";
+
+
+    card.style.height =
+        height + "px";
+
+
+    card.style.left =
+        Math.random() * 100 + "vw";
+
+
+    card.style.top =
+        initial
+            ? Math.random() * 115 - 15 + "vh"
+            : "-20vh";
+
+
+    card.style.setProperty(
+        "--rotation",
         rotation + "deg"
     );
-    letter.style.setProperty(
-        "--sc",
+
+
+    card.style.setProperty(
+        "--scale",
         scale
     );
-    letter.style.transform =
-        `rotate(${rotation}deg)
-         scale(${scale})`;
-    letter.dataset.duration =
-        duration;
-    container.appendChild(
-        letter
-    );
+
+
+    card.style.animationDuration =
+        duration + "s";
+
+
     if (!initial) {
-        letter.style.animation =
-            `p5GlobalFall
-             ${duration}s
-             linear`;
+
+        card.style.animationDelay =
+            "0s";
+
+    }
+
+    else {
+
+        card.style.animationDelay =
+            (
+                Math.random() * -6
+            ) + "s";
+
+    }
+
+
+    canvas.appendChild(
+        card
+    );
+
+
+    if (!initial) {
+
         setTimeout(
             () => {
-                letter.remove();
+
+                card.remove();
+
             },
-            duration * 1000 + 200
+            duration * 1000 + 500
         );
+
     }
+
 }
+
+
 /* =========================================================
-   P5 背景
+   GIANT WORDS
 ========================================================= */
-function buildP5Elements() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    /* 巨型文字 */
+
+function createWords() {
+
     const words = [
+
         "TAKE YOUR HEART",
         "PHANTOM",
         "CALLING CARD",
@@ -964,18 +1629,26 @@ function buildP5Elements() {
         "TAKE YOUR HEART",
         "NOTICE",
         "PHANTOM"
+
     ];
+
+
     for (
         let i = 0;
-        i < 15;
+        i < 16;
         i++
     ) {
+
         const word =
             document.createElement(
                 "div"
             );
+
+
         word.className =
             "p5-word";
+
+
         word.textContent =
             words[
                 Math.floor(
@@ -983,538 +1656,765 @@ function buildP5Elements() {
                     * words.length
                 )
             ];
-        const size =
-            Math.floor(
-                Math.random() * 75
-            ) + 30;
+
+
         word.style.fontSize =
-            size + "px";
+            (
+                Math.random() * 70 + 30
+            ) + "px";
+
+
         word.style.left =
-            Math.random() * 100 + "vw";
+            (
+                Math.random() * 100
+            ) + "vw";
+
+
         word.style.top =
-            Math.random() * 105 + "vh";
+            (
+                Math.random() * 105
+            ) + "vh";
+
+
         word.style.setProperty(
             "--rotation",
             (
                 Math.random() * 18 - 9
             ) + "deg"
         );
+
+
         word.style.setProperty(
             "--duration",
             (
                 Math.random() * 4 + 4
             ) + "s"
         );
+
+
         const type =
             Math.random();
+
+
         if (
             type < .25
         ) {
+
             word.classList.add(
                 "white"
             );
+
         }
+
         else if (
             type < .45
         ) {
+
             word.classList.add(
                 "red"
             );
+
         }
-        container.appendChild(
+
+
+        canvas.appendChild(
             word
         );
+
     }
-    /* 斜切塊 */
+
+}
+
+
+/* =========================================================
+   SLASHES
+========================================================= */
+
+function createSlashes() {
+
     for (
         let i = 0;
-        i < 35;
+        i < 38;
         i++
     ) {
-        createSlash();
+
+        const slash =
+            document.createElement(
+                "div"
+            );
+
+
+        slash.className =
+            "p5-slash";
+
+
+        const type =
+            Math.random();
+
+
+        if (
+            type < .5
+        ) {
+
+            slash.classList.add(
+                "black"
+            );
+
+        }
+
+        else if (
+            type < .75
+        ) {
+
+            slash.classList.add(
+                "white"
+            );
+
+        }
+
+        else {
+
+            slash.classList.add(
+                "red"
+            );
+
+        }
+
+
+        slash.style.width =
+            (
+                Math.random() * 220 + 50
+            ) + "px";
+
+
+        slash.style.height =
+            (
+                Math.random() * 24 + 5
+            ) + "px";
+
+
+        slash.style.left =
+            (
+                Math.random() * 110 - 5
+            ) + "vw";
+
+
+        slash.style.top =
+            (
+                Math.random() * 110 - 5
+            ) + "vh";
+
+
+        slash.style.setProperty(
+            "--duration",
+            (
+                Math.random() * 3 + 3
+            ) + "s"
+        );
+
+
+        canvas.appendChild(
+            slash
+        );
+
     }
-    /* 速度線 */
+
+}
+
+
+/* =========================================================
+   SPEED LINES
+========================================================= */
+
+function createSpeedLines() {
+
     for (
         let i = 0;
-        i < 45;
+        i < 50;
         i++
     ) {
-        createSpeedLine();
+
+        const line =
+            document.createElement(
+                "div"
+            );
+
+
+        line.className =
+            "speed-line";
+
+
+        if (
+            Math.random() > .72
+        ) {
+
+            line.classList.add(
+                "white"
+            );
+
+        }
+
+
+        line.style.width =
+            (
+                Math.random() * 180 + 40
+            ) + "px";
+
+
+        line.style.left =
+            (
+                Math.random() * 100
+            ) + "vw";
+
+
+        line.style.top =
+            (
+                Math.random() * 100
+            ) + "vh";
+
+
+        line.style.setProperty(
+            "--angle",
+            (
+                Math.random() * 35 - 25
+            ) + "deg"
+        );
+
+
+        line.style.setProperty(
+            "--duration",
+            (
+                Math.random() * 1.8 + .8
+            ) + "s"
+        );
+
+
+        line.style.animationDelay =
+            (
+                Math.random() * -4
+            ) + "s";
+
+
+        canvas.appendChild(
+            line
+        );
+
     }
-    /* 紙片 */
+
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+function createPaper() {
+
     for (
         let i = 0;
-        i < 55;
+        i < 70;
         i++
     ) {
-        createPaperFragment();
+
+        const paper =
+            document.createElement(
+                "div"
+            );
+
+
+        paper.className =
+            "paper-fragment";
+
+
+        const type =
+            Math.random();
+
+
+        if (
+            type < .5
+        ) {
+
+            paper.classList.add(
+                "black"
+            );
+
+        }
+
+        else if (
+            type < .7
+        ) {
+
+            paper.classList.add(
+                "red"
+            );
+
+        }
+
+
+        paper.style.width =
+            (
+                Math.random() * 35 + 8
+            ) + "px";
+
+
+        paper.style.height =
+            (
+                Math.random() * 15 + 4
+            ) + "px";
+
+
+        paper.style.left =
+            Math.random() * 100 + "vw";
+
+
+        paper.style.top =
+            Math.random() * 100 + "vh";
+
+
+        paper.style.setProperty(
+            "--rotation",
+            Math.random() * 180 + "deg"
+        );
+
+
+        paper.style.setProperty(
+            "--duration",
+            (
+                Math.random() * 4 + 4
+            ) + "s"
+        );
+
+
+        paper.style.animationDelay =
+            (
+                Math.random() * -8
+            ) + "s";
+
+
+        canvas.appendChild(
+            paper
+        );
+
     }
-    /* 紙條 */
+
+}
+
+
+/* =========================================================
+   PAPER STRIPS
+========================================================= */
+
+function createStrips() {
+
     for (
         let i = 0;
-        i < 25;
+        i < 28;
         i++
     ) {
-        createPaperStrip();
+
+        const strip =
+            document.createElement(
+                "div"
+            );
+
+
+        strip.className =
+            "paper-strip";
+
+
+        if (
+            Math.random() > .5
+        ) {
+
+            strip.classList.add(
+                "black"
+            );
+
+        }
+
+
+        strip.style.width =
+            (
+                Math.random() * 150 + 30
+            ) + "px";
+
+
+        strip.style.height =
+            (
+                Math.random() * 12 + 4
+            ) + "px";
+
+
+        strip.style.left =
+            (
+                Math.random() * 110 - 5
+            ) + "vw";
+
+
+        strip.style.top =
+            Math.random() * 100 + "vh";
+
+
+        strip.style.setProperty(
+            "--rotation",
+            (
+                Math.random() * 40 - 20
+            ) + "deg"
+        );
+
+
+        strip.style.setProperty(
+            "--duration",
+            (
+                Math.random() * 4 + 3
+            ) + "s"
+        );
+
+
+        canvas.appendChild(
+            strip
+        );
+
     }
+
 }
+
+
 /* =========================================================
-   斜切塊
+   START EVERYTHING
 ========================================================= */
-function createSlash() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const slash =
-        document.createElement(
-            "div"
-        );
-    slash.className =
-        "p5-slash";
-    const type =
-        Math.random();
-    if (
-        type < .55
-    ) {
-        slash.classList.add(
-            "black"
-        );
-    }
-    else if (
-        type < .78
-    ) {
-        slash.classList.add(
-            "white"
-        );
-    }
-    else {
-        slash.classList.add(
-            "red"
-        );
-    }
-    slash.style.width =
-        Math.floor(
-            Math.random() * 200
-        ) + 50 + "px";
-    slash.style.height =
-        Math.floor(
-            Math.random() * 25
-        ) + 5 + "px";
-    slash.style.left =
-        Math.random() * 110 - 5 + "vw";
-    slash.style.top =
-        Math.random() * 110 - 5 + "vh";
-    slash.style.setProperty(
-        "--duration",
-        (
-            Math.random() * 3 + 3
-        ) + "s"
-    );
-    container.appendChild(
-        slash
-    );
-}
+
+createInitialCards();
+
+createWords();
+
+createSlashes();
+
+createSpeedLines();
+
+createPaper();
+
+createStrips();
+
+
 /* =========================================================
-   速度線
+   LAUNCH
 ========================================================= */
-function createSpeedLine() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const line =
-        document.createElement(
-            "div"
-        );
-    line.className =
-        "speed-line";
-    if (
-        Math.random() > .72
-    ) {
-        line.classList.add(
-            "white"
-        );
-    }
-    line.style.width =
-        Math.floor(
-            Math.random() * 180
-        ) + 40 + "px";
-    line.style.left =
-        Math.random() * 100 + "vw";
-    line.style.top =
-        Math.random() * 100 + "vh";
-    line.style.setProperty(
-        "--angle",
-        (
-            Math.random() * 35 - 25
-        ) + "deg"
-    );
-    line.style.setProperty(
-        "--duration",
-        (
-            Math.random() * 1.8 + .8
-        ) + "s"
-    );
-    line.style.animationDelay =
-        (
-            Math.random() * -4
-        ) + "s";
-    container.appendChild(
-        line
-    );
-}
-/* =========================================================
-   紙片
-========================================================= */
-function createPaperFragment() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const fragment =
-        document.createElement(
-            "div"
-        );
-    fragment.className =
-        "paper-fragment";
-    const type =
-        Math.random();
-    if (
-        type < .55
-    ) {
-        fragment.classList.add(
-            "black"
-        );
-    }
-    else if (
-        type < .72
-    ) {
-        fragment.classList.add(
-            "red"
-        );
-    }
-    fragment.style.width =
-        Math.floor(
-            Math.random() * 35
-        ) + 8 + "px";
-    fragment.style.height =
-        Math.floor(
-            Math.random() * 15
-        ) + 4 + "px";
-    fragment.style.left =
-        Math.random() * 100 + "vw";
-    fragment.style.top =
-        Math.random() * 100 + "vh";
-    fragment.style.setProperty(
-        "--rotation",
-        Math.random() * 180 + "deg"
-    );
-    fragment.style.setProperty(
-        "--duration",
-        (
-            Math.random() * 4 + 4
-        ) + "s"
-    );
-    fragment.style.animationDelay =
-        (
-            Math.random() * -8
-        ) + "s";
-    container.appendChild(
-        fragment
-    );
-}
-/* =========================================================
-   紙條
-========================================================= */
-function createPaperStrip() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const strip =
-        document.createElement(
-            "div"
-        );
-    strip.className =
-        "paper-strip";
-    if (
-        Math.random() > .55
-    ) {
-        strip.classList.add(
-            "black"
-        );
-    }
-    strip.style.width =
-        Math.floor(
-            Math.random() * 140
-        ) + 30 + "px";
-    strip.style.height =
-        Math.floor(
-            Math.random() * 12
-        ) + 4 + "px";
-    strip.style.left =
-        Math.random() * 110 - 5 + "vw";
-    strip.style.top =
-        Math.random() * 100 + "vh";
-    strip.style.setProperty(
-        "--rotation",
-        (
-            Math.random() * 40 - 20
-        ) + "deg"
-    );
-    strip.style.setProperty(
-        "--duration",
-        (
-            Math.random() * 4 + 3
-        ) + "s"
-    );
-    container.appendChild(
-        strip
-    );
-}
-/* =========================================================
-   啟動
-========================================================= */
+
+let launched = false;
+
+
 function launchPhantom() {
-    const audio =
-        document.getElementById(
-            "audio"
-        );
-    const video =
-        document.getElementById(
-            "bgVideo"
-        );
+
+    if (launched) {
+
+        return;
+
+    }
+
+
+    launched = true;
+
+
     const startScreen =
         document.getElementById(
             "startScreen"
         );
-    const flashOverlay =
+
+
+    const flash =
         document.getElementById(
             "flashOverlay"
         );
-    const canvasContainer =
+
+
+    const video =
         document.getElementById(
-            "canvasContainer"
+            "bgVideo"
         );
+
+
     const videoContainer =
         document.getElementById(
             "videoContainer"
         );
-    audio
-        .play()
-        .catch(
-            e => console.log(e)
+
+
+    const audio =
+        document.getElementById(
+            "audio"
         );
-    video
-        .play()
-        .catch(
-            e => console.log(e)
-        );
-    flashOverlay.classList.add(
+
+
+    /* 音樂 */
+
+    audio.currentTime = 0;
+
+    audio.play().catch(
+        () => {}
+    );
+
+
+    /* 影片 */
+
+    video.currentTime = 0;
+
+    video.play().catch(
+        () => {}
+    );
+
+
+    /* 閃屏 */
+
+    flash.classList.remove(
         "flash-animate"
     );
+
+    void flash.offsetWidth;
+
+    flash.classList.add(
+        "flash-animate"
+    );
+
+
+    /* 點擊後稍微延遲進場 */
+
     setTimeout(
         () => {
+
             startScreen.style.display =
                 "none";
-            document.body.style.backgroundColor =
-                "#dc0000";
-            canvasContainer.classList.add(
-                "bg-red-active"
-            );
-            canvasContainer.style.display =
+
+            canvas.style.display =
                 "block";
+
             videoContainer.style.display =
                 "flex";
-            const letters =
-                document.querySelectorAll(
-                    ".falling-letter"
-                );
-            letters.forEach(
-                letter => {
-                    const duration =
-                        letter.dataset.duration;
-                    letter.style.animation =
-                        `p5GlobalFall
-                         ${duration}s
-                         linear
-                         infinite`;
-                }
-            );
-        },
-        120
-    );
-    /* 持續增加預告信 */
-    setInterval(
-        () => {
-            supplementLetter();
-        },
-        80
-    );
-    /* 持續增加紙片 */
-    setInterval(
-        () => {
-            supplementPaper();
+
         },
         180
     );
-    /* 持續增加速度線 */
+
+
+    /* 持續增加預告信 */
+
     setInterval(
         () => {
-            supplementSpeedLine();
+
+            if (
+                canvas.querySelectorAll(
+                    ".falling-letter"
+                ).length < 330
+            ) {
+
+                createCallingCard(
+                    false
+                );
+
+            }
+
         },
-        280
+        80
     );
-    setTimeout(
+
+
+    /* 持續增加紙片 */
+
+    setInterval(
         () => {
-            flashOverlay.classList.remove(
-                "flash-animate"
-            );
+
+            createOnePaper();
+
         },
-        400
+        180
     );
+
+
+    /* 持續增加速度線 */
+
+    setInterval(
+        () => {
+
+            createOneSpeedLine();
+
+        },
+        260
+    );
+
 }
+
+
 /* =========================================================
-   補充預告信
+   DYNAMIC PAPER
 ========================================================= */
-function supplementLetter() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const cards =
-        container.querySelectorAll(
-            ".falling-letter"
-        );
-    if (
-        cards.length > 300
-    ) {
-        return;
-    }
-    createCallingCard(false);
-}
-/* =========================================================
-   補充紙片
-========================================================= */
-function supplementPaper() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
-    const fragment =
+
+function createOnePaper() {
+
+    const paper =
         document.createElement(
             "div"
         );
-    fragment.className =
+
+
+    paper.className =
         "paper-fragment";
+
+
     const type =
         Math.random();
+
+
     if (
         type < .5
     ) {
-        fragment.classList.add(
+
+        paper.classList.add(
             "black"
         );
+
     }
+
     else if (
         type < .7
     ) {
-        fragment.classList.add(
+
+        paper.classList.add(
             "red"
         );
+
     }
-    fragment.style.width =
-        Math.floor(
-            Math.random() * 35
-        ) + 8 + "px";
-    fragment.style.height =
-        Math.floor(
-            Math.random() * 14
-        ) + 4 + "px";
-    fragment.style.left =
+
+
+    paper.style.width =
+        (
+            Math.random() * 35 + 8
+        ) + "px";
+
+
+    paper.style.height =
+        (
+            Math.random() * 15 + 4
+        ) + "px";
+
+
+    paper.style.left =
         Math.random() * 100 + "vw";
-    fragment.style.top =
+
+
+    paper.style.top =
         "-10vh";
-    fragment.style.setProperty(
+
+
+    paper.style.setProperty(
         "--rotation",
         Math.random() * 180 + "deg"
     );
+
+
     const duration =
         Math.random() * 4 + 4;
-    fragment.style.setProperty(
+
+
+    paper.style.setProperty(
         "--duration",
         duration + "s"
     );
-    fragment.style.animation =
-        `paperFall
-         ${duration}s
-         linear`;
-    container.appendChild(
-        fragment
+
+
+    canvas.appendChild(
+        paper
     );
+
+
     setTimeout(
         () => {
-            fragment.remove();
+
+            paper.remove();
+
         },
-        duration * 1000 + 300
+        duration * 1000 + 500
     );
+
 }
+
+
 /* =========================================================
-   補充速度線
+   DYNAMIC SPEED LINE
 ========================================================= */
-function supplementSpeedLine() {
-    const container =
-        document.getElementById(
-            "canvasContainer"
-        );
+
+function createOneSpeedLine() {
+
     const line =
         document.createElement(
             "div"
         );
+
+
     line.className =
         "speed-line";
+
+
     if (
         Math.random() > .7
     ) {
+
         line.classList.add(
             "white"
         );
+
     }
+
+
     line.style.width =
-        Math.floor(
-            Math.random() * 180
-        ) + 40 + "px";
+        (
+            Math.random() * 180 + 40
+        ) + "px";
+
+
     line.style.left =
         "-20vw";
+
+
     line.style.top =
         Math.random() * 100 + "vh";
+
+
     line.style.setProperty(
         "--angle",
         (
             Math.random() * 35 - 25
         ) + "deg"
     );
+
+
     const duration =
         Math.random() * 1.5 + .8;
+
+
     line.style.setProperty(
         "--duration",
         duration + "s"
     );
-    line.style.animation =
-        `speedMove
-         ${duration}s
-         linear`;
-    container.appendChild(
+
+
+    canvas.appendChild(
         line
     );
+
+
     setTimeout(
         () => {
+
             line.remove();
+
         },
-        duration * 1000 + 300
+        duration * 1000 + 500
     );
+
 }
+
 </script>
+
 </body>
+
 </html>
