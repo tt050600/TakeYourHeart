@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta
     name="viewport"
-    content="width=device-width,
-    initial-scale=1.0,
-    maximum-scale=1.0,
-    user-scalable=no,
-    viewport-fit=cover"
+    content="
+        width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no,
+        viewport-fit=cover
+    "
 >
 
 <title>Take Your Heart</title>
@@ -36,6 +40,7 @@ body{
 
 body{
     position:relative;
+
     touch-action:manipulation;
 
     font-family:
@@ -62,7 +67,9 @@ body{
     z-index:10000;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
     align-items:center;
 
@@ -89,7 +96,7 @@ body{
 
 
 /* =========================================================
-   CENTER GLOW
+   START CENTER ENERGY
 ========================================================= */
 
 #startScreen::before{
@@ -101,11 +108,18 @@ body{
     left:50%;
     top:48%;
 
-    width:min(900px,125vw);
+    width:min(
+        900px,
+        125vw
+    );
+
     aspect-ratio:1;
 
     transform:
-        translate(-50%,-50%);
+        translate(
+            -50%,
+            -50%
+        );
 
     background:
 
@@ -116,7 +130,8 @@ body{
             transparent 68%
         );
 
-    filter:blur(12px);
+    filter:
+        blur(12px);
 
     z-index:-5;
 
@@ -129,6 +144,7 @@ body{
         infinite;
 }
 
+
 @keyframes centerPulse{
 
     0%,
@@ -137,7 +153,10 @@ body{
         opacity:.55;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             scale(.90);
     }
 
@@ -146,14 +165,17 @@ body{
         opacity:1;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             scale(1.12);
     }
 }
 
 
 /* =========================================================
-   SCREEN TEXTURE
+   START SCREEN TEXTURE
 ========================================================= */
 
 #startScreen::after{
@@ -161,6 +183,7 @@ body{
     content:"";
 
     position:absolute;
+
     inset:0;
 
     z-index:60;
@@ -190,7 +213,7 @@ body{
 
 
 /* =========================================================
-   START BIG SLASHES
+   BIG SLASHES
 ========================================================= */
 
 .start-slash{
@@ -205,6 +228,7 @@ body{
         rotate(-12deg)
         skewX(-25deg);
 }
+
 
 .start-slash.one{
 
@@ -229,6 +253,7 @@ body{
         infinite;
 }
 
+
 .start-slash.two{
 
     width:105vw;
@@ -248,6 +273,7 @@ body{
         infinite;
 }
 
+
 .start-slash.three{
 
     width:130vw;
@@ -266,6 +292,7 @@ body{
         ease-in-out
         infinite;
 }
+
 
 .start-slash.four{
 
@@ -290,6 +317,7 @@ body{
         infinite;
 }
 
+
 @keyframes slashOne{
 
     0%,
@@ -309,6 +337,7 @@ body{
             skewX(-25deg);
     }
 }
+
 
 @keyframes slashTwo{
 
@@ -334,6 +363,7 @@ body{
     }
 }
 
+
 @keyframes slashThree{
 
     0%,
@@ -353,6 +383,7 @@ body{
             skewX(-25deg);
     }
 }
+
 
 @keyframes slashFour{
 
@@ -392,6 +423,7 @@ body{
         skewX(-28deg);
 }
 
+
 .start-cut.a{
 
     width:38vw;
@@ -410,6 +442,7 @@ body{
         ease-in-out
         infinite;
 }
+
 
 .start-cut.b{
 
@@ -430,6 +463,7 @@ body{
         infinite;
 }
 
+
 .start-cut.c{
 
     width:34vw;
@@ -442,6 +476,7 @@ body{
 
     opacity:.92;
 }
+
 
 .start-cut.d{
 
@@ -456,6 +491,7 @@ body{
     opacity:.32;
 }
 
+
 @keyframes cutMoveA{
 
     50%{
@@ -466,6 +502,7 @@ body{
             skewX(-28deg);
     }
 }
+
 
 @keyframes cutMoveB{
 
@@ -480,12 +517,13 @@ body{
 
 
 /* =========================================================
-   START DECOR CONTAINER
+   START P5 DECOR
 ========================================================= */
 
 #startP5Decor{
 
     position:absolute;
+
     inset:0;
 
     z-index:1;
@@ -527,7 +565,8 @@ body{
         skewX(-7deg)
         scaleX(.88);
 
-    transform-origin:left center;
+    transform-origin:
+        left center;
 
     text-shadow:
         5px 5px 0
@@ -540,17 +579,21 @@ body{
         infinite;
 }
 
+
 .start-word.red{
     color:#dc0000;
 }
+
 
 .start-word.white{
     color:#fff;
 }
 
+
 .start-word.black{
     color:#000;
 }
+
 
 .start-word.outline{
 
@@ -562,6 +605,7 @@ body{
 
     text-shadow:none;
 }
+
 
 @keyframes startWordFloat{
 
@@ -639,17 +683,23 @@ body{
         infinite;
 }
 
+
 @keyframes halftoneDrift{
 
     50%{
-        translate:
-            12px -8px;
+
+        transform:
+            translate(
+                12px,
+                -8px
+            )
+            rotate(var(--r));
     }
 }
 
 
 /* =========================================================
-   X
+   X MARKS
 ========================================================= */
 
 .start-x{
@@ -674,6 +724,7 @@ body{
         infinite;
 }
 
+
 .start-x::before,
 .start-x::after{
 
@@ -687,24 +738,33 @@ body{
     width:100%;
     height:12%;
 
-    background:var(--c);
+    background:
+        var(--c);
 
     box-shadow:
         2px 2px 0
         rgba(0,0,0,.45);
 }
 
+
 .start-x::before{
 
     transform:
-        translate(-50%,-50%)
+        translate(
+            -50%,
+            -50%
+        )
         rotate(45deg);
 }
+
 
 .start-x::after{
 
     transform:
-        translate(-50%,-50%)
+        translate(
+            -50%,
+            -50%
+        )
         rotate(-45deg);
 }
 
@@ -757,10 +817,12 @@ body{
         infinite;
 }
 
+
 @keyframes burstSpin{
 
     to{
-        rotate:360deg;
+        transform:
+            rotate(360deg);
     }
 }
 
@@ -794,6 +856,7 @@ body{
         infinite;
 }
 
+
 .start-target::before{
 
     content:"";
@@ -809,6 +872,7 @@ body{
     border-radius:50%;
 }
 
+
 .start-target::after{
 
     content:"";
@@ -821,27 +885,33 @@ body{
     width:2px;
     height:130%;
 
-    background:var(--c);
+    background:
+        var(--c);
 
     transform:
         translateX(-50%);
 }
 
+
 @keyframes targetPulse{
 
     0%,
     100%{
-        scale:.92;
+
+        transform:
+            scale(.92);
     }
 
     50%{
-        scale:1.08;
+
+        transform:
+            scale(1.08);
     }
 }
 
 
 /* =========================================================
-   DOT GROUP
+   DOTS
 ========================================================= */
 
 .start-dot-group{
@@ -863,6 +933,7 @@ body{
         infinite;
 }
 
+
 .start-dot{
 
     position:absolute;
@@ -875,12 +946,13 @@ body{
 
     border-radius:50%;
 
-    background:var(--c);
+    background:
+        var(--c);
 }
 
 
 /* =========================================================
-   BLOCK
+   BLOCKS
 ========================================================= */
 
 .start-block{
@@ -893,7 +965,8 @@ body{
     width:var(--w);
     height:var(--h);
 
-    background:var(--c);
+    background:
+        var(--c);
 
     opacity:var(--o);
 
@@ -912,17 +985,21 @@ body{
         infinite;
 }
 
+
 @keyframes blockFloat{
 
     50%{
-        translate:
-            15px 0;
+
+        transform:
+            translateX(15px)
+            rotate(var(--r))
+            skewX(-24deg);
     }
 }
 
 
 /* =========================================================
-   INK
+   START INK
 ========================================================= */
 
 .start-ink{
@@ -933,9 +1010,15 @@ body{
     top:var(--y);
 
     width:var(--size);
-    height:calc(var(--size) * .73);
+    height:
+        calc(
+            var(--size)
+            *
+            .73
+        );
 
-    background:var(--c);
+    background:
+        var(--c);
 
     opacity:var(--o);
 
@@ -954,6 +1037,7 @@ body{
         infinite;
 }
 
+
 .start-ink::before,
 .start-ink::after{
 
@@ -966,6 +1050,7 @@ body{
     background:inherit;
 }
 
+
 .start-ink::before{
 
     width:30%;
@@ -974,6 +1059,7 @@ body{
     left:-13%;
     top:58%;
 }
+
 
 .start-ink::after{
 
@@ -984,16 +1070,20 @@ body{
     top:-8%;
 }
 
+
 @keyframes startInk{
 
     50%{
-        scale:1.1;
+
+        transform:
+            rotate(var(--r))
+            scale(1.1);
     }
 }
 
 
 /* =========================================================
-   START FRAGMENTS
+   FRAGMENTS
 ========================================================= */
 
 .start-fragment{
@@ -1006,7 +1096,8 @@ body{
     width:var(--w);
     height:var(--h);
 
-    background:var(--c);
+    background:
+        var(--c);
 
     opacity:var(--o);
 
@@ -1026,15 +1117,17 @@ body{
         infinite;
 }
 
+
 @keyframes fragmentFloat{
 
     50%{
 
-        translate:
-            var(--dx)
-            var(--dy);
-
-        rotate:12deg;
+        transform:
+            translate(
+                var(--dx),
+                var(--dy)
+            )
+            rotate(12deg);
     }
 }
 
@@ -1053,7 +1146,8 @@ body{
     width:var(--w);
     height:var(--h);
 
-    background:var(--c);
+    background:
+        var(--c);
 
     opacity:0;
 
@@ -1068,28 +1162,35 @@ body{
         infinite;
 }
 
+
 @keyframes startSpeed{
 
     0%{
 
-        translate:
-            -120px 0;
+        transform:
+            translateX(-120px)
+            rotate(var(--r));
 
         opacity:0;
     }
 
     13%{
-        opacity:var(--o);
+
+        opacity:
+            var(--o);
     }
 
     72%{
-        opacity:var(--o);
+
+        opacity:
+            var(--o);
     }
 
     100%{
 
-        translate:
-            190px 0;
+        transform:
+            translateX(190px)
+            rotate(var(--r));
 
         opacity:0;
     }
@@ -1107,11 +1208,14 @@ body{
     left:var(--x);
     top:var(--y);
 
-    color:var(--c);
+    color:
+        var(--c);
 
-    opacity:var(--o);
+    opacity:
+        var(--o);
 
-    font-size:var(--size);
+    font-size:
+        var(--size);
 
     font-weight:900;
 
@@ -1130,22 +1234,27 @@ body{
         infinite;
 }
 
+
 @keyframes symbolFloat{
 
     50%{
 
-        translate:
-            0 -11px;
-
-        scale:1.12;
+        transform:
+            translateY(-11px)
+            rotate(var(--r))
+            skewX(-8deg)
+            scale(1.12);
     }
 }
+
 
 @keyframes decorFloat{
 
     50%{
-        translate:
-            0 -10px;
+
+        transform:
+            translateY(-10px)
+            rotate(var(--r));
     }
 }
 
@@ -1161,6 +1270,7 @@ body{
     z-index:20;
 
     width:430px;
+
     max-width:85vw;
 
     user-select:none;
@@ -1174,8 +1284,20 @@ body{
         skewX(-8deg);
 
     filter:
-        drop-shadow(9px 10px 0 #000)
-        drop-shadow(13px 13px 0 #dc0000);
+
+        drop-shadow(
+            9px
+            10px
+            0
+            #000
+        )
+
+        drop-shadow(
+            13px
+            13px
+            0
+            #dc0000
+        );
 
     animation:
 
@@ -1190,6 +1312,7 @@ body{
         .9s
         infinite;
 }
+
 
 .royal-logo::before{
 
@@ -1212,7 +1335,10 @@ body{
     opacity:.28;
 
     transform:
-        translate(5px,3px);
+        translate(
+            5px,
+            3px
+        );
 
     mix-blend-mode:screen;
 
@@ -1224,6 +1350,7 @@ body{
         steps(2,end)
         infinite;
 }
+
 
 .royal-logo::after{
 
@@ -1246,7 +1373,10 @@ body{
     opacity:.18;
 
     transform:
-        translate(-4px,-3px);
+        translate(
+            -4px,
+            -3px
+        );
 
     mix-blend-mode:multiply;
 
@@ -1259,6 +1389,7 @@ body{
         infinite;
 }
 
+
 .take-your-heart-img{
 
     display:block;
@@ -1269,6 +1400,7 @@ body{
     object-fit:contain;
 
     pointer-events:none;
+
     user-select:none;
 
     -webkit-user-drag:none;
@@ -1301,7 +1433,10 @@ body{
     top:50%;
 
     transform:
-        translate(-50%,-50%)
+        translate(
+            -50%,
+            -50%
+        )
         rotate(-7deg);
 
     border-radius:50%;
@@ -1321,11 +1456,13 @@ body{
         infinite;
 }
 
+
 .logo-ring.one{
 
     width:480px;
     height:210px;
 }
+
 
 .logo-ring.two{
 
@@ -1338,6 +1475,7 @@ body{
     animation-delay:.8s;
 }
 
+
 .logo-ring.three{
 
     width:610px;
@@ -1349,6 +1487,7 @@ body{
     animation-delay:1.4s;
 }
 
+
 @keyframes ringPulse{
 
     0%{
@@ -1356,12 +1495,16 @@ body{
         opacity:0;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             rotate(-7deg)
             scale(.82);
     }
 
     30%{
+
         opacity:.75;
     }
 
@@ -1370,7 +1513,10 @@ body{
         opacity:0;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             rotate(-7deg)
             scale(1.18);
     }
@@ -1433,6 +1579,7 @@ body{
         infinite;
 }
 
+
 @keyframes logoGlint{
 
     0%,
@@ -1445,6 +1592,7 @@ body{
     }
 
     70%{
+
         opacity:1;
     }
 
@@ -1468,7 +1616,7 @@ body{
 
 
 /* =========================================================
-   LOGO ANIMATION
+   LOGO MOVEMENT
 ========================================================= */
 
 @keyframes logoEntrance{
@@ -1505,6 +1653,7 @@ body{
     }
 }
 
+
 @keyframes logoFloat{
 
     0%,
@@ -1524,6 +1673,7 @@ body{
             translateY(-6px);
     }
 }
+
 
 @keyframes heartFloat{
 
@@ -1559,6 +1709,7 @@ body{
     }
 }
 
+
 @keyframes logoGlitch{
 
     0%,
@@ -1572,70 +1723,119 @@ body{
     84%{
 
         clip-path:
-            inset(8% 0 72% 0);
+            inset(
+                8% 0 72% 0
+            );
 
         transform:
-            translate(3px,-1px)
+            translate(
+                3px,
+                -1px
+            )
             scale(1.01);
     }
 
     86%{
 
         clip-path:
-            inset(60% 0 22% 0);
+            inset(
+                60% 0 22% 0
+            );
 
         transform:
-            translate(-3px,2px)
+            translate(
+                -3px,
+                2px
+            )
             scale(1.01);
     }
 
     88%{
 
         clip-path:
-            inset(0 0 0 0);
+            inset(
+                0 0 0 0
+            );
     }
 }
+
 
 @keyframes printRed{
 
     0%,
     100%{
-        transform:translate(3px,2px);
+
+        transform:
+            translate(
+                3px,
+                2px
+            );
     }
 
     25%{
-        transform:translate(7px,3px);
+
+        transform:
+            translate(
+                7px,
+                3px
+            );
     }
 
     50%{
-        transform:translate(2px,1px);
+
+        transform:
+            translate(
+                2px,
+                1px
+            );
     }
 
     75%{
-        transform:translate(5px,4px);
+
+        transform:
+            translate(
+                5px,
+                4px
+            );
     }
 }
+
 
 @keyframes printBlack{
 
     0%,
     100%{
-        transform:translate(-3px,-2px);
+
+        transform:
+            translate(
+                -3px,
+                -2px
+            );
     }
 
     33%{
-        transform:translate(-5px,-3px);
+
+        transform:
+            translate(
+                -5px,
+                -3px
+            );
     }
 
     66%{
-        transform:translate(-2px,-1px);
+
+        transform:
+            translate(
+                -2px,
+                -1px
+            );
     }
 }
 
 
 /* =========================================================
    CLICK TEXT
-   只有兩個紅色三角形
+   只有兩個三角形
 ========================================================= */
 
 .sub-txt{
@@ -1647,7 +1847,9 @@ body{
     margin-top:30px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     gap:14px;
@@ -1673,8 +1875,16 @@ body{
         scaleX(.94);
 
     text-shadow:
-        2px 2px 0 #000,
-        0 0 14px rgba(220,0,0,.42);
+
+        2px
+        2px
+        0
+        #000,
+
+        0
+        0
+        14px
+        rgba(220,0,0,.42);
 
     animation:
         clickBlink
@@ -1684,7 +1894,9 @@ body{
 }
 
 
-/* 左邊只有一個 ▶ */
+/*
+   左邊唯一一個 ▶
+*/
 
 .click-triangle.left{
 
@@ -1703,9 +1915,11 @@ body{
         12px solid #dc0000;
 
     filter:
+
         drop-shadow(
             2px 2px 0 #000
         )
+
         drop-shadow(
             0 0 6px
             rgba(220,0,0,.55)
@@ -1719,7 +1933,9 @@ body{
 }
 
 
-/* 右邊只有一個 ◀ */
+/*
+   右邊唯一一個 ◀
+*/
 
 .click-triangle.right{
 
@@ -1738,9 +1954,11 @@ body{
         12px solid #dc0000;
 
     filter:
+
         drop-shadow(
             -2px 2px 0 #000
         )
+
         drop-shadow(
             0 0 6px
             rgba(220,0,0,.55)
@@ -1760,6 +1978,7 @@ body{
 
     display:inline-block;
 }
+
 
 .click-copy::after{
 
@@ -1797,6 +2016,7 @@ body{
         infinite;
 }
 
+
 @keyframes triangleLeft{
 
     0%,
@@ -1813,6 +2033,7 @@ body{
             scale(1.12);
     }
 }
+
 
 @keyframes triangleRight{
 
@@ -1831,17 +2052,21 @@ body{
     }
 }
 
+
 @keyframes clickBlink{
 
     0%,
     100%{
+
         opacity:.48;
     }
 
     50%{
+
         opacity:1;
     }
 }
+
 
 @keyframes clickCharge{
 
@@ -1884,17 +2109,20 @@ body{
     pointer-events:none;
 }
 
+
 .start-label.top{
 
     top:8%;
     left:7%;
 }
 
+
 .start-label.bottom{
 
     right:7%;
     bottom:8%;
 }
+
 
 .start-label::before{
 
@@ -1915,6 +2143,7 @@ body{
     display:none;
 
     position:fixed;
+
     inset:0;
 
     z-index:99996;
@@ -1925,10 +2154,12 @@ body{
     --cy:50vh;
 }
 
+
 #impactBurst.active{
 
     display:block;
 }
+
 
 #impactBurst::before{
 
@@ -1948,11 +2179,18 @@ body{
         5px solid #fff;
 
     transform:
-        translate(-50%,-50%);
+        translate(
+            -50%,
+            -50%
+        );
 
     box-shadow:
-        0 0 0 9px #dc0000,
-        0 0 0 14px #000;
+
+        0 0 0 9px
+        #dc0000,
+
+        0 0 0 14px
+        #000;
 
     animation:
         impactRing
@@ -1960,6 +2198,7 @@ body{
         cubic-bezier(.08,.76,.15,1)
         forwards;
 }
+
 
 #impactBurst::after{
 
@@ -2009,6 +2248,7 @@ body{
         forwards;
 }
 
+
 @keyframes impactRing{
 
     0%{
@@ -2016,7 +2256,10 @@ body{
         opacity:1;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             scale(.2);
     }
 
@@ -2025,10 +2268,14 @@ body{
         opacity:0;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             scale(17);
     }
 }
+
 
 @keyframes impactRays{
 
@@ -2037,12 +2284,16 @@ body{
         opacity:0;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             scale(.03)
             rotate(-15deg);
     }
 
     20%{
+
         opacity:1;
     }
 
@@ -2051,7 +2302,10 @@ body{
         opacity:0;
 
         transform:
-            translate(-50%,-50%)
+            translate(
+                -50%,
+                -50%
+            )
             scale(1)
             rotate(10deg);
     }
@@ -2059,7 +2313,7 @@ body{
 
 
 /* =========================================================
-   P5 CUT-IN
+   P5 SKILL CUTIN
 ========================================================= */
 
 #skillCutin{
@@ -2067,6 +2321,7 @@ body{
     visibility:hidden;
 
     position:fixed;
+
     inset:0;
 
     z-index:99998;
@@ -2076,6 +2331,7 @@ body{
     pointer-events:none;
 }
 
+
 #skillCutin.active{
 
     visibility:visible;
@@ -2083,18 +2339,20 @@ body{
 
 
 /* =========================================================
-   CUT-IN BACK
+   BLACK BACK
 ========================================================= */
 
 .cutin-back{
 
     position:absolute;
+
     inset:0;
 
     background:#020202;
 
     opacity:0;
 }
+
 
 #skillCutin.enter .cutin-back{
 
@@ -2105,16 +2363,18 @@ body{
         forwards;
 }
 
+
 @keyframes cutinBackIn{
 
     to{
+
         opacity:1;
     }
 }
 
 
 /* =========================================================
-   CUT-IN PAPERS
+   TOP PAPER
 ========================================================= */
 
 .cutin-top-wrap{
@@ -2130,16 +2390,20 @@ body{
     transform:
         translateY(-115%);
 
-    will-change:transform;
+    will-change:
+        transform;
 
     filter:
+
         drop-shadow(
             0 8px 0 #fff
         )
+
         drop-shadow(
             0 13px 0 #dc0000
         );
 }
+
 
 .cutin-top{
 
@@ -2158,28 +2422,54 @@ body{
     clip-path:
 
         polygon(
+
             0 0,
+
             100% 0,
+
             100% 70%,
+
             96% 73%,
+
             93% 70%,
+
             89% 77%,
+
             84% 73%,
+
             79% 82%,
+
             73% 76%,
+
             67% 86%,
+
             61% 79%,
+
             54% 89%,
+
             48% 80%,
+
             41% 91%,
+
             35% 81%,
+
             27% 88%,
+
             21% 79%,
+
             14% 86%,
+
             8% 78%,
+
             0 83%
+
         );
 }
+
+
+/* =========================================================
+   BOTTOM PAPER
+========================================================= */
 
 .cutin-bottom-wrap{
 
@@ -2194,16 +2484,20 @@ body{
     transform:
         translateY(115%);
 
-    will-change:transform;
+    will-change:
+        transform;
 
     filter:
+
         drop-shadow(
             0 -8px 0 #fff
         )
+
         drop-shadow(
             0 -13px 0 #dc0000
         );
 }
+
 
 .cutin-bottom{
 
@@ -2222,30 +2516,49 @@ body{
     clip-path:
 
         polygon(
+
             0 18%,
+
             7% 11%,
+
             13% 20%,
+
             20% 10%,
+
             27% 18%,
+
             34% 8%,
+
             41% 18%,
+
             48% 7%,
+
             55% 17%,
+
             62% 8%,
+
             69% 17%,
+
             76% 9%,
+
             82% 17%,
+
             89% 8%,
+
             95% 15%,
+
             100% 10%,
+
             100% 100%,
+
             0 100%
+
         );
 }
 
 
 /* =========================================================
-   RED STRIP
+   RED CUT
 ========================================================= */
 
 .cutin-red-slash{
@@ -2277,13 +2590,14 @@ body{
         );
 
     box-shadow:
+
         0 0 20px
         rgba(220,0,0,.45);
 }
 
 
 /* =========================================================
-   CENTER STRIP
+   CENTER CUT-IN STRIP
 ========================================================= */
 
 .cutin-strip-wrap{
@@ -2301,12 +2615,23 @@ body{
         rotate(-4deg);
 
     filter:
-        drop-shadow(0 -7px 0 #fff)
-        drop-shadow(0 7px 0 #fff)
-        drop-shadow(0 12px 0 #dc0000);
 
-    will-change:transform;
+        drop-shadow(
+            0 -7px 0 #fff
+        )
+
+        drop-shadow(
+            0 7px 0 #fff
+        )
+
+        drop-shadow(
+            0 12px 0 #dc0000
+        );
+
+    will-change:
+        transform;
 }
+
 
 .cutin-strip{
 
@@ -2320,35 +2645,62 @@ body{
     clip-path:
 
         polygon(
+
             0 19%,
+
             8% 11%,
+
             14% 18%,
+
             22% 7%,
+
             30% 16%,
+
             39% 5%,
+
             47% 14%,
+
             56% 6%,
+
             65% 13%,
+
             74% 4%,
+
             82% 13%,
+
             91% 4%,
+
             100% 10%,
 
             100% 83%,
+
             93% 90%,
+
             85% 80%,
+
             77% 93%,
+
             68% 82%,
+
             59% 95%,
+
             50% 84%,
+
             41% 94%,
+
             31% 84%,
+
             22% 94%,
+
             14% 82%,
+
             6% 91%,
+
             0 84%
+
         );
 }
+
 
 .cutin-strip::before{
 
@@ -2389,11 +2741,13 @@ body{
         7px 7px 0 #000;
 }
 
+
 .cutin-strip::after{
 
     content:"";
 
     position:absolute;
+
     inset:0;
 
     background:
@@ -2408,8 +2762,242 @@ body{
 
 
 /* =========================================================
-   JOKER MASK DART
-   過場才出現
+   MASK RIP LINE
+========================================================= */
+
+.cutin-rip-line{
+
+    position:absolute;
+
+    left:-4%;
+
+    top:50%;
+
+    width:108%;
+
+    height:24px;
+
+    z-index:14;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    transform:
+
+        translateY(-50%)
+
+        rotate(-4deg)
+
+        scaleX(0);
+
+    transform-origin:
+        left center;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            transparent 0%,
+
+            transparent 15%,
+
+            rgba(255,255,255,.97) 16%,
+
+            #fff 35%,
+
+            #dc0000 36%,
+
+            #dc0000 51%,
+
+            #fff 52%,
+
+            #fff 72%,
+
+            transparent 73%,
+
+            transparent 100%
+
+        );
+
+    clip-path:
+
+        polygon(
+
+            0 38%,
+
+            4% 17%,
+
+            8% 48%,
+
+            13% 24%,
+
+            18% 53%,
+
+            23% 20%,
+
+            28% 51%,
+
+            34% 28%,
+
+            40% 58%,
+
+            46% 18%,
+
+            52% 50%,
+
+            58% 25%,
+
+            64% 57%,
+
+            70% 20%,
+
+            76% 52%,
+
+            82% 24%,
+
+            88% 55%,
+
+            94% 18%,
+
+            100% 43%,
+
+            100% 69%,
+
+            94% 50%,
+
+            88% 78%,
+
+            82% 47%,
+
+            76% 72%,
+
+            70% 48%,
+
+            64% 79%,
+
+            58% 47%,
+
+            52% 75%,
+
+            46% 49%,
+
+            40% 81%,
+
+            34% 48%,
+
+            28% 76%,
+
+            23% 49%,
+
+            18% 79%,
+
+            13% 48%,
+
+            8% 74%,
+
+            4% 48%,
+
+            0 68%
+
+        );
+
+    filter:
+
+        drop-shadow(
+            0 0 7px
+            rgba(255,255,255,.7)
+        )
+
+        drop-shadow(
+            0 0 16px
+            rgba(220,0,0,.58)
+        );
+}
+
+
+/*
+   面具飛過的同時，
+   裂痕從左往右長出
+*/
+
+#skillCutin.throw-mask
+.cutin-rip-line{
+
+    animation:
+
+        ripLineDraw
+        1.42s
+        cubic-bezier(.14,.68,.16,1)
+        forwards;
+}
+
+
+@keyframes ripLineDraw{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(0);
+    }
+
+    4%{
+
+        opacity:1;
+    }
+
+    50%{
+
+        opacity:1;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(.52);
+    }
+
+    90%{
+
+        opacity:1;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(.96);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(1);
+    }
+}
+
+
+/* =========================================================
+   JOKER MASK RIP DART
 ========================================================= */
 
 #maskDart{
@@ -2417,49 +3005,68 @@ body{
     position:absolute;
 
     left:0;
-    top:0;
+    top:50%;
 
     width:
+
         clamp(
-            110px,
-            14vw,
-            210px
+            115px,
+            13vw,
+            195px
         );
 
     aspect-ratio:1;
 
-    z-index:18;
-
-    pointer-events:none;
+    z-index:19;
 
     opacity:0;
 
+    pointer-events:none;
+
+    transform-origin:
+        center;
+
     will-change:
+
         transform,
         opacity,
         filter;
 
     transform:
-        translate(-30vw,90vh)
-        rotate(-540deg)
-        scale(.22);
 
-    transform-origin:center center;
+        translate(
+            -30vw,
+            -50%
+        )
+
+        rotate(-620deg)
+
+        scale(.28);
 
     filter:
+
         drop-shadow(
-            0 12px 0
-            rgba(0,0,0,.95)
+            8px
+            10px
+            0
+            rgba(0,0,0,.92)
         )
+
         drop-shadow(
-            0 0 15px
-            rgba(255,255,255,.18)
+            0
+            0
+            10px
+            rgba(255,255,255,.30)
         )
+
         drop-shadow(
-            0 0 28px
-            rgba(220,0,0,.55)
+            0
+            0
+            24px
+            rgba(220,0,0,.78)
         );
 }
+
 
 #maskDart img{
 
@@ -2471,13 +3078,16 @@ body{
     object-fit:contain;
 
     user-select:none;
+
     pointer-events:none;
 
     -webkit-user-drag:none;
 }
 
 
-/* 白色高速拖影 */
+/* =========================================================
+   MASK RED SPEED TRAIL
+========================================================= */
 
 #maskDart::before{
 
@@ -2485,38 +3095,60 @@ body{
 
     position:absolute;
 
-    right:55%;
-    top:48%;
+    right:62%;
+    top:50%;
 
-    width:250px;
-    height:12px;
+    width:
+
+        clamp(
+            180px,
+            28vw,
+            450px
+        );
+
+    height:11px;
 
     transform:
+
         translateY(-50%)
+
         skewX(-35deg);
 
-    transform-origin:right center;
+    transform-origin:
+        right center;
 
     background:
 
         linear-gradient(
+
             90deg,
+
             transparent 0%,
-            rgba(255,255,255,.05) 15%,
-            rgba(255,255,255,.25) 45%,
-            rgba(255,255,255,.9) 100%
+
+            rgba(220,0,0,.03) 10%,
+
+            rgba(220,0,0,.25) 38%,
+
+            #dc0000 65%,
+
+            rgba(255,255,255,.90) 88%,
+
+            transparent 100%
+
         );
 
     filter:
-        blur(2px);
+        blur(1px);
 
-    opacity:.8;
+    opacity:0;
 
     z-index:-1;
 }
 
 
-/* 紅色第二拖影 */
+/* =========================================================
+   MASK WHITE SPEED TRAIL
+========================================================= */
 
 #maskDart::after{
 
@@ -2524,168 +3156,338 @@ body{
 
     position:absolute;
 
-    right:50%;
-    top:55%;
+    right:58%;
+    top:42%;
 
-    width:190px;
-    height:8px;
+    width:
 
-    transform:
-        translateY(-50%)
-        skewX(-35deg);
+        clamp(
+            210px,
+            33vw,
+            520px
+        );
 
-    transform-origin:right center;
+    height:3px;
 
     background:
 
         linear-gradient(
             90deg,
-            transparent 0%,
-            rgba(220,0,0,.15) 20%,
-            rgba(220,0,0,.95) 100%
+            transparent,
+            rgba(255,255,255,.14),
+            #fff,
+            transparent
         );
 
-    filter:
-        blur(1px);
+    transform:
+        rotate(-2deg);
 
-    opacity:.8;
+    opacity:0;
 
     z-index:-2;
 }
 
 
-/*
-   真正的飛鏢式甩出：
-   左下 -> 中央 -> 右上 -> 消失
-*/
+/* =========================================================
+   MASK FLIES LEFT -> RIGHT
+========================================================= */
 
-#skillCutin.throw-mask #maskDart{
+#skillCutin.throw-mask
+#maskDart{
 
     animation:
-        maskDartThrow
-        1.32s
-        cubic-bezier(.18,.64,.18,1)
+
+        maskRipAcross
+        1.42s
+        cubic-bezier(.12,.62,.16,1)
         forwards;
 }
 
-@keyframes maskDartThrow{
+
+#skillCutin.throw-mask
+#maskDart::before{
+
+    animation:
+
+        maskTrailAcross
+        1.42s
+        ease-out
+        forwards;
+}
+
+
+#skillCutin.throw-mask
+#maskDart::after{
+
+    animation:
+
+        maskWhiteTrailAcross
+        1.42s
+        ease-out
+        forwards;
+}
+
+
+/*
+    面具基本沿中間撕裂線
+    從左 -> 右
+*/
+
+@keyframes maskRipAcross{
 
     0%{
 
         opacity:0;
 
         transform:
+
             translate(
                 -28vw,
-                88vh
+                -36%
             )
-            rotate(-540deg)
-            scale(.20);
+
+            rotate(-620deg)
+
+            scale(.28);
 
         filter:
-            blur(5px)
-            drop-shadow(
-                0 0 20px
-                rgba(220,0,0,.8)
-            );
-    }
 
-    8%{
+            blur(4px)
 
-        opacity:1;
-    }
-
-    22%{
-
-        opacity:1;
-
-        transform:
-            translate(
-                12vw,
-                70vh
-            )
-            rotate(-250deg)
-            scale(.58);
-
-        filter:
-            blur(2px)
             drop-shadow(
                 0 0 22px
-                rgba(220,0,0,.75)
+                rgba(220,0,0,.80)
             );
     }
 
-    45%{
+
+    5%{
+
+        opacity:1;
+    }
+
+
+    17%{
 
         opacity:1;
 
         transform:
+
             translate(
-                43vw,
-                41vh
+                3vw,
+                -40%
             )
-            rotate(90deg)
-            scale(1.20);
+
+            rotate(-410deg)
+
+            scale(.50);
 
         filter:
-            blur(0)
+
+            blur(2px)
+
             drop-shadow(
-                0 12px 0
+                0 0 24px
+                rgba(220,0,0,.82)
+            );
+    }
+
+
+    34%{
+
+        opacity:1;
+
+        transform:
+
+            translate(
+                27vw,
+                -46%
+            )
+
+            rotate(-145deg)
+
+            scale(.79);
+
+        filter:
+
+            blur(.7px)
+
+            drop-shadow(
+                6px
+                8px
+                0
                 #000
             )
+
             drop-shadow(
-                0 0 28px
+                0
+                0
+                25px
+                rgba(220,0,0,.76)
+            );
+    }
+
+
+    /*
+        中間最大
+    */
+
+    50%{
+
+        opacity:1;
+
+        transform:
+
+            translate(
+                46vw,
+                -52%
+            )
+
+            rotate(145deg)
+
+            scale(1.16);
+
+        filter:
+
+            blur(0)
+
+            drop-shadow(
+                9px
+                11px
+                0
+                #000
+            )
+
+            drop-shadow(
+                0
+                0
+                30px
+                rgba(220,0,0,.84)
+            );
+    }
+
+
+    64%{
+
+        opacity:1;
+
+        transform:
+
+            translate(
+                64vw,
+                -59%
+            )
+
+            rotate(425deg)
+
+            scale(.92);
+    }
+
+
+    79%{
+
+        opacity:.92;
+
+        transform:
+
+            translate(
+                82vw,
+                -66%
+            )
+
+            rotate(720deg)
+
+            scale(.61);
+
+        filter:
+
+            blur(1px)
+
+            drop-shadow(
+                0
+                0
+                21px
                 rgba(220,0,0,.72)
             );
     }
 
-    58%{
 
-        opacity:1;
+    91%{
 
-        transform:
-            translate(
-                58vw,
-                31vh
-            )
-            rotate(310deg)
-            scale(.95);
-    }
-
-    75%{
-
-        opacity:.95;
+        opacity:.55;
 
         transform:
+
             translate(
-                79vw,
-                14vh
+                101vw,
+                -73%
             )
-            rotate(620deg)
-            scale(.60);
 
-        filter:
-            blur(1px)
-            drop-shadow(
-                0 0 20px
-                rgba(220,0,0,.7)
-            );
-    }
+            rotate(980deg)
 
-    92%{
-
-        opacity:.45;
-
-        transform:
-            translate(
-                105vw,
-                -8vh
-            )
-            rotate(950deg)
-            scale(.28);
+            scale(.34);
 
         filter:
             blur(3px);
+    }
+
+
+    100%{
+
+        opacity:0;
+
+        transform:
+
+            translate(
+                122vw,
+                -81%
+            )
+
+            rotate(1250deg)
+
+            scale(.10);
+
+        filter:
+            blur(6px);
+    }
+}
+
+
+/* =========================================================
+   MASK RED TRAIL
+========================================================= */
+
+@keyframes maskTrailAcross{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+
+            translateY(-50%)
+
+            skewX(-35deg)
+
+            scaleX(.2);
+    }
+
+    9%{
+
+        opacity:.95;
+    }
+
+    72%{
+
+        opacity:.88;
+
+        transform:
+
+            translateY(-50%)
+
+            skewX(-35deg)
+
+            scaleX(1);
     }
 
     100%{
@@ -2693,15 +3495,40 @@ body{
         opacity:0;
 
         transform:
-            translate(
-                126vw,
-                -25vh
-            )
-            rotate(1180deg)
-            scale(.12);
 
-        filter:
-            blur(6px);
+            translateY(-50%)
+
+            skewX(-35deg)
+
+            scaleX(1.4);
+    }
+}
+
+
+/* =========================================================
+   MASK WHITE TRAIL
+========================================================= */
+
+@keyframes maskWhiteTrailAcross{
+
+    0%{
+
+        opacity:0;
+    }
+
+    10%{
+
+        opacity:.9;
+    }
+
+    76%{
+
+        opacity:.7;
+    }
+
+    100%{
+
+        opacity:0;
     }
 }
 
@@ -2713,10 +3540,12 @@ body{
 #cutinShards{
 
     position:absolute;
+
     inset:0;
 
     pointer-events:none;
 }
+
 
 .cutin-shard{
 
@@ -2728,7 +3557,8 @@ body{
     width:var(--w);
     height:var(--h);
 
-    background:var(--c);
+    background:
+        var(--c);
 
     opacity:0;
 
@@ -2747,36 +3577,47 @@ body{
    CUT-IN ENTER
 ========================================================= */
 
-#skillCutin.enter .cutin-top-wrap{
+#skillCutin.enter
+.cutin-top-wrap{
 
     animation:
+
         cutinTopEnter
         .48s
         cubic-bezier(.75,0,.22,1)
         forwards;
 }
 
-#skillCutin.enter .cutin-bottom-wrap{
+
+#skillCutin.enter
+.cutin-bottom-wrap{
 
     animation:
+
         cutinBottomEnter
         .48s
         cubic-bezier(.75,0,.22,1)
         forwards;
 }
 
-#skillCutin.enter .cutin-red-slash{
+
+#skillCutin.enter
+.cutin-red-slash{
 
     animation:
+
         redSlashEnter
         .54s
         cubic-bezier(.6,0,.25,1)
         forwards;
 }
 
-#skillCutin.enter .cutin-strip-wrap{
+
+#skillCutin.enter
+.cutin-strip-wrap{
 
     animation:
+
         centerStripEnter
         .62s
         cubic-bezier(.72,0,.24,1)
@@ -2784,52 +3625,66 @@ body{
         forwards;
 }
 
+
 @keyframes cutinTopEnter{
 
     to{
+
         transform:
             translateY(0);
     }
 }
+
 
 @keyframes cutinBottomEnter{
 
     to{
+
         transform:
             translateY(0);
     }
 }
+
 
 @keyframes redSlashEnter{
 
     to{
 
         transform:
+
             rotate(-9deg)
+
             translateX(0);
     }
 }
+
 
 @keyframes centerStripEnter{
 
     0%{
 
         transform:
+
             translateX(-120%)
+
             rotate(-4deg);
     }
 
     78%{
 
         transform:
+
             translateX(3%)
+
             rotate(-4deg);
     }
 
     100%{
 
         transform:
+
             translateX(0)
+
             rotate(-4deg);
     }
 }
@@ -2839,188 +3694,318 @@ body{
    TEAR OPEN
 ========================================================= */
 
-#skillCutin.tear .cutin-top-wrap{
+#skillCutin.tear
+.cutin-top-wrap{
 
     transform:
         translateY(0);
 
     animation:
+
         topTearOpen
-        1.28s
+        1.30s
         cubic-bezier(.10,.82,.16,1)
         forwards;
 }
 
-#skillCutin.tear .cutin-bottom-wrap{
+
+#skillCutin.tear
+.cutin-bottom-wrap{
 
     transform:
         translateY(0);
 
     animation:
+
         bottomTearOpen
-        1.28s
+        1.30s
         cubic-bezier(.10,.82,.16,1)
         forwards;
 }
 
-#skillCutin.tear .cutin-strip-wrap{
+
+#skillCutin.tear
+.cutin-strip-wrap{
 
     transform:
+
         translateX(0)
+
         rotate(-4deg);
 
     animation:
+
         stripTearAway
-        1.02s
+        1.05s
         cubic-bezier(.12,.75,.19,1)
         forwards;
 }
 
-#skillCutin.tear .cutin-red-slash{
+
+#skillCutin.tear
+.cutin-red-slash{
 
     transform:
+
         rotate(-9deg)
+
         translateX(0);
 
     animation:
+
         redSlashAway
-        .9s
+        .90s
         ease-in
         forwards;
 }
 
-#skillCutin.tear .cutin-back{
+
+#skillCutin.tear
+.cutin-back{
 
     opacity:1;
 
     animation:
+
         cutinBackOut
-        .9s
+        .92s
         .38s
         ease-out
         forwards;
 }
+
+
+/*
+   撕開時裂線炸大
+*/
+
+#skillCutin.tear
+.cutin-rip-line{
+
+    opacity:1;
+
+    transform:
+
+        translateY(-50%)
+
+        rotate(-4deg)
+
+        scaleX(1);
+
+    animation:
+
+        ripLineExplode
+        .75s
+        ease-out
+        forwards;
+}
+
+
+@keyframes ripLineExplode{
+
+    0%{
+
+        opacity:1;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(1)
+
+            scaleY(1);
+    }
+
+    38%{
+
+        opacity:1;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(1.02)
+
+            scaleY(2.2);
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+
+            translateY(-50%)
+
+            rotate(-4deg)
+
+            scaleX(1.06)
+
+            scaleY(6);
+    }
+}
+
 
 @keyframes topTearOpen{
 
     0%{
 
         transform:
+
             translateY(0)
+
             rotate(0);
     }
 
     12%{
 
         transform:
+
             translateY(-2%)
+
             rotate(-.5deg);
     }
 
     28%{
 
         transform:
+
             translateY(-10%)
+
             rotate(-1deg);
     }
 
     100%{
 
         transform:
+
             translateY(-120%)
+
             rotate(-4deg);
     }
 }
+
 
 @keyframes bottomTearOpen{
 
     0%{
 
         transform:
+
             translateY(0)
+
             rotate(0);
     }
 
     12%{
 
         transform:
+
             translateY(2%)
+
             rotate(.5deg);
     }
 
     28%{
 
         transform:
+
             translateY(10%)
+
             rotate(1deg);
     }
 
     100%{
 
         transform:
+
             translateY(120%)
+
             rotate(4deg);
     }
 }
+
 
 @keyframes stripTearAway{
 
     0%{
 
         transform:
+
             translateX(0)
+
             rotate(-4deg)
+
             scale(1);
     }
 
     18%{
 
         transform:
+
             translateX(3%)
+
             rotate(-3deg)
+
             scale(1.03);
     }
 
     100%{
 
         transform:
+
             translateX(120%)
+
             translateY(-15%)
+
             rotate(10deg)
+
             scale(.9);
     }
 }
+
 
 @keyframes redSlashAway{
 
     to{
 
         transform:
+
             translateX(-120%)
+
             rotate(-14deg);
     }
 }
 
+
 @keyframes cutinBackOut{
 
     to{
+
         opacity:0;
     }
 }
 
 
 /* =========================================================
-   SHARDS
+   CUT-IN SHARD EXPLOSION
 ========================================================= */
 
-#skillCutin.tear .cutin-shard{
+#skillCutin.tear
+.cutin-shard{
 
     animation:
+
         cutinShardFly
         var(--d)
         cubic-bezier(.16,.8,.26,1)
         forwards;
 }
+
 
 @keyframes cutinShardFly{
 
@@ -3029,12 +4014,19 @@ body{
         opacity:0;
 
         transform:
-            translate(0,0)
+
+            translate(
+                0,
+                0
+            )
+
             rotate(var(--r))
+
             scale(.3);
     }
 
     12%{
+
         opacity:1;
     }
 
@@ -3043,10 +4035,12 @@ body{
         opacity:0;
 
         transform:
+
             translate(
                 var(--dx),
                 var(--dy)
             )
+
             rotate(
                 calc(
                     var(--r)
@@ -3054,18 +4048,20 @@ body{
                     180deg
                 )
             )
+
             scale(1.2);
     }
 }
 
 
 /* =========================================================
-   CUTIN FLASH
+   FLASH
 ========================================================= */
 
 .cutin-flash{
 
     position:absolute;
+
     inset:0;
 
     z-index:20;
@@ -3077,22 +4073,28 @@ body{
     pointer-events:none;
 }
 
-#skillCutin.tear .cutin-flash{
+
+#skillCutin.tear
+.cutin-flash{
 
     animation:
+
         cutinFlash
         .48s
         ease-out
         forwards;
 }
 
+
 @keyframes cutinFlash{
 
     0%{
+
         opacity:0;
     }
 
     18%{
+
         opacity:.85;
     }
 
@@ -3104,6 +4106,7 @@ body{
     }
 
     100%{
+
         opacity:0;
     }
 }
@@ -3116,39 +4119,76 @@ body{
 body.screen-shake{
 
     animation:
+
         screenShake
         .38s
         linear;
 }
 
+
 @keyframes screenShake{
 
     0%{
-        transform:translate(0,0);
+
+        transform:
+            translate(
+                0,
+                0
+            );
     }
 
     15%{
-        transform:translate(-7px,3px);
+
+        transform:
+            translate(
+                -7px,
+                3px
+            );
     }
 
     30%{
-        transform:translate(6px,-4px);
+
+        transform:
+            translate(
+                6px,
+                -4px
+            );
     }
 
     45%{
-        transform:translate(-4px,-2px);
+
+        transform:
+            translate(
+                -4px,
+                -2px
+            );
     }
 
     60%{
-        transform:translate(5px,3px);
+
+        transform:
+            translate(
+                5px,
+                3px
+            );
     }
 
     75%{
-        transform:translate(-3px,1px);
+
+        transform:
+            translate(
+                -3px,
+                1px
+            );
     }
 
     100%{
-        transform:translate(0,0);
+
+        transform:
+            translate(
+                0,
+                0
+            );
     }
 }
 
@@ -3162,6 +4202,7 @@ body.screen-shake{
     display:none;
 
     position:fixed;
+
     inset:0;
 
     width:100%;
@@ -3180,11 +4221,13 @@ body.screen-shake{
         );
 }
 
+
 #canvasContainer::before{
 
     content:"";
 
     position:absolute;
+
     inset:0;
 
     z-index:40;
@@ -3214,17 +4257,22 @@ body.screen-shake{
     background-image:
         url("cover.png");
 
-    background-size:contain;
-    background-repeat:no-repeat;
+    background-size:
+        contain;
+
+    background-repeat:
+        no-repeat;
 
     pointer-events:none;
 
-    will-change:transform;
+    will-change:
+        transform;
 
     opacity:.46;
 
     z-index:10;
 }
+
 
 .falling-letter.far{
 
@@ -3233,6 +4281,7 @@ body.screen-shake{
     filter:
         blur(.6px);
 }
+
 
 .falling-letter.front{
 
@@ -3255,7 +4304,7 @@ body.screen-shake{
 
 
 /* =========================================================
-   P5 WORDS
+   ANIMATION WORDS
 ========================================================= */
 
 .p5-word{
@@ -3263,6 +4312,7 @@ body.screen-shake{
     position:absolute;
 
     font-family:
+
         Impact,
         "Arial Black",
         "Franklin Gothic Heavy",
@@ -3282,16 +4332,21 @@ body.screen-shake{
     z-index:11;
 
     transform:
+
         rotate(var(--rotation))
+
         skewX(-7deg)
+
         scaleX(.9);
 
     animation:
+
         wordFloat
         var(--duration)
         ease-in-out
         infinite;
 }
+
 
 .p5-word.white{
 
@@ -3299,19 +4354,21 @@ body.screen-shake{
         rgba(255,255,255,.17);
 }
 
+
 .p5-word.red{
 
     color:
         rgba(220,0,0,.30);
 
     text-shadow:
+
         5px 5px 0
         rgba(0,0,0,.4);
 }
 
 
 /* =========================================================
-   P5 SLASHES
+   ANIMATION SLASH
 ========================================================= */
 
 .p5-slash{
@@ -3325,36 +4382,45 @@ body.screen-shake{
     opacity:.75;
 
     transform:
+
         skewX(-25deg)
+
         rotate(-8deg);
 
     animation:
+
         slashFloat
         var(--duration)
         ease-in-out
         infinite;
 }
 
+
 .p5-slash.black{
+
     background:#050505;
 }
 
+
 .p5-slash.white{
+
     background:#fff;
 }
+
 
 .p5-slash.red{
 
     background:#dc0000;
 
     box-shadow:
+
         0 0 12px
         rgba(220,0,0,.3);
 }
 
 
 /* =========================================================
-   SPEED LINES
+   ANIMATION SPEED LINE
 ========================================================= */
 
 .speed-line{
@@ -3373,11 +4439,13 @@ body.screen-shake{
         rotate(var(--angle));
 
     animation:
+
         speedMove
         var(--duration)
         linear
         infinite;
 }
+
 
 .speed-line.white{
 
@@ -3400,22 +4468,31 @@ body.screen-shake{
     background:#fff;
 
     transform:
-        rotate(var(--rotation));
+
+        rotate(
+            var(--rotation)
+        );
 
     animation:
+
         paperFall
         var(--duration)
         linear
         infinite;
 }
 
+
 .paper-fragment.black{
+
     background:#080808;
 }
 
+
 .paper-fragment.red{
+
     background:#dc0000;
 }
+
 
 .paper-strip{
 
@@ -3426,28 +4503,46 @@ body.screen-shake{
     z-index:12;
 
     background:
-        rgba(255,255,255,.75);
+
+        rgba(
+            255,
+            255,
+            255,
+            .75
+        );
 
     transform:
-        rotate(var(--rotation))
+
+        rotate(
+            var(--rotation)
+        )
+
         skewX(-25deg);
 
     animation:
+
         stripMove
         var(--duration)
         ease-in-out
         infinite;
 }
 
+
 .paper-strip.black{
 
     background:
-        rgba(0,0,0,.55);
+
+        rgba(
+            0,
+            0,
+            0,
+            .55
+        );
 }
 
 
 /* =========================================================
-   ANIMATION INK
+   INK SPLATTER
 ========================================================= */
 
 .ink-splatter{
@@ -3468,20 +4563,33 @@ body.screen-shake{
     opacity:.82;
 
     box-shadow:
+
         0 0 7px
         rgba(220,0,0,.35);
 
     transform:
-        translate(0,0)
-        scale(var(--scale))
-        rotate(var(--rotation));
+
+        translate(
+            0,
+            0
+        )
+
+        scale(
+            var(--scale)
+        )
+
+        rotate(
+            var(--rotation)
+        );
 
     animation:
+
         inkSplatter
         var(--duration)
         ease-out
         forwards;
 }
+
 
 .ink-splatter::before,
 .ink-splatter::after{
@@ -3495,22 +4603,30 @@ body.screen-shake{
     background:#dc0000;
 }
 
+
 .ink-splatter::before{
 
     width:5px;
     height:5px;
 
-    left:var(--dot-x);
-    top:var(--dot-y);
+    left:
+        var(--dot-x);
+
+    top:
+        var(--dot-y);
 }
+
 
 .ink-splatter::after{
 
     width:3px;
     height:3px;
 
-    left:var(--dot-x2);
-    top:var(--dot-y2);
+    left:
+        var(--dot-x2);
+
+    top:
+        var(--dot-y2);
 }
 
 
@@ -3523,6 +4639,7 @@ body.screen-shake{
     display:none;
 
     position:fixed;
+
     inset:0;
 
     width:100vw;
@@ -3535,6 +4652,7 @@ body.screen-shake{
 
     pointer-events:none;
 }
+
 
 #bgVideo{
 
@@ -3553,6 +4671,7 @@ body.screen-shake{
         contrast(1.08);
 
     animation:
+
         popIn
         .35s
         cubic-bezier(.175,.885,.32,1.275)
@@ -3569,15 +4688,24 @@ body.screen-shake{
     0%{
 
         transform:
+
             translateY(0)
-            rotate(var(--rot))
-            scale(var(--sc));
+
+            rotate(
+                var(--rot)
+            )
+
+            scale(
+                var(--sc)
+            );
     }
 
     100%{
 
         transform:
+
             translateY(120vh)
+
             rotate(
                 calc(
                     var(--rot)
@@ -3585,9 +4713,13 @@ body.screen-shake{
                     120deg
                 )
             )
-            scale(var(--sc));
+
+            scale(
+                var(--sc)
+            );
     }
 }
+
 
 @keyframes wordFloat{
 
@@ -3595,21 +4727,34 @@ body.screen-shake{
     100%{
 
         transform:
+
             translateY(0)
-            rotate(var(--rotation))
+
+            rotate(
+                var(--rotation)
+            )
+
             skewX(-7deg)
+
             scaleX(.9);
     }
 
     50%{
 
         transform:
+
             translateY(-15px)
-            rotate(var(--rotation))
+
+            rotate(
+                var(--rotation)
+            )
+
             skewX(-7deg)
+
             scaleX(.9);
     }
 }
+
 
 @keyframes slashFloat{
 
@@ -3617,52 +4762,76 @@ body.screen-shake{
     100%{
 
         transform:
+
             translateX(-25px)
+
             skewX(-25deg)
+
             rotate(-8deg);
     }
 
     50%{
 
         transform:
+
             translateX(25px)
+
             skewX(-25deg)
+
             rotate(-8deg);
     }
 }
+
 
 @keyframes speedMove{
 
     0%{
 
         transform:
+
             translateX(-35vw)
-            rotate(var(--angle));
+
+            rotate(
+                var(--angle)
+            );
     }
 
     100%{
 
         transform:
+
             translateX(140vw)
-            rotate(var(--angle));
+
+            rotate(
+                var(--angle)
+            );
     }
 }
+
 
 @keyframes paperFall{
 
     0%{
 
         transform:
+
             translateY(-20vh)
+
             translateX(0)
-            rotate(var(--rotation));
+
+            rotate(
+                var(--rotation)
+            );
     }
 
     50%{
 
         transform:
+
             translateY(50vh)
+
             translateX(30px)
+
             rotate(
                 calc(
                     var(--rotation)
@@ -3675,8 +4844,11 @@ body.screen-shake{
     100%{
 
         transform:
+
             translateY(120vh)
+
             translateX(-30px)
+
             rotate(
                 calc(
                     var(--rotation)
@@ -3687,25 +4859,37 @@ body.screen-shake{
     }
 }
 
+
 @keyframes stripMove{
 
     0%,
     100%{
 
         transform:
+
             translateX(-20px)
-            rotate(var(--rotation))
+
+            rotate(
+                var(--rotation)
+            )
+
             skewX(-25deg);
     }
 
     50%{
 
         transform:
+
             translateX(30px)
-            rotate(var(--rotation))
+
+            rotate(
+                var(--rotation)
+            )
+
             skewX(-25deg);
     }
 }
+
 
 @keyframes inkSplatter{
 
@@ -3714,16 +4898,26 @@ body.screen-shake{
         opacity:0;
 
         transform:
-            translate(0,0)
+
+            translate(
+                0,
+                0
+            )
+
             scale(.2)
-            rotate(var(--rotation));
+
+            rotate(
+                var(--rotation)
+            );
     }
 
     12%{
+
         opacity:.9;
     }
 
     65%{
+
         opacity:.8;
     }
 
@@ -3732,11 +4926,16 @@ body.screen-shake{
         opacity:0;
 
         transform:
+
             translate(
                 var(--move-x),
                 var(--move-y)
             )
-            scale(var(--scale))
+
+            scale(
+                var(--scale)
+            )
+
             rotate(
                 calc(
                     var(--rotation)
@@ -3746,6 +4945,7 @@ body.screen-shake{
             );
     }
 }
+
 
 @keyframes popIn{
 
@@ -3771,13 +4971,17 @@ body.screen-shake{
    MOBILE
 ========================================================= */
 
-@media (max-width:600px){
+@media(
+    max-width:600px
+){
 
     .royal-logo{
 
         width:330px;
+
         max-width:82vw;
     }
+
 
     .logo-ring.one{
 
@@ -3785,17 +4989,20 @@ body.screen-shake{
         height:165px;
     }
 
+
     .logo-ring.two{
 
         width:395px;
         height:205px;
     }
 
+
     .logo-ring.three{
 
         width:445px;
         height:245px;
     }
+
 
     .sub-txt{
 
@@ -3808,19 +5015,26 @@ body.screen-shake{
         gap:9px;
     }
 
+
     .click-triangle.left{
 
         border-top-width:5px;
+
         border-bottom-width:5px;
+
         border-left-width:9px;
     }
+
 
     .click-triangle.right{
 
         border-top-width:5px;
+
         border-bottom-width:5px;
+
         border-right-width:9px;
     }
+
 
     .start-label{
 
@@ -3829,11 +5043,13 @@ body.screen-shake{
         letter-spacing:2px;
     }
 
+
     .start-label.top{
 
         top:5.5%;
         left:5%;
     }
+
 
     .start-label.bottom{
 
@@ -3841,25 +5057,30 @@ body.screen-shake{
         bottom:5.5%;
     }
 
+
     .start-slash.one{
 
         height:24px;
     }
+
 
     .start-slash.four{
 
         height:34px;
     }
 
+
     .cutin-top-wrap{
 
         height:64%;
     }
 
+
     .cutin-bottom-wrap{
 
         height:64%;
     }
+
 
     .cutin-strip-wrap{
 
@@ -3868,12 +5089,15 @@ body.screen-shake{
         height:34%;
     }
 
+
     .cutin-strip::before{
 
         left:-5%;
+
         top:30%;
 
         font-size:
+
             clamp(
                 38px,
                 14vw,
@@ -3881,156 +5105,245 @@ body.screen-shake{
             );
     }
 
+
+    .cutin-rip-line{
+
+        height:18px;
+    }
+
+
     #maskDart{
 
         width:
+
             clamp(
-                95px,
-                29vw,
-                145px
+                90px,
+                28vw,
+                140px
             );
     }
 
+
     /*
-       手機飛鏢軌跡稍微調低，
-       避免飛出可視範圍太快
+       手機版 mask 仍然只從左往右
     */
 
-    @keyframes maskDartThrow{
+    @keyframes maskRipAcross{
 
         0%{
 
             opacity:0;
 
             transform:
+
                 translate(
-                    -35vw,
-                    82vh
+                    -38vw,
+                    -34%
                 )
-                rotate(-540deg)
-                scale(.18);
+
+                rotate(-620deg)
+
+                scale(.24);
 
             filter:
-                blur(5px);
+                blur(4px);
         }
 
-        8%{
+
+        6%{
+
             opacity:1;
         }
 
-        22%{
+
+        20%{
 
             opacity:1;
 
             transform:
+
                 translate(
-                    4vw,
-                    68vh
+                    2vw,
+                    -39%
                 )
-                rotate(-250deg)
+
+                rotate(-400deg)
+
                 scale(.48);
         }
 
-        45%{
+
+        37%{
 
             opacity:1;
 
             transform:
+
                 translate(
-                    37vw,
-                    43vh
+                    27vw,
+                    -46%
                 )
-                rotate(90deg)
-                scale(1.15);
+
+                rotate(-130deg)
+
+                scale(.78);
+        }
+
+
+        51%{
+
+            opacity:1;
+
+            transform:
+
+                translate(
+                    44vw,
+                    -52%
+                )
+
+                rotate(150deg)
+
+                scale(1.12);
 
             filter:
+
                 blur(0)
+
                 drop-shadow(
-                    0 8px 0
+                    6px
+                    8px
+                    0
                     #000
                 )
+
                 drop-shadow(
-                    0 0 20px
-                    rgba(220,0,0,.75)
+                    0
+                    0
+                    20px
+                    rgba(220,0,0,.8)
                 );
         }
 
-        60%{
+
+        66%{
 
             opacity:1;
 
             transform:
+
                 translate(
-                    56vw,
-                    30vh
+                    64vw,
+                    -59%
                 )
-                rotate(350deg)
-                scale(.84);
+
+                rotate(450deg)
+
+                scale(.86);
         }
 
-        78%{
+
+        82%{
 
             opacity:.9;
 
             transform:
+
                 translate(
-                    80vw,
-                    12vh
+                    83vw,
+                    -65%
                 )
-                rotate(680deg)
-                scale(.48);
+
+                rotate(750deg)
+
+                scale(.55);
         }
+
+
+        94%{
+
+            opacity:.45;
+
+            transform:
+
+                translate(
+                    104vw,
+                    -72%
+                )
+
+                rotate(1010deg)
+
+                scale(.28);
+
+            filter:
+                blur(3px);
+        }
+
 
         100%{
 
             opacity:0;
 
             transform:
+
                 translate(
-                    125vw,
-                    -20vh
+                    128vw,
+                    -80%
                 )
-                rotate(1180deg)
-                scale(.10);
+
+                rotate(1270deg)
+
+                scale(.09);
 
             filter:
                 blur(6px);
         }
     }
 
-    #skillCutin.tear .cutin-top-wrap{
+
+    #skillCutin.tear
+    .cutin-top-wrap{
 
         animation-duration:
-            1.42s;
+            1.45s;
     }
 
-    #skillCutin.tear .cutin-bottom-wrap{
+
+    #skillCutin.tear
+    .cutin-bottom-wrap{
 
         animation-duration:
-            1.42s;
+            1.45s;
     }
 
-    #skillCutin.tear .cutin-strip-wrap{
+
+    #skillCutin.tear
+    .cutin-strip-wrap{
 
         animation-duration:
-            1.12s;
+            1.15s;
     }
+
 
     #bgVideo{
 
         max-width:94vw;
+
         max-height:72vh;
     }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <!-- =========================================================
      CLICK PAGE
-     注意：這裡沒有 joker-mask.png
+     這裡沒有 joker-mask.png
 ========================================================= -->
 
 <div
@@ -4038,34 +5351,80 @@ body.screen-shake{
     onclick="launchPhantom(event)"
 >
 
-    <div class="start-slash one"></div>
-    <div class="start-slash two"></div>
-    <div class="start-slash three"></div>
-    <div class="start-slash four"></div>
+    <div
+        class="start-slash one"
+    ></div>
 
-    <div class="start-cut a"></div>
-    <div class="start-cut b"></div>
-    <div class="start-cut c"></div>
-    <div class="start-cut d"></div>
+    <div
+        class="start-slash two"
+    ></div>
+
+    <div
+        class="start-slash three"
+    ></div>
+
+    <div
+        class="start-slash four"
+    ></div>
+
+
+    <div
+        class="start-cut a"
+    ></div>
+
+    <div
+        class="start-cut b"
+    ></div>
+
+    <div
+        class="start-cut c"
+    ></div>
+
+    <div
+        class="start-cut d"
+    ></div>
+
 
     <div
         id="startP5Decor"
         aria-hidden="true"
     ></div>
 
-    <div class="start-label top">
+
+    <div
+        class="start-label top"
+    >
+
         PHANTOM THIEVES // CONFIDENTIAL
+
     </div>
 
-    <div class="start-label bottom">
+
+    <div
+        class="start-label bottom"
+    >
+
         TARGET LOCKED // TAKE YOUR HEART
+
     </div>
 
-    <div class="royal-logo">
 
-        <div class="logo-ring one"></div>
-        <div class="logo-ring two"></div>
-        <div class="logo-ring three"></div>
+    <div
+        class="royal-logo"
+    >
+
+        <div
+            class="logo-ring one"
+        ></div>
+
+        <div
+            class="logo-ring two"
+        ></div>
+
+        <div
+            class="logo-ring three"
+        ></div>
+
 
         <img
             src="take-your-heart.png"
@@ -4073,25 +5432,37 @@ body.screen-shake{
             alt="TAKE YOUR HEART"
         >
 
-        <div class="logo-glint"></div>
+
+        <div
+            class="logo-glint"
+        ></div>
 
     </div>
 
+
     <!--
-        只有兩個三角形：
-        ▶ CLICK TO OPEN THE CALLING CARD ◀
+        只有兩個三角形
+        ▶ CLICK ... ◀
     -->
 
-    <div class="sub-txt">
+    <div
+        class="sub-txt"
+    >
 
         <span
             class="click-triangle left"
             aria-hidden="true"
         ></span>
 
-        <span class="click-copy">
+
+        <span
+            class="click-copy"
+        >
+
             CLICK TO OPEN THE CALLING CARD
+
         </span>
+
 
         <span
             class="click-triangle right"
@@ -4122,35 +5493,66 @@ body.screen-shake{
     aria-hidden="true"
 >
 
-    <div class="cutin-back"></div>
+    <div
+        class="cutin-back"
+    ></div>
 
-    <div class="cutin-red-slash"></div>
 
-    <div class="cutin-top-wrap">
+    <div
+        class="cutin-red-slash"
+    ></div>
 
-        <div class="cutin-top"></div>
+
+    <div
+        class="cutin-top-wrap"
+    >
+
+        <div
+            class="cutin-top"
+        ></div>
 
     </div>
 
-    <div class="cutin-bottom-wrap">
 
-        <div class="cutin-bottom"></div>
+    <div
+        class="cutin-bottom-wrap"
+    >
+
+        <div
+            class="cutin-bottom"
+        ></div>
 
     </div>
 
-    <div class="cutin-strip-wrap">
 
-        <div class="cutin-strip"></div>
+    <div
+        class="cutin-strip-wrap"
+    >
+
+        <div
+            class="cutin-strip"
+        ></div>
 
     </div>
 
 
     <!--
-        面具只在過場出現
-        像飛鏢一樣高速甩出去
+        面具飛過時同步畫出的撕裂線
     -->
 
-    <div id="maskDart">
+    <div
+        class="cutin-rip-line"
+    ></div>
+
+
+    <!--
+        joker-mask.png
+        只存在過場
+    -->
+
+    <div
+        id="maskDart"
+    >
 
         <img
             src="joker-mask.png"
@@ -4160,27 +5562,38 @@ body.screen-shake{
     </div>
 
 
-    <div id="cutinShards"></div>
+    <div
+        id="cutinShards"
+    ></div>
 
-    <div class="cutin-flash"></div>
+
+    <div
+        class="cutin-flash"
+    ></div>
 
 </div>
 
 
 <!-- =========================================================
-     ANIMATION PAGE
+     MAIN ANIMATION
 ========================================================= -->
 
-<div id="canvasContainer"></div>
+<div
+    id="canvasContainer"
+></div>
+
 
 <audio
     id="audio"
     src="music.mp3"
     loop
-    preload="auto">
-</audio>
+    preload="auto"
+></audio>
 
-<div id="videoContainer">
+
+<div
+    id="videoContainer"
+>
 
     <video
         id="bgVideo"
@@ -4188,8 +5601,8 @@ body.screen-shake{
         loop
         muted
         playsinline
-        preload="auto">
-    </video>
+        preload="auto"
+    ></video>
 
 </div>
 
@@ -4237,16 +5650,23 @@ function random(
 ){
 
     return (
+
         Math.random()
+
         *
+
         (
             max
             -
             min
         )
+
         +
+
         min
+
     );
+
 }
 
 
@@ -4255,12 +5675,19 @@ function pick(
 ){
 
     return array[
+
         Math.floor(
+
             Math.random()
+
             *
+
             array.length
+
         )
+
     ];
+
 }
 
 
@@ -4269,11 +5696,13 @@ function getPosition(
 ){
 
     let x = 0;
+
     let y = 0;
 
     let safe = false;
 
     let tries = 0;
+
 
     while(
         !safe
@@ -4287,37 +5716,57 @@ function getPosition(
                 94
             );
 
+
         y =
             random(
                 4,
                 90
             );
 
+
         const center =
 
             x > 22
+
             &&
+
             x < 78
+
             &&
+
             y > 28
+
             &&
+
             y < 70;
 
+
         safe =
+
             avoidCenter
-                ?
-                !center
-                :
-                true;
+
+            ?
+
+            !center
+
+            :
+
+            true;
+
 
         tries++;
 
     }
 
+
     return {
+
         x,
+
         y
+
     };
+
 }
 
 
@@ -4328,27 +5777,36 @@ function getPosition(
 function buildStartP5Decor(){
 
     const container =
+
         document.getElementById(
             "startP5Decor"
         );
 
+
     if(
         !container
     ){
+
         return;
+
     }
+
 
     container.innerHTML =
         "";
 
+
     const mobile =
+
         window.innerWidth
+
         <=
+
         600;
 
 
     /* =====================================================
-       HUGE WORDS
+       WORDS
     ===================================================== */
 
     const words =
@@ -4356,44 +5814,174 @@ function buildStartP5Decor(){
         mobile
 
         ?
+
         [
 
-            ["PHANTOM","white",67,-7,9,-9,.13],
+            [
+                "PHANTOM",
+                "white",
+                67,
+                -7,
+                9,
+                -9,
+                .13
+            ],
 
-            ["NOTICE","black",88,52,15,8,.30],
+            [
+                "NOTICE",
+                "black",
+                88,
+                52,
+                15,
+                8,
+                .30
+            ],
 
-            ["TAKE YOUR HEART","red",38,2,27,-8,.21],
+            [
+                "TAKE YOUR HEART",
+                "red",
+                38,
+                2,
+                27,
+                -8,
+                .21
+            ],
 
-            ["TARGET","outline",60,57,35,7,.18],
+            [
+                "TARGET",
+                "outline",
+                60,
+                57,
+                35,
+                7,
+                .18
+            ],
 
-            ["PHANTOM THIEVES","white",27,-7,71,-7,.17],
+            [
+                "PHANTOM THIEVES",
+                "white",
+                27,
+                -7,
+                71,
+                -7,
+                .17
+            ],
 
-            ["STEAL IT","black",61,-5,49,10,.27],
+            [
+                "STEAL IT",
+                "black",
+                61,
+                -5,
+                49,
+                10,
+                .27
+            ],
 
-            ["YOUR HEART","red",39,54,77,7,.23],
+            [
+                "YOUR HEART",
+                "red",
+                39,
+                54,
+                77,
+                7,
+                .23
+            ],
 
-            ["TAKE IT","outline",50,61,59,-7,.15]
+            [
+                "TAKE IT",
+                "outline",
+                50,
+                61,
+                59,
+                -7,
+                .15
+            ]
 
         ]
 
         :
+
         [
 
-            ["PHANTOM","white",122,-2,8,-8,.12],
+            [
+                "PHANTOM",
+                "white",
+                122,
+                -2,
+                8,
+                -8,
+                .12
+            ],
 
-            ["NOTICE","black",150,60,11,8,.28],
+            [
+                "NOTICE",
+                "black",
+                150,
+                60,
+                11,
+                8,
+                .28
+            ],
 
-            ["TAKE YOUR HEART","red",65,5,27,-7,.20],
+            [
+                "TAKE YOUR HEART",
+                "red",
+                65,
+                5,
+                27,
+                -7,
+                .20
+            ],
 
-            ["TARGET","outline",105,68,35,6,.16],
+            [
+                "TARGET",
+                "outline",
+                105,
+                68,
+                35,
+                6,
+                .16
+            ],
 
-            ["THE PHANTOM THIEVES","white",43,5,73,-6,.16],
+            [
+                "THE PHANTOM THIEVES",
+                "white",
+                43,
+                5,
+                73,
+                -6,
+                .16
+            ],
 
-            ["STEAL IT","black",110,-1,48,9,.25],
+            [
+                "STEAL IT",
+                "black",
+                110,
+                -1,
+                48,
+                9,
+                .25
+            ],
 
-            ["YOUR HEART","red",67,65,74,7,.22],
+            [
+                "YOUR HEART",
+                "red",
+                67,
+                65,
+                74,
+                7,
+                .22
+            ],
 
-            ["TAKE IT","outline",90,71,57,-7,.14]
+            [
+                "TAKE IT",
+                "outline",
+                90,
+                71,
+                57,
+                -7,
+                .14
+            ]
 
         ];
 
@@ -4402,54 +5990,89 @@ function buildStartP5Decor(){
         data => {
 
             const word =
+
                 document.createElement(
                     "div"
                 );
 
+
             word.className =
+
                 "start-word "
+
                 +
+
                 data[1];
+
 
             word.textContent =
                 data[0];
 
+
             word.style.fontSize =
+
                 data[2]
+
                 +
+
                 "px";
 
+
             word.style.left =
+
                 data[3]
+
                 +
+
                 "%";
+
 
             word.style.top =
+
                 data[4]
+
                 +
+
                 "%";
 
+
             word.style.setProperty(
+
                 "--r",
+
                 data[5]
+
                 +
+
                 "deg"
+
             );
 
+
             word.style.setProperty(
+
                 "--o",
+
                 data[6]
+
             );
 
+
             word.style.setProperty(
+
                 "--d",
+
                 random(
                     5,
                     8
                 )
+
                 +
+
                 "s"
+
             );
+
 
             container.appendChild(
                 word
@@ -4459,16 +6082,18 @@ function buildStartP5Decor(){
     );
 
 
-    /* HALFTONE */
+    /* =====================================================
+       HALFTONES
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                6
-                :
-                9
+            ?
+            6
+            :
+            9
         );
         i++
     ){
@@ -4478,84 +6103,133 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
+
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-halftone";
 
+
         el.style.setProperty(
+
             "--x",
+
             pos.x
+
             +
+
             "%"
+
         );
 
+
         el.style.setProperty(
+
             "--y",
+
             pos.y
+
             +
+
             "%"
+
         );
 
+
         el.style.setProperty(
+
             "--size",
+
             random(
+
                 mobile
-                    ?
-                    70
-                    :
-                    100,
+                ?
+                70
+                :
+                100,
+
                 mobile
-                    ?
-                    150
-                    :
-                    230
+                ?
+                150
+                :
+                230
+
             )
+
             +
+
             "px"
+
         );
 
+
         el.style.setProperty(
+
             "--o",
+
             random(
                 .15,
                 .38
             )
+
         );
 
+
         el.style.setProperty(
+
             "--c",
+
             Math.random()
             >
             .48
-                ?
-                "#dc0000"
-                :
-                "#fff"
+
+            ?
+
+            "#dc0000"
+
+            :
+
+            "#fff"
+
         );
 
+
         el.style.setProperty(
+
             "--r",
+
             random(
                 -25,
                 25
             )
+
             +
+
             "deg"
+
         );
 
+
         el.style.setProperty(
+
             "--d",
+
             random(
                 4,
                 7
             )
+
             +
+
             "s"
+
         );
+
 
         container.appendChild(
             el
@@ -4564,16 +6238,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* X */
+    /* =====================================================
+       X
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                10
-                :
-                16
+            ?
+            10
+            :
+            16
         );
         i++
     ){
@@ -4583,27 +6259,29 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
+
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-x";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
+
 
         el.style.setProperty(
             "--size",
@@ -4615,6 +6293,7 @@ function buildStartP5Decor(){
             "px"
         );
 
+
         el.style.setProperty(
             "--o",
             random(
@@ -4622,6 +6301,7 @@ function buildStartP5Decor(){
                 .64
             )
         );
+
 
         el.style.setProperty(
             "--c",
@@ -4631,6 +6311,7 @@ function buildStartP5Decor(){
                 "#050505"
             ])
         );
+
 
         el.style.setProperty(
             "--r",
@@ -4642,6 +6323,7 @@ function buildStartP5Decor(){
             "deg"
         );
 
+
         el.style.setProperty(
             "--d",
             random(
@@ -4652,6 +6334,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -4659,16 +6342,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* BURSTS */
+    /* =====================================================
+       BURSTS
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                7
-                :
-                12
+            ?
+            7
+            :
+            12
         );
         i++
     ){
@@ -4678,41 +6363,51 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-burst";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         el.style.setProperty(
+
             "--size",
+
             random(
+
                 45,
+
                 mobile
-                    ?
-                    105
-                    :
-                    150
+                ?
+                105
+                :
+                150
+
             )
+
             +
+
             "px"
+
         );
+
 
         el.style.setProperty(
             "--o",
@@ -4722,16 +6417,25 @@ function buildStartP5Decor(){
             )
         );
 
+
         el.style.setProperty(
+
             "--c",
+
             Math.random()
             >
             .45
-                ?
-                "#dc0000"
-                :
-                "#fff"
+
+            ?
+
+            "#dc0000"
+
+            :
+
+            "#fff"
+
         );
+
 
         el.style.setProperty(
             "--d",
@@ -4743,6 +6447,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -4750,16 +6455,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* TARGET */
+    /* =====================================================
+       TARGET
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                5
-                :
-                8
+            ?
+            5
+            :
+            8
         );
         i++
     ){
@@ -4769,41 +6476,51 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-target";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         el.style.setProperty(
+
             "--size",
+
             random(
+
                 28,
+
                 mobile
-                    ?
-                    70
-                    :
-                    95
+                ?
+                70
+                :
+                95
+
             )
+
             +
+
             "px"
+
         );
+
 
         el.style.setProperty(
             "--o",
@@ -4813,16 +6530,25 @@ function buildStartP5Decor(){
             )
         );
 
+
         el.style.setProperty(
+
             "--c",
+
             Math.random()
             >
             .5
-                ?
-                "#dc0000"
-                :
-                "#fff"
+
+            ?
+
+            "#dc0000"
+
+            :
+
+            "#fff"
+
         );
+
 
         el.style.setProperty(
             "--d",
@@ -4834,6 +6560,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -4841,16 +6568,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* DOT GROUP */
+    /* =====================================================
+       DOT GROUPS
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                6
-                :
-                9
+            ?
+            6
+            :
+            9
         );
         i++
     ){
@@ -4860,41 +6589,51 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const group =
             document.createElement(
                 "div"
             );
 
+
         group.className =
             "start-dot-group";
 
+
         group.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         group.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         group.style.setProperty(
+
             "--size",
+
             random(
+
                 50,
+
                 mobile
-                    ?
-                    105
-                    :
-                    145
+                ?
+                105
+                :
+                145
+
             )
+
             +
+
             "px"
+
         );
+
 
         group.style.setProperty(
             "--o",
@@ -4903,6 +6642,7 @@ function buildStartP5Decor(){
                 .58
             )
         );
+
 
         group.style.setProperty(
             "--d",
@@ -4914,23 +6654,30 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         const color =
+
             Math.random()
             >
             .5
-                ?
-                "#dc0000"
-                :
-                "#fff";
+
+            ?
+
+            "#dc0000"
+
+            :
+
+            "#fff";
+
 
         for(
             let d = 0;
             d < (
                 mobile
-                    ?
-                    9
-                    :
-                    14
+                ?
+                9
+                :
+                14
             );
             d++
         ){
@@ -4940,8 +6687,10 @@ function buildStartP5Decor(){
                     "span"
                 );
 
+
             dot.className =
                 "start-dot";
+
 
             dot.style.setProperty(
                 "--left",
@@ -4953,6 +6702,7 @@ function buildStartP5Decor(){
                 "%"
             );
 
+
             dot.style.setProperty(
                 "--top",
                 random(
@@ -4962,6 +6712,7 @@ function buildStartP5Decor(){
                 +
                 "%"
             );
+
 
             dot.style.setProperty(
                 "--dot",
@@ -4973,16 +6724,19 @@ function buildStartP5Decor(){
                 "px"
             );
 
+
             dot.style.setProperty(
                 "--c",
                 color
             );
+
 
             group.appendChild(
                 dot
             );
 
         }
+
 
         container.appendChild(
             group
@@ -4991,16 +6745,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* BLOCKS */
+    /* =====================================================
+       BLOCKS
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                10
-                :
-                16
+            ?
+            10
+            :
+            16
         );
         i++
     ){
@@ -5010,41 +6766,51 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-block";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         el.style.setProperty(
+
             "--w",
+
             random(
+
                 35,
+
                 mobile
-                    ?
-                    140
-                    :
-                    210
+                ?
+                140
+                :
+                210
+
             )
+
             +
+
             "px"
+
         );
+
 
         el.style.setProperty(
             "--h",
@@ -5056,6 +6822,7 @@ function buildStartP5Decor(){
             "px"
         );
 
+
         el.style.setProperty(
             "--c",
             pick([
@@ -5065,6 +6832,7 @@ function buildStartP5Decor(){
             ])
         );
 
+
         el.style.setProperty(
             "--o",
             random(
@@ -5072,6 +6840,7 @@ function buildStartP5Decor(){
                 .42
             )
         );
+
 
         el.style.setProperty(
             "--r",
@@ -5083,6 +6852,7 @@ function buildStartP5Decor(){
             "deg"
         );
 
+
         el.style.setProperty(
             "--d",
             random(
@@ -5093,6 +6863,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -5100,16 +6871,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* INK */
+    /* =====================================================
+       INK
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                7
-                :
-                11
+            ?
+            7
+            :
+            11
         );
         i++
     ){
@@ -5119,52 +6892,70 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-ink";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         el.style.setProperty(
+
             "--size",
+
             random(
+
                 20,
+
                 mobile
-                    ?
-                    62
-                    :
-                    82
+                ?
+                62
+                :
+                82
+
             )
+
             +
+
             "px"
+
         );
 
+
         el.style.setProperty(
+
             "--c",
+
             Math.random()
             >
             .42
-                ?
-                "#dc0000"
-                :
-                "#000"
+
+            ?
+
+            "#dc0000"
+
+            :
+
+            "#000"
+
         );
+
 
         el.style.setProperty(
             "--o",
@@ -5173,6 +6964,7 @@ function buildStartP5Decor(){
                 .37
             )
         );
+
 
         el.style.setProperty(
             "--r",
@@ -5184,6 +6976,7 @@ function buildStartP5Decor(){
             "deg"
         );
 
+
         el.style.setProperty(
             "--d",
             random(
@@ -5194,6 +6987,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -5201,16 +6995,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* FRAGMENTS */
+    /* =====================================================
+       FRAGMENTS
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                20
-                :
-                34
+            ?
+            20
+            :
+            34
         );
         i++
     ){
@@ -5220,27 +7016,28 @@ function buildStartP5Decor(){
                 false
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-fragment";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
+
 
         el.style.setProperty(
             "--w",
@@ -5252,6 +7049,7 @@ function buildStartP5Decor(){
             "px"
         );
 
+
         el.style.setProperty(
             "--h",
             random(
@@ -5262,6 +7060,7 @@ function buildStartP5Decor(){
             "px"
         );
 
+
         el.style.setProperty(
             "--c",
             pick([
@@ -5271,6 +7070,7 @@ function buildStartP5Decor(){
             ])
         );
 
+
         el.style.setProperty(
             "--o",
             random(
@@ -5278,6 +7078,7 @@ function buildStartP5Decor(){
                 .55
             )
         );
+
 
         el.style.setProperty(
             "--dx",
@@ -5289,6 +7090,7 @@ function buildStartP5Decor(){
             "px"
         );
 
+
         el.style.setProperty(
             "--dy",
             random(
@@ -5298,6 +7100,7 @@ function buildStartP5Decor(){
             +
             "px"
         );
+
 
         el.style.setProperty(
             "--d",
@@ -5309,6 +7112,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -5316,16 +7120,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* SPEED */
+    /* =====================================================
+       SPEED
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                15
-                :
-                25
+            ?
+            15
+            :
+            25
         );
         i++
     ){
@@ -5335,41 +7141,51 @@ function buildStartP5Decor(){
                 false
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-speed";
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         el.style.setProperty(
+
             "--w",
+
             random(
+
                 30,
+
                 mobile
-                    ?
-                    150
-                    :
-                    230
+                ?
+                150
+                :
+                230
+
             )
+
             +
+
             "px"
+
         );
+
 
         el.style.setProperty(
             "--h",
@@ -5381,16 +7197,25 @@ function buildStartP5Decor(){
             "px"
         );
 
+
         el.style.setProperty(
+
             "--c",
+
             Math.random()
             >
             .52
-                ?
-                "#fff"
-                :
-                "#dc0000"
+
+            ?
+
+            "#fff"
+
+            :
+
+            "#dc0000"
+
         );
+
 
         el.style.setProperty(
             "--o",
@@ -5399,6 +7224,7 @@ function buildStartP5Decor(){
                 .58
             )
         );
+
 
         el.style.setProperty(
             "--r",
@@ -5410,6 +7236,7 @@ function buildStartP5Decor(){
             "deg"
         );
 
+
         el.style.setProperty(
             "--d",
             random(
@@ -5419,6 +7246,7 @@ function buildStartP5Decor(){
             +
             "s"
         );
+
 
         el.style.setProperty(
             "--delay",
@@ -5430,6 +7258,7 @@ function buildStartP5Decor(){
             "s"
         );
 
+
         container.appendChild(
             el
         );
@@ -5437,16 +7266,18 @@ function buildStartP5Decor(){
     }
 
 
-    /* SYMBOLS */
+    /* =====================================================
+       SYMBOLS
+    ===================================================== */
 
     for(
         let i = 0;
         i < (
             mobile
-                ?
-                5
-                :
-                8
+            ?
+            5
+            :
+            8
         );
         i++
     ){
@@ -5456,13 +7287,16 @@ function buildStartP5Decor(){
                 true
             );
 
+
         const el =
             document.createElement(
                 "div"
             );
 
+
         el.className =
             "start-symbol";
+
 
         el.textContent =
             pick([
@@ -5473,30 +7307,37 @@ function buildStartP5Decor(){
                 "★"
             ]);
 
+
         el.style.setProperty(
             "--x",
-            pos.x
-            +
-            "%"
+            pos.x + "%"
         );
+
 
         el.style.setProperty(
             "--y",
-            pos.y
-            +
-            "%"
+            pos.y + "%"
         );
 
+
         el.style.setProperty(
+
             "--c",
+
             Math.random()
             >
             .45
-                ?
-                "#dc0000"
-                :
-                "#fff"
+
+            ?
+
+            "#dc0000"
+
+            :
+
+            "#fff"
+
         );
+
 
         el.style.setProperty(
             "--o",
@@ -5506,19 +7347,29 @@ function buildStartP5Decor(){
             )
         );
 
+
         el.style.setProperty(
+
             "--size",
+
             random(
+
                 18,
+
                 mobile
-                    ?
-                    40
-                    :
-                    55
+                ?
+                40
+                :
+                55
+
             )
+
             +
+
             "px"
+
         );
+
 
         el.style.setProperty(
             "--r",
@@ -5530,6 +7381,7 @@ function buildStartP5Decor(){
             "deg"
         );
 
+
         el.style.setProperty(
             "--d",
             random(
@@ -5539,6 +7391,7 @@ function buildStartP5Decor(){
             +
             "s"
         );
+
 
         container.appendChild(
             el
@@ -5556,21 +7409,30 @@ function buildStartP5Decor(){
 function buildCutinShards(){
 
     const container =
+
         document.getElementById(
             "cutinShards"
         );
 
+
     container.innerHTML =
         "";
 
+
     const count =
+
         window.innerWidth
         <=
         600
-            ?
-            28
-            :
-            42;
+
+        ?
+
+        30
+
+        :
+
+        44;
+
 
     for(
         let i = 0;
@@ -5579,12 +7441,15 @@ function buildCutinShards(){
     ){
 
         const shard =
+
             document.createElement(
                 "div"
             );
 
+
         shard.className =
             "cutin-shard";
+
 
         shard.style.setProperty(
             "--x",
@@ -5596,6 +7461,7 @@ function buildCutinShards(){
             "%"
         );
 
+
         shard.style.setProperty(
             "--y",
             random(
@@ -5605,6 +7471,7 @@ function buildCutinShards(){
             +
             "%"
         );
+
 
         shard.style.setProperty(
             "--w",
@@ -5616,6 +7483,7 @@ function buildCutinShards(){
             "px"
         );
 
+
         shard.style.setProperty(
             "--h",
             random(
@@ -5626,6 +7494,7 @@ function buildCutinShards(){
             "px"
         );
 
+
         shard.style.setProperty(
             "--c",
             pick([
@@ -5635,25 +7504,28 @@ function buildCutinShards(){
             ])
         );
 
+
         shard.style.setProperty(
             "--dx",
             random(
-                -260,
-                260
+                -280,
+                280
             )
             +
             "px"
         );
 
+
         shard.style.setProperty(
             "--dy",
             random(
-                -180,
-                180
+                -190,
+                190
             )
             +
             "px"
         );
+
 
         shard.style.setProperty(
             "--r",
@@ -5665,15 +7537,17 @@ function buildCutinShards(){
             "deg"
         );
 
+
         shard.style.setProperty(
             "--d",
             random(
                 .7,
-                1.15
+                1.2
             )
             +
             "s"
         );
+
 
         container.appendChild(
             shard
@@ -5685,73 +7559,106 @@ function buildCutinShards(){
 
 
 /* =========================================================
-   START PARALLAX
+   PARALLAX
 ========================================================= */
 
 function initStartParallax(){
 
     const start =
+
         document.getElementById(
             "startScreen"
         );
 
+
     if(
         !start
     ){
+
         return;
+
     }
+
 
     if(
         !window.matchMedia(
             "(pointer:fine)"
         ).matches
     ){
+
         return;
+
     }
 
+
     start.addEventListener(
+
         "pointermove",
+
         event => {
 
             if(
                 launched
             ){
+
                 return;
+
             }
 
+
             const x =
+
                 event.clientX
+
                 /
+
                 window.innerWidth
+
                 -
+
                 .5;
+
 
             const y =
+
                 event.clientY
+
                 /
+
                 window.innerHeight
+
                 -
+
                 .5;
 
+
             start.style.setProperty(
+
                 "--logoX",
+
                 x
                 *
                 12
                 +
                 "px"
+
             );
 
+
             start.style.setProperty(
+
                 "--logoY",
+
                 y
                 *
                 9
                 +
                 "px"
+
             );
 
         }
+
     );
 
 }
@@ -5765,6 +7672,7 @@ function buildRealDenseWaterfall(){
 
     const count =
         220;
+
 
     for(
         let i = 0;
@@ -5781,28 +7689,40 @@ function buildRealDenseWaterfall(){
 }
 
 
+/* =========================================================
+   CREATE CARD
+========================================================= */
+
 function createCallingCard(
     initial = false
 ){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
+
     const letter =
+
         document.createElement(
             "div"
         );
 
+
     letter.className =
         "falling-letter";
+
 
     const depth =
         Math.random();
 
+
     if(
-        depth < .25
+        depth
+        <
+        .25
     ){
 
         letter.classList.add(
@@ -5811,7 +7731,9 @@ function createCallingCard(
 
     }
     else if(
-        depth > .78
+        depth
+        >
+        .78
     ){
 
         letter.classList.add(
@@ -5825,79 +7747,114 @@ function createCallingCard(
 
 
     if(
-        depth < .25
+        depth
+        <
+        .25
     ){
 
         width =
+
             Math.floor(
+
                 Math.random()
+
                 *
+
                 30
+
             )
+
             +
+
             22;
 
     }
     else if(
-        depth > .78
+        depth
+        >
+        .78
     ){
 
         width =
+
             Math.floor(
+
                 Math.random()
+
                 *
+
                 80
+
             )
+
             +
+
             55;
 
     }
     else{
 
         width =
+
             Math.floor(
+
                 Math.random()
+
                 *
+
                 55
+
             )
+
             +
+
             30;
 
     }
 
 
     const height =
+
         width
         *
         1.3;
 
 
     const left =
+
         Math.random()
         *
         96;
 
 
     const top =
+
         initial
-            ?
-            Math.random()
-            *
-            115
-            -
-            15
-            :
-            -18;
+
+        ?
+
+        Math.random()
+        *
+        115
+        -
+        15
+
+        :
+
+        -18;
 
 
     let duration;
 
 
     if(
-        depth < .25
+        depth
+        <
+        .25
     ){
 
         duration =
+
             Math.random()
             *
             4
@@ -5906,10 +7863,13 @@ function createCallingCard(
 
     }
     else if(
-        depth > .78
+        depth
+        >
+        .78
     ){
 
         duration =
+
             Math.random()
             *
             2
@@ -5920,6 +7880,7 @@ function createCallingCard(
     else{
 
         duration =
+
             Math.random()
             *
             3
@@ -5930,6 +7891,7 @@ function createCallingCard(
 
 
     const rotation =
+
         Math.random()
         *
         100
@@ -5938,6 +7900,7 @@ function createCallingCard(
 
 
     const scale =
+
         (
             Math.random()
             *
@@ -5975,20 +7938,27 @@ function createCallingCard(
 
 
     letter.style.setProperty(
+
         "--rot",
+
         rotation
         +
         "deg"
+
     );
 
 
     letter.style.setProperty(
+
         "--sc",
+
         scale
+
     );
 
 
     letter.style.transform =
+
         `rotate(${rotation}deg) scale(${scale})`;
 
 
@@ -6006,6 +7976,7 @@ function createCallingCard(
     ){
 
         letter.style.animation =
+
             `p5GlobalFall ${duration}s linear`;
 
 
@@ -6015,6 +7986,7 @@ function createCallingCard(
                 letter.remove();
 
             },
+
             duration
             *
             1000
@@ -6028,12 +8000,13 @@ function createCallingCard(
 
 
 /* =========================================================
-   ANIMATION PAGE P5 ELEMENTS
+   MAIN PAGE P5 ELEMENTS
 ========================================================= */
 
 function buildP5Elements(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
@@ -6042,16 +8015,27 @@ function buildP5Elements(){
     const words = [
 
         "TAKE YOUR HEART",
+
         "PHANTOM",
+
         "CALLING CARD",
+
         "NOTICE",
+
         "THE TRUTH",
+
         "YOUR HEART",
+
         "WE HAVE COME",
+
         "THE PHANTOM THIEVES",
+
         "TAKE YOUR HEART",
+
         "NOTICE",
+
         "PHANTOM",
+
         "TAKE YOUR HEART"
 
     ];
@@ -6064,6 +8048,7 @@ function buildP5Elements(){
     ){
 
         const word =
+
             document.createElement(
                 "div"
             );
@@ -6080,35 +8065,56 @@ function buildP5Elements(){
 
 
         word.style.fontSize =
+
             Math.floor(
+
                 Math.random()
+
                 *
+
                 75
+
             )
+
             +
+
             30
+
             +
+
             "px";
 
 
         word.style.left =
+
             Math.random()
+
             *
+
             100
+
             +
+
             "vw";
 
 
         word.style.top =
+
             Math.random()
+
             *
+
             105
+
             +
+
             "vh";
 
 
         word.style.setProperty(
+
             "--rotation",
+
             (
                 Math.random()
                 *
@@ -6116,13 +8122,18 @@ function buildP5Elements(){
                 -
                 9
             )
+
             +
+
             "deg"
+
         );
 
 
         word.style.setProperty(
+
             "--duration",
+
             (
                 Math.random()
                 *
@@ -6130,8 +8141,11 @@ function buildP5Elements(){
                 +
                 4
             )
+
             +
+
             "s"
+
         );
 
 
@@ -6140,7 +8154,9 @@ function buildP5Elements(){
 
 
         if(
-            type < .25
+            type
+            <
+            .25
         ){
 
             word.classList.add(
@@ -6149,7 +8165,9 @@ function buildP5Elements(){
 
         }
         else if(
-            type < .5
+            type
+            <
+            .5
         ){
 
             word.classList.add(
@@ -6232,12 +8250,14 @@ function buildP5Elements(){
 function createSlash(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const slash =
+
         document.createElement(
             "div"
         );
@@ -6252,7 +8272,9 @@ function createSlash(){
 
 
     if(
-        type < .52
+        type
+        <
+        .52
     ){
 
         slash.classList.add(
@@ -6261,7 +8283,9 @@ function createSlash(){
 
     }
     else if(
-        type < .77
+        type
+        <
+        .77
     ){
 
         slash.classList.add(
@@ -6279,51 +8303,85 @@ function createSlash(){
 
 
     slash.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             200
+
         )
+
         +
+
         50
+
         +
+
         "px";
 
 
     slash.style.height =
+
         Math.floor(
+
             Math.random()
+
             *
+
             25
+
         )
+
         +
+
         5
+
         +
+
         "px";
 
 
     slash.style.left =
+
         Math.random()
+
         *
+
         110
+
         -
+
         5
+
         +
+
         "vw";
 
 
     slash.style.top =
+
         Math.random()
+
         *
+
         110
+
         -
+
         5
+
         +
+
         "vh";
 
 
     slash.style.setProperty(
+
         "--duration",
+
         Math.random()
         *
         3
@@ -6331,6 +8389,7 @@ function createSlash(){
         3
         +
         "s"
+
     );
 
 
@@ -6342,18 +8401,20 @@ function createSlash(){
 
 
 /* =========================================================
-   SPEED
+   SPEED LINE
 ========================================================= */
 
 function createSpeedLine(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const line =
+
         document.createElement(
             "div"
         );
@@ -6377,35 +8438,56 @@ function createSpeedLine(){
 
 
     line.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             180
+
         )
+
         +
+
         40
+
         +
+
         "px";
 
 
     line.style.left =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vw";
 
 
     line.style.top =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vh";
 
 
     line.style.setProperty(
+
         "--angle",
+
         Math.random()
         *
         35
@@ -6413,11 +8495,14 @@ function createSpeedLine(){
         25
         +
         "deg"
+
     );
 
 
     line.style.setProperty(
+
         "--duration",
+
         Math.random()
         *
         1.8
@@ -6425,10 +8510,12 @@ function createSpeedLine(){
         .8
         +
         "s"
+
     );
 
 
     line.style.animationDelay =
+
         Math.random()
         *
         -4
@@ -6444,18 +8531,20 @@ function createSpeedLine(){
 
 
 /* =========================================================
-   PAPER
+   PAPER FRAGMENT
 ========================================================= */
 
 function createPaperFragment(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const fragment =
+
         document.createElement(
             "div"
         );
@@ -6470,7 +8559,9 @@ function createPaperFragment(){
 
 
     if(
-        type < .55
+        type
+        <
+        .55
     ){
 
         fragment.classList.add(
@@ -6479,7 +8570,9 @@ function createPaperFragment(){
 
     }
     else if(
-        type < .74
+        type
+        <
+        .74
     ){
 
         fragment.classList.add(
@@ -6490,72 +8583,121 @@ function createPaperFragment(){
 
 
     fragment.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             35
+
         )
+
         +
+
         8
+
         +
+
         "px";
 
 
     fragment.style.height =
+
         Math.floor(
+
             Math.random()
+
             *
+
             15
+
         )
+
         +
+
         4
+
         +
+
         "px";
 
 
     fragment.style.left =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vw";
 
 
     fragment.style.top =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vh";
 
 
     fragment.style.setProperty(
+
         "--rotation",
+
         Math.random()
+
         *
+
         180
+
         +
+
         "deg"
+
     );
 
 
     fragment.style.setProperty(
+
         "--duration",
+
         Math.random()
+
         *
+
         4
+
         +
+
         4
+
         +
+
         "s"
+
     );
 
 
     fragment.style.animationDelay =
+
         Math.random()
+
         *
+
         -8
+
         +
+
         "s";
 
 
@@ -6566,15 +8708,21 @@ function createPaperFragment(){
 }
 
 
+/* =========================================================
+   PAPER STRIP
+========================================================= */
+
 function createPaperStrip(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const strip =
+
         document.createElement(
             "div"
         );
@@ -6598,68 +8746,116 @@ function createPaperStrip(){
 
 
     strip.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             140
+
         )
+
         +
+
         30
+
         +
+
         "px";
 
 
     strip.style.height =
+
         Math.floor(
+
             Math.random()
+
             *
+
             12
+
         )
+
         +
+
         4
+
         +
+
         "px";
 
 
     strip.style.left =
+
         Math.random()
+
         *
+
         110
+
         -
+
         5
+
         +
+
         "vw";
 
 
     strip.style.top =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vh";
 
 
     strip.style.setProperty(
+
         "--rotation",
+
         Math.random()
+
         *
+
         40
+
         -
+
         20
+
         +
+
         "deg"
+
     );
 
 
     strip.style.setProperty(
+
         "--duration",
+
         Math.random()
+
         *
+
         4
+
         +
+
         3
+
         +
+
         "s"
+
     );
 
 
@@ -6671,7 +8867,7 @@ function createPaperStrip(){
 
 
 /* =========================================================
-   INK SPLATTER
+   INK
 ========================================================= */
 
 function createInkSplatter(
@@ -6679,12 +8875,14 @@ function createInkSplatter(
 ){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const splatter =
+
         document.createElement(
             "div"
         );
@@ -6695,45 +8893,72 @@ function createInkSplatter(
 
 
     const size =
+
         Math.random()
+
         *
+
         1.8
+
         +
+
         .55;
 
 
     const rotation =
+
         Math.random()
+
         *
+
         360;
 
 
     const duration =
+
         Math.random()
+
         *
+
         3
+
         +
+
         2.5;
 
 
     splatter.style.left =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vw";
 
 
     splatter.style.top =
+
         initial
-            ?
-            Math.random()
-            *
-            100
-            +
-            "vh"
-            :
-            "-5vh";
+
+        ?
+
+        Math.random()
+
+        *
+
+        100
+
+        +
+
+        "vh"
+
+        :
+
+        "-5vh";
 
 
     splatter.style.setProperty(
@@ -6835,10 +9060,15 @@ function createInkSplatter(
     ){
 
         splatter.style.animationDelay =
+
             Math.random()
+
             *
+
             -5
+
             +
+
             "s";
 
     }
@@ -6859,6 +9089,7 @@ function createInkSplatter(
                 splatter.remove();
 
             },
+
             duration
             *
             1000
@@ -6880,6 +9111,7 @@ function triggerImpact(
 ){
 
     const burst =
+
         document.getElementById(
             "impactBurst"
         );
@@ -6888,34 +9120,46 @@ function triggerImpact(
     const x =
 
         event
+
         &&
+
         Number.isFinite(
             event.clientX
         )
 
         ?
+
         event.clientX
 
         :
+
         window.innerWidth
+
         /
+
         2;
 
 
     const y =
 
         event
+
         &&
+
         Number.isFinite(
             event.clientY
         )
 
         ?
+
         event.clientY
 
         :
+
         window.innerHeight
+
         /
+
         2;
 
 
@@ -6956,6 +9200,7 @@ function triggerImpact(
             );
 
         },
+
         800
     );
 
@@ -6973,7 +9218,9 @@ function launchPhantom(
     if(
         launched
     ){
+
         return;
+
     }
 
 
@@ -6982,49 +9229,59 @@ function launchPhantom(
 
 
     const audio =
+
         document.getElementById(
             "audio"
         );
 
 
     const video =
+
         document.getElementById(
             "bgVideo"
         );
 
 
     const start =
+
         document.getElementById(
             "startScreen"
         );
 
 
     const canvas =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const videoContainer =
+
         document.getElementById(
             "videoContainer"
         );
 
 
     const cutin =
+
         document.getElementById(
             "skillCutin"
         );
 
 
-    /* CLICK IMPACT */
+    /* =====================================================
+       CLICK IMPACT
+    ===================================================== */
 
     triggerImpact(
         event
     );
 
 
-    /* AUDIO */
+    /* =====================================================
+       AUDIO
+    ===================================================== */
 
     audio.volume =
         1;
@@ -7043,7 +9300,9 @@ function launchPhantom(
         );
 
 
-    /* VIDEO */
+    /* =====================================================
+       VIDEO
+    ===================================================== */
 
     video
         .play()
@@ -7063,6 +9322,7 @@ function launchPhantom(
 
 
     start.style.transition =
+
         "transform .34s cubic-bezier(.16,1,.3,1), filter .34s ease";
 
 
@@ -7076,7 +9336,7 @@ function launchPhantom(
 
     /* =====================================================
        STEP 1
-       CUT-IN 黑紙衝進來
+       黑紙 CUT-IN 衝入
     ===================================================== */
 
     cutin.classList.add(
@@ -7096,8 +9356,7 @@ function launchPhantom(
 
     /* =====================================================
        STEP 2
-       後面的動畫先啟動
-       但被黑紙遮住
+       後面的預告信動畫先啟動
     ===================================================== */
 
     setTimeout(
@@ -7120,6 +9379,7 @@ function launchPhantom(
 
 
             const letters =
+
                 document.querySelectorAll(
                     ".falling-letter"
                 );
@@ -7129,23 +9389,27 @@ function launchPhantom(
                 letter => {
 
                     const duration =
+
                         letter.dataset.duration;
 
 
                     letter.style.animation =
+
                         `p5GlobalFall ${duration}s linear infinite`;
 
                 }
             );
 
         },
+
         520
     );
 
 
     /* =====================================================
        STEP 3
-       面具像飛鏢一樣甩出去
+       MASK 從左往右沿著撕裂線飛
+       同時生成裂痕
     ===================================================== */
 
     setTimeout(
@@ -7169,14 +9433,15 @@ function launchPhantom(
             );
 
         },
-        600
+
+        620
     );
 
 
     /* =====================================================
        STEP 4
-       面具飛走、消失之後
-       再開始撕裂
+       MASK 飛到右邊消失
+       裂痕立即真正撕開
     ===================================================== */
 
     setTimeout(
@@ -7205,13 +9470,14 @@ function launchPhantom(
             );
 
         },
-        1900
+
+        2020
     );
 
 
     /* =====================================================
        STEP 5
-       整個過場結束
+       過場完全結束
     ===================================================== */
 
     setTimeout(
@@ -7229,20 +9495,23 @@ function launchPhantom(
             );
 
         },
+
         window.innerWidth
         <=
         600
 
         ?
-        3550
+
+        3750
 
         :
-        3300
+
+        3500
     );
 
 
     /* =====================================================
-       CONTINUOUS EFFECTS
+       CONTINUOUS ANIMATION
     ===================================================== */
 
     setInterval(
@@ -7251,6 +9520,7 @@ function launchPhantom(
             supplementLetter();
 
         },
+
         80
     );
 
@@ -7261,6 +9531,7 @@ function launchPhantom(
             supplementPaper();
 
         },
+
         160
     );
 
@@ -7271,6 +9542,7 @@ function launchPhantom(
             supplementSpeedLine();
 
         },
+
         220
     );
 
@@ -7281,6 +9553,7 @@ function launchPhantom(
             supplementInkSplatter();
 
         },
+
         500
     );
 
@@ -7291,6 +9564,7 @@ function launchPhantom(
             supplementSlash();
 
         },
+
         900
     );
 
@@ -7298,18 +9572,20 @@ function launchPhantom(
 
 
 /* =========================================================
-   SUPPLEMENT CARD
+   SUPPLEMENT LETTER
 ========================================================= */
 
 function supplementLetter(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const cards =
+
         container.querySelectorAll(
             ".falling-letter"
         );
@@ -7320,7 +9596,9 @@ function supplementLetter(){
         >
         330
     ){
+
         return;
+
     }
 
 
@@ -7338,12 +9616,14 @@ function supplementLetter(){
 function supplementPaper(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const fragment =
+
         document.createElement(
             "div"
         );
@@ -7358,7 +9638,9 @@ function supplementPaper(){
 
 
     if(
-        type < .5
+        type
+        <
+        .5
     ){
 
         fragment.classList.add(
@@ -7367,7 +9649,9 @@ function supplementPaper(){
 
     }
     else if(
-        type < .72
+        type
+        <
+        .72
     ){
 
         fragment.classList.add(
@@ -7378,34 +9662,57 @@ function supplementPaper(){
 
 
     fragment.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             35
+
         )
+
         +
+
         8
+
         +
+
         "px";
 
 
     fragment.style.height =
+
         Math.floor(
+
             Math.random()
+
             *
+
             14
+
         )
+
         +
+
         4
+
         +
+
         "px";
 
 
     fragment.style.left =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vw";
 
 
@@ -7414,20 +9721,32 @@ function supplementPaper(){
 
 
     fragment.style.setProperty(
+
         "--rotation",
+
         Math.random()
+
         *
+
         180
+
         +
+
         "deg"
+
     );
 
 
     const duration =
+
         Math.random()
+
         *
+
         4
+
         +
+
         4;
 
 
@@ -7440,6 +9759,7 @@ function supplementPaper(){
 
 
     fragment.style.animation =
+
         `paperFall ${duration}s linear`;
 
 
@@ -7454,6 +9774,7 @@ function supplementPaper(){
             fragment.remove();
 
         },
+
         duration
         *
         1000
@@ -7471,12 +9792,14 @@ function supplementPaper(){
 function supplementSpeedLine(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const line =
+
         document.createElement(
             "div"
         );
@@ -7500,14 +9823,23 @@ function supplementSpeedLine(){
 
 
     line.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             180
+
         )
+
         +
+
         40
+
         +
+
         "px";
 
 
@@ -7516,30 +9848,49 @@ function supplementSpeedLine(){
 
 
     line.style.top =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vh";
 
 
     line.style.setProperty(
+
         "--angle",
+
         Math.random()
+
         *
+
         35
+
         -
+
         25
+
         +
+
         "deg"
+
     );
 
 
     const duration =
+
         Math.random()
+
         *
+
         1.5
+
         +
+
         .8;
 
 
@@ -7552,6 +9903,7 @@ function supplementSpeedLine(){
 
 
     line.style.animation =
+
         `speedMove ${duration}s linear`;
 
 
@@ -7566,6 +9918,7 @@ function supplementSpeedLine(){
             line.remove();
 
         },
+
         duration
         *
         1000
@@ -7583,12 +9936,14 @@ function supplementSpeedLine(){
 function supplementInkSplatter(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const splatters =
+
         container.querySelectorAll(
             ".ink-splatter"
         );
@@ -7599,7 +9954,9 @@ function supplementInkSplatter(){
         >
         45
     ){
+
         return;
+
     }
 
 
@@ -7617,12 +9974,14 @@ function supplementInkSplatter(){
 function supplementSlash(){
 
     const container =
+
         document.getElementById(
             "canvasContainer"
         );
 
 
     const slash =
+
         document.createElement(
             "div"
         );
@@ -7637,7 +9996,9 @@ function supplementSlash(){
 
 
     if(
-        type < .45
+        type
+        <
+        .45
     ){
 
         slash.classList.add(
@@ -7646,7 +10007,9 @@ function supplementSlash(){
 
     }
     else if(
-        type < .72
+        type
+        <
+        .72
     ){
 
         slash.classList.add(
@@ -7664,26 +10027,44 @@ function supplementSlash(){
 
 
     slash.style.width =
+
         Math.floor(
+
             Math.random()
+
             *
+
             180
+
         )
+
         +
+
         45
+
         +
+
         "px";
 
 
     slash.style.height =
+
         Math.floor(
+
             Math.random()
+
             *
+
             18
+
         )
+
         +
+
         5
+
         +
+
         "px";
 
 
@@ -7692,22 +10073,36 @@ function supplementSlash(){
 
 
     slash.style.top =
+
         Math.random()
+
         *
+
         100
+
         +
+
         "vh";
 
 
     slash.style.setProperty(
+
         "--duration",
+
         Math.random()
+
         *
+
         2
+
         +
+
         2
+
         +
+
         "s"
+
     );
 
 
@@ -7722,6 +10117,7 @@ function supplementSlash(){
             slash.remove();
 
         },
+
         4500
     );
 
@@ -7733,7 +10129,9 @@ function supplementSlash(){
 ========================================================= */
 
 window.addEventListener(
+
     "resize",
+
     () => {
 
         clearTimeout(
@@ -7742,6 +10140,7 @@ window.addEventListener(
 
 
         resizeTimer =
+
             setTimeout(
                 () => {
 
@@ -7756,13 +10155,16 @@ window.addEventListener(
                     }
 
                 },
+
                 180
             );
 
     }
+
 );
 
 </script>
 
 </body>
+
 </html>
