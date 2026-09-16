@@ -14,7 +14,7 @@ html,
 body {
     width: 100%;
     height: 100%;
-    background: #0b0b0b;
+    background-color: #0b0b0b;
     font-family: 'Impact', 'Arial Black', sans-serif;
     overflow: hidden;
     position: relative;
@@ -24,8 +24,11 @@ body {
 ========================================================= */
 #startScreen {
     position: fixed;
-    inset: 0;
-    background: #0d0d0d;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0d0d0d;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +40,11 @@ body {
     width: 140px;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,.4));
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255,255,255,.4)
+        );
     animation: pulse 1.5s infinite;
 }
 .p5-box {
@@ -48,8 +55,11 @@ body {
     font-size: 32px;
     font-weight: 900;
     letter-spacing: 2px;
-    transform: rotate(-4deg) skewX(-10deg);
-    box-shadow: 8px 8px 0 #dc0000;
+    transform:
+        rotate(-4deg)
+        skewX(-10deg);
+    box-shadow:
+        8px 8px 0 #dc0000;
     border: 3px solid #000;
 }
 .p5-box span {
@@ -70,12 +80,13 @@ body {
     animation: blink 1.2s infinite;
 }
 /* =========================================================
-   主背景
+   背景主容器
 ========================================================= */
 #canvasContainer {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     z-index: 10;
@@ -83,70 +94,99 @@ body {
     background: #0b0b0b;
 }
 .bg-red-active {
-    background-color: #dc0000 !important;
+    background-color:
+        #dc0000 !important;
 }
 /* =========================================================
-   原本的掉落卡片
+   第一層：預告信瀑布
 ========================================================= */
 .falling-letter {
     position: absolute;
-    background-image: url('cover.png');
+    background-image:
+        url('cover.png');
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: .45;
     pointer-events: none;
     will-change: transform;
+    opacity: .4;
+    z-index: 10;
 }
 /* =========================================================
-   P5 花色
+   第二層：遠景預告信
+   比原本小、淡、慢
 ========================================================= */
-.p5-suit {
-    position: absolute;
-    color: #000;
-    font-family: Georgia, serif;
-    font-weight: 900;
-    pointer-events: none;
-    user-select: none;
-    z-index: 12;
-    text-shadow:
-        3px 3px 0 rgba(255,255,255,.45);
-    will-change: transform;
-}
-.p5-suit.red {
-    color: #fff;
-    text-shadow:
-        3px 3px 0 #000;
+.falling-letter.far {
+    opacity: .18;
+    filter:
+        blur(.3px);
 }
 /* =========================================================
-   P5 巨型文字
+   第三層：前景預告信
+   比較大、比較清楚
+========================================================= */
+.falling-letter.front {
+    opacity: .65;
+    z-index: 16;
+    filter:
+        drop-shadow(
+            0 4px 4px
+            rgba(0,0,0,.35)
+        );
+}
+/* =========================================================
+   P5 巨型預告文字
 ========================================================= */
 .p5-word {
     position: absolute;
-    font-family: Impact, 'Arial Black', sans-serif;
+    font-family:
+        Impact,
+        'Arial Black',
+        sans-serif;
     font-weight: 900;
     white-space: nowrap;
     pointer-events: none;
     user-select: none;
-    color: rgba(0,0,0,.20);
-    transform-origin: center;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+    color:
+        rgba(0,0,0,.20);
     z-index: 11;
+    transform:
+        rotate(var(--rotation));
+    animation:
+        wordFloat
+        var(--duration)
+        ease-in-out
+        infinite;
 }
+/* 白色字 */
 .p5-word.white {
-    color: rgba(255,255,255,.22);
+    color:
+        rgba(255,255,255,.20);
 }
+/* 紅色字 */
 .p5-word.red {
-    color: rgba(220,0,0,.55);
+    color:
+        rgba(255,255,255,.34);
+    text-shadow:
+        5px 5px 0
+        rgba(0,0,0,.25);
 }
 /* =========================================================
-   斜切色块
+   P5 黑白紅斜切色塊
 ========================================================= */
 .p5-slash {
     position: absolute;
     pointer-events: none;
-    transform: skewX(-25deg) rotate(-8deg);
+    transform:
+        skewX(-25deg)
+        rotate(-8deg);
     z-index: 13;
-    opacity: .75;
+    opacity: .7;
+    animation:
+        slashFloat
+        var(--duration)
+        ease-in-out
+        infinite;
 }
 .p5-slash.black {
     background: #050505;
@@ -158,45 +198,77 @@ body {
     background: #dc0000;
 }
 /* =========================================================
-   速度線
+   P5 斬擊速度線
 ========================================================= */
 .speed-line {
     position: absolute;
     height: 4px;
-    background: #000;
-    transform: rotate(-18deg);
+    background: #050505;
     pointer-events: none;
-    opacity: .6;
-    z-index: 14;
-    animation: speedMove linear infinite;
+    z-index: 15;
+    transform:
+        rotate(var(--angle));
+    animation:
+        speedMove
+        var(--duration)
+        linear
+        infinite;
 }
 .speed-line.white {
     background: #fff;
-    opacity: .55;
 }
 /* =========================================================
-   碎片
+   預告信紙張碎片
 ========================================================= */
-.p5-fragment {
+.paper-fragment {
     position: absolute;
-    width: 18px;
-    height: 8px;
-    background: #000;
-    transform: rotate(20deg);
     pointer-events: none;
-    z-index: 13;
-    animation: fragmentFloat linear infinite;
-}
-.p5-fragment.white {
+    z-index: 14;
     background: #fff;
+    transform:
+        rotate(var(--rotation));
+    animation:
+        paperFall
+        var(--duration)
+        linear
+        infinite;
+}
+.paper-fragment.black {
+    background: #080808;
+}
+.paper-fragment.red {
+    background: #dc0000;
 }
 /* =========================================================
-   前景影片
+   撕裂紙條
+========================================================= */
+.paper-strip {
+    position: absolute;
+    pointer-events: none;
+    z-index: 12;
+    background:
+        rgba(255,255,255,.75);
+    transform:
+        rotate(var(--rotation))
+        skewX(-25deg);
+    animation:
+        stripMove
+        var(--duration)
+        ease-in-out
+        infinite;
+}
+.paper-strip.black {
+    background:
+        rgba(0,0,0,.55);
+}
+/* =========================================================
+   中央影片
 ========================================================= */
 #videoContainer {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     z-index: 999;
@@ -209,9 +281,20 @@ body {
     max-height: 80vh;
     object-fit: contain;
     filter:
-        drop-shadow(0 0 45px rgba(0,0,0,.95));
+        drop-shadow(
+            0 0 45px
+            rgba(0,0,0,.95)
+        );
     animation:
-        popIn .35s cubic-bezier(.175,.885,.32,1.275) forwards;
+        popIn
+        .35s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        )
+        forwards;
 }
 /* =========================================================
    閃擊轉場
@@ -219,7 +302,8 @@ body {
 #flashOverlay {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: 99999;
@@ -227,7 +311,10 @@ body {
 .flash-animate {
     display: block !important;
     animation:
-        flashEffect .35s ease-out forwards;
+        flashEffect
+        .35s
+        ease-out
+        forwards;
 }
 /* =========================================================
    動畫
@@ -241,71 +328,121 @@ body {
     }
     100% {
         transform:
-            translateY(115vh)
-            rotate(calc(var(--rot) + 120deg))
-            scale(var(--sc));
-    }
-}
-@keyframes p5SuitFall {
-    0% {
-        transform:
-            translateY(-15vh)
-            rotate(0deg);
-    }
-    100% {
-        transform:
             translateY(120vh)
-            rotate(360deg);
+            rotate(
+                calc(
+                    var(--rot) + 120deg
+                )
+            )
+            scale(var(--sc));
     }
 }
 @keyframes wordFloat {
     0% {
         transform:
             translateY(0)
-            rotate(var(--r));
+            rotate(var(--rotation));
     }
     50% {
         transform:
-            translateY(-20px)
-            rotate(var(--r));
+            translateY(-15px)
+            rotate(var(--rotation));
     }
     100% {
         transform:
             translateY(0)
-            rotate(var(--r));
+            rotate(var(--rotation));
+    }
+}
+@keyframes slashFloat {
+    0% {
+        transform:
+            translateX(-20px)
+            skewX(-25deg)
+            rotate(-8deg);
+    }
+    50% {
+        transform:
+            translateX(20px)
+            skewX(-25deg)
+            rotate(-8deg);
+    }
+    100% {
+        transform:
+            translateX(-20px)
+            skewX(-25deg)
+            rotate(-8deg);
     }
 }
 @keyframes speedMove {
     0% {
         transform:
-            translateX(-30vw)
-            rotate(-18deg);
+            translateX(-35vw)
+            rotate(var(--angle));
     }
     100% {
         transform:
-            translateX(130vw)
-            rotate(-18deg);
+            translateX(140vw)
+            rotate(var(--angle));
     }
 }
-@keyframes fragmentFloat {
+@keyframes paperFall {
     0% {
         transform:
             translateY(-20vh)
-            rotate(0deg);
+            translateX(0)
+            rotate(var(--rotation));
+    }
+    50% {
+        transform:
+            translateY(50vh)
+            translateX(30px)
+            rotate(
+                calc(
+                    var(--rotation) + 120deg
+                )
+            );
     }
     100% {
         transform:
             translateY(120vh)
-            rotate(500deg);
+            translateX(-30px)
+            rotate(
+                calc(
+                    var(--rotation) + 300deg
+                )
+            );
+    }
+}
+@keyframes stripMove {
+    0% {
+        transform:
+            translateX(-20px)
+            rotate(var(--rotation))
+            skewX(-25deg);
+    }
+    50% {
+        transform:
+            translateX(30px)
+            rotate(var(--rotation))
+            skewX(-25deg);
+    }
+    100% {
+        transform:
+            translateX(-20px)
+            rotate(var(--rotation))
+            skewX(-25deg);
     }
 }
 @keyframes popIn {
     0% {
-        transform: scale(.9);
+        transform:
+            scale(.9);
         opacity: 0;
     }
     100% {
-        transform: scale(1);
+        transform:
+            scale(1);
         opacity: 1;
     }
 }
@@ -328,6 +465,9 @@ body {
         opacity: 1;
     }
 }
+/* =========================================================
+   閃擊
+========================================================= */
 @keyframes flashEffect {
     0% {
         background: #fff;
@@ -359,7 +499,8 @@ body {
     }
     .p5-box {
         font-size: 24px;
-        padding: 8px 18px;
+        padding:
+            8px 18px;
     }
     .sub-txt {
         font-size: 10px;
@@ -373,6 +514,9 @@ body {
 </style>
 </head>
 <body>
+<!-- =====================================================
+     音樂
+===================================================== -->
 <audio
     id="audio"
     src="music.mp3"
@@ -390,7 +534,9 @@ body {
         class="joker-mask-img"
         alt="Joker Mask">
     <div class="p5-box">
-        TAKE <span>YOUR</span> HEART
+        TAKE
+        <span>YOUR</span>
+        HEART
     </div>
     <div class="sub-txt">
         CLICK TO OPEN THE CALLING CARD
@@ -405,7 +551,7 @@ body {
 ===================================================== -->
 <div id="canvasContainer"></div>
 <!-- =====================================================
-     前景影片
+     中央影片
 ===================================================== -->
 <div id="videoContainer">
     <video
@@ -419,59 +565,103 @@ body {
 </div>
 <script>
 /* =========================================================
-   DOM READY
+   頁面載入
 ========================================================= */
 window.addEventListener(
     'DOMContentLoaded',
     () => {
         buildRealDenseWaterfall();
-        buildP5Background();
+        buildP5Elements();
     }
 );
 /* =========================================================
-   原本的掉落卡片
+   建立大量預告信
 ========================================================= */
 function buildRealDenseWaterfall() {
-    const container =
-        document.getElementById('canvasContainer');
     /*
         原本 75
-        現在提高到 180
+        現在 220
     */
-    const count = 180;
-    for (let i = 0; i < count; i++) {
-        createFallingCard(true);
+    const count = 220;
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
+        createCallingCard(true);
     }
 }
 /* =========================================================
-   建立一張原本的 cover 卡片
+   建立預告信
 ========================================================= */
-function createFallingCard(initial = false) {
+function createCallingCard(initial = false) {
     const container =
-        document.getElementById('canvasContainer');
+        document.getElementById(
+            'canvasContainer'
+        );
     const letter =
         document.createElement('div');
     letter.className =
         'falling-letter';
-    const sizeWidth =
-        Math.floor(Math.random() * 65) + 30;
+    /* 隨機遠近 */
+    const depth =
+        Math.random();
+    if (depth < .25) {
+        letter.classList.add('far');
+    }
+    else if (depth > .78) {
+        letter.classList.add('front');
+    }
+    /* 大小 */
+    let sizeWidth;
+    if (depth < .25) {
+        sizeWidth =
+            Math.floor(
+                Math.random() * 30
+            ) + 22;
+    }
+    else if (depth > .78) {
+        sizeWidth =
+            Math.floor(
+                Math.random() * 80
+            ) + 55;
+    }
+    else {
+        sizeWidth =
+            Math.floor(
+                Math.random() * 55
+            ) + 30;
+    }
     const sizeHeight =
         sizeWidth * 1.3;
+    /* 位置 */
     const left =
-        Math.random() * 95;
+        Math.random() * 96;
     const top =
         initial
-            ? Math.floor(Math.random() * 115) - 15
-            : -15;
-    const duration =
-        Math.random() * 3 + 3;
+            ? Math.random() * 115 - 15
+            : -18;
+    /* 速度 */
+    let duration;
+    if (depth < .25) {
+        duration =
+            Math.random() * 4 + 6;
+    }
+    else if (depth > .78) {
+        duration =
+            Math.random() * 2 + 2.5;
+    }
+    else {
+        duration =
+            Math.random() * 3 + 3;
+    }
+    /* 旋轉 */
     const rotation =
         Math.random() * 100 - 50;
     const scale =
-        (Math.random() * .5 + .45)
-        .toFixed(2);
-    const opacity =
-        Math.random() * .3 + .25;
+        (
+            Math.random() * .45 + .55
+        ).toFixed(2);
     letter.style.width =
         sizeWidth + 'px';
     letter.style.height =
@@ -480,8 +670,6 @@ function createFallingCard(initial = false) {
         left + 'vw';
     letter.style.top =
         top + 'vh';
-    letter.style.opacity =
-        opacity;
     letter.style.setProperty(
         '--rot',
         rotation + 'deg'
@@ -491,78 +679,53 @@ function createFallingCard(initial = false) {
         scale
     );
     letter.style.transform =
-        `rotate(${rotation}deg) scale(${scale})`;
+        `rotate(${rotation}deg)
+         scale(${scale})`;
     letter.dataset.duration =
-        duration + 's';
+        duration;
     container.appendChild(letter);
     if (!initial) {
         letter.style.animation =
-            `p5GlobalFall ${duration}s linear`;
-        setTimeout(() => {
-            letter.remove();
-        }, duration * 1000 + 100);
+            `p5GlobalFall
+             ${duration}s
+             linear`;
+        setTimeout(
+            () => {
+                letter.remove();
+            },
+            duration * 1000 + 200
+        );
     }
 }
 /* =========================================================
-   P5 背景系統
+   P5 背景元素
 ========================================================= */
-function buildP5Background() {
+function buildP5Elements() {
     const container =
-        document.getElementById('canvasContainer');
-    /* 花色 */
-    const suits = [
-        '♠',
-        '♥',
-        '♦',
-        '♣'
-    ];
-    for (let i = 0; i < 45; i++) {
-        const suit =
-            document.createElement('div');
-        suit.className =
-            'p5-suit';
-        const symbol =
-            suits[
-                Math.floor(
-                    Math.random() * suits.length
-                )
-            ];
-        suit.textContent =
-            symbol;
-        const size =
-            Math.floor(
-                Math.random() * 55
-            ) + 25;
-        suit.style.fontSize =
-            size + 'px';
-        suit.style.left =
-            Math.random() * 100 + 'vw';
-        suit.style.top =
-            Math.random() * 120 - 15 + 'vh';
-        const duration =
-            Math.random() * 5 + 5;
-        const delay =
-            Math.random() * -8;
-        if (
-            symbol === '♥' ||
-            symbol === '♦'
-        ) {
-            suit.classList.add('red');
-        }
-        suit.style.animation =
-            `p5SuitFall ${duration}s linear ${delay}s infinite`;
-        container.appendChild(suit);
-    }
-    /* 巨型背景文字 */
+        document.getElementById(
+            'canvasContainer'
+        );
+    /* =====================================================
+       巨型預告文字
+    ===================================================== */
     const words = [
-        'PHANTOM',
         'TAKE YOUR HEART',
-        'PERSONA',
-        'THE SHOWTIME',
+        'PHANTOM',
+        'CALLING CARD',
         'NOTICE',
-        'CALLING CARD'
+        'THE TRUTH',
+        'YOUR HEART',
+        'WE HAVE COME',
+        'THE PHANTOM THIEVES',
+        'TAKE YOUR HEART',
+        'NOTICE',
+        'PHANTOM'
     ];
-    for (let i = 0; i < 12; i++) {
+    for (
+        let i = 0;
+        i < 15;
+        i++
+    ) {
         const word =
             document.createElement('div');
         word.className =
@@ -570,191 +733,396 @@ function buildP5Background() {
         word.textContent =
             words[
                 Math.floor(
-                    Math.random() * words.length
+                    Math.random() *
+                    words.length
                 )
             ];
         const size =
             Math.floor(
-                Math.random() * 65
-            ) + 25;
+                Math.random() * 75
+            ) + 30;
         word.style.fontSize =
             size + 'px';
         word.style.left =
-            Math.random() * 95 + 'vw';
+            Math.random() * 100 + 'vw';
         word.style.top =
-            Math.random() * 100 + 'vh';
+            Math.random() * 105 + 'vh';
         word.style.setProperty(
-            '--r',
-            (Math.random() * 16 - 8) + 'deg'
+            '--rotation',
+            (
+                Math.random() * 18 - 9
+            ) + 'deg'
+        );
+        word.style.setProperty(
+            '--duration',
+            (
+                Math.random() * 4 + 4
+            ) + 's'
         );
         const type =
             Math.random();
         if (type < .25) {
-            word.classList.add('white');
+            word.classList.add(
+                'white'
+            );
         }
-        else if (type < .4) {
-            word.classList.add('red');
+        else if (type < .45) {
+            word.classList.add(
+                'red'
+            );
         }
-        word.style.animation =
-            `wordFloat ${Math.random() * 4 + 4}s ease-in-out infinite`;
         container.appendChild(word);
     }
-    /* 斜切紅黑白色塊 */
-    for (let i = 0; i < 28; i++) {
-        const slash =
-            document.createElement('div');
-        slash.className =
-            'p5-slash';
-        const width =
-            Math.floor(
-                Math.random() * 170
-            ) + 50;
-        const height =
-            Math.floor(
-                Math.random() * 18
-            ) + 5;
-        slash.style.width =
-            width + 'px';
-        slash.style.height =
-            height + 'px';
-        slash.style.left =
-            Math.random() * 110 - 5 + 'vw';
-        slash.style.top =
-            Math.random() * 110 - 5 + 'vh';
-        const type =
-            Math.random();
-        if (type < .5) {
-            slash.classList.add('black');
-        }
-        else if (type < .75) {
-            slash.classList.add('white');
-        }
-        else {
-            slash.classList.add('red');
-        }
-        container.appendChild(slash);
+    /* =====================================================
+       黑白紅斜切塊
+    ===================================================== */
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+        createSlash();
     }
-    /* 速度線 */
-    for (let i = 0; i < 35; i++) {
-        const line =
-            document.createElement('div');
-        line.className =
-            'speed-line';
-        if (Math.random() > .7) {
-            line.classList.add('white');
-        }
-        line.style.width =
-            Math.floor(
-                Math.random() * 150
-            ) + 40 + 'px';
-        line.style.left =
-            Math.random() * 100 + 'vw';
-        line.style.top =
-            Math.random() * 100 + 'vh';
-        line.style.animationDuration =
-            Math.random() * 1.8 + .7 + 's';
-        line.style.animationDelay =
-            Math.random() * -3 + 's';
-        container.appendChild(line);
+    /* =====================================================
+       速度線
+    ===================================================== */
+    for (
+        let i = 0;
+        i < 45;
+        i++
+    ) {
+        createSpeedLine();
     }
-    /* 碎片 */
-    for (let i = 0; i < 40; i++) {
-        const fragment =
-            document.createElement('div');
-        fragment.className =
-            'p5-fragment';
-        if (Math.random() > .5) {
-            fragment.classList.add('white');
-        }
-        fragment.style.left =
-            Math.random() * 100 + 'vw';
-        fragment.style.top =
-            Math.random() * 100 + 'vh';
-        fragment.style.width =
-            Math.floor(
-                Math.random() * 35
-            ) + 8 + 'px';
-        fragment.style.animationDuration =
-            Math.random() * 5 + 4 + 's';
-        fragment.style.animationDelay =
-            Math.random() * -8 + 's';
-        container.appendChild(fragment);
+    /* =====================================================
+       紙張碎片
+    ===================================================== */
+    for (
+        let i = 0;
+        i < 55;
+        i++
+    ) {
+        createPaperFragment();
+    }
+    /* =====================================================
+       紙條
+    ===================================================== */
+    for (
+        let i = 0;
+        i < 25;
+        i++
+    ) {
+        createPaperStrip();
     }
 }
 /* =========================================================
-   啟動
+   建立斜切塊
+========================================================= */
+function createSlash() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const slash =
+        document.createElement('div');
+    slash.className =
+        'p5-slash';
+    const type =
+        Math.random();
+    if (type < .55) {
+        slash.classList.add(
+            'black'
+        );
+    }
+    else if (type < .78) {
+        slash.classList.add(
+            'white'
+        );
+    }
+    else {
+        slash.classList.add(
+            'red'
+        );
+    }
+    slash.style.width =
+        Math.floor(
+            Math.random() * 200
+        ) + 50 + 'px';
+    slash.style.height =
+        Math.floor(
+            Math.random() * 25
+        ) + 5 + 'px';
+    slash.style.left =
+        Math.random() * 110 - 5 + 'vw';
+    slash.style.top =
+        Math.random() * 110 - 5 + 'vh';
+    slash.style.setProperty(
+        '--duration',
+        (
+            Math.random() * 3 + 3
+        ) + 's'
+    );
+    container.appendChild(slash);
+}
+/* =========================================================
+   建立速度線
+========================================================= */
+function createSpeedLine() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const line =
+        document.createElement('div');
+    line.className =
+        'speed-line';
+    if (
+        Math.random() > .72
+    ) {
+        line.classList.add(
+            'white'
+        );
+    }
+    line.style.width =
+        Math.floor(
+            Math.random() * 180
+        ) + 40 + 'px';
+    line.style.left =
+        Math.random() * 100 + 'vw';
+    line.style.top =
+        Math.random() * 100 + 'vh';
+    line.style.setProperty(
+        '--angle',
+        (
+            Math.random() * 35 - 25
+        ) + 'deg'
+    );
+    line.style.setProperty(
+        '--duration',
+        (
+            Math.random() * 1.8 + .8
+        ) + 's'
+    );
+    line.style.animationDelay =
+        (
+            Math.random() * -4
+        ) + 's';
+    container.appendChild(line);
+}
+/* =========================================================
+   建立紙張碎片
+========================================================= */
+function createPaperFragment() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const fragment =
+        document.createElement('div');
+    fragment.className =
+        'paper-fragment';
+    const type =
+        Math.random();
+    if (type < .55) {
+        fragment.classList.add(
+            'black'
+        );
+    }
+    else if (type < .72) {
+        fragment.classList.add(
+            'red'
+        );
+    }
+    fragment.style.width =
+        Math.floor(
+            Math.random() * 35
+        ) + 8 + 'px';
+    fragment.style.height =
+        Math.floor(
+            Math.random() * 15
+        ) + 4 + 'px';
+    fragment.style.left =
+        Math.random() * 100 + 'vw';
+    fragment.style.top =
+        Math.random() * 100 + 'vh';
+    fragment.style.setProperty(
+        '--rotation',
+        (
+            Math.random() * 180
+        ) + 'deg'
+    );
+    fragment.style.setProperty(
+        '--duration',
+        (
+            Math.random() * 4 + 4
+        ) + 's'
+    );
+    fragment.style.animationDelay =
+        (
+            Math.random() * -8
+        ) + 's';
+    container.appendChild(fragment);
+}
+/* =========================================================
+   建立撕裂紙條
+========================================================= */
+function createPaperStrip() {
+    const container =
+        document.getElementById(
+            'canvasContainer'
+        );
+    const strip =
+        document.createElement('div');
+    strip.className =
+        'paper-strip';
+    if (
+        Math.random() > .55
+    ) {
+        strip.classList.add(
+            'black'
+        );
+    }
+    strip.style.width =
+        Math.floor(
+            Math.random() * 140
+        ) + 30 + 'px';
+    strip.style.height =
+        Math.floor(
+            Math.random() * 12
+        ) + 4 + 'px';
+    strip.style.left =
+        Math.random() * 110 - 5 + 'vw';
+    strip.style.top =
+        Math.random() * 100 + 'vh';
+    strip.style.setProperty(
+        '--rotation',
+        (
+            Math.random() * 40 - 20
+        ) + 'deg'
+    );
+    strip.style.setProperty(
+        '--duration',
+        (
+            Math.random() * 4 + 3
+        ) + 's'
+    );
+    container.appendChild(strip);
+}
+/* =========================================================
+   啟動 Phantom
 ========================================================= */
 function launchPhantom() {
     const audio =
-        document.getElementById('audio');
+        document.getElementById(
+            'audio'
+        );
     const video =
-        document.getElementById('bgVideo');
+        document.getElementById(
+            'bgVideo'
+        );
     const startScreen =
-        document.getElementById('startScreen');
+        document.getElementById(
+            'startScreen'
+        );
     const flashOverlay =
-        document.getElementById('flashOverlay');
+        document.getElementById(
+            'flashOverlay'
+        );
     const canvasContainer =
-        document.getElementById('canvasContainer');
+        document.getElementById(
+            'canvasContainer'
+        );
     const videoContainer =
-        document.getElementById('videoContainer');
+        document.getElementById(
+            'videoContainer'
+        );
     /* 音樂 */
     audio
         .play()
-        .catch(e => console.log(e));
+        .catch(e =>
+            console.log(e)
+        );
     /* 影片 */
     video
         .play()
-        .catch(e => console.log(e));
+        .catch(e =>
+            console.log(e)
+        );
     /* 閃擊 */
     flashOverlay.classList.add(
         'flash-animate'
     );
-    /* 顯示主畫面 */
-    setTimeout(() => {
-        startScreen.style.display =
-            'none';
-        document.body.style.backgroundColor =
-            '#dc0000';
-        canvasContainer.classList.add(
-            'bg-red-active'
-        );
-        canvasContainer.style.display =
-            'block';
-        videoContainer.style.display =
-            'flex';
-        /* 啟動原本的卡片 */
-        const letters =
-            document.querySelectorAll(
-                '.falling-letter'
+    /* 顯示背景 */
+    setTimeout(
+        () => {
+            startScreen.style.display =
+                'none';
+            document.body.style.backgroundColor =
+                '#dc0000';
+            canvasContainer.classList.add(
+                'bg-red-active'
             );
-        letters.forEach(letter => {
-            const duration =
-                letter.dataset.duration;
-            letter.style.animation =
-                `p5GlobalFall ${duration} linear infinite`;
-        });
-    }, 120);
-    /* 持續補充卡片 */
-    setInterval(() => {
-        supplementLetter();
-    }, 80);
-    /* 偶爾增加新的 P5 花色 */
-    setInterval(() => {
-        supplementSuit();
-    }, 350);
-    /* 偶爾增加新的斜切線 */
-    setInterval(() => {
-        supplementSlash();
-    }, 450);
+            canvasContainer.style.display =
+                'block';
+            videoContainer.style.display =
+                'flex';
+            /* 啟動所有預告信 */
+            const letters =
+                document.querySelectorAll(
+                    '.falling-letter'
+                );
+            letters.forEach(
+                letter => {
+                    const duration =
+                        letter.dataset.duration;
+                    letter.style.animation =
+                        `p5GlobalFall
+                         ${duration}s
+                         linear
+                         infinite`;
+                }
+            );
+        },
+        120
+    );
+    /* =====================================================
+       持續增加預告信
+    ===================================================== */
+    setInterval(
+        () => {
+            supplementLetter();
+        },
+        80
+    );
+    /* =====================================================
+       持續增加紙張碎片
+    ===================================================== */
+    setInterval(
+        () => {
+            supplementPaper();
+        },
+        180
+    );
+    /* =====================================================
+       持續增加速度線
+    ===================================================== */
+    setInterval(
+        () => {
+            supplementSpeedLine();
+        },
+        280
+    );
     /* 關閉閃擊 */
-    setTimeout(() => {
-        flashOverlay.classList.remove(
-            'flash-animate'
-        );
-    }, 400);
+    setTimeout(
+        () => {
+            flashOverlay.classList.remove(
+                'flash-animate'
+            );
+        },
+        400
+    );
 }
 /* =========================================================
-   持續補充卡片
+   持續補充預告信
 ========================================================= */
 function supplementLetter() {
     const container =
@@ -765,100 +1133,121 @@ function supplementLetter() {
         container.querySelectorAll(
             '.falling-letter'
         );
-    if (cards.length > 210) {
+    if (
+        cards.length > 300
+    ) {
         return;
     }
-    createFallingCard(false);
+    createCallingCard(false);
 }
 /* =========================================================
-   持續補充花色
+   持續補充碎片
 ========================================================= */
-function supplementSuit() {
+function supplementPaper() {
     const container =
         document.getElementById(
             'canvasContainer'
         );
-    const suits = [
-        '♠',
-        '♥',
-        '♦',
-        '♣'
-    ];
-    const suit =
+    const fragment =
         document.createElement('div');
-    suit.className =
-        'p5-suit';
-    const symbol =
-        suits[
-            Math.floor(
-                Math.random() * suits.length
-            )
-        ];
-    suit.textContent =
-        symbol;
-    if (
-        symbol === '♥' ||
-        symbol === '♦'
-    ) {
-        suit.classList.add('red');
+    fragment.className =
+        'paper-fragment';
+    const type =
+        Math.random();
+    if (type < .5) {
+        fragment.classList.add(
+            'black'
+        );
     }
-    suit.style.fontSize =
+    else if (type < .7) {
+        fragment.classList.add(
+            'red'
+        );
+    }
+    fragment.style.width =
         Math.floor(
-            Math.random() * 45
-        ) + 25 + 'px';
-    suit.style.left =
+            Math.random() * 35
+        ) + 8 + 'px';
+    fragment.style.height =
+        Math.floor(
+            Math.random() * 14
+        ) + 4 + 'px';
+    fragment.style.left =
         Math.random() * 100 + 'vw';
-    suit.style.top =
+    fragment.style.top =
         '-10vh';
+    fragment.style.setProperty(
+        '--rotation',
+        Math.random() * 180 + 'deg'
+    );
     const duration =
-        Math.random() * 5 + 4;
-    suit.style.animation =
-        `p5SuitFall ${duration}s linear`;
-    container.appendChild(suit);
-    setTimeout(() => {
-        suit.remove();
-    }, duration * 1000 + 200);
+        Math.random() * 4 + 4;
+    fragment.style.setProperty(
+        '--duration',
+        duration + 's'
+    );
+    fragment.style.animation =
+        `paperFall
+         ${duration}s
+         linear`;
+    container.appendChild(fragment);
+    setTimeout(
+        () => {
+            fragment.remove();
+        },
+        duration * 1000 + 300
+    );
 }
 /* =========================================================
-   持續補充斜切線
+   持續補充速度線
 ========================================================= */
-function supplementSlash() {
+function supplementSpeedLine() {
     const container =
         document.getElementById(
             'canvasContainer'
         );
-    const slash =
+    const line =
         document.createElement('div');
-    slash.className =
-        'p5-slash';
-    const types = [
-        'black',
-        'white',
-        'red'
-    ];
-    slash.classList.add(
-        types[
-            Math.floor(
-                Math.random() * types.length
-            )
-        ]
-    );
-    slash.style.width =
+    line.className =
+        'speed-line';
+    if (
+        Math.random() > .7
+    ) {
+        line.classList.add(
+            'white'
+        );
+    }
+    line.style.width =
         Math.floor(
-            Math.random() * 140
+            Math.random() * 180
         ) + 40 + 'px';
-    slash.style.height =
-        Math.floor(
-            Math.random() * 15
-        ) + 5 + 'px';
-    slash.style.left =
-        Math.random() * 110 - 5 + 'vw';
-    slash.style.top =
+    line.style.left =
+        '-20vw';
+    line.style.top =
         Math.random() * 100 + 'vh';
-    container.appendChild(slash);
-    setTimeout(() => {
-        slash.remove();
-    }, 5000);
+    line.style.setProperty(
+        '--angle',
+        (
+            Math.random() * 35 - 25
+        ) + 'deg'
+    );
+    const duration =
+        Math.random() * 1.5 + .8;
+    line.style.setProperty(
+        '--duration',
+        duration + 's'
+    );
+    line.style.animation =
+        `speedMove
+         ${duration}s
+         linear`;
+    container.appendChild(line);
+    setTimeout(
+        () => {
+            line.remove();
+        },
+        duration * 1000 + 300
+    );
 }
 </script>
 </body>
