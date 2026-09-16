@@ -170,269 +170,52 @@ body {
 }
 
 /* =========================================================
+   開場頁面：使用 PNG Logo
+   僅作用於 #startScreen，不影響動畫頁面
+========================================================= */
+.take-your-heart-img {
+    display: block;
+    width: 430px;
+    height: auto;
+    max-width: 78vw;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+/* =========================================================
    GOLD LETTER BASE
 ========================================================= */
 .royal-take,
 .royal-your,
-.royal-heart {
-
-    position: absolute;
-
-    font-family:
-        Impact,
-        "Arial Black",
-        "Arial Narrow",
-        sans-serif;
-
-    font-weight: 900;
-
-    color: #f5c84b;
-
-    letter-spacing: -8px;
-
-    line-height: .78;
-
-    /*
-       黑色粗轮廓
-    */
-    -webkit-text-stroke: 5px #090909;
-
-    /*
-       金色立体阴影
-    */
-    text-shadow:
-        2px 2px 0 #fff0a3,
-        4px 4px 0 #b88619,
-        7px 7px 0 #080808;
-
-    paint-order:
-        stroke fill;
-}
 
 /* =========================================================
    TAKE
 ========================================================= */
-.royal-take {
-
-    top: 0;
-    left: 0;
-
-    font-size: 76px;
-
-    transform:
-        rotate(-4deg)
-        skewX(-8deg);
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff1a8 0%,
-            #f6d35b 22%,
-            #dca92c 55%,
-            #a87312 100%
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    -webkit-text-stroke:
-        5px #080808;
-
-    filter:
-        drop-shadow(
-            4px 5px 0 #000
-        );
-}
 
 /* =========================================================
    YOUR
 ========================================================= */
-.royal-your {
-
-    top: 52px;
-    left: 116px;
-
-    z-index: 3;
-
-    padding:
-        6px 15px
-        4px 12px;
-
-    font-size: 68px;
-
-    transform:
-        rotate(3deg)
-        skewX(-15deg);
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff0a3 0%,
-            #f1c94d 35%,
-            #c89220 70%,
-            #8c5e0c 100%
-        );
-
-    color: #f5c84b;
-
-    border:
-        5px solid #080808;
-
-    box-shadow:
-        9px 9px 0 #dc0000,
-        13px 13px 0 #080808;
-
-    text-shadow:
-        2px 2px 0 #ffeaa0,
-        5px 5px 0 #a87312;
-
-    -webkit-text-stroke:
-        4px #080808;
-
-    paint-order:
-        stroke fill;
-}
 
 /* =========================================================
    HEART
 ========================================================= */
-.royal-heart {
-
-    top: 108px;
-    left: 35px;
-
-    font-size: 76px;
-
-    transform:
-        rotate(-5deg)
-        skewX(-7deg);
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff0a0 0%,
-            #f4cf55 25%,
-            #d5a128 58%,
-            #9a670d 100%
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    -webkit-text-stroke:
-        5px #080808;
-
-    filter:
-        drop-shadow(
-            5px 6px 0 #000
-        );
-}
 
 /* =========================================================
    LOGO 紅色爆裂條
 ========================================================= */
-.royal-logo::before {
-
-    content: "";
-
-    position: absolute;
-
-    z-index: -1;
-
-    width: 260px;
-    height: 16px;
-
-    top: 34px;
-    right: -55px;
-
-    background: #dc0000;
-
-    transform:
-        rotate(-16deg)
-        skewX(-35deg);
-
-    box-shadow:
-        5px 5px 0 #080808;
-}
 
 /* =========================================================
    LOGO 黑色切線
 ========================================================= */
-.royal-logo::after {
-
-    content: "";
-
-    position: absolute;
-
-    z-index: -2;
-
-    width: 310px;
-    height: 12px;
-
-    bottom: 2px;
-    left: -18px;
-
-    background: #080808;
-
-    transform:
-        rotate(-5deg)
-        skewX(-30deg);
-}
 
 /* =========================================================
    LOGO 小型爆裂線
 ========================================================= */
-.logo-burst {
 
-    position: absolute;
 
-    z-index: 4;
 
-    background: #dc0000;
-
-    box-shadow:
-        3px 3px 0 #080808;
-
-    transform:
-        rotate(-20deg);
-}
-
-.logo-burst.a {
-
-    width: 78px;
-    height: 8px;
-
-    top: 3px;
-    right: 0;
-}
-
-.logo-burst.b {
-
-    width: 50px;
-    height: 6px;
-
-    top: 19px;
-    right: -25px;
-
-    transform:
-        rotate(18deg);
-}
-
-.logo-burst.c {
-
-    width: 68px;
-    height: 7px;
-
-    bottom: 25px;
-    left: -27px;
-
-    transform:
-        rotate(12deg);
-}
 
 /* =========================================================
    CLICK TEXT
@@ -1033,16 +816,19 @@ body {
 
     /* Royal 金色标题 */
     .royal-logo {
-
         width: 330px;
-        height: 150px;
-
+        height: auto;
         margin-top: 35px;
 
         transform:
             scale(.82)
             rotate(-7deg)
             skewX(-8deg);
+    }
+
+    .take-your-heart-img {
+        width: 330px;
+        max-width: 82vw;
     }
 
     .royal-take {
@@ -1106,23 +892,10 @@ body {
 
     <!-- P5R STYLE LOGO -->
     <div class="royal-logo">
-
-        <div class="royal-take">
-            TAKE
-        </div>
-
-        <div class="royal-your">
-            YOUR
-        </div>
-
-        <div class="royal-heart">
-            HEART
-        </div>
-
-        <div class="logo-burst a"></div>
-        <div class="logo-burst b"></div>
-        <div class="logo-burst c"></div>
-
+        <img
+            src="take-your-heart.png"
+            class="take-your-heart-img"
+            alt="Persona 5 Royal Take Your Heart">
     </div>
 
     <!-- 點擊提示 -->
