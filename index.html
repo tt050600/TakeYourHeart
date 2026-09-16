@@ -165,6 +165,7 @@ body {
         drop-shadow(13px 13px 0 #dc0000);
 }
 
+```css
 .take-your-heart-img {
     display: block;
 
@@ -172,44 +173,56 @@ body {
     height: auto;
 
     object-fit: contain;
-}
-/* =========================================================
-   開場頁面：使用 PNG Logo
-   僅作用於 #startScreen，不影響動畫頁面
-========================================================= */
 
-
-
-/* =========================================================
-   GOLD LETTER BASE
-========================================================= */
-
-
-
-/* =========================================================
-   背景主容器
-========================================================= */
-#canvasContainer {
-
-    display: none;
-
-    position: fixed;
-    inset: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    z-index: 10;
-
-    overflow: hidden;
-
-    background: #0b0b0b;
+    /* PNG 自己動 */
+    animation:
+        heartFloat
+        2.8s
+        ease-in-out
+        infinite;
+    
+    transform-origin: center center;
 }
 
-.bg-red-active {
-    background-color:
-        #dc0000 !important;
+/* TAKE YOUR HEART PNG 漂浮＋微微放大縮小 */
+@keyframes heartFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+
+    25% {
+        transform:
+            translateY(-8px)
+            scale(1.025)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateY(0)
+            scale(1.04)
+            rotate(0deg);
+    }
+
+    75% {
+        transform:
+            translateY(7px)
+            scale(1.025)
+            rotate(1deg);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
 }
+```
 
 /* =========================================================
    預告信 / CALLING CARD
@@ -774,112 +787,52 @@ body {
         font-size: 62px;
     }
 
-    .sub-txt {
+    ```css
+.sub-txt {
+    position: relative;
+    z-index: 7;
 
-        font-size: 9px;
+    margin-top: 28px;
 
-        letter-spacing: 3px;
-    }
+    color: #dc0000;
 
-    /* 视频尺寸保持原本 */
-    #bgVideo {
+    font-family:
+        Impact,
+        "Arial Black",
+        Arial,
+        sans-serif;
 
-        max-width: 94vw;
-        max-height: 72vh;
-    }
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    text-align: center;
+
+    text-shadow:
+        2px 2px 0 #000;
+
+    animation:
+        clickBlink
+        1.4s
+        ease-in-out
+        infinite;
 }
 
-</style>
-</head>
+@keyframes clickBlink {
 
-<body>
-
-<!-- =====================================================
-     START SCREEN
-===================================================== -->
-<div
-    id="startScreen"
-    onclick="launchPhantom()">
-
-    <!-- 背景切割 -->
-    <div class="start-slash one"></div>
-    <div class="start-slash two"></div>
-    <div class="start-slash three"></div>
-    <div class="start-slash four"></div>
-
-    <!-- Joker -->
-    <img
-        src="joker-mask.png"
-        class="joker-mask-img"
-        alt="Joker Mask">
-
-    <!-- P5R STYLE LOGO -->
-   <div class="royal-logo">
-    <img
-        src="take-your-heart.png"
-        class="take-your-heart-img"
-        alt="TAKE YOUR HEART">
-</div>
-    <!-- 點擊提示 -->
-    <div class="sub-txt">
-        CLICK TO OPEN THE CALLING CARD
-    </div>
-
-</div>
-
-<!-- =====================================================
-     FLASH
-===================================================== -->
-<div id="flashOverlay"></div>
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-<div id="canvasContainer"></div>
-
-<!-- =====================================================
-     AUDIO
-===================================================== -->
-<audio
-    id="audio"
-    src="music.mp3"
-    loop
-    preload="auto">
-</audio>
-
-<!-- =====================================================
-     VIDEO
-===================================================== -->
-<div id="videoContainer">
-
-    <video
-        id="bgVideo"
-        src="bg-animation.mp4"
-        loop
-        muted
-        playsinline
-        preload="auto">
-    </video>
-
-</div>
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-<script>
-
-/* =========================================================
-   DOM READY
-========================================================= */
-window.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        buildRealDenseWaterfall();
-
-        buildP5Elements();
-
+    0%,
+    100% {
+        opacity: .55;
     }
+
+    50% {
+        opacity: 1;
+    }
+}
+```
+
 );
 
 /* =========================================================
