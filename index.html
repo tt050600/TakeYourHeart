@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -143,7 +144,6 @@ body {
 
 /* =========================================================
    TAKE YOUR HEART PNG
-   只作用於點擊開場頁
 ========================================================= */
 .royal-logo {
     position: relative;
@@ -165,7 +165,10 @@ body {
         drop-shadow(13px 13px 0 #dc0000);
 }
 
-```css
+/* =========================================================
+   PNG 動畫
+   只作用於點擊開場頁的 PNG
+========================================================= */
 .take-your-heart-img {
     display: block;
 
@@ -174,17 +177,16 @@ body {
 
     object-fit: contain;
 
-    /* PNG 自己動 */
+    transform-origin: center center;
+
     animation:
         heartFloat
         2.8s
         ease-in-out
         infinite;
-    
-    transform-origin: center center;
 }
 
-/* TAKE YOUR HEART PNG 漂浮＋微微放大縮小 */
+/* PNG 輕微漂浮＋呼吸效果 */
 @keyframes heartFloat {
 
     0% {
@@ -196,7 +198,7 @@ body {
 
     25% {
         transform:
-            translateY(-8px)
+            translateY(-7px)
             scale(1.025)
             rotate(-1deg);
     }
@@ -222,7 +224,54 @@ body {
             rotate(0deg);
     }
 }
-```
+
+/* =========================================================
+   CLICK TO OPEN
+========================================================= */
+.sub-txt {
+    position: relative;
+    z-index: 7;
+
+    margin-top: 28px;
+
+    color: #dc0000;
+
+    font-family:
+        Impact,
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    text-align: center;
+
+    text-shadow:
+        2px 2px 0 #000;
+
+    animation:
+        clickBlink
+        1.4s
+        ease-in-out
+        infinite;
+}
+
+/* 紅字微微閃爍 */
+@keyframes clickBlink {
+
+    0%,
+    100% {
+        opacity: .55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
 
 /* =========================================================
    預告信 / CALLING CARD
@@ -449,7 +498,6 @@ body {
 
 /* =========================================================
    VIDEO
-   原尺寸保持不動
 ========================================================= */
 #videoContainer {
 
@@ -750,7 +798,6 @@ body {
         width: 115px;
     }
 
-    /* Royal 金色标题 */
     .royal-logo {
         width: 330px;
         height: auto;
@@ -787,52 +834,111 @@ body {
         font-size: 62px;
     }
 
-    ```css
-.sub-txt {
-    position: relative;
-    z-index: 7;
+    .sub-txt {
 
-    margin-top: 28px;
+        font-size: 9px;
 
-    color: #dc0000;
-
-    font-family:
-        Impact,
-        "Arial Black",
-        Arial,
-        sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    letter-spacing: 4px;
-
-    text-align: center;
-
-    text-shadow:
-        2px 2px 0 #000;
-
-    animation:
-        clickBlink
-        1.4s
-        ease-in-out
-        infinite;
-}
-
-@keyframes clickBlink {
-
-    0%,
-    100% {
-        opacity: .55;
+        letter-spacing: 3px;
     }
 
-    50% {
-        opacity: 1;
+    #bgVideo {
+
+        max-width: 94vw;
+        max-height: 72vh;
     }
 }
-```
 
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     START SCREEN
+===================================================== -->
+<div
+    id="startScreen"
+    onclick="launchPhantom()">
+
+    <div class="start-slash one"></div>
+    <div class="start-slash two"></div>
+    <div class="start-slash three"></div>
+    <div class="start-slash four"></div>
+
+    <!-- Joker -->
+    <img
+        src="joker-mask.png"
+        class="joker-mask-img"
+        alt="Joker Mask">
+
+    <!-- TAKE YOUR HEART PNG -->
+    <div class="royal-logo">
+        <img
+            src="take-your-heart.png"
+            class="take-your-heart-img"
+            alt="TAKE YOUR HEART">
+    </div>
+
+    <!-- 點擊提示 -->
+    <div class="sub-txt">
+        CLICK TO OPEN THE CALLING CARD
+    </div>
+
+</div>
+
+<!-- =====================================================
+     FLASH
+===================================================== -->
+<div id="flashOverlay"></div>
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+<div id="canvasContainer"></div>
+
+<!-- =====================================================
+     AUDIO
+===================================================== -->
+<audio
+    id="audio"
+    src="music.mp3"
+    loop
+    preload="auto">
+</audio>
+
+<!-- =====================================================
+     VIDEO
+===================================================== -->
+<div id="videoContainer">
+
+    <video
+        id="bgVideo"
+        src="bg-animation.mp4"
+        loop
+        muted
+        playsinline
+        preload="auto">
+    </video>
+
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+<script>
+
+/* =========================================================
+   DOM READY
+========================================================= */
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        buildRealDenseWaterfall();
+
+        buildP5Elements();
+
+    }
 );
 
 /* =========================================================
@@ -1032,7 +1138,6 @@ function buildP5Elements() {
             "canvasContainer"
         );
 
-    /* 巨型文字 */
     const words = [
 
         "TAKE YOUR HEART",
@@ -1136,7 +1241,6 @@ function buildP5Elements() {
         );
     }
 
-    /* 斜切塊 */
     for (
         let i = 0;
         i < 35;
@@ -1147,7 +1251,6 @@ function buildP5Elements() {
 
     }
 
-    /* 速度線 */
     for (
         let i = 0;
         i < 45;
@@ -1158,7 +1261,6 @@ function buildP5Elements() {
 
     }
 
-    /* 紙片 */
     for (
         let i = 0;
         i < 55;
@@ -1169,7 +1271,6 @@ function buildP5Elements() {
 
     }
 
-    /* 紙條 */
     for (
         let i = 0;
         i < 25;
@@ -1554,7 +1655,6 @@ function launchPhantom() {
         120
     );
 
-    /* 持續增加預告信 */
     setInterval(
         () => {
 
@@ -1564,7 +1664,6 @@ function launchPhantom() {
         80
     );
 
-    /* 持續增加紙片 */
     setInterval(
         () => {
 
@@ -1574,7 +1673,6 @@ function launchPhantom() {
         180
     );
 
-    /* 持續增加速度線 */
     setInterval(
         () => {
 
@@ -1787,3 +1885,4 @@ function supplementSpeedLine() {
 
 </body>
 </html>
+```
