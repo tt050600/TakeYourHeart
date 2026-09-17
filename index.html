@@ -3370,17 +3370,61 @@ body.screen-shake{
     }
 
 
+    /* 手機：先讓 Logo 碎裂被看清，再讓大色塊掃進來 */
+    #shatterTransition.burst
     .shatter-panel.one{
-        top:14vh;
-        height:14vh;
-        min-height:72px;
+        animation-delay:.22s;
+    }
+
+    #shatterTransition.burst
+    .shatter-panel.two{
+        animation-delay:.26s;
+    }
+
+    #shatterTransition.burst
+    .shatter-panel.three{
+        animation-delay:.30s;
+    }
+
+    #shatterTransition.active
+    .shatter-flash{
+        animation-name:shatterFlashMobile;
+        animation-duration:.22s;
+    }
+
+    @keyframes shatterFlashMobile{
+        0%{opacity:0;}
+        18%{opacity:.70;}
+        48%{opacity:.13;background:#dc0000;}
+        100%{opacity:0;}
+    }
+
+    #startScreen.shatter-hit
+    .royal-logo{
+        transform:
+            rotate(-7deg)
+            skewX(-8deg)
+            scale(1.18);
+
+        filter:
+            drop-shadow(12px 13px 0 #000)
+            drop-shadow(19px 19px 0 #dc0000)
+            brightness(2.1)
+            contrast(1.28);
+    }
+
+
+    .shatter-panel.one{
+        top:12vh;
+        height:20vh;
+        min-height:92px;
     }
 
 
     .shatter-panel.two{
-        top:48vh;
-        height:10vh;
-        min-height:54px;
+        top:46vh;
+        height:15vh;
+        min-height:68px;
 
         box-shadow:
             0 -6px 0 #050505,
@@ -3389,9 +3433,9 @@ body.screen-shake{
 
 
     .shatter-panel.three{
-        bottom:11vh;
-        height:12vh;
-        min-height:62px;
+        bottom:8vh;
+        height:17vh;
+        min-height:76px;
 
         box-shadow:
             0 -7px 0 #050505;
@@ -6285,6 +6329,10 @@ function buildLogoShards(){
 
 
     const rows =
+        mobile
+        ?
+        3
+        :
         4;
 
 
@@ -6490,8 +6538,8 @@ function buildLogoShards(){
                 mobile
                 ?
                 random(
-                    155,
-                    285
+                    230,
+                    420
                 )
                 :
                 random(
@@ -6528,8 +6576,8 @@ function buildLogoShards(){
 
             const rot =
                 random(
-                    -125,
-                    125
+                    mobile ? -165 : -125,
+                    mobile ? 165 : 125
                 );
 
 
@@ -6622,12 +6670,12 @@ function buildLogoShards(){
                 random(
                     mobile
                     ?
-                    .55
+                    .78
                     :
                     .63,
                     mobile
                     ?
-                    .76
+                    1.02
                     :
                     .92
                 )
@@ -6642,7 +6690,7 @@ function buildLogoShards(){
                     0,
                     mobile
                     ?
-                    .045
+                    .025
                     :
                     .07
                 )
@@ -6692,7 +6740,7 @@ function buildShatterDebris(){
     const count =
         mobile
         ?
-        14
+        10
         :
         26;
 
@@ -6740,8 +6788,8 @@ function buildShatterDebris(){
             mobile
             ?
             random(
-                150,
-                310
+                220,
+                430
             )
             :
             random(
@@ -6753,10 +6801,10 @@ function buildShatterDebris(){
         piece.style.setProperty(
             "--w",
             random(
-                6,
+                mobile ? 8 : 6,
                 mobile
                 ?
-                22
+                28
                 :
                 34
             )
@@ -6768,10 +6816,10 @@ function buildShatterDebris(){
         piece.style.setProperty(
             "--h",
             random(
-                3,
+                mobile ? 4 : 3,
                 mobile
                 ?
-                10
+                13
                 :
                 15
             )
@@ -6848,10 +6896,10 @@ function buildShatterDebris(){
         piece.style.setProperty(
             "--dur",
             random(
-                .50,
+                mobile ? .64 : .50,
                 mobile
                 ?
-                .72
+                .90
                 :
                 .86
             )
@@ -7151,6 +7199,10 @@ function launchPhantom(
             );
 
         },
+        isMobile()
+        ?
+        260
+        :
         170
     );
 
@@ -7165,7 +7217,7 @@ function launchPhantom(
         },
         isMobile()
         ?
-        360
+        520
         :
         400
     );
@@ -7203,7 +7255,7 @@ function launchPhantom(
         },
         isMobile()
         ?
-        980
+        1320
         :
         1120
     );
