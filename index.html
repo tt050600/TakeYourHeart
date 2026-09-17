@@ -25,8 +25,8 @@
     --black:#050505;
     --white:#fff;
 
-    --mask-flight:1.82s;
-    --mask-ease:cubic-bezier(.16,.67,.18,1);
+    --shatter-time:.82s;
+    --shatter-ease:cubic-bezier(.14,.72,.16,1);
 }
 
 *{
@@ -2005,1006 +2005,605 @@ body{
 
 
 /* =========================================================
-   CUTIN
+   TAKE YOUR HEART — LOGO SHATTER TRANSITION
+   no mask asset / no old cut-in
 ========================================================= */
 
-#skillCutin{
+#shatterTransition{
     visibility:hidden;
-
     position:fixed;
     inset:0;
-
     width:100%;
-
     height:100vh;
     height:100dvh;
-
     z-index:99998;
-
     overflow:hidden;
-
     pointer-events:none;
-
     isolation:isolate;
 }
 
-#skillCutin.active{
+#shatterTransition.active{
     visibility:visible;
 }
 
 
 /* =========================================================
-   BACK
+   P5 RED / BLACK / WHITE BACK PLATE
 ========================================================= */
 
-.cutin-back{
+.shatter-back{
     position:absolute;
-    inset:0;
-
-    background:#020202;
-
+    inset:-6%;
+    z-index:1;
     opacity:0;
+
+    background:
+        linear-gradient(
+            164deg,
+            #dc0000 0%,
+            #dc0000 43%,
+            #fff 43.2%,
+            #fff 56%,
+            #dc0000 56.2%,
+            #dc0000 100%
+        );
+
+    transform:
+        translate3d(-8vw,0,0)
+        scale(1.08);
+
+    clip-path:
+        polygon(
+            0 4%,
+            100% 0,
+            96% 100%,
+            5% 94%
+        );
+
+    will-change:transform,opacity;
 }
 
-#skillCutin.enter
-.cutin-back{
+#shatterTransition.burst
+.shatter-back{
     animation:
-        cutinBackIn
-        .30s
-        linear
+        shatterBackHit
+        .94s
+        cubic-bezier(.16,.78,.18,1)
         forwards;
 }
 
-@keyframes cutinBackIn{
-
-    to{
-        opacity:1;
-    }
-
-}
-
-
-/* =========================================================
-   TOP PAPER
-========================================================= */
-
-.cutin-top-wrap{
+.shatter-back::before{
+    content:"";
     position:absolute;
-
-    left:-5%;
-    top:-10%;
-
-    width:110%;
-    height:63%;
+    left:-13%;
+    top:14%;
+    width:118%;
+    height:47%;
+    background:#050505;
 
     transform:
-        translateY(-115%);
-
-    will-change:
-        transform;
-
-    filter:
-        drop-shadow(
-            0 8px 0 #fff
-        )
-        drop-shadow(
-            0 13px 0
-            var(--red)
-        );
-}
-
-.cutin-top{
-    width:100%;
-    height:100%;
-
-    background:
-        linear-gradient(
-            175deg,
-            #020202 0%,
-            #090909 72%,
-            #160000 100%
-        );
+        rotate(-8deg)
+        skewX(-19deg);
 
     clip-path:
         polygon(
-            0 0,
-            100% 0,
-            100% 70%,
-            96% 73%,
-            93% 70%,
-            89% 77%,
-            84% 73%,
-            79% 82%,
-            73% 76%,
-            67% 86%,
-            61% 79%,
-            54% 89%,
-            48% 80%,
-            41% 91%,
-            35% 81%,
-            27% 88%,
-            21% 79%,
-            14% 86%,
-            8% 78%,
-            0 83%
-        );
-}
-
-
-/* =========================================================
-   BOTTOM PAPER
-========================================================= */
-
-.cutin-bottom-wrap{
-    position:absolute;
-
-    left:-5%;
-    bottom:-10%;
-
-    width:110%;
-    height:63%;
-
-    transform:
-        translateY(115%);
-
-    will-change:
-        transform;
-
-    filter:
-        drop-shadow(
-            0 -8px 0 #fff
-        )
-        drop-shadow(
-            0 -13px 0
-            var(--red)
-        );
-}
-
-.cutin-bottom{
-    width:100%;
-    height:100%;
-
-    background:
-        linear-gradient(
-            -7deg,
-            #080808 0%,
-            #020202 72%,
-            #180000 100%
-        );
-
-    clip-path:
-        polygon(
-            0 18%,
-            7% 11%,
-            13% 20%,
-            20% 10%,
-            27% 18%,
-            34% 8%,
-            41% 18%,
-            48% 7%,
-            55% 17%,
-            62% 8%,
-            69% 17%,
-            76% 9%,
-            82% 17%,
-            89% 8%,
-            95% 15%,
-            100% 10%,
-            100% 100%,
-            0 100%
-        );
-}
-
-
-/* =========================================================
-   RED SLASH
-========================================================= */
-
-.cutin-red-slash{
-    position:absolute;
-
-    left:-30%;
-    top:43%;
-
-    width:160%;
-    height:15%;
-
-    background:
-        var(--red);
-
-    transform:
-        rotate(-9deg)
-        translateX(-120%);
-
-    opacity:.92;
-
-    clip-path:
-        polygon(
-            0 15%,
-            91% 0,
-            100% 46%,
-            94% 100%,
-            5% 83%
+            0 13%,
+            20% 0,
+            78% 8%,
+            100% 28%,
+            87% 58%,
+            46% 48%,
+            36% 100%,
+            0 88%
         );
 
     box-shadow:
-        0 0 20px
-        rgba(220,0,0,.45);
+        0 13px 0 rgba(0,0,0,.18);
 }
 
-
-/* =========================================================
-   CENTER STRIP
-========================================================= */
-
-.cutin-strip-wrap{
+.shatter-back::after{
+    content:"";
     position:absolute;
-
-    left:-5%;
-    top:33%;
-
-    width:110%;
-    height:37%;
+    right:-18%;
+    bottom:12%;
+    width:103%;
+    height:27%;
+    background:#050505;
 
     transform:
-        translateX(-120%)
-        rotate(-4deg);
-
-    filter:
-        drop-shadow(
-            0 -7px 0 #fff
-        )
-        drop-shadow(
-            0 7px 0 #fff
-        )
-        drop-shadow(
-            0 12px 0
-            var(--red)
-        );
-
-    will-change:
-        transform;
-}
-
-.cutin-strip{
-    position:relative;
-
-    width:100%;
-    height:100%;
-
-    background:#030303;
-
-    overflow:hidden;
+        rotate(5deg)
+        skewX(-24deg);
 
     clip-path:
         polygon(
-            0 19%,
-            8% 11%,
-            14% 18%,
-            22% 7%,
-            30% 16%,
-            39% 5%,
-            47% 14%,
-            56% 6%,
-            65% 13%,
-            74% 4%,
-            82% 13%,
-            91% 4%,
-            100% 10%,
-
-            100% 83%,
-            93% 90%,
-            85% 80%,
-            77% 93%,
-            68% 82%,
-            59% 95%,
-            50% 84%,
-            41% 94%,
-            31% 84%,
-            22% 94%,
-            14% 82%,
-            6% 91%,
-            0 84%
+            0 26%,
+            23% 0,
+            100% 14%,
+            91% 100%,
+            14% 81%
         );
 }
 
-.cutin-strip::before{
-    content:"TAKE YOUR HEART";
-
-    position:absolute;
-
-    left:7%;
-    top:22%;
-
-    color:
-        var(--red);
-
-    font-size:
-        clamp(
-            40px,
-            8vw,
-            110px
-        );
-
-    font-weight:900;
-
-    letter-spacing:-2px;
-
-    transform:
-        rotate(-3deg)
-        skewX(-10deg)
-        scaleX(.9);
-
-    opacity:.38;
-
-    text-shadow:
-        7px 7px 0 #000;
-}
-
-.cutin-strip::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        repeating-linear-gradient(
-            -10deg,
-            transparent 0 50px,
-            rgba(255,255,255,.08) 50px 53px,
-            transparent 53px 90px
-        );
-}
-
-
-/* =========================================================
-   JOKER MASK
-   沒有拖尾
-   沒有 RIP LINE
-========================================================= */
-
-#maskDart{
-    position:absolute;
-
-    left:0;
-    top:50%;
-
-    width:
-        clamp(
-            115px,
-            13vw,
-            190px
-        );
-
-    aspect-ratio:1;
-
-    z-index:19;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transform-origin:center;
-
-    will-change:
-        transform,
-        opacity,
-        filter;
-
-    transform:
-        translate3d(
-            -30vw,
-            -50%,
-            0
-        )
-        scale(.44);
-}
-
-.mask-spinner{
-    position:relative;
-
-    width:100%;
-    height:100%;
-
-    transform-origin:
-        50% 50%;
-
-    will-change:
-        transform;
-
-    filter:
-        drop-shadow(
-            7px 9px 0
-            rgba(0,0,0,.92)
-        )
-        drop-shadow(
-            0 0 11px
-            rgba(255,255,255,.24)
-        )
-        drop-shadow(
-            0 0 24px
-            rgba(220,0,0,.72)
-        );
-}
-
-.mask-spinner img{
-    display:block;
-
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    user-select:none;
-
-    pointer-events:none;
-
-    -webkit-user-drag:none;
-}
-
-#skillCutin.throw-mask
-#maskDart{
-    animation:
-        maskFlightDesktop
-        var(--mask-flight)
-        var(--mask-ease)
-        forwards;
-}
-
-#skillCutin.throw-mask
-.mask-spinner{
-    animation:
-        maskSpinDesktop
-        var(--mask-flight)
-        cubic-bezier(.18,.65,.25,1)
-        forwards;
-}
-
-
-/* =========================================================
-   MASK DESKTOP
-========================================================= */
-
-@keyframes maskFlightDesktop{
-
+@keyframes shatterBackHit{
     0%{
         opacity:0;
-
         transform:
-            translate3d(
-                -26vw,
-                calc(-50% + 3vw),
-                0
-            )
-            scale(.44);
-
-        filter:
-            blur(4px);
+            translate3d(-10vw,0,0)
+            scale(1.12);
     }
 
-    6%{
+    8%{
         opacity:1;
     }
 
-    18%{
+    58%{
         opacity:1;
-
         transform:
-            translate3d(
-                -2vw,
-                calc(-50% + 2.2vw),
-                0
-            )
-            scale(.56);
-
-        filter:
-            blur(2px);
-    }
-
-    36%{
-        transform:
-            translate3d(
-                26vw,
-                calc(-50% + 1.2vw),
-                0
-            )
-            scale(.80);
-
-        filter:
-            blur(.7px);
-    }
-
-    51%{
-        transform:
-            translate3d(
-                47vw,
-                calc(-50% + .1vw),
-                0
-            )
-            scale(1.08);
-
-        filter:
-            blur(0);
-    }
-
-    66%{
-        transform:
-            translate3d(
-                67vw,
-                calc(-50% - 1.2vw),
-                0
-            )
-            scale(.91);
-    }
-
-    82%{
-        opacity:.96;
-
-        transform:
-            translate3d(
-                87vw,
-                calc(-50% - 2.6vw),
-                0
-            )
-            scale(.67);
-
-        filter:
-            blur(.7px);
-    }
-
-    93%{
-        opacity:.56;
-
-        transform:
-            translate3d(
-                105vw,
-                calc(-50% - 3.7vw),
-                0
-            )
-            scale(.45);
-
-        filter:
-            blur(2px);
-    }
-
-    100%{
-        opacity:0;
-
-        transform:
-            translate3d(
-                124vw,
-                calc(-50% - 4.7vw),
-                0
-            )
-            scale(.30);
-
-        filter:
-            blur(5px);
-    }
-
-}
-
-@keyframes maskSpinDesktop{
-
-    0%{
-        transform:
-            rotate(-65deg);
-    }
-
-    20%{
-        transform:
-            rotate(62deg);
-    }
-
-    40%{
-        transform:
-            rotate(190deg);
-    }
-
-    60%{
-        transform:
-            rotate(320deg);
-    }
-
-    80%{
-        transform:
-            rotate(450deg);
-    }
-
-    100%{
-        transform:
-            rotate(585deg);
-    }
-
-}
-
-
-/* =========================================================
-   CUTIN ENTER
-========================================================= */
-
-#skillCutin.enter
-.cutin-top-wrap{
-    animation:
-        cutinTopEnter
-        .48s
-        cubic-bezier(.75,0,.22,1)
-        forwards;
-}
-
-#skillCutin.enter
-.cutin-bottom-wrap{
-    animation:
-        cutinBottomEnter
-        .48s
-        cubic-bezier(.75,0,.22,1)
-        forwards;
-}
-
-#skillCutin.enter
-.cutin-red-slash{
-    animation:
-        redSlashEnter
-        .54s
-        cubic-bezier(.6,0,.25,1)
-        forwards;
-}
-
-#skillCutin.enter
-.cutin-strip-wrap{
-    animation:
-        centerStripEnter
-        .62s
-        cubic-bezier(.72,0,.24,1)
-        .08s
-        forwards;
-}
-
-@keyframes cutinTopEnter{
-
-    to{
-        transform:
-            translateY(0);
-    }
-
-}
-
-@keyframes cutinBottomEnter{
-
-    to{
-        transform:
-            translateY(0);
-    }
-
-}
-
-@keyframes redSlashEnter{
-
-    to{
-        transform:
-            rotate(-9deg)
-            translateX(0);
-    }
-
-}
-
-@keyframes centerStripEnter{
-
-    0%{
-        transform:
-            translateX(-120%)
-            rotate(-4deg);
-    }
-
-    78%{
-        transform:
-            translateX(3%)
-            rotate(-4deg);
-    }
-
-    100%{
-        transform:
-            translateX(0)
-            rotate(-4deg);
-    }
-
-}
-
-
-/* =========================================================
-   TEAR
-========================================================= */
-
-#skillCutin.tear
-.cutin-top-wrap{
-    transform:
-        translateY(0);
-
-    animation:
-        topTearOpen
-        1.30s
-        cubic-bezier(.10,.82,.16,1)
-        forwards;
-}
-
-#skillCutin.tear
-.cutin-bottom-wrap{
-    transform:
-        translateY(0);
-
-    animation:
-        bottomTearOpen
-        1.30s
-        cubic-bezier(.10,.82,.16,1)
-        forwards;
-}
-
-#skillCutin.tear
-.cutin-strip-wrap{
-    transform:
-        translateX(0)
-        rotate(-4deg);
-
-    animation:
-        stripTearAway
-        1.05s
-        cubic-bezier(.12,.75,.19,1)
-        forwards;
-}
-
-#skillCutin.tear
-.cutin-red-slash{
-    transform:
-        rotate(-9deg)
-        translateX(0);
-
-    animation:
-        redSlashAway
-        .90s
-        ease-in
-        forwards;
-}
-
-#skillCutin.tear
-.cutin-back{
-    opacity:1;
-
-    animation:
-        cutinBackOut
-        .92s
-        .38s
-        ease-out
-        forwards;
-}
-
-@keyframes topTearOpen{
-
-    0%{
-        transform:
-            translateY(0)
-            rotate(0);
-    }
-
-    10%{
-        transform:
-            translateY(-2%)
-            rotate(-.5deg);
-    }
-
-    27%{
-        transform:
-            translateY(-11%)
-            rotate(-1deg);
-    }
-
-    100%{
-        transform:
-            translateY(-120%)
-            rotate(-4deg);
-    }
-
-}
-
-@keyframes bottomTearOpen{
-
-    0%{
-        transform:
-            translateY(0)
-            rotate(0);
-    }
-
-    10%{
-        transform:
-            translateY(2%)
-            rotate(.5deg);
-    }
-
-    27%{
-        transform:
-            translateY(11%)
-            rotate(1deg);
-    }
-
-    100%{
-        transform:
-            translateY(120%)
-            rotate(4deg);
-    }
-
-}
-
-@keyframes stripTearAway{
-
-    0%{
-        transform:
-            translateX(0)
-            rotate(-4deg)
-            scale(1);
-    }
-
-    18%{
-        transform:
-            translateX(3%)
-            rotate(-3deg)
+            translate3d(0,0,0)
             scale(1.03);
     }
 
     100%{
-        transform:
-            translateX(120%)
-            translateY(-15%)
-            rotate(10deg)
-            scale(.9);
-    }
-
-}
-
-@keyframes redSlashAway{
-
-    to{
-        transform:
-            translateX(-120%)
-            rotate(-14deg);
-    }
-
-}
-
-@keyframes cutinBackOut{
-
-    to{
         opacity:0;
+        transform:
+            translate3d(35vw,-3vh,0)
+            scale(1.16);
     }
-
 }
 
 
 /* =========================================================
-   SHARDS
+   GIANT ANGULAR SWIPES
 ========================================================= */
 
-#cutinShards{
+.shatter-panel{
     position:absolute;
-    inset:0;
-
+    z-index:4;
+    opacity:0;
     pointer-events:none;
+    will-change:transform,opacity;
 }
 
-.cutin-shard{
-    position:absolute;
+.shatter-panel.one{
+    left:-52vw;
+    top:9vh;
+    width:116vw;
+    height:18vh;
+    min-height:94px;
+    background:#050505;
 
-    left:var(--x);
-    top:var(--y);
-
-    width:var(--w);
-    height:var(--h);
-
-    background:
-        var(--c);
-
-    opacity:0;
+    transform:
+        rotate(-8deg)
+        skewX(-23deg);
 
     clip-path:
         polygon(
-            0 20%,
-            100% 0,
-            78% 100%,
-            15% 82%
+            0 9%,
+            93% 0,
+            100% 71%,
+            7% 100%
         );
 }
 
-#skillCutin.tear
-.cutin-shard{
+.shatter-panel.two{
+    right:-55vw;
+    top:46vh;
+    width:125vw;
+    height:13vh;
+    min-height:70px;
+    background:#fff;
+
+    transform:
+        rotate(7deg)
+        skewX(-25deg);
+
+    clip-path:
+        polygon(
+            0 27%,
+            92% 0,
+            100% 69%,
+            8% 100%
+        );
+
+    box-shadow:
+        0 -9px 0 #050505,
+        0 9px 0 #dc0000;
+}
+
+.shatter-panel.three{
+    left:-55vw;
+    bottom:6vh;
+    width:120vw;
+    height:16vh;
+    min-height:82px;
+    background:#dc0000;
+
+    transform:
+        rotate(-5deg)
+        skewX(-26deg);
+
+    clip-path:
+        polygon(
+            0 8%,
+            100% 22%,
+            91% 100%,
+            6% 78%
+        );
+
+    box-shadow:
+        0 -10px 0 #050505;
+}
+
+#shatterTransition.burst
+.shatter-panel.one{
     animation:
-        cutinShardFly
-        var(--d)
-        cubic-bezier(.16,.8,.26,1)
+        shatterPanelOne
+        .70s
+        cubic-bezier(.12,.77,.17,1)
         forwards;
 }
 
-@keyframes cutinShardFly{
+#shatterTransition.burst
+.shatter-panel.two{
+    animation:
+        shatterPanelTwo
+        .72s
+        cubic-bezier(.12,.77,.17,1)
+        .03s
+        forwards;
+}
 
+#shatterTransition.burst
+.shatter-panel.three{
+    animation:
+        shatterPanelThree
+        .74s
+        cubic-bezier(.12,.77,.17,1)
+        .02s
+        forwards;
+}
+
+@keyframes shatterPanelOne{
     0%{
         opacity:0;
-
         transform:
-            translate(0,0)
-            rotate(var(--r))
-            scale(.3);
+            translate3d(-58vw,0,0)
+            rotate(-8deg)
+            skewX(-23deg);
     }
 
     12%{
         opacity:1;
     }
 
-    100%{
-        opacity:0;
-
+    62%{
+        opacity:1;
         transform:
-            translate(
-                var(--dx),
-                var(--dy)
-            )
-            rotate(
-                calc(
-                    var(--r)
-                    +
-                    180deg
-                )
-            )
-            scale(1.2);
+            translate3d(54vw,0,0)
+            rotate(-8deg)
+            skewX(-23deg);
     }
 
+    100%{
+        opacity:0;
+        transform:
+            translate3d(160vw,0,0)
+            rotate(-8deg)
+            skewX(-23deg);
+    }
+}
+
+@keyframes shatterPanelTwo{
+    0%{
+        opacity:0;
+        transform:
+            translate3d(65vw,0,0)
+            rotate(7deg)
+            skewX(-25deg);
+    }
+
+    12%{
+        opacity:1;
+    }
+
+    62%{
+        opacity:1;
+        transform:
+            translate3d(-48vw,0,0)
+            rotate(7deg)
+            skewX(-25deg);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate3d(-165vw,0,0)
+            rotate(7deg)
+            skewX(-25deg);
+    }
+}
+
+@keyframes shatterPanelThree{
+    0%{
+        opacity:0;
+        transform:
+            translate3d(-64vw,0,0)
+            rotate(-5deg)
+            skewX(-26deg);
+    }
+
+    14%{
+        opacity:.96;
+    }
+
+    64%{
+        opacity:.92;
+        transform:
+            translate3d(47vw,0,0)
+            rotate(-5deg)
+            skewX(-26deg);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate3d(158vw,0,0)
+            rotate(-5deg)
+            skewX(-26deg);
+    }
 }
 
 
 /* =========================================================
-   FLASH
+   LOGO SHARDS
 ========================================================= */
 
-.cutin-flash{
+#logoShardLayer{
     position:absolute;
     inset:0;
-
-    z-index:20;
-
-    background:#fff;
-
-    opacity:0;
-
+    z-index:7;
     pointer-events:none;
 }
 
-#skillCutin.tear
-.cutin-flash{
+.logo-shard{
+    position:fixed;
+    margin:0;
+    padding:0;
+    opacity:1;
+
+    background-image:
+        url("take-your-heart.png");
+
+    background-repeat:no-repeat;
+    pointer-events:none;
+
+    transform:
+        translate3d(0,0,0)
+        rotate(0deg)
+        scale(1);
+
+    transform-origin:center;
+    will-change:transform,opacity;
+}
+
+#shatterTransition.burst
+.logo-shard{
     animation:
-        cutinFlash
-        .48s
+        logoShardBurst
+        var(--dur)
+        var(--shatter-ease)
+        var(--delay)
+        forwards;
+}
+
+@keyframes logoShardBurst{
+    0%{
+        opacity:1;
+        transform:
+            translate3d(0,0,0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    18%{
+        opacity:1;
+        transform:
+            translate3d(
+                var(--dx-start),
+                var(--dy-start),
+                0
+            )
+            rotate(var(--rot-start))
+            scale(1.04);
+    }
+
+    56%{
+        opacity:1;
+        transform:
+            translate3d(
+                var(--dx-mid),
+                var(--dy-mid),
+                0
+            )
+            rotate(var(--rot-mid))
+            scale(.95);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate3d(
+                var(--dx),
+                var(--dy),
+                0
+            )
+            rotate(var(--rot))
+            scale(.69);
+    }
+}
+
+
+/* =========================================================
+   SMALL EXTRA SHARDS
+========================================================= */
+
+#shatterDebris{
+    position:absolute;
+    inset:0;
+    z-index:6;
+    pointer-events:none;
+}
+
+.shatter-debris{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:var(--w);
+    height:var(--h);
+    background:var(--c);
+    opacity:0;
+
+    clip-path:
+        polygon(
+            0 16%,
+            100% 0,
+            79% 100%,
+            12% 73%
+        );
+
+    will-change:transform,opacity;
+}
+
+#shatterTransition.burst
+.shatter-debris{
+    animation:
+        shatterDebrisFly
+        var(--dur)
+        cubic-bezier(.15,.76,.22,1)
+        var(--delay)
+        forwards;
+}
+
+@keyframes shatterDebrisFly{
+    0%{
+        opacity:0;
+        transform:
+            translate3d(
+                var(--sx),
+                var(--sy),
+                0
+            )
+            rotate(0deg)
+            scale(.25);
+    }
+
+    12%{
+        opacity:.95;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate3d(
+                var(--dx),
+                var(--dy),
+                0
+            )
+            rotate(var(--rot))
+            scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   CLICK FLASH
+========================================================= */
+
+.shatter-flash{
+    position:absolute;
+    inset:0;
+    z-index:12;
+    background:#fff;
+    opacity:0;
+    pointer-events:none;
+}
+
+#shatterTransition.active
+.shatter-flash{
+    animation:
+        shatterFlash
+        .28s
         ease-out
         forwards;
 }
 
-@keyframes cutinFlash{
-
+@keyframes shatterFlash{
     0%{
         opacity:0;
     }
 
     18%{
-        opacity:.82;
+        opacity:.94;
     }
 
-    43%{
-        opacity:.11;
-
-        background:
-            var(--red);
+    46%{
+        opacity:.22;
+        background:#dc0000;
     }
 
     100%{
         opacity:0;
     }
-
 }
+
+
+/* =========================================================
+   START SCREEN HIT
+========================================================= */
+
+#startScreen.shatter-hit
+.royal-logo{
+    animation:none;
+
+    transition:
+        transform .11s cubic-bezier(.15,.72,.18,1),
+        filter .11s ease,
+        opacity .08s linear .08s;
+
+    transform:
+        rotate(-7deg)
+        skewX(-8deg)
+        scale(1.12);
+
+    filter:
+        drop-shadow(11px 12px 0 #000)
+        drop-shadow(17px 17px 0 #dc0000)
+        brightness(1.9)
+        contrast(1.2);
+}
+
+#startScreen.shatter-hit
+.sub-txt{
+    transition:
+        opacity .10s linear,
+        transform .10s ease;
+
+    opacity:0;
+
+    transform:
+        skewX(-6deg)
+        scaleX(.94)
+        scale(1.08);
+}
+
+#startScreen.shatter-hit
+.start-label{
+    transition:
+        opacity .09s linear;
+
+    opacity:0;
+}
+
 
 
 /* =========================================================
@@ -3655,10 +3254,8 @@ body.screen-shake{
 @media (max-width:600px){
 
     :root{
-        --mask-flight:1.52s;
-
-        --mask-ease:
-            cubic-bezier(.17,.61,.18,1);
+        --shatter-time:.72s;
+        --shatter-ease:cubic-bezier(.14,.72,.16,1);
     }
 
 
@@ -3674,7 +3271,6 @@ body.screen-shake{
     .logo-ring.one{
         width:345px;
         max-width:92vw;
-
         height:165px;
     }
 
@@ -3682,7 +3278,6 @@ body.screen-shake{
     .logo-ring.two{
         width:395px;
         max-width:102vw;
-
         height:205px;
     }
 
@@ -3690,14 +3285,12 @@ body.screen-shake{
     .logo-ring.three{
         width:445px;
         max-width:112vw;
-
         height:245px;
     }
 
 
     .sub-txt{
         margin-top:19px;
-
         gap:9px;
 
         font-size:
@@ -3732,7 +3325,6 @@ body.screen-shake{
 
     .start-label{
         font-size:6px;
-
         letter-spacing:1.7px;
     }
 
@@ -3769,285 +3361,46 @@ body.screen-shake{
     }
 
 
-    .cutin-top-wrap{
-        height:64%;
+    .shatter-back{
+        inset:-8%;
+
+        transform:
+            translate3d(-10vw,0,0)
+            scale(1.10);
     }
 
 
-    .cutin-bottom-wrap{
-        height:64%;
+    .shatter-panel.one{
+        top:14vh;
+        height:14vh;
+        min-height:72px;
     }
 
 
-    .cutin-strip-wrap{
-        top:34%;
+    .shatter-panel.two{
+        top:48vh;
+        height:10vh;
+        min-height:54px;
 
-        height:34%;
+        box-shadow:
+            0 -6px 0 #050505,
+            0 6px 0 #dc0000;
     }
 
 
-    .cutin-strip::before{
-        left:-8%;
-        top:30%;
+    .shatter-panel.three{
+        bottom:11vh;
+        height:12vh;
+        min-height:62px;
 
-        font-size:
-            clamp(
-                36px,
-                14vw,
-                68px
-            );
+        box-shadow:
+            0 -7px 0 #050505;
     }
 
 
-    #maskDart{
-        width:
-            clamp(
-                108px,
-                34vw,
-                150px
-            );
-    }
-
-
-    #skillCutin.throw-mask
-    #maskDart{
-        animation-name:
-            maskFlightMobile;
-    }
-
-
-    #skillCutin.throw-mask
-    .mask-spinner{
-        animation-name:
-            maskSpinMobile;
-    }
-
-
-    @keyframes maskFlightMobile{
-
-        0%{
-            opacity:0;
-
-            transform:
-                translate3d(
-                    -38vw,
-                    calc(-50% + 4vw),
-                    0
-                )
-                scale(.40);
-
-            filter:
-                blur(4px);
-        }
-
-
-        6%{
-            opacity:1;
-        }
-
-
-        18%{
-            opacity:1;
-
-            transform:
-                translate3d(
-                    -3vw,
-                    calc(-50% + 3vw),
-                    0
-                )
-                scale(.53);
-
-            filter:
-                blur(2px);
-        }
-
-
-        34%{
-            opacity:1;
-
-            transform:
-                translate3d(
-                    20vw,
-                    calc(-50% + 2vw),
-                    0
-                )
-                scale(.74);
-
-            filter:
-                blur(.6px);
-        }
-
-
-        48%{
-            opacity:1;
-
-            transform:
-                translate3d(
-                    39vw,
-                    calc(-50% + .8vw),
-                    0
-                )
-                scale(1);
-
-            filter:
-                blur(0);
-        }
-
-
-        56%{
-            opacity:1;
-
-            transform:
-                translate3d(
-                    48vw,
-                    calc(-50% + .15vw),
-                    0
-                )
-                scale(1.12);
-
-            filter:
-                blur(0);
-        }
-
-
-        68%{
-            opacity:1;
-
-            transform:
-                translate3d(
-                    63vw,
-                    calc(-50% - .9vw),
-                    0
-                )
-                scale(.98);
-        }
-
-
-        80%{
-            opacity:1;
-
-            transform:
-                translate3d(
-                    78vw,
-                    calc(-50% - 2vw),
-                    0
-                )
-                scale(.78);
-
-            filter:
-                blur(.4px);
-        }
-
-
-        90%{
-            opacity:.78;
-
-            transform:
-                translate3d(
-                    94vw,
-                    calc(-50% - 3.1vw),
-                    0
-                )
-                scale(.58);
-
-            filter:
-                blur(1.5px);
-        }
-
-
-        97%{
-            opacity:.30;
-
-            transform:
-                translate3d(
-                    112vw,
-                    calc(-50% - 4.1vw),
-                    0
-                )
-                scale(.43);
-
-            filter:
-                blur(3px);
-        }
-
-
-        100%{
-            opacity:0;
-
-            transform:
-                translate3d(
-                    128vw,
-                    calc(-50% - 4.8vw),
-                    0
-                )
-                scale(.34);
-
-            filter:
-                blur(5px);
-        }
-
-    }
-
-
-    @keyframes maskSpinMobile{
-
-        0%{
-            transform:
-                rotate(-58deg)
-                scaleX(.96);
-        }
-
-        20%{
-            transform:
-                rotate(45deg)
-                scaleX(1.01);
-        }
-
-        40%{
-            transform:
-                rotate(150deg)
-                scaleX(.98);
-        }
-
-        60%{
-            transform:
-                rotate(255deg)
-                scaleX(1.02);
-        }
-
-        80%{
-            transform:
-                rotate(360deg)
-                scaleX(.98);
-        }
-
-        100%{
-            transform:
-                rotate(500deg)
-                scaleX(1);
-        }
-
-    }
-
-
-    #skillCutin.tear
-    .cutin-top-wrap{
-        animation-duration:
-            1.46s;
-    }
-
-
-    #skillCutin.tear
-    .cutin-bottom-wrap{
-        animation-duration:
-            1.46s;
-    }
-
-
-    #skillCutin.tear
-    .cutin-strip-wrap{
-        animation-duration:
-            1.16s;
+    .logo-shard{
+        backface-visibility:hidden;
+        -webkit-backface-visibility:hidden;
     }
 
 
@@ -4092,11 +3445,6 @@ body.screen-shake{
 
         letter-spacing:1.15px;
     }
-
-    #maskDart{
-        width:33vw;
-    }
-
 }
 
 </style>
@@ -4190,56 +3538,25 @@ body.screen-shake{
 
 
 <!-- =========================================================
-     CUTIN
+     TAKE YOUR HEART SHATTER TRANSITION
 ========================================================= -->
 
 <div
-    id="skillCutin"
+    id="shatterTransition"
     aria-hidden="true"
 >
 
-    <div class="cutin-back"></div>
+    <div class="shatter-back"></div>
 
-    <div class="cutin-red-slash"></div>
+    <div class="shatter-panel one"></div>
+    <div class="shatter-panel two"></div>
+    <div class="shatter-panel three"></div>
 
+    <div id="logoShardLayer"></div>
 
-    <div class="cutin-top-wrap">
-        <div class="cutin-top"></div>
-    </div>
+    <div id="shatterDebris"></div>
 
-
-    <div class="cutin-bottom-wrap">
-        <div class="cutin-bottom"></div>
-    </div>
-
-
-    <div class="cutin-strip-wrap">
-        <div class="cutin-strip"></div>
-    </div>
-
-
-    <!--
-        這裡已經完全沒有 cutin-rip-line
-    -->
-
-
-    <div id="maskDart">
-
-        <div class="mask-spinner">
-
-            <img
-                src="joker-mask.png"
-                alt=""
-            >
-
-        </div>
-
-    </div>
-
-
-    <div id="cutinShards"></div>
-
-    <div class="cutin-flash"></div>
+    <div class="shatter-flash"></div>
 
 </div>
 
@@ -4300,7 +3617,6 @@ window.addEventListener(
 
         buildStartP5Decor();
 
-        buildCutinShards();
 
         buildRealDenseWaterfall();
 
@@ -5684,153 +5000,6 @@ function buildStartP5Decor(){
 
 
 /* =========================================================
-   CUTIN SHARDS
-========================================================= */
-
-function buildCutinShards(){
-
-    const container =
-        document.getElementById(
-            "cutinShards"
-        );
-
-
-    container.innerHTML =
-        "";
-
-
-    const count =
-        isMobile()
-        ?
-        24
-        :
-        44;
-
-
-    for(
-        let i = 0;
-        i < count;
-        i++
-    ){
-
-        const shard =
-            document.createElement(
-                "div"
-            );
-
-
-        shard.className =
-            "cutin-shard";
-
-
-        shard.style.setProperty(
-            "--x",
-            random(
-                20,
-                80
-            )
-            +
-            "%"
-        );
-
-
-        shard.style.setProperty(
-            "--y",
-            random(
-                35,
-                65
-            )
-            +
-            "%"
-        );
-
-
-        shard.style.setProperty(
-            "--w",
-            random(
-                7,
-                36
-            )
-            +
-            "px"
-        );
-
-
-        shard.style.setProperty(
-            "--h",
-            random(
-                4,
-                16
-            )
-            +
-            "px"
-        );
-
-
-        shard.style.setProperty(
-            "--c",
-            pick([
-                "#fff",
-                "#dc0000",
-                "#050505"
-            ])
-        );
-
-
-        shard.style.setProperty(
-            "--dx",
-            random(
-                -280,
-                280
-            )
-            +
-            "px"
-        );
-
-
-        shard.style.setProperty(
-            "--dy",
-            random(
-                -190,
-                190
-            )
-            +
-            "px"
-        );
-
-
-        shard.style.setProperty(
-            "--r",
-            random(
-                -90,
-                90
-            )
-            +
-            "deg"
-        );
-
-
-        shard.style.setProperty(
-            "--d",
-            random(
-                .7,
-                1.2
-            )
-            +
-            "s"
-        );
-
-
-        container.appendChild(
-            shard
-        );
-
-    }
-
-}
-
-
-/* =========================================================
    PARALLAX
 ========================================================= */
 
@@ -7069,6 +6238,651 @@ function createInkSplatter(
 
 
 /* =========================================================
+   BUILD TAKE YOUR HEART SHARDS
+========================================================= */
+
+function buildLogoShards(){
+
+    const layer =
+        document.getElementById(
+            "logoShardLayer"
+        );
+
+
+    const logo =
+        document.querySelector(
+            ".take-your-heart-img"
+        );
+
+
+    if(
+        !layer
+        ||
+        !logo
+    ){
+        return;
+    }
+
+
+    layer.innerHTML =
+        "";
+
+
+    const rect =
+        logo.getBoundingClientRect();
+
+
+    const mobile =
+        isMobile();
+
+
+    const cols =
+        mobile
+        ?
+        4
+        :
+        6;
+
+
+    const rows =
+        4;
+
+
+    const cellW =
+        rect.width
+        /
+        cols;
+
+
+    const cellH =
+        rect.height
+        /
+        rows;
+
+
+    const centerX =
+        window.innerWidth
+        /
+        2;
+
+
+    const centerY =
+        window.innerHeight
+        /
+        2;
+
+
+    const clipShapes = [
+
+        "polygon(0 8%,88% 0,100% 82%,15% 100%)",
+
+        "polygon(10% 0,100% 11%,84% 100%,0 86%)",
+
+        "polygon(0 0,91% 9%,100% 100%,12% 84%)",
+
+        "polygon(12% 5%,100% 0,88% 86%,0 100%)",
+
+        "polygon(0 15%,100% 0,91% 100%,8% 85%)",
+
+        "polygon(6% 0,94% 11%,100% 85%,0 100%)"
+
+    ];
+
+
+    for(
+        let r = 0;
+        r < rows;
+        r++
+    ){
+
+        for(
+            let c = 0;
+            c < cols;
+            c++
+        ){
+
+            const shard =
+                document.createElement(
+                    "div"
+                );
+
+
+            shard.className =
+                "logo-shard";
+
+
+            const overlap =
+                1.6;
+
+
+            const localX =
+                c
+                *
+                cellW;
+
+
+            const localY =
+                r
+                *
+                cellH;
+
+
+            const x =
+                rect.left
+                +
+                localX
+                -
+                overlap;
+
+
+            const y =
+                rect.top
+                +
+                localY
+                -
+                overlap;
+
+
+            const w =
+                cellW
+                +
+                overlap
+                *
+                2;
+
+
+            const h =
+                cellH
+                +
+                overlap
+                *
+                2;
+
+
+            shard.style.left =
+                x
+                +
+                "px";
+
+
+            shard.style.top =
+                y
+                +
+                "px";
+
+
+            shard.style.width =
+                w
+                +
+                "px";
+
+
+            shard.style.height =
+                h
+                +
+                "px";
+
+
+            shard.style.backgroundSize =
+                rect.width
+                +
+                "px "
+                +
+                rect.height
+                +
+                "px";
+
+
+            shard.style.backgroundPosition =
+                (
+                    -
+                    localX
+                    +
+                    overlap
+                )
+                +
+                "px "
+                +
+                (
+                    -
+                    localY
+                    +
+                    overlap
+                )
+                +
+                "px";
+
+
+            shard.style.clipPath =
+                pick(
+                    clipShapes
+                );
+
+
+            const pieceCenterX =
+                x
+                +
+                w
+                /
+                2;
+
+
+            const pieceCenterY =
+                y
+                +
+                h
+                /
+                2;
+
+
+            const angle =
+                Math.atan2(
+                    pieceCenterY
+                    -
+                    centerY,
+                    pieceCenterX
+                    -
+                    centerX
+                );
+
+
+            const distance =
+                mobile
+                ?
+                random(
+                    155,
+                    285
+                )
+                :
+                random(
+                    245,
+                    470
+                );
+
+
+            const dx =
+                Math.cos(
+                    angle
+                )
+                *
+                distance
+                +
+                random(
+                    -42,
+                    42
+                );
+
+
+            const dy =
+                Math.sin(
+                    angle
+                )
+                *
+                distance
+                +
+                random(
+                    -36,
+                    36
+                );
+
+
+            const rot =
+                random(
+                    -125,
+                    125
+                );
+
+
+            shard.style.setProperty(
+                "--dx",
+                dx
+                +
+                "px"
+            );
+
+
+            shard.style.setProperty(
+                "--dy",
+                dy
+                +
+                "px"
+            );
+
+
+            shard.style.setProperty(
+                "--dx-start",
+                dx
+                *
+                .08
+                +
+                "px"
+            );
+
+
+            shard.style.setProperty(
+                "--dy-start",
+                dy
+                *
+                .08
+                +
+                "px"
+            );
+
+
+            shard.style.setProperty(
+                "--dx-mid",
+                dx
+                *
+                .48
+                +
+                "px"
+            );
+
+
+            shard.style.setProperty(
+                "--dy-mid",
+                dy
+                *
+                .48
+                +
+                "px"
+            );
+
+
+            shard.style.setProperty(
+                "--rot",
+                rot
+                +
+                "deg"
+            );
+
+
+            shard.style.setProperty(
+                "--rot-start",
+                rot
+                *
+                .08
+                +
+                "deg"
+            );
+
+
+            shard.style.setProperty(
+                "--rot-mid",
+                rot
+                *
+                .46
+                +
+                "deg"
+            );
+
+
+            shard.style.setProperty(
+                "--dur",
+                random(
+                    mobile
+                    ?
+                    .55
+                    :
+                    .63,
+                    mobile
+                    ?
+                    .76
+                    :
+                    .92
+                )
+                +
+                "s"
+            );
+
+
+            shard.style.setProperty(
+                "--delay",
+                random(
+                    0,
+                    mobile
+                    ?
+                    .045
+                    :
+                    .07
+                )
+                +
+                "s"
+            );
+
+
+            layer.appendChild(
+                shard
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL P5 DEBRIS
+========================================================= */
+
+function buildShatterDebris(){
+
+    const container =
+        document.getElementById(
+            "shatterDebris"
+        );
+
+
+    if(
+        !container
+    ){
+        return;
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    const mobile =
+        isMobile();
+
+
+    const count =
+        mobile
+        ?
+        14
+        :
+        26;
+
+
+    for(
+        let i = 0;
+        i < count;
+        i++
+    ){
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.className =
+            "shatter-debris";
+
+
+        const sx =
+            random(
+                -95,
+                95
+            );
+
+
+        const sy =
+            random(
+                -60,
+                60
+            );
+
+
+        const angle =
+            random(
+                0,
+                Math.PI
+                *
+                2
+            );
+
+
+        const distance =
+            mobile
+            ?
+            random(
+                150,
+                310
+            )
+            :
+            random(
+                230,
+                520
+            );
+
+
+        piece.style.setProperty(
+            "--w",
+            random(
+                6,
+                mobile
+                ?
+                22
+                :
+                34
+            )
+            +
+            "px"
+        );
+
+
+        piece.style.setProperty(
+            "--h",
+            random(
+                3,
+                mobile
+                ?
+                10
+                :
+                15
+            )
+            +
+            "px"
+        );
+
+
+        piece.style.setProperty(
+            "--c",
+            pick([
+                "#050505",
+                "#dc0000",
+                "#fff"
+            ])
+        );
+
+
+        piece.style.setProperty(
+            "--sx",
+            sx
+            +
+            "px"
+        );
+
+
+        piece.style.setProperty(
+            "--sy",
+            sy
+            +
+            "px"
+        );
+
+
+        piece.style.setProperty(
+            "--dx",
+            (
+                Math.cos(
+                    angle
+                )
+                *
+                distance
+            )
+            +
+            "px"
+        );
+
+
+        piece.style.setProperty(
+            "--dy",
+            (
+                Math.sin(
+                    angle
+                )
+                *
+                distance
+            )
+            +
+            "px"
+        );
+
+
+        piece.style.setProperty(
+            "--rot",
+            random(
+                -260,
+                260
+            )
+            +
+            "deg"
+        );
+
+
+        piece.style.setProperty(
+            "--dur",
+            random(
+                .50,
+                mobile
+                ?
+                .72
+                :
+                .86
+            )
+            +
+            "s"
+        );
+
+
+        piece.style.setProperty(
+            "--delay",
+            random(
+                0,
+                .06
+            )
+            +
+            "s"
+        );
+
+
+        container.appendChild(
+            piece
+        );
+
+    }
+
+}
+
+
+
+
+/* =========================================================
    IMPACT
 ========================================================= */
 
@@ -7223,10 +7037,17 @@ function launchPhantom(
         );
 
 
-    const cutin =
+    const transition =
         document.getElementById(
-            "skillCutin"
+            "shatterTransition"
         );
+
+
+    /* PREPARE THE REAL TAKE-YOUR-HEART.PNG SHARDS */
+
+    buildLogoShards();
+
+    buildShatterDebris();
 
 
     triggerImpact(
@@ -7256,26 +7077,13 @@ function launchPhantom(
         "none";
 
 
-    start.style.transition =
-        "transform .34s cubic-bezier(.16,1,.3,1), filter .34s ease";
+    transition.classList.add(
+        "active"
+    );
 
 
-    start.style.transform =
-        "scale(1.12)";
-
-
-    start.style.filter =
-        "contrast(1.25) brightness(1.18)";
-
-
-    /* =====================================================
-       STEP 1
-       CUTIN ENTER
-    ===================================================== */
-
-    cutin.classList.add(
-        "active",
-        "enter"
+    start.classList.add(
+        "shatter-hit"
     );
 
 
@@ -7283,8 +7091,25 @@ function launchPhantom(
 
 
     /* =====================================================
-       STEP 2
-       MAIN STARTS BEHIND
+       0.10s
+       LOGO BREAKS APART
+    ===================================================== */
+
+    setTimeout(
+        () => {
+
+            transition.classList.add(
+                "burst"
+            );
+
+        },
+        100
+    );
+
+
+    /* =====================================================
+       0.17s
+       MAIN ANIMATION STARTS BEHIND THE FLYING SHARDS
     ===================================================== */
 
     setTimeout(
@@ -7326,35 +7151,11 @@ function launchPhantom(
             );
 
         },
-        520
+        170
     );
 
 
-    /* =====================================================
-       STEP 3
-       MASK ONLY
-       沒有任何橫線
-    ===================================================== */
-
-    const maskStart =
-        isMobile()
-        ?
-        720
-        :
-        690;
-
-
-    setTimeout(
-        () => {
-
-            cutin.classList.add(
-                "throw-mask"
-            );
-
-        },
-        maskStart
-    );
-
+    /* SECOND IMPACT */
 
     setTimeout(
         () => {
@@ -7362,73 +7163,37 @@ function launchPhantom(
             shake();
 
         },
-
-        maskStart
-        +
-        850
-    );
-
-
-    /* =====================================================
-       STEP 4
-       MASK 完全飛出去
-       稍微停一下
-    ===================================================== */
-
-    const maskDuration =
         isMobile()
         ?
-        1520
+        360
         :
-        1820;
-
-
-    const tearStart =
-        maskStart
-        +
-        maskDuration
-        +
-        120;
-
-
-    /* =====================================================
-       STEP 5
-       直接撕開
-    ===================================================== */
-
-    setTimeout(
-        () => {
-
-            cutin.classList.remove(
-                "enter"
-            );
-
-
-            cutin.classList.add(
-                "tear"
-            );
-
-
-            shake();
-
-        },
-        tearStart
+        400
     );
 
 
     /* =====================================================
-       STEP 6
-       END
+       CLEANUP
     ===================================================== */
 
     setTimeout(
         () => {
 
-            cutin.classList.remove(
+            transition.classList.remove(
                 "active",
-                "tear",
-                "throw-mask"
+                "burst"
             );
+
+
+            document.getElementById(
+                "logoShardLayer"
+            ).innerHTML =
+                "";
+
+
+            document.getElementById(
+                "shatterDebris"
+            ).innerHTML =
+                "";
 
 
             document.body.classList.remove(
@@ -7436,17 +7201,16 @@ function launchPhantom(
             );
 
         },
-
         isMobile()
         ?
-        4200
+        980
         :
-        3950
+        1120
     );
 
 
     /* =====================================================
-       CONTINUOUS EFFECTS
+       CONTINUOUS MAIN EFFECTS
     ===================================================== */
 
     const mobile =
@@ -7513,6 +7277,7 @@ function launchPhantom(
         );
 
 }
+
 
 
 /* =========================================================
@@ -7987,7 +7752,6 @@ window.addEventListener(
 
                         buildStartP5Decor();
 
-                        buildCutinShards();
 
                     }
 
